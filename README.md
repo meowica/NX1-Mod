@@ -30,3 +30,4 @@
 - Removed some prints for a cleaner log (SP/MP)
 - Enabled unsecure Fast File loading (MP)
 - Skips main_lockout (SP)
+- Console + DevGui safe area changed to fit the full screen, like it does on PC (SP/MP)
