@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MP-Demo", "Projects\MP-Demo.vcxproj", "{590B22B0-B65E-4E94-8035-693C29BAD0D2}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MP-Mod", "Projects\MP-Mod.vcxproj", "{590B22B0-B65E-4E94-8035-693C29BAD0D2}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SP-Dev", "Projects\SP-Dev.vcxproj", "{97114FA4-AB73-444A-AB82-6066E25C1E1D}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SP-Mod", "Projects\SP-Mod.vcxproj", "{97114FA4-AB73-444A-AB82-6066E25C1E1D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependencies", "Dependencies", "{70A4B4D0-7150-4D5A-8051-2E0156B33F46}"
 EndProject
