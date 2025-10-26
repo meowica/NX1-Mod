@@ -1,9 +1,9 @@
 #pragma once
 
 // modules
-//#ifdef INCLUDE_ASSET_DUMPERS
+#ifdef INCLUDE_ASSET_DUMPERS
 #include "Modules\Assets\Assets.h"
-//#endif
+#endif
 #include "Modules\Drawing.h"
 #ifdef SP_MOD
 #include "Modules\GameLog.h"

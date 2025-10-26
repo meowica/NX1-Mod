@@ -1,8 +1,8 @@
 void RegisterModules()
 {
-//#ifdef INCLUDE_ASSET_DUMPERS
+#ifdef INCLUDE_ASSET_DUMPERS
 	REGISTER_MODULE(Assets);
-//#endif
+#endif
 	REGISTER_MODULE(Drawing);
 #ifdef SP_MOD
 	REGISTER_MODULE(GameLog);

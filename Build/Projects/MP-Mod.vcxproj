@@ -134,17 +134,6 @@
     <ClCompile Include="..\..\Dependencies\zlib\inftrees.c" />
     <ClCompile Include="..\..\Dependencies\zlib\zutil.c" />
     <ClCompile Include="..\..\Source\Components\Loader.cpp" />
-    <ClCompile Include="..\..\Source\Components\Modules\Assets\Assets.cpp" />
-    <ClCompile Include="..\..\Source\Components\Modules\Assets\Types\FogDef.cpp" />
-    <ClCompile Include="..\..\Source\Components\Modules\Assets\Types\FxEffectDef.cpp" />
-    <ClCompile Include="..\..\Source\Components\Modules\Assets\Types\GfxLightDef.cpp" />
-    <ClCompile Include="..\..\Source\Components\Modules\Assets\Types\LocalizeEntry.cpp" />
-    <ClCompile Include="..\..\Source\Components\Modules\Assets\Types\MapEnts.cpp" />
-    <ClCompile Include="..\..\Source\Components\Modules\Assets\Types\PhysPreset.cpp" />
-    <ClCompile Include="..\..\Source\Components\Modules\Assets\Types\RawFile.cpp" />
-    <ClCompile Include="..\..\Source\Components\Modules\Assets\Types\ShellshockParams.cpp" />
-    <ClCompile Include="..\..\Source\Components\Modules\Assets\Types\StringTable.cpp" />
-    <ClCompile Include="..\..\Source\Components\Modules\Assets\Types\TracerDef.cpp" />
     <ClCompile Include="..\..\Source\Components\Modules\Drawing.cpp" />
     <ClCompile Include="..\..\Source\Components\Modules\Patches.cpp" />
     <ClCompile Include="..\..\Source\Game\Symbols.cpp" />
@@ -158,19 +147,6 @@
   <ItemGroup>
     <ClInclude Include="..\..\Dependencies\zlib\zlib.h" />
     <ClInclude Include="..\..\Source\Components\Loader.h" />
-    <ClInclude Include="..\..\Source\Components\Modules\Assets\Assets.h" />
-    <ClInclude Include="..\..\Source\Components\Modules\Assets\Types\FogDef.h" />
-    <ClInclude Include="..\..\Source\Components\Modules\Assets\Types\FxEffectDef.h" />
-    <ClInclude Include="..\..\Source\Components\Modules\Assets\Types\GfxLightDef.h" />
-    <ClInclude Include="..\..\Source\Components\Modules\Assets\Types\LaserDef.h" />
-    <ClInclude Include="..\..\Source\Components\Modules\Assets\Types\LocalizeEntry.h" />
-    <ClInclude Include="..\..\Source\Components\Modules\Assets\Types\MapEnts.h" />
-    <ClInclude Include="..\..\Source\Components\Modules\Assets\Types\Material.h" />
-    <ClInclude Include="..\..\Source\Components\Modules\Assets\Types\PhysPreset.h" />
-    <ClInclude Include="..\..\Source\Components\Modules\Assets\Types\RawFile.h" />
-    <ClInclude Include="..\..\Source\Components\Modules\Assets\Types\ShellshockParams.h" />
-    <ClInclude Include="..\..\Source\Components\Modules\Assets\Types\StringTable.h" />
-    <ClInclude Include="..\..\Source\Components\Modules\Assets\Types\TracerDef.h" />
     <ClInclude Include="..\..\Source\Components\Modules\Drawing.h" />
     <ClInclude Include="..\..\Source\Components\Modules\Patches.h" />
     <ClInclude Include="..\..\Source\Game\Structs.h" />
