@@ -45,9 +45,7 @@ namespace Symbols
 
 		extern Structs::ScreenPlacement* scrPlaceFullUnsafe;
 	}
-#endif
-
-#ifdef SP_MOD
+#elif SP_MOD
 	namespace SP
 	{
 		typedef void (*Cmd_AddCommand_t)(const char* cmdName, void (__cdecl* function)(), Structs::cmd_function_s* allocedCmd);

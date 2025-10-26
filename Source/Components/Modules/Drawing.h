@@ -8,9 +8,7 @@ namespace Drawing
 		void Load();
 		void Unload();
 	}
-#endif
-
-#ifdef SP_MOD
+#elif SP_MOD
 	namespace SP
 	{
 		void Load();

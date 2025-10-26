@@ -127,12 +127,6 @@
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Dependencies\zlib\adler32.c" />
-    <ClCompile Include="..\..\Dependencies\zlib\crc32.c" />
-    <ClCompile Include="..\..\Dependencies\zlib\inffast.c" />
-    <ClCompile Include="..\..\Dependencies\zlib\inflate.c" />
-    <ClCompile Include="..\..\Dependencies\zlib\inftrees.c" />
-    <ClCompile Include="..\..\Dependencies\zlib\zutil.c" />
     <ClCompile Include="..\..\Source\Components\Loader.cpp" />
     <ClCompile Include="..\..\Source\Components\Modules\DevGui.cpp" />
     <ClCompile Include="..\..\Source\Components\Modules\Drawing.cpp" />
@@ -147,7 +141,6 @@
     <ClCompile Include="..\..\Source\Util\XBox.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Dependencies\zlib\zlib.h" />
     <ClInclude Include="..\..\Source\Components\Loader.h" />
     <ClInclude Include="..\..\Source\Components\Modules\DevGui.h" />
     <ClInclude Include="..\..\Source\Components\Modules\Drawing.h" />

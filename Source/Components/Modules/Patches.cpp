@@ -308,9 +308,7 @@ namespace Patches
 			ClearHooks();
 		}
 	}
-#endif
-
-#ifdef SP_MOD
+#elif SP_MOD
 	namespace SP
 	{
 		Util::Hook::Detour printf_Hook;

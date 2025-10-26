@@ -23,9 +23,7 @@ namespace Symbols
 
 		Structs::ScreenPlacement* scrPlaceFullUnsafe = (Structs::ScreenPlacement*)0x82B8DDA8;
 	}
-#endif
-
-#ifdef SP_MOD
+#elif SP_MOD
 	namespace SP
 	{
 		Cmd_AddCommand_t Cmd_AddCommand = Cmd_AddCommand_t(0x824221C8);

@@ -43,7 +43,7 @@ namespace Loader
 
 	void RegisterModules()
 	{
-		REGISTER_MODULE(Patches);
+		REGISTER_MODULE(Patches); // we want this to be first
 
 		REGISTER_MODULE(DevGui);
 		REGISTER_MODULE(Drawing);

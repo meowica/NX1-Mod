@@ -2,11 +2,11 @@
 
 namespace GameLog
 {
-//#ifdef SP_MOD
+#ifdef SP_MOD
 	namespace SP
 	{
 		void Load();
 		void Unload();
 	}
-//#endif
+#endif
 }

@@ -31,10 +31,10 @@ namespace Loader
 	void RegisterModules();
 }
 
-#ifdef SP_MOD
-	#define MODULE_NS(name) name::SP
-#else
-	#define MODULE_NS(name) name::MP
+#ifdef MP_MOD
+	#define MODULE_NAME(name) name::MP
+#elif SP_MOD
+	#define MODULE_NAME(name) name::SP
 #endif
 
 struct ModuleRegistrator
@@ -46,4 +46,4 @@ struct ModuleRegistrator
 };
 
 #define REGISTER_MODULE(name) \
-	static ModuleRegistrator _module_##name(#name, MODULE_NS(name)::Load, MODULE_NS(name)::Unload)
+	static ModuleRegistrator _module_##name(#name, MODULE_NAME(name)::Load, MODULE_NAME(name)::Unload)
