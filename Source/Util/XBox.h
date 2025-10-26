@@ -6,7 +6,7 @@ namespace Util
 	{
 		DWORD XGetCurrentTitleId();
 
-		struct DM_THREADINFOEX
+		typedef struct _DM_THREADINFOEX
 		{
 			uint32_t Size;
 			uint32_t SuspendCount;
@@ -21,7 +21,7 @@ namespace Util
 			uint32_t CreateTime;
 			uint32_t CurrentProcessor;
 			char* ThreadNameAddress;
-		};
+		} DM_THREADINFOEX, *PDM_THREADINFOEX;
 
 		int DmGetThreadInfoEx(uint32_t threadId, DM_THREADINFOEX* info);
 	}
