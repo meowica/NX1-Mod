@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\..\Source\Main.cpp" />
+    <ClCompile Include="..\..\Source\Util\Command.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Util\FileSystem.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Util\Hook.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Util\String.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\zlib\adler32.c">
+      <Filter>Dependencies\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\zlib\crc32.c">
+      <Filter>Dependencies\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\zlib\inffast.c">
+      <Filter>Dependencies\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\zlib\inflate.c">
+      <Filter>Dependencies\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\zlib\inftrees.c">
+      <Filter>Dependencies\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\zlib\zutil.c">
+      <Filter>Dependencies\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Game\Symbols.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Components\Loader.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Components\Modules\Patches.cpp">
+      <Filter>Components\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Util\FPS.h">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Components\Modules\Drawing.cpp">
+      <Filter>Components\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Util\XBox.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Components\Modules\GameLog.cpp">
+      <Filter>Components\Modules</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Source\Std_Include.h" />
+    <ClInclude Include="..\..\Source\Util\Command.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Util\FileSystem.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Util\Hook.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Util\String.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Dependencies\zlib\zlib.h">
+      <Filter>Dependencies\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Game\Structs.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Game\Symbols.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Components\Loader.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Components\Modules\Patches.h">
+      <Filter>Components\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Components\Modules\Drawing.h">
+      <Filter>Components\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Util\XBox.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Components\Modules\GameLog.h">
+      <Filter>Components\Modules</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Game">
+      <UniqueIdentifier>{b8b14505-b6c2-46bf-aaa3-a113827b2b8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Util">
+      <UniqueIdentifier>{38bedf2d-f3ba-4a2d-a746-9e767caaed23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components">
+      <UniqueIdentifier>{f87f4585-d1f3-4ea6-8800-fed8ed46570a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependencies">
+      <UniqueIdentifier>{ae41afc0-5ffb-4aa1-ae45-7c2311bb8747}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependencies\zlib">
+      <UniqueIdentifier>{c60f98f5-4fe9-4111-bda9-42516fe37ac9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\Modules">
+      <UniqueIdentifier>{426541c6-6b9d-456a-b45b-37a68853105a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

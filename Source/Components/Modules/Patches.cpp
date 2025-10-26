@@ -1,8 +1,8 @@
 namespace Patches
 {
-	namespace SP_Dev
+#ifdef MP_MOD
+	namespace MP
 	{
-#ifdef SP_DEV
 		Util::Hook::Detour printf_Hook;
 		Util::Hook::Detour _printf_Hook;
 		void _printf(const char* fmt, ...)
@@ -14,38 +14,24 @@ namespace Patches
 			vsnprintf(buf, sizeof(buf), fmt, args);
 			va_end(args);
 
-			Symbols::SP_Dev::Com_Printf(0, "printf: %s", buf);
-		}
-
-		Util::Hook::Detour DbgPrint_Hook;
-		Util::Hook::Detour _DbgPrint_Hook;
-		void _DbgPrint(const char* fmt, ...)
-		{
-			char buf[256];
-
-			va_list args;
-			va_start(args, fmt);
-			vsnprintf(buf, sizeof(buf), fmt, args);
-			va_end(args);
-
-			Symbols::SP_Dev::Com_Printf(0, "DbgPrint: %s", buf);
-		}
+			Symbols::MP::Com_Printf(0, "%s", buf);
+		}		
 
 		Util::Hook::Detour FS_InitFilesystem_Hook;
 		void FS_InitFilesystem()
 		{
 			DWORD start = GetTickCount(); // We could use Sys_Milliseconds here buuut GetTickCount works fine
 
-			Symbols::SP_Dev::Com_Printf(0, "\nLoading modules...\n"); // TODO: figure out why this dont print
+			Symbols::MP::Com_Printf(0, "Loading modules...\n"); // TODO: figure out why this dont print
 			for (int i = 0; i < Loader::g_moduleCount; ++i)
 			{
-				Symbols::SP_Dev::Com_Printf(0, "%d: %s\n", i + 1, Loader::g_modules[i].name);
+				Symbols::MP::Com_Printf(0, "%d: %s\n", i + 1, Loader::g_modules[i].name);
 			}
 		
 			DWORD end = GetTickCount();
 			DWORD duration = end - start;
 
-			Symbols::SP_Dev::Com_Printf(0, "Loaded all modules in %lu ms\n\n", duration);
+			Symbols::MP::Com_Printf(0, "Loaded all modules in %lu ms\n\n", duration);
 
 			auto Invoke = FS_InitFilesystem_Hook.Invoke<void(*)()>();
 			Invoke();
@@ -65,6 +51,20 @@ namespace Patches
 			Invoke(localClientNum, configFile);
 		}
 
+		void PlayIntroMovie()
+		{
+			Symbols::MP::Cbuf_AddText(0, "autocinematic title\n");
+		}
+
+		Util::Hook::Detour Com_Init_Try_Block_Function_Hook;
+		void Com_Init_Try_Block_Function(const char* p_command_line)
+		{
+			auto Invoke = Com_Init_Try_Block_Function_Hook.Invoke<void(*)(const char*)>();
+			Invoke(p_command_line);
+
+			PlayIntroMovie();
+		}
+
 		Util::Hook::Detour Com_Init_Hook;
 		void Com_Init(const char* p_command_line)
 		{
@@ -73,14 +73,20 @@ namespace Patches
 
 			if (p_command_line && *p_command_line)
 			{
-				Symbols::SP_Dev::Com_Printf(16, "Command Line:\n%s\n\n", p_command_line);
+				Symbols::MP::Com_Printf(16, "Command Line:\n%s\n\n", p_command_line);
 			}
 		}
 
 		Util::Hook::Detour getBuildNumber_Hook;
 		const char* getBuildNumber()
 		{
-			return Util::String::Va("NX1-Mod %i", GIT_COMMIT);
+			return Util::String::Va("NX1-Mod MP");
+		}
+
+		Util::Hook::Detour LSP_CheckOngoingTasks_Hook;
+		void LSP_CheckOngoingTasks(int PacketsInternal)
+		{
+			// null stub
 		}
 
 		Util::Hook::Detour MAssertVargs_Hook;
@@ -111,24 +117,24 @@ namespace Patches
 			_vsnprintf_s(message, sizeof(message), fmt, va);
 			message[sizeof(message) - 1] = '\0';
 
-			Symbols::SP_Dev::Com_Printf(0, "\n");
-			Symbols::SP_Dev::Com_Printf(0, "****************************************\n");
-			Symbols::SP_Dev::Com_Printf(0, "*  Assertion Info:\n");
-			Symbols::SP_Dev::Com_Printf(0, "*  Message:       %s\n", message);
-			Symbols::SP_Dev::Com_Printf(0, "*  File:          %s\n", filename);
-			Symbols::SP_Dev::Com_Printf(0, "*  Line:          %d\n", line);
-			Symbols::SP_Dev::Com_Printf(0, "****************************************\n");
+			Symbols::MP::Com_Printf(0, "\n");
+			Symbols::MP::Com_Printf(0, "****************************************\n");
+			Symbols::MP::Com_Printf(0, "*  Assertion Info:\n");
+			Symbols::MP::Com_Printf(0, "*  Message:       %s\n", message);
+			Symbols::MP::Com_Printf(0, "*  File:          %s\n", filename);
+			Symbols::MP::Com_Printf(0, "*  Line:          %d\n", line);
+			Symbols::MP::Com_Printf(0, "****************************************\n");
 
 			if (repeatCount >= 2)
 			{
-				Symbols::SP_Dev::Com_Printf(0, "*  Warning:       Same assert triggered multiple times.\n");
-				Symbols::SP_Dev::Com_Printf(0, "****************************************\n");
+				Symbols::MP::Com_Printf(0, "*  Warning:       Same assert triggered multiple times.\n");
+				Symbols::MP::Com_Printf(0, "****************************************\n");
 				return 0;
 			}
 			else
 			{
-				Symbols::SP_Dev::Com_Printf(0, "*  Note:          First time this assert occurred.\n");
-				Symbols::SP_Dev::Com_Printf(0, "****************************************\n");
+				Symbols::MP::Com_Printf(0, "*  Note:          First time this assert occurred.\n");
+				Symbols::MP::Com_Printf(0, "****************************************\n");
 				return 0;
 			}
 		}
@@ -141,7 +147,7 @@ namespace Patches
 			Util::XBox::DmGetThreadInfoEx(threadId, &info);
 
 			const char* name = info.ThreadNameAddress;
-			snprintf(p_destBuffer, destBufferSize, "\"%s\", 0x%08x, HW Thread %d", name, threadId, info.CurrentProcessor);
+			_snprintf(p_destBuffer, destBufferSize, "\"%s\", 0x%08x, HW Thread %d", name, threadId, info.CurrentProcessor);
 		}
 
 		void Cmd_NX1IsGay_f()
@@ -150,11 +156,313 @@ namespace Patches
 
 			if (Args.Size() < 2)
 			{
-				Symbols::SP_Dev::Com_Printf(0, "usage: nx1-is-gay <something>\n");
+				Symbols::MP::Com_Printf(0, "usage: nx1-is-gay <something>\n");
 				return;
 			}
 
-			Symbols::SP_Dev::Com_Printf(0, "nx1-is-gay\n");
+			Symbols::MP::Com_Printf(0, "nx1-is-gay\n");
+		}
+
+		void AddCommands()
+		{
+			Util::Command::Add("nx1-is-gay", Cmd_NX1IsGay_f); // test command
+		}
+
+		Util::Hook::Detour Cmd_Init_Hook;
+		void Cmd_Init()
+		{
+			auto Invoke = Cmd_Init_Hook.Invoke<void(*)()>();
+			Invoke();
+
+			AddCommands();
+		}
+
+		void Hooks()
+		{
+			// issue fix: disable Black Box
+			Util::Hook::SetValue(0x82456AC0, 0x60000000); // BB_Init
+			Util::Hook::SetValue(0x824577C4, 0x60000000); // BB_Update
+
+			// disable Anti Cheat
+			Util::Hook::SetValue(0x82456BE8, 0x60000000); // LiveAntiCheat_Init
+			Util::Hook::SetValue(0x82667F30, 0x60000000); // LiveAntiCheat_Pump
+			Util::Hook::SetValue(0x825A67FC, 0x60000000); // LiveAntiCheat_Update
+			Util::Hook::SetValue(0x825A48B4, 0x60000000); // LiveAntiCheat_UserSignedInToLive
+			Util::Hook::SetValue(0x825A3FCC, 0x60000000); // LiveAntiCheat_UserSignedOut
+			Util::Hook::SetValue(0x82667C44, 0x60000000); // LiveAntiCheat_OnChallengesReceived
+
+			// detour printf output to Com_Printf instead
+			printf_Hook.Create(printf, _printf);
+			_printf_Hook.Create(0x82898D70, _printf); // make sure we grab the games version too
+
+			// print all our loaded modules
+			FS_InitFilesystem_Hook.Create(0x8252F740, FS_InitFilesystem);
+
+			// prevent dupe config executions
+			Com_ExecStartupConfigs_Hook.Create(0x82453810, Com_ExecStartupConfigs);
+
+			// add a nice intro movie for when the game starts
+			Com_Init_Try_Block_Function_Hook.Create(0x82456A48, Com_Init_Try_Block_Function);
+
+			Com_Init_Hook.Create(0x82457EC8, Com_Init);
+
+			// xenia bug fix: fix console input
+			Util::Hook::SetValue(0x8259F27C, 0x60000000);
+
+			// bug fix: remove xray material from the scoreboard
+			Util::Hook::SetValue(0x82263204, 0x60000000);
+
+			// set build version to mine!
+			getBuildNumber_Hook.Create(0x82425110, getBuildNumber);
+
+			// dont check any lsp tasks
+			LSP_CheckOngoingTasks_Hook.Create(0x82633810, LSP_CheckOngoingTasks);
+
+			// our custom assertion handler
+			MAssertVargs_Hook.Create(0x82527570, MAssertVargs);
+
+			// fix thread names appearing as gibberish
+			Sys_GetThreadName_Hook.Create(0x82572A88, Sys_GetThreadName);
+
+			// remove autoexec dev
+			Util::Hook::SetValue(0x822C8A74, 0x60000000);
+			Util::Hook::SetValue(0x82453898, 0x60000000);
+
+			// init our custom cmds
+			Cmd_Init_Hook.Create(0x82438AD0, Cmd_Init);
+		}
+
+		void PrintRemovals()
+		{
+			Util::Hook::SetValue(0x8255628C, 0x60000000); // dvar set
+			Util::Hook::SetValue(0x8253C1B8, 0x60000000); // missing soundalias
+			Util::Hook::SetValue(0x82457F60, 0x60000000); // cmd line
+			Util::Hook::SetValue(0x8259AC34, 0x60000000); // unknown map add to xlast
+			Util::Hook::SetValue(0x82456B1C, 0x60000000); // start $init
+			Util::Hook::SetValue(0x82456BC0, 0x60000000); // end $init
+			Util::Hook::SetValue(0x8226E62C, 0x60000000); // looking for alias
+			Util::Hook::SetValue(0x82456A98, 0x60000000); // com_init_tbf build version
+		}
+
+		void StringEdits()
+		{
+			// example:
+			// Util::Hook::SetString(<address>, <string>); // <comment> (optional)
+
+			Util::Hook::SetString(0x8202F8D4, "%s MP > "); // uhh just make NX1-Mod look nicer
+			Util::Hook::SetString(0x8202F8E0, "NX1-Mod"); // NX1 MODDING !!!!!!
+			Util::Hook::SetString(0x8202F740, "Build 1866586"); // shorten that string!
+			Util::Hook::SetString(0x8207FDB4, ""); // timestamp in console log
+		}
+
+		void DVarEdits()
+		{
+			// example:
+			// Util::Hook::SetValue<type (if needed)>(<address>, <value>); // <comment> (optional)
+
+			Util::Hook::SetValue(0x82453098, 0x38800001); // fastfile_allowNoAuth
+
+			// unlock fps
+			Util::Hook::SetValue(0x82812054, 0x38800000); // r_vsync
+			Util::Hook::SetValue(0x82453010, 0x38800000); // com_maxfps
+
+			// kill com_statmon, it looks ugly
+			Util::Hook::SetValue(0x828139CC, 0x38800000); // com_statmon
+			Util::Hook::SetValue(0x82453138, 0x38800000);
+
+			// kill view pos
+			Util::Hook::SetValue(0x82241314, 0xFC400090); // cg_drawViewpos
+
+			// kill loc errors
+			Util::Hook::SetValue(0x824EFF5C, 0xFC400090); // loc_warningsAsErrors
+
+			// disable this by default cause of our new fps counter
+			Util::Hook::SetValue(0x822412F0, 0x38800000); // cg_drawFPS
+		}
+
+		void ClearHooks()
+		{
+			printf_Hook.Clear();
+			_printf_Hook.Clear();
+			FS_InitFilesystem_Hook.Clear();
+			Com_ExecStartupConfigs_Hook.Clear();
+			Com_Init_Try_Block_Function_Hook.Clear();
+			Com_Init_Hook.Clear();
+			getBuildNumber_Hook.Clear();
+			LSP_CheckOngoingTasks_Hook.Clear();
+			MAssertVargs_Hook.Clear();
+			Sys_GetThreadName_Hook.Clear();
+			Cmd_Init_Hook.Clear();
+		}
+
+		void Load()
+		{
+			Hooks();
+			PrintRemovals();
+			StringEdits();
+			DVarEdits();
+		}
+
+		void Unload()
+		{
+			ClearHooks();
+		}
+	}
+#endif
+
+#ifdef SP_MOD
+	namespace SP
+	{
+		Util::Hook::Detour printf_Hook;
+		Util::Hook::Detour _printf_Hook;
+		void _printf(const char* fmt, ...)
+		{
+			char buf[256];
+
+			va_list args;
+			va_start(args, fmt);
+			vsnprintf(buf, sizeof(buf), fmt, args);
+			va_end(args);
+
+			Symbols::SP::Com_Printf(0, "%s", buf);
+		}
+
+		Util::Hook::Detour FS_InitFilesystem_Hook;
+		void FS_InitFilesystem()
+		{
+			DWORD start = GetTickCount(); // We could use Sys_Milliseconds here buuut GetTickCount works fine
+
+			Symbols::SP::Com_Printf(0, "Loading modules...\n"); // TODO: figure out why this dont print
+			for (int i = 0; i < Loader::g_moduleCount; ++i)
+			{
+				Symbols::SP::Com_Printf(0, "%d: %s\n", i + 1, Loader::g_modules[i].name);
+			}
+		
+			DWORD end = GetTickCount();
+			DWORD duration = end - start;
+
+			Symbols::SP::Com_Printf(0, "Loaded all modules in %lu ms\n\n", duration);
+
+			auto Invoke = FS_InitFilesystem_Hook.Invoke<void(*)()>();
+			Invoke();
+		}
+
+		Util::Hook::Detour Com_ExecStartupConfigs_Hook;
+		void Com_ExecStartupConfigs(int localClientNum, const char* configFile)
+		{
+			static bool alreadyRanFunction = FALSE;
+			if (alreadyRanFunction)
+			{
+				return;
+			}
+			alreadyRanFunction = TRUE;
+
+			auto Invoke = Com_ExecStartupConfigs_Hook.Invoke<void(*)(int, const char*)>();
+			Invoke(localClientNum, configFile);
+		}
+
+		Util::Hook::Detour COM_PlayIntroMovies_Hook;
+		void COM_PlayIntroMovies()
+		{
+			Symbols::SP::Cbuf_AddText(0, "autocinematic title\n");
+		}
+
+		Util::Hook::Detour Com_Init_Hook;
+		void Com_Init(const char* p_command_line)
+		{
+			auto Invoke = Com_Init_Hook.Invoke<void(*)(const char*)>();
+			Invoke(p_command_line);
+
+			if (p_command_line && *p_command_line)
+			{
+				Symbols::SP::Com_Printf(16, "Command Line:\n%s\n\n", p_command_line);
+			}
+		}
+
+		Util::Hook::Detour getBuildNumber_Hook;
+		const char* getBuildNumber()
+		{
+			return Util::String::Va("NX1-Mod SP");
+		}
+
+		Util::Hook::Detour LSP_CheckOngoingTasks_Hook;
+		void LSP_CheckOngoingTasks(int PacketsInternal)
+		{
+			// null stub
+		}
+
+		Util::Hook::Detour MAssertVargs_Hook;
+		int MAssertVargs(const char* filename, int line, int type, int, const char* fmt, ...)
+		{
+			// TODO: Implement symbols printing. For that extra cool debug info
+
+			static const char* lastFilename = nullptr;
+			static int lastLine = -1;
+			static int repeatCount = 0;
+
+			// Check if this is the same assert location as last time
+			if (lastFilename && strcmp(lastFilename, filename) == 0 && lastLine == line)
+			{
+				repeatCount++;
+			}
+			else
+			{
+				lastFilename = filename;
+				lastLine = line;
+				repeatCount = 1;
+			}
+
+			char message[1024];
+
+			va_list va;
+			va_start(va, fmt);
+			_vsnprintf_s(message, sizeof(message), fmt, va);
+			message[sizeof(message) - 1] = '\0';
+
+			Symbols::SP::Com_Printf(0, "\n");
+			Symbols::SP::Com_Printf(0, "****************************************\n");
+			Symbols::SP::Com_Printf(0, "*  Assertion Info:\n");
+			Symbols::SP::Com_Printf(0, "*  Message:       %s\n", message);
+			Symbols::SP::Com_Printf(0, "*  File:          %s\n", filename);
+			Symbols::SP::Com_Printf(0, "*  Line:          %d\n", line);
+			Symbols::SP::Com_Printf(0, "****************************************\n");
+
+			if (repeatCount >= 2)
+			{
+				Symbols::SP::Com_Printf(0, "*  Warning:       Same assert triggered multiple times.\n");
+				Symbols::SP::Com_Printf(0, "****************************************\n");
+				return 0;
+			}
+			else
+			{
+				Symbols::SP::Com_Printf(0, "*  Note:          First time this assert occurred.\n");
+				Symbols::SP::Com_Printf(0, "****************************************\n");
+				return 0;
+			}
+		}
+
+		Util::Hook::Detour Sys_GetThreadName_Hook;
+		void Sys_GetThreadName(DWORD threadId, char *p_destBuffer, unsigned int destBufferSize)
+		{
+			Util::XBox::DM_THREADINFOEX info;
+			info.Size = sizeof(Util::XBox::DM_THREADINFOEX);
+			Util::XBox::DmGetThreadInfoEx(threadId, &info);
+
+			const char* name = info.ThreadNameAddress;
+			_snprintf(p_destBuffer, destBufferSize, "\"%s\", 0x%08x, HW Thread %d", name, threadId, info.CurrentProcessor);
+		}
+
+		void Cmd_NX1IsGay_f()
+		{
+			Util::Command::Args Args;
+
+			if (Args.Size() < 2)
+			{
+				Symbols::SP::Com_Printf(0, "usage: nx1-is-gay <something>\n");
+				return;
+			}
+
+			Symbols::SP::Com_Printf(0, "nx1-is-gay\n");
 		}
 
 		void AddCommands()
@@ -185,19 +493,18 @@ namespace Patches
 			Util::Hook::SetValue(0x8252119C, 0x60000000); // LiveAntiCheat_UserSignedOut
 			Util::Hook::SetValue(0x825CD10C, 0x60000000); // LiveAntiCheat_OnChallengesReceived
 
-			// detour printf to output to Com_Printf instead
+			// detour printf output to Com_Printf instead
 			printf_Hook.Create(printf, _printf);
 			_printf_Hook.Create(0x8277B188, _printf); // make sure we grab the games version too
-
-			// detour DbgPrint to output to Com_Printf instead
-			DbgPrint_Hook.Create(DbgPrint, _DbgPrint);
-			_DbgPrint_Hook.Create(0x827DD1FC, _DbgPrint); // make sure we grab the games version too
 
 			// print all our loaded modules
 			FS_InitFilesystem_Hook.Create(0x824C34F0, FS_InitFilesystem);
 
 			// prevent dupe config executions
 			Com_ExecStartupConfigs_Hook.Create(0x824296C0, Com_ExecStartupConfigs);
+
+			// play our own intro movie
+			COM_PlayIntroMovies_Hook.Create(0x82428EF0, COM_PlayIntroMovies);
 
 			Com_Init_Hook.Create(0x8242DB20, Com_Init);
 
@@ -209,6 +516,9 @@ namespace Patches
 
 			// set build version to mine!
 			getBuildNumber_Hook.Create(0x82410188, getBuildNumber);
+
+			// dont check any lsp tasks
+			LSP_CheckOngoingTasks_Hook.Create(0x825A2C68, LSP_CheckOngoingTasks);
 
 			// our custom assertion handler
 			MAssertVargs_Hook.Create(0x824BCD10, MAssertVargs);
@@ -232,6 +542,7 @@ namespace Patches
 			Util::Hook::SetValue(0x8242C98C, 0x60000000); // start $init
 			Util::Hook::SetValue(0x8242CA10, 0x60000000); // end $init
 			Util::Hook::SetValue(0x821E32EC, 0x60000000); // looking for alias
+			Util::Hook::SetValue(0x8242C908, 0x60000000); // com_init_tbf build version
 		}
 
 		void AssertRemovals()
@@ -247,9 +558,9 @@ namespace Patches
 			// example:
 			// Util::Hook::SetString(<address>, <string>); // <comment> (optional)
 
-			Util::Hook::SetString(0x8201F030, "%s > "); // uhh just make NX1-Mod look nicer
+			Util::Hook::SetString(0x8201F030, "%s SP > "); // uhh just make NX1-Mod look nicer
 			Util::Hook::SetString(0x8201F03C, "NX1-Mod"); // NX1 MODDING !!!!!!
-			Util::Hook::SetString(0x8201EEC4, Util::String::Va("Version: r%i", GIT_COMMIT)); // shorten that string!
+			Util::Hook::SetString(0x8201EEC4, "Build 1866586"); // shorten that string!
 			Util::Hook::SetString(0x82076B88, ""); // timestamp in console log
 		}
 
@@ -283,7 +594,9 @@ namespace Patches
 		{
 			FS_InitFilesystem_Hook.Clear();
 			Com_ExecStartupConfigs_Hook.Clear();
+			COM_PlayIntroMovies_Hook.Clear();
 			getBuildNumber_Hook.Clear();
+			LSP_CheckOngoingTasks_Hook.Clear();
 			MAssertVargs_Hook.Clear();
 			Sys_GetThreadName_Hook.Clear();
 			Cmd_Init_Hook.Clear();
@@ -302,166 +615,6 @@ namespace Patches
 		{
 			ClearHooks();
 		}
-#endif
 	}
-
-	namespace MP_Dev
-	{
-#ifdef MP_DEV
-		// TODO
 #endif
-	}
-
-	namespace SP_Demo
-	{
-#ifdef SP_DEMO
-		// TODO
-#endif
-	}
-
-	namespace MP_Demo
-	{
-#ifdef MP_DEMO
-		Util::Hook::Detour FS_InitFilesystem_Hook;
-		void FS_InitFilesystem()
-		{
-			DWORD start = GetTickCount(); // We could use Sys_Milliseconds here buuut GetTickCount works fine
-
-			Util::Print::Printf("\nLoading modules...\n");
-			for (int i = 0; i < Loader::g_moduleCount; ++i)
-			{
-				Util::Print::Printf("%d: %s\n", i + 1, Loader::g_modules[i].name);
-			}
-		
-			DWORD end = GetTickCount();
-			DWORD duration = end - start;
-
-			Util::Print::Printf("Loaded all modules in %lu ms\n\n", duration);
-
-			auto Invoke = FS_InitFilesystem_Hook.Invoke<void(*)()>();
-			Invoke();
-		}
-
-		Util::Hook::Detour DB_InflateInit_Hook;
-		void DB_InflateInit(int fileIsSecure)
-		{
-			Symbols::MP_Demo::DB_AuthLoad_InflateInit(&Symbols::MP_Demo::g_load->stream, fileIsSecure, Symbols::MP_Demo::g_load->p_file->name);
-		}
-
-		Util::Hook::Detour getBuildNumber_Hook;
-		const char* getBuildNumber()
-		{
-			return Util::String::Va("NX1-Mod");
-		}
-
-		void Cmd_LoadZone_f()
-		{
-			Structs::XZoneInfo zoneInfo;
-
-			zoneInfo.allocFlags = 1;
-			zoneInfo.name = "ui"; // TODO: don't hardcode zone name
-			zoneInfo.freeFlags = 0;
-
-			Symbols::MP_Demo::DB_LoadXAssets(&zoneInfo, 1, 1);
-		}
-
-		void AddCommands()
-		{
-			Util::Command::Add("loadzone", Cmd_LoadZone_f);
-		}
-
-		Util::Hook::Detour Cmd_Init_Hook;
-		void Cmd_Init()
-		{
-			auto Invoke = Cmd_Init_Hook.Invoke<void(*)()>();
-			Invoke();
-
-			AddCommands();
-		}
-
-		void Hooks()
-		{
-			// issue fix: disable Black Box
-			Util::Hook::SetValue(0x822DC5E4, 0x60000000); // BB_Init
-			Util::Hook::SetValue(0x822DD170, 0x60000000); // BB_Update
-
-			// disable Anti Cheat
-			Util::Hook::SetValue(0x822DC6D4, 0x60000000); // LiveAntiCheat_Init
-			Util::Hook::SetValue(0x82429348, 0x60000000); // LiveAntiCheat_Pump
-			Util::Hook::SetValue(0x823A5BF4, 0x60000000); // LiveAntiCheat_Update
-			Util::Hook::SetValue(0x823A44A0, 0x60000000); // LiveAntiCheat_UserSignedInToLive
-			Util::Hook::SetValue(0x8225A9F8, 0x60000000); // LiveAntiCheat_UserSignedOut
-			Util::Hook::SetValue(0x824290D4, 0x60000000); // LiveAntiCheat_OnChallengesReceived
-
-			// print all our loaded modules
-			FS_InitFilesystem_Hook.Create(0x8235C2A8, FS_InitFilesystem);
-
-			// allow unsigned fast files to load on MP
-			DB_InflateInit_Hook.Create(0x821CD728, DB_InflateInit);
-
-			// xenia bug fix: fix console input
-			Util::Hook::SetValue(0x823A0914, 0x60000000);
-
-			// bug fix: remove xray material from the scoreboard
-			Util::Hook::SetValue(0x821637A4, 0x60000000);
-
-			// set build version to mine!
-			getBuildNumber_Hook.Create(0x822BDA28, getBuildNumber);
-
-			// init our custom cmds
-			Cmd_Init_Hook.Create(0x822CA580, Cmd_Init);
-		}
-
-		void StringEdits()
-		{
-			// example:
-			// Util::Hook::SetString(<address>, <string>); // <comment> (optional)
-
-			Util::Hook::SetString(0x820195A8, "%s> "); // uhh just make NX1-MOD look nicer
-			Util::Hook::SetString(0x820195B4, "NX1-Mod"); // NX1 GAMING !!!!!!
-			Util::Hook::SetString(0x8201953C, "Build 1866586"); // shorten that string!
-		}
-
-		void DVarEdits()
-		{
-			// example:
-			// Util::Hook::SetValue<type (if needed)>(<address>, <value>); // <comment> (optional)
-
-			Util::Hook::SetValue(0x824D563C, 0x38800000); // r_vsync 0
-			Util::Hook::SetValue(0x822D9B88, 0x38800000); // com_maxfps 0
-
-			// allow access to the MP menus
-			// TODO: private matches dont work as intended
-			Util::Hook::SetValue(0x823A1358, 0x38800001); // xblive_playEvenIfDown 1
-
-			// kill com_statmon, it looks ugly
-			Util::Hook::SetValue(0x822D9C68, 0x38800000);
-			Util::Hook::SetValue(0x824D6AE4, 0x38800000);
-
-			// set cg_debugInfoCornerOffset to be 1, 1 so it looks nicer
-			Util::Hook::SetValue<uint32_t>(0x8214C56C, 0xFC400090);
-			Util::Hook::SetValue<uint32_t>(0x8214C574, 0xFC200090);
-		}
-
-		void ClearHooks()
-		{
-			FS_InitFilesystem_Hook.Clear();
-			DB_InflateInit_Hook.Clear();
-			getBuildNumber_Hook.Clear();
-			Cmd_Init_Hook.Clear();
-		}
-
-		void Load()
-		{
-			Hooks();
-			StringEdits();
-			DVarEdits();
-		}
-
-		void Unload()
-		{
-			ClearHooks();
-		}
-#endif
-	}
 }

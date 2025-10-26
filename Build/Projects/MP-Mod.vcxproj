@@ -13,7 +13,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{590B22B0-B65E-4E94-8035-693C29BAD0D2}</ProjectGuid>
     <Keyword>Xbox360Proj</Keyword>
-    <ProjectName>MP-Demo</ProjectName>
+    <ProjectName>MP-Mod</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Xbox 360'" Label="Configuration">
@@ -40,18 +40,18 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Xbox 360'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(ProjectDir)..\Output\Bin\Release\MP-Demo\</OutDir>
-    <IntDir>$(ProjectDir)..\Output\Obj\Release\MP-Demo\</IntDir>
-    <OutputFile>$(ProjectDir)..\Output\Bin\Release\MP-Demo\NX1-Mod.exe</OutputFile>
-    <ImageXexOutput>$(ProjectDir)..\Output\Bin\Release\MP-Demo\NX1-Mod.xex</ImageXexOutput>
+    <OutDir>$(ProjectDir)..\Output\Bin\Release\MP-Mod\</OutDir>
+    <IntDir>$(ProjectDir)..\Output\Obj\Release\MP-Mod\</IntDir>
+    <OutputFile>$(ProjectDir)..\Output\Bin\Release\MP-Mod\NX1-Mod.exe</OutputFile>
+    <ImageXexOutput>$(ProjectDir)..\Output\Bin\Release\MP-Mod\NX1-Mod.xex</ImageXexOutput>
     <PreBuildEventUseInBuild>false</PreBuildEventUseInBuild>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Xbox 360'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(ProjectDir)..\Output\Bin\Debug\MP-Demo\</OutDir>
-    <IntDir>$(ProjectDir)..\Output\Obj\Debug\MP-Demo\</IntDir>
-    <ImageXexOutput>$(ProjectDir)..\Output\Bin\Debug\MP-Demo\NX1-Mod.xex</ImageXexOutput>
-    <OutputFile>$(ProjectDir)..\Output\Bin\Debug\MP-Demo\NX1-Mod.exe</OutputFile>
+    <OutDir>$(ProjectDir)..\Output\Bin\Debug\MP-Mod\</OutDir>
+    <IntDir>$(ProjectDir)..\Output\Obj\Debug\MP-Mod\</IntDir>
+    <ImageXexOutput>$(ProjectDir)..\Output\Bin\Debug\MP-Mod\NX1-Mod.xex</ImageXexOutput>
+    <OutputFile>$(ProjectDir)..\Output\Bin\Debug\MP-Mod\NX1-Mod.exe</OutputFile>
     <PreBuildEventUseInBuild>false</PreBuildEventUseInBuild>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Xbox 360'">
@@ -66,9 +66,9 @@
       <ExceptionHandling>false</ExceptionHandling>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <PreprocessorDefinitions>MP_DEMO;NDEBUG;_XBOX;RELEASE</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MP_MOD;NDEBUG;_XBOX;RELEASE</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <PrecompiledHeaderFile>Std_Include.hpp</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>Std_Include.h</PrecompiledHeaderFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <ForcedIncludeFiles>$(ProjectDir)..\..\Source\Std_Include.h;$(ProjectDir)..\..\Dependencies\zlib\zlib.h</ForcedIncludeFiles>
     </ClCompile>
@@ -76,7 +76,7 @@
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <ProgramDatabaseFile>$(ProjectDir)..\Output\Bin\Release\MP-Demo\NX1-Mod.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(ProjectDir)..\Output\Bin\Release\MP-Mod\NX1-Mod.pdb</ProgramDatabaseFile>
       <SetChecksum>true</SetChecksum>
       <AdditionalDependencies>xapilib.lib;d3d9ltcg.lib;d3dx9.lib;xgraphics.lib;xboxkrnl.lib;xnet.lib;xaudio2.lib;xact3ltcg.lib;x3daudioltcg.lib;xmcoreltcg.lib;vcomp.lib</AdditionalDependencies>
       <AdditionalOptions>/dll /ALIGN:128,4096 %(AdditionalOptions)</AdditionalOptions>
@@ -101,17 +101,18 @@
       <ExceptionHandling>false</ExceptionHandling>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <PreprocessorDefinitions>NDEBUG;_XBOX;</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MP_MOD;NDEBUG;_XBOX;</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <ForcedIncludeFiles>$(ProjectDir)..\..\Source\Std_Include.h;$(ProjectDir)..\..\Dependencies\zlib\zlib.h</ForcedIncludeFiles>
       <AdditionalIncludeDirectories>
       </AdditionalIncludeDirectories>
+      <PrecompiledHeaderFile>Std_Include.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <ProgramDatabaseFile>$(ProjectDir)..\Output\Bin\Debug\MP-Demo\NX1-Mod.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(ProjectDir)..\Output\Bin\Debug\MP-Mod\NX1-Mod.pdb</ProgramDatabaseFile>
       <SetChecksum>true</SetChecksum>
       <AdditionalDependencies>xapilib.lib;d3d9ltcg.lib;d3dx9.lib;xgraphics.lib;xboxkrnl.lib;xnet.lib;xaudio2.lib;xact3ltcg.lib;x3daudioltcg.lib;xmcoreltcg.lib;vcomp.lib</AdditionalDependencies>
       <AdditionalOptions>/dll /ALIGN:128,4096 %(AdditionalOptions)</AdditionalOptions>
@@ -133,53 +134,29 @@
     <ClCompile Include="..\..\Dependencies\zlib\inftrees.c" />
     <ClCompile Include="..\..\Dependencies\zlib\zutil.c" />
     <ClCompile Include="..\..\Source\Components\Loader.cpp" />
-    <ClCompile Include="..\..\Source\Components\Modules\Assets\Assets.cpp" />
-    <ClCompile Include="..\..\Source\Components\Modules\Assets\Types\FogDef.cpp" />
-    <ClCompile Include="..\..\Source\Components\Modules\Assets\Types\FxEffectDef.cpp" />
-    <ClCompile Include="..\..\Source\Components\Modules\Assets\Types\GfxLightDef.cpp" />
-    <ClCompile Include="..\..\Source\Components\Modules\Assets\Types\LocalizeEntry.cpp" />
-    <ClCompile Include="..\..\Source\Components\Modules\Assets\Types\MapEnts.cpp" />
-    <ClCompile Include="..\..\Source\Components\Modules\Assets\Types\PhysPreset.cpp" />
-    <ClCompile Include="..\..\Source\Components\Modules\Assets\Types\RawFile.cpp" />
-    <ClCompile Include="..\..\Source\Components\Modules\Assets\Types\ShellshockParams.cpp" />
-    <ClCompile Include="..\..\Source\Components\Modules\Assets\Types\StringTable.cpp" />
-    <ClCompile Include="..\..\Source\Components\Modules\Assets\Types\TracerDef.cpp" />
+    <ClCompile Include="..\..\Source\Components\Modules\Drawing.cpp" />
     <ClCompile Include="..\..\Source\Components\Modules\Patches.cpp" />
-    <ClCompile Include="..\..\Source\Components\Modules\PrintPatches.cpp" />
     <ClCompile Include="..\..\Source\Game\Symbols.cpp" />
     <ClCompile Include="..\..\Source\Main.cpp" />
     <ClCompile Include="..\..\Source\Util\Command.cpp" />
     <ClCompile Include="..\..\Source\Util\FileSystem.cpp" />
     <ClCompile Include="..\..\Source\Util\Hook.cpp" />
-    <ClCompile Include="..\..\Source\Util\Print.cpp" />
     <ClCompile Include="..\..\Source\Util\String.cpp" />
+    <ClCompile Include="..\..\Source\Util\XBox.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Dependencies\zlib\zlib.h" />
     <ClInclude Include="..\..\Source\Components\Loader.h" />
-    <ClInclude Include="..\..\Source\Components\Modules\Assets\Assets.h" />
-    <ClInclude Include="..\..\Source\Components\Modules\Assets\Types\FogDef.h" />
-    <ClInclude Include="..\..\Source\Components\Modules\Assets\Types\FxEffectDef.h" />
-    <ClInclude Include="..\..\Source\Components\Modules\Assets\Types\GfxLightDef.h" />
-    <ClInclude Include="..\..\Source\Components\Modules\Assets\Types\LaserDef.h" />
-    <ClInclude Include="..\..\Source\Components\Modules\Assets\Types\LocalizeEntry.h" />
-    <ClInclude Include="..\..\Source\Components\Modules\Assets\Types\MapEnts.h" />
-    <ClInclude Include="..\..\Source\Components\Modules\Assets\Types\Material.h" />
-    <ClInclude Include="..\..\Source\Components\Modules\Assets\Types\PhysPreset.h" />
-    <ClInclude Include="..\..\Source\Components\Modules\Assets\Types\RawFile.h" />
-    <ClInclude Include="..\..\Source\Components\Modules\Assets\Types\ShellshockParams.h" />
-    <ClInclude Include="..\..\Source\Components\Modules\Assets\Types\StringTable.h" />
-    <ClInclude Include="..\..\Source\Components\Modules\Assets\Types\TracerDef.h" />
+    <ClInclude Include="..\..\Source\Components\Modules\Drawing.h" />
     <ClInclude Include="..\..\Source\Components\Modules\Patches.h" />
-    <ClInclude Include="..\..\Source\Components\Modules\PrintPatches.h" />
     <ClInclude Include="..\..\Source\Game\Structs.h" />
     <ClInclude Include="..\..\Source\Game\Symbols.h" />
     <ClInclude Include="..\..\Source\Std_Include.h" />
     <ClInclude Include="..\..\Source\Util\Command.h" />
     <ClInclude Include="..\..\Source\Util\FileSystem.h" />
     <ClInclude Include="..\..\Source\Util\Hook.h" />
-    <ClInclude Include="..\..\Source\Util\Print.h" />
     <ClInclude Include="..\..\Source\Util\String.h" />
+    <ClInclude Include="..\..\Source\Util\XBox.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

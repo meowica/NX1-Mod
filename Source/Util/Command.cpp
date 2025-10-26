@@ -3,15 +3,11 @@ namespace Util
 	namespace Command
 	{
 		static std::vector<Structs::cmd_function_s*> cmds;
-		Structs::cmd_function_s* allocedCmd()
-		{
-			auto* cmd = new Structs::cmd_function_s;
-			cmds.push_back(cmd);
-			return cmd;
-		}
-
-		// INFO: modify this when other versions get full custom command support
-		static Structs::CmdArgs*& g_cmd_args = Symbols::SP_Dev::cmd_args;
+#ifdef SP_MOD
+		static Structs::CmdArgs*& g_cmd_args = Symbols::SP::cmd_args;
+#else
+		static Structs::CmdArgs*& g_cmd_args = Symbols::MP::cmd_args;
+#endif
 
 		Args::Args()
 		{
@@ -33,12 +29,19 @@ namespace Util
 			return g_cmd_args->argv[this->nesting_][index];
 		}
 
+		static Structs::cmd_function_s* allocedCmd()
+		{
+			auto* cmd = new Structs::cmd_function_s;
+			cmds.push_back(cmd);
+			return cmd;
+		}
+
 		void Add(const char* cmdName, void(__cdecl* function)())
 		{
-#ifdef SP_DEV
-			Symbols::SP_Dev::Cmd_AddCommand(cmdName, function, allocedCmd());
-#elif MP_DEMO
-			Symbols::MP_Demo::Cmd_AddCommand(cmdName, function, allocedCmd());
+#ifdef SP_MOD
+			Symbols::SP::Cmd_AddCommand(cmdName, function, allocedCmd());
+#else
+			Symbols::MP::Cmd_AddCommand(cmdName, function, allocedCmd());
 #endif
 		}
 	}

@@ -7,11 +7,7 @@
 #define NOMINMAX
 #define MAX_CHARS			std::numeric_limits<int>::max()
 
-#define KEYCATCH_CONSOLE	0x0001
-
-#ifdef _XBOX
-#define snprintf _snprintf
-#endif
+#define KEYCATCH_CONSOLE	0x1
 
 #include <cstdint>
 #include <cstring>
@@ -30,8 +26,6 @@
 #include <io.h>
 #include <time.h>
 
-#include "..\Tools\buildInfo.h"
-
 #include "Game\Structs.h"
 #include "Game\Symbols.h"
 
@@ -47,6 +41,4 @@
 extern "C"
 {
 	NTSYSAPI DWORD NTAPI XamGetCurrentTitleId(VOID);
-
-	NTSYSAPI void NTAPI DbgPrint(const char* s, ...);
 }

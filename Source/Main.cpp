@@ -1,15 +1,13 @@
 void RegisterModules()
 {
+#ifdef INCLUDE_ASSET_DUMPERS
 	REGISTER_MODULE(Assets);
-	REGISTER_MODULE(Drawing);
-	REGISTER_MODULE(GameLog);
-	REGISTER_MODULE(Intro);
-	REGISTER_MODULE(Network);
-	REGISTER_MODULE(Patches);
-#ifdef MP_DEMO // Also add this to SP_DEMO when it get's supported
-	REGISTER_MODULE(PrintPatches);
 #endif
-	REGISTER_MODULE(Stats);
+	REGISTER_MODULE(Drawing);
+#ifdef SP_MOD
+	REGISTER_MODULE(GameLog);
+#endif
+	REGISTER_MODULE(Patches);
 }
 
 DWORD WINAPI MainThread(LPVOID)

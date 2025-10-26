@@ -8,7 +8,7 @@
 #include "Types\Material.h"
 // ASSET_TYPE_PIXELSHADER
 // ASSET_TYPE_TECHNIQUE_SET
-#include "Types\GfxImage.h"
+// ASSET_TYPE_IMAGE = 0x8,
 #include "Types\SndAliasList.h" // needs research
 #include "Types\SndVfCurve.h" // needs research
 #include "Types\SndLpfCurve.h" // needs research
@@ -51,23 +51,19 @@
 
 namespace Assets
 {
-	namespace SP_Dev
+#ifdef MP_MOD
+	namespace MP
 	{
 		void Load();
 		void Unload();
 	}
+#endif
 
-	namespace MP_Dev
-	{
-	}
-
-	namespace SP_Demo
-	{
-	}
-
-	namespace MP_Demo
+#ifdef SP_MOD
+	namespace SP
 	{
 		void Load();
 		void Unload();
 	}
+#endif
 }
