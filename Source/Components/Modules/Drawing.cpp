@@ -7,28 +7,6 @@ namespace Drawing
 	{
 		Structs::Font_s** Font;
 
-		Util::Hook::Detour DevGui_GetScreenXPad_Hook;
-		int DevGui_GetScreenXPad()
-		{
-			return 0;
-		}
-
-		Util::Hook::Detour DevGui_GetScreenYPad_Hook;
-		int DevGui_GetScreenYPad()
-		{
-			return 0;
-		}
-
-		Util::Hook::Detour Con_DrawConsole_Hook;
-		void Con_DrawConsole(int localClientNum)
-		{
-			Symbols::MP::Con_CheckResize(Symbols::MP::scrPlaceFullUnsafe);
-			if (Symbols::MP::Key_IsCatcherActive(localClientNum, KEYCATCH_CONSOLE))
-			{
-				Symbols::MP::Con_DrawSolidConsole(localClientNum);
-			}
-		}
-
 		void DrawWatermark()
 		{
 			if (!*Font)
@@ -87,13 +65,6 @@ namespace Drawing
 		{
 			Font = (Structs::Font_s**)0x85ECBACC; // fonts/fwsmallfont
 
-			// change the safe area to match pc
-			DevGui_GetScreenXPad_Hook.Create(0x82353A68, DevGui_GetScreenXPad);
-			DevGui_GetScreenYPad_Hook.Create(0x82353AD0, DevGui_GetScreenYPad);
-
-			// change the safe area to match pc
-			Con_DrawConsole_Hook.Create(0x8229F388, Con_DrawConsole);
-
 			// draw our watermark and fps counter
 			CL_DrawScreen_Hook.Create(0x822BD290, CL_DrawScreen);
 
@@ -101,19 +72,10 @@ namespace Drawing
 			Util::Hook::SetValue(0x822BD2E8, 0x60000000); // CG_DrawVersion
 			Util::Hook::SetValue(0x82510438, 0x60000000); // UI_DrawBuildNumber
 			Util::Hook::SetValue(0x8229D414, 0x60000000); // Con_DrawOutputVersion
-
-			// change output box size
-			Util::Hook::SetValue(0x82013E14, 36.0f);
-
-			// change console font
-			Util::Hook::SetString(0x8203259C, "fonts/fwsmallfont");
 		}
 
 		void ClearHooks()
 		{
-			DevGui_GetScreenXPad_Hook.Clear();
-			DevGui_GetScreenYPad_Hook.Clear();
-			Con_DrawConsole_Hook.Clear();
 			CL_DrawScreen_Hook.Clear();
 		}
 
@@ -127,34 +89,10 @@ namespace Drawing
 			ClearHooks();
 		}
 	}
-#endif
-
-#ifdef SP_MOD
+#elif SP_MOD
 	namespace SP
 	{
 		Structs::Font_s** Font;
-
-		Util::Hook::Detour DevGui_GetScreenXPad_Hook;
-		int DevGui_GetScreenXPad()
-		{
-			return 0;
-		}
-
-		Util::Hook::Detour DevGui_GetScreenYPad_Hook;
-		int DevGui_GetScreenYPad()
-		{
-			return 0;
-		}
-
-		Util::Hook::Detour Con_DrawConsole_Hook;
-		void Con_DrawConsole(int localClientNum)
-		{
-			Symbols::SP::Con_CheckResize(Symbols::SP::scrPlaceFull);
-			if (Symbols::SP::Key_IsCatcherActive(localClientNum, KEYCATCH_CONSOLE))
-			{
-				Symbols::SP::Con_DrawSolidConsole(localClientNum);
-			}
-		}
 
 		void DrawWatermark()
 		{
@@ -214,13 +152,6 @@ namespace Drawing
 		{
 			Font = (Structs::Font_s**)0x8423B21C; // fonts/fwsmallfont
 
-			// change the safe area to match pc
-			DevGui_GetScreenXPad_Hook.Create(0x8229D748, DevGui_GetScreenXPad);
-			DevGui_GetScreenYPad_Hook.Create(0x8229D7B0, DevGui_GetScreenYPad);
-
-			// change the safe area to match pc
-			Con_DrawConsole_Hook.Create(0x8220EA90, Con_DrawConsole);
-
 			// draw our watermark and fps counter
 			CL_DrawScreen_Hook.Create(0x8221F858, CL_DrawScreen);
 
@@ -228,19 +159,10 @@ namespace Drawing
 			Util::Hook::SetValue(0x8221F894, 0x60000000); // CG_DrawVersion
 			Util::Hook::SetValue(0x824A6F3C, 0x60000000); // UI_DrawBuildNumber
 			Util::Hook::SetValue(0x8220CB80, 0x60000000); // Con_DrawOutputVersion
-
-			// change output box size
-			Util::Hook::SetValue(0x8201DF2C, 36.0f);
-
-			// change console font
-			Util::Hook::SetString(0x820214C0, "fonts/fwsmallfont");
 		}
 
 		void ClearHooks()
 		{
-			DevGui_GetScreenXPad_Hook.Clear();
-			DevGui_GetScreenYPad_Hook.Clear();
-			Con_DrawConsole_Hook.Clear();
 			CL_DrawScreen_Hook.Clear();
 		}
 

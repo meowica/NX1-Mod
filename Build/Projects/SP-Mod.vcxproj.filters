@@ -14,24 +14,6 @@
     <ClCompile Include="..\..\Source\Util\String.cpp">
       <Filter>Util</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Dependencies\zlib\adler32.c">
-      <Filter>Dependencies\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Dependencies\zlib\crc32.c">
-      <Filter>Dependencies\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Dependencies\zlib\inffast.c">
-      <Filter>Dependencies\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Dependencies\zlib\inflate.c">
-      <Filter>Dependencies\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Dependencies\zlib\inftrees.c">
-      <Filter>Dependencies\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Dependencies\zlib\zutil.c">
-      <Filter>Dependencies\zlib</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\Game\Symbols.cpp">
       <Filter>Game</Filter>
     </ClCompile>
@@ -53,6 +35,12 @@
     <ClCompile Include="..\..\Source\Components\Modules\GameLog.cpp">
       <Filter>Components\Modules</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Components\Modules\InternalConsole.cpp">
+      <Filter>Components\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Components\Modules\DevGui.cpp">
+      <Filter>Components\Modules</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\Std_Include.h" />
@@ -67,9 +55,6 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\Util\String.h">
       <Filter>Util</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Dependencies\zlib\zlib.h">
-      <Filter>Dependencies\zlib</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Game\Structs.h">
       <Filter>Game</Filter>
@@ -92,6 +77,12 @@
     <ClInclude Include="..\..\Source\Components\Modules\GameLog.h">
       <Filter>Components\Modules</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Components\Modules\InternalConsole.h">
+      <Filter>Components\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Components\Modules\DevGui.h">
+      <Filter>Components\Modules</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Game">
@@ -102,12 +93,6 @@
     </Filter>
     <Filter Include="Components">
       <UniqueIdentifier>{f87f4585-d1f3-4ea6-8800-fed8ed46570a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Dependencies">
-      <UniqueIdentifier>{ae41afc0-5ffb-4aa1-ae45-7c2311bb8747}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Dependencies\zlib">
-      <UniqueIdentifier>{c60f98f5-4fe9-4111-bda9-42516fe37ac9}</UniqueIdentifier>
     </Filter>
     <Filter Include="Components\Modules">
       <UniqueIdentifier>{426541c6-6b9d-456a-b45b-37a68853105a}</UniqueIdentifier>

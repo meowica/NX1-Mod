@@ -40,4 +40,17 @@ namespace Loader
 
 		g_moduleCount = 0;
 	}
+
+	void RegisterModules()
+	{
+		REGISTER_MODULE(Patches);
+
+		REGISTER_MODULE(DevGui);
+		REGISTER_MODULE(Drawing);
+		REGISTER_MODULE(InternalConsole);
+
+	#ifdef SP_MOD
+		REGISTER_MODULE(GameLog);
+	#endif
+	}
 }

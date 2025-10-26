@@ -1,14 +1,15 @@
 #pragma once
 
 // modules
-#ifdef INCLUDE_ASSET_DUMPERS
-#include "Modules\Assets\Assets.h"
-#endif
+#include "Modules\Patches.h"
+
+#include "Modules\DevGui.h"
 #include "Modules\Drawing.h"
+#include "Modules\InternalConsole.h"
+
 #ifdef SP_MOD
 #include "Modules\GameLog.h"
 #endif
-#include "Modules\Patches.h"
 
 namespace Loader
 {
@@ -26,6 +27,8 @@ namespace Loader
 	void RegisterModule(const char* name, void (*load)(), void (*unload)());
 	void LoadAllModules();
 	void UnloadAllModules();
+
+	void RegisterModules();
 }
 
 #ifdef SP_MOD

@@ -1,15 +1,3 @@
-void RegisterModules()
-{
-#ifdef INCLUDE_ASSET_DUMPERS
-	REGISTER_MODULE(Assets);
-#endif
-	REGISTER_MODULE(Drawing);
-#ifdef SP_MOD
-	REGISTER_MODULE(GameLog);
-#endif
-	REGISTER_MODULE(Patches);
-}
-
 DWORD WINAPI MainThread(LPVOID)
 {
 	while (Util::XBox::XGetCurrentTitleId() != TITLE_ID)
@@ -17,7 +5,7 @@ DWORD WINAPI MainThread(LPVOID)
 		Sleep(50);
 	}
 
-	RegisterModules();
+	Loader::RegisterModules();
 	Loader::LoadAllModules();
 	return 0;
 }

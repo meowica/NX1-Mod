@@ -47,6 +47,12 @@
     <ClCompile Include="..\..\Source\Util\XBox.cpp">
       <Filter>Util</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Components\Modules\DevGui.cpp">
+      <Filter>Components\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Components\Modules\InternalConsole.cpp">
+      <Filter>Components\Modules</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\Std_Include.h" />
@@ -82,6 +88,12 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\Util\XBox.h">
       <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Components\Modules\DevGui.h">
+      <Filter>Components\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Components\Modules\InternalConsole.h">
+      <Filter>Components\Modules</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
