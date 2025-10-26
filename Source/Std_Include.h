@@ -7,7 +7,7 @@
 #define NOMINMAX
 #define MAX_CHARS			std::numeric_limits<int>::max()
 
-#define KEYCATCH_CONSOLE	0x1
+#define KEYCATCH_CONSOLE	0x0001
 
 #include <cstdint>
 #include <cstring>
