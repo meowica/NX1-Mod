@@ -11,9 +11,6 @@
     <ClCompile Include="..\..\Source\Util\Hook.cpp">
       <Filter>Util</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Util\Print.cpp">
-      <Filter>Util</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\Util\String.cpp">
       <Filter>Util</Filter>
     </ClCompile>
@@ -99,9 +96,6 @@
       <Filter>Util</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Util\Hook.h">
-      <Filter>Util</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Util\Print.h">
       <Filter>Util</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Util\String.h">

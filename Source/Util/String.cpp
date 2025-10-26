@@ -19,7 +19,7 @@ namespace Util
 			static char buf[16];
 
 			time_t now = time(NULL);
-			now += 8 * 3600; // Adjust to UTC+8 if needed
+			now += 8 * 3600; // adjust to UTC+8 if needed
 
 			struct tm* timeinfo = localtime(&now);
 

@@ -2,25 +2,19 @@
 
 namespace Patches
 {
-	namespace SP_Dev
+#ifdef MP_MOD
+	namespace MP
 	{
 		void Load();
 		void Unload();
 	}
+#endif
 
-	namespace MP_Dev
-	{
-		// TODO
-	}
-
-	namespace SP_Demo
-	{
-		// TODO
-	}
-
-	namespace MP_Demo
+#ifdef SP_MOD
+	namespace SP
 	{
 		void Load();
 		void Unload();
 	}
+#endif
 }

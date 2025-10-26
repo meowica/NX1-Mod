@@ -2,24 +2,19 @@
 
 namespace Drawing
 {
-	namespace SP_Dev
+#ifdef MP_MOD
+	namespace MP
 	{
 		void Load();
 		void Unload();
 	}
+#endif
 
-	namespace MP_Dev
+#ifdef SP_MOD
+	namespace SP
 	{
-		// TODO
+		void Load();
+		void Unload();
 	}
-
-	namespace SP_Demo
-	{
-		// TODO
-	}
-
-	namespace MP_Demo
-	{
-		// TODO
-	}
+#endif
 }

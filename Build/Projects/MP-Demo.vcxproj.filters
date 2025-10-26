@@ -14,9 +14,6 @@
     <ClCompile Include="..\..\Source\Util\Hook.cpp">
       <Filter>Util</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Util\Print.cpp">
-      <Filter>Util</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\Util\String.cpp">
       <Filter>Util</Filter>
     </ClCompile>
@@ -39,9 +36,6 @@
       <Filter>Dependencies\zlib</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Components\Modules\Patches.cpp">
-      <Filter>Components\Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Components\Modules\PrintPatches.cpp">
       <Filter>Components\Modules</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Components\Modules\Assets\Assets.cpp">
@@ -80,6 +74,12 @@
     <ClCompile Include="..\..\Source\Components\Modules\Assets\Types\ShellshockParams.cpp">
       <Filter>Components\Modules\Assets\Types</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Components\Modules\Drawing.cpp">
+      <Filter>Components\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Util\XBox.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\Std_Include.h" />
@@ -98,9 +98,6 @@
     <ClInclude Include="..\..\Source\Util\Hook.h">
       <Filter>Util</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Util\Print.h">
-      <Filter>Util</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Source\Util\String.h">
       <Filter>Util</Filter>
     </ClInclude>
@@ -108,9 +105,6 @@
       <Filter>Dependencies\zlib</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Components\Modules\Patches.h">
-      <Filter>Components\Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Components\Modules\PrintPatches.h">
       <Filter>Components\Modules</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Components\Modules\Assets\Assets.h">
@@ -154,6 +148,12 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\Components\Modules\Assets\Types\ShellshockParams.h">
       <Filter>Components\Modules\Assets\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Components\Modules\Drawing.h">
+      <Filter>Components\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Util\XBox.h">
+      <Filter>Util</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

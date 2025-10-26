@@ -1,13 +1,14 @@
 #pragma once
 
 // modules
+//#ifdef INCLUDE_ASSET_DUMPERS
 #include "Modules\Assets\Assets.h"
+//#endif
 #include "Modules\Drawing.h"
+#ifdef SP_MOD
 #include "Modules\GameLog.h"
-#include "Modules\Patches.h"
-#ifdef MP_DEMO
-#include "Modules\PrintPatches.h"
 #endif
+#include "Modules\Patches.h"
 
 namespace Loader
 {
@@ -27,12 +28,10 @@ namespace Loader
 	void UnloadAllModules();
 }
 
-#ifdef SP_DEV
-	#define MODULE_NS(name) name::SP_Dev
-#elif MP_DEMO
-	#define MODULE_NS(name) name::MP_Demo
-#else // fallback
-	#define MODULE_NS(name) name
+#ifdef SP_MOD
+	#define MODULE_NS(name) name::SP
+#else
+	#define MODULE_NS(name) name::MP
 #endif
 
 struct ModuleRegistrator
