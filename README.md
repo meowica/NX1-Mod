@@ -1,4 +1,4 @@
-# NX1-Mod - Game modification for Future Warfare (NX1)
+# NX1-Mod - Modification for Future Warfare (NX1)
 
 ## How to use (Xenia Canary)
 ### Patches
