@@ -16,6 +16,17 @@
 ## How to use (Xbox 360)
 - Uhhh...
 
-## Features
-- Optimization fixes
-- (finish later im too lazy)
+## Changes
+- Removed Black Box (SP/MP)
+- Removed Anti Cheat (SP/MP)
+- Unlocked FPS (SP/MP)
+- Custom FPS counter (SP/MP)
+- Console + DevGui font changed (SP/MP)
+- Start-up configs no longer execute multiple times (SP/MP)
+- Custom intro movie (SP/MP)
+- Removed XRay material from scoreboard (MP)
+- Fixed thread names showing as gibberish (SP/MP)
+- Removed dev autoexec for a cleaner screen (SP/MP)
+- Removed some prints for a cleaner log (SP/MP)
+- Enabled unsecure Fast File loading (MP)
+- Skips main_lockout (SP)
