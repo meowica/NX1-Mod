@@ -1,4 +1,4 @@
-// We must do this to make hooks work on Xenia.
+// for xenia, should be okay on xbox 360
 #pragma section(".text")
 __declspec(allocate(".text")) BYTE Util::Hook::Detour::trampolineBuffer[200 * 20];
 SIZE_T Util::Hook::Detour::trampolineSize = 0;
@@ -11,7 +11,7 @@ namespace Util
 			: place_(NULL)
 			, target_(NULL)
 			, originalLength_(0)
-			, trampolineAddress(NULL)
+			, trampolineAddress_(NULL)
 		{
 		}
 
@@ -19,7 +19,7 @@ namespace Util
 			: place_(NULL)
 			, target_(NULL)
 			, originalLength_(0)
-			, trampolineAddress(NULL)
+			, trampolineAddress_(NULL)
 		{
 			Create(place, target);
 		}
@@ -28,9 +28,9 @@ namespace Util
 			: place_(NULL)
 			, target_(NULL)
 			, originalLength_(0)
-			, trampolineAddress(NULL)
+			, trampolineAddress_(NULL)
 		{
-			Create((void*)(place), target);
+			Create(reinterpret_cast<void*>(place), target);
 		}
 
 		Detour::~Detour()
@@ -41,18 +41,16 @@ namespace Util
 		bool Detour::Create(void* place, void* target)
 		{
 			if (originalLength_ != 0)
-			{
-				return FALSE;
-			}
 
 			place_ = place;
 			target_ = target;
 
 			size_t hookSize = WriteFarBranch(NULL, target_, FALSE, FALSE);
+			size_t hookSize = WriteFarBranch(NULL, target_, false, false);
 			memcpy(originalInstructions_, place_, hookSize);
 			originalLength_ = hookSize;
 
-			trampolineAddress = &trampolineBuffer[trampolineSize];
+			trampolineAddress_ = &trampolineBuffer[trampolineSize];
 
 			for (size_t i = 0; i < hookSize / 4; ++i)
 			{
@@ -61,15 +59,15 @@ namespace Util
 			}
 
 			void* afterBranchAddr = (void*)((UINT32)place_ + hookSize);
-			trampolineSize += WriteFarBranch(&trampolineBuffer[trampolineSize], afterBranchAddr, FALSE, TRUE);
+			trampolineSize += WriteFarBranch(&trampolineBuffer[trampolineSize], afterBranchAddr, false, true);
 
-			WriteFarBranch(place_, target_, FALSE, FALSE);
-			return TRUE;
+			WriteFarBranch(place_, target_, false, false);
+			return true;
 		}
 
 		bool Detour::Create(size_t place, void* target)
 		{
-			return Create((void*)(place), target);
+			return Create(reinterpret_cast<void*>(place), target);
 		}
 
 		bool Detour::Clear()
@@ -79,9 +77,9 @@ namespace Util
 				memcpy(place_, originalInstructions_, originalLength_);
 				originalLength_ = 0;
 				place_ = NULL;
-				return TRUE;
+				return true;
 			}
-			return FALSE;
+			return false;
 		}
 
 		size_t Detour::CopyInstruction(UINT32* dest, const UINT32* src)
@@ -132,17 +130,15 @@ namespace Util
 
 			INT32 offset = instr & (MASK_N_BITS(offsetBitSize) << offsetBitBase);
 			if (offset >> ((offsetBitSize + offsetBitBase) - 1))
-			{
 				offset |= ~MASK_N_BITS(offsetBitSize + offsetBitBase);
-			}
 
 			void* addr = (void*)((INT32)instrAddr + offset);
-			return WriteFarBranchEx(dest, addr, (instr & POWERPC_BRANCH_LINKED) != 0, TRUE, options, crBit);
+			return WriteFarBranchEx(dest, addr, (instr & POWERPC_BRANCH_LINKED) != 0, true, options, crBit, 11);
 		}
 
 		size_t Detour::WriteFarBranch(void* dest, const void* target, bool linked, bool preserveReg)
 		{
-			return WriteFarBranchEx(dest, target, linked, preserveReg);
+			return WriteFarBranchEx(dest, target, linked, preserveReg, POWERPC_BRANCH_OPTIONS_ALWAYS, 0, 11);
 		}
 
 		size_t Detour::WriteFarBranchEx(
@@ -173,13 +169,10 @@ namespace Util
 			};
 
 			const UINT32* asmBlock = (preserveReg) ? farAsmPreserve : farAsm;
-			size_t asmSize = preserveReg ? sizeof(farAsmPreserve) : sizeof(farAsm);
+			size_t asmSize = (preserveReg) ? sizeof(farAsmPreserve) : sizeof(farAsm);
 
 			if (dest)
-			{
 				memcpy(dest, asmBlock, asmSize);
-			}
-
 			return asmSize;
 		}
 	}
