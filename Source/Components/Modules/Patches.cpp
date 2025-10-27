@@ -257,12 +257,6 @@ namespace Patches
 #elif SP_MOD
 	namespace SP
 	{
-		Util::Hook::Detour Sys_GetDevOutputPath_Hook;
-		const char* Sys_GetDevOutputPath()
-		{
-			return Util::String::Va("D:\\nx1-data\\");
-		}
-
 		Util::Hook::Detour printf_Hook;
 		Util::Hook::Detour _printf_Hook;
 		void _printf(const char* fmt, ...)
@@ -436,9 +430,6 @@ namespace Patches
 
 			// fix thread names appearing as gibberish
 			Sys_GetThreadName_Hook.Create(0x824F41B8, Sys_GetThreadName);
-
-			// output things to our own directory
-			Sys_GetDevOutputPath_Hook.Create(0x824F4238, Sys_GetDevOutputPath);
 
 			// remove autoexec dev
 			Util::Hook::Nop(0x8222CC84, 2);
