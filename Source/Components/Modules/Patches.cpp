@@ -51,20 +51,6 @@ namespace Patches
 			Invoke(localClientNum, configFile);
 		}
 
-		void PlayIntroMovie()
-		{
-			Symbols::MP::Cbuf_AddText(0, "autocinematic title\n");
-		}
-
-		Util::Hook::Detour Com_Init_Try_Block_Function_Hook;
-		void Com_Init_Try_Block_Function(const char* p_command_line)
-		{
-			auto Invoke = Com_Init_Try_Block_Function_Hook.Invoke<void(*)(const char*)>();
-			Invoke(p_command_line);
-
-			PlayIntroMovie();
-		}
-
 		Util::Hook::Detour Com_Init_Hook;
 		void Com_Init(const char* p_command_line)
 		{
@@ -174,9 +160,6 @@ namespace Patches
 			// prevent dupe config executions
 			Com_ExecStartupConfigs_Hook.Create(0x82453810, Com_ExecStartupConfigs);
 
-			// add a nice intro movie for when the game starts
-			Com_Init_Try_Block_Function_Hook.Create(0x82456A48, Com_Init_Try_Block_Function);
-
 			Com_Init_Hook.Create(0x82457EC8, Com_Init);
 
 			// xenia bug fix: fix console input
@@ -256,7 +239,6 @@ namespace Patches
 			_printf_Hook.Clear();
 			FS_InitFilesystem_Hook.Clear();
 			Com_ExecStartupConfigs_Hook.Clear();
-			Com_Init_Try_Block_Function_Hook.Clear();
 			Com_Init_Hook.Clear();
 			getBuildNumber_Hook.Clear();
 			LSP_CheckOngoingTasks_Hook.Clear();
@@ -326,12 +308,6 @@ namespace Patches
 
 			auto Invoke = Com_ExecStartupConfigs_Hook.Invoke<void(*)(int, const char*)>();
 			Invoke(localClientNum, configFile);
-		}
-
-		Util::Hook::Detour COM_PlayIntroMovies_Hook;
-		void COM_PlayIntroMovies()
-		{
-			Symbols::SP::Cbuf_AddText(0, "autocinematic title\n");
 		}
 
 		Util::Hook::Detour Com_Init_Hook;
@@ -443,13 +419,7 @@ namespace Patches
 			// prevent dupe config executions
 			Com_ExecStartupConfigs_Hook.Create(0x824296C0, Com_ExecStartupConfigs);
 
-			// play our own intro movie
-			COM_PlayIntroMovies_Hook.Create(0x82428EF0, COM_PlayIntroMovies);
-
 			Com_Init_Hook.Create(0x8242DB20, Com_Init);
-
-			// remove annoying "  dvar set" print
-			Util::Hook::SetValue(0x824D920C, 0x60000000);
 
 			// xenia bug fix: fix console input
 			Util::Hook::SetValue(0x8251E97C, 0x60000000);
@@ -473,6 +443,7 @@ namespace Patches
 
 		void PrintRemovals()
 		{
+			Util::Hook::SetValue(0x824D920C, 0x60000000); // dvar set
 			Util::Hook::SetValue(0x824CF6C0, 0x60000000); // missing soundalias
 			Util::Hook::SetValue(0x8242DBB8, 0x60000000); // cmd line
 			Util::Hook::SetValue(0x8251B994, 0x60000000); // unknown map add to xlast
@@ -531,7 +502,6 @@ namespace Patches
 		{
 			FS_InitFilesystem_Hook.Clear();
 			Com_ExecStartupConfigs_Hook.Clear();
-			COM_PlayIntroMovies_Hook.Clear();
 			getBuildNumber_Hook.Clear();
 			LSP_CheckOngoingTasks_Hook.Clear();
 			MAssertVargs_Hook.Clear();

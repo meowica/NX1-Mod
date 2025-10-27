@@ -20,6 +20,8 @@ namespace Symbols
 
 		DevGui_IsActive_t DevGui_IsActive = DevGui_IsActive_t(0x82352E70);
 
+		Dvar_FindVar_t Dvar_FindVar = Dvar_FindVar_t(0x82556958);
+
 		Key_IsCatcherActive_t Key_IsCatcherActive = Key_IsCatcherActive_t(0x822A87C0);
 
 		R_AddCmdDrawText_t R_AddCmdDrawText = R_AddCmdDrawText_t(0x82803710);
@@ -50,6 +52,8 @@ namespace Symbols
 		DB_GetXAssetTypeSize_t DB_GetXAssetTypeSize = DB_GetXAssetTypeSize_t(0x82236BF8);
 
 		DevGui_IsActive_t DevGui_IsActive = DevGui_IsActive_t(0x8229CB50);
+
+		Dvar_FindVar_t Dvar_FindVar = Dvar_FindVar_t(0x824D98C8);
 
 		Key_IsCatcherActive_t Key_IsCatcherActive = Key_IsCatcherActive_t(0x82217FB0);
 

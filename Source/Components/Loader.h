@@ -8,6 +8,7 @@
 #include "Modules\DevGui.h"
 #include "Modules\Drawing.h"
 #include "Modules\InternalConsole.h"
+#include "Modules\Intro.h"
 
 #ifdef SP_MOD
 #include "Modules\GameLog.h"

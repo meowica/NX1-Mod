@@ -50,6 +50,7 @@ namespace Loader
 		REGISTER_MODULE(DevGui);
 		REGISTER_MODULE(Drawing);
 		REGISTER_MODULE(InternalConsole);
+		REGISTER_MODULE(Intro);
 
 	#ifdef SP_MOD
 		REGISTER_MODULE(GameLog);

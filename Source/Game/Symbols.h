@@ -41,14 +41,11 @@ namespace Symbols
 		typedef BOOL (*DevGui_IsActive_t)();
 		extern DevGui_IsActive_t DevGui_IsActive;
 
+		typedef const Structs::dvar_t* (*Dvar_FindVar_t)(const char* dvarName);
+		extern Dvar_FindVar_t Dvar_FindVar;
+
 		typedef BOOL (*Key_IsCatcherActive_t)(int localClientNum, int mask);
 		extern Key_IsCatcherActive_t Key_IsCatcherActive;
-
-		typedef void (*I_strncpyz_t)(char* dest, const char* src, int destsize);
-		extern I_strncpyz_t I_strncpyz;
-
-		typedef const char* (*I_stristr_t)(const char* s0, const char* substr);
-		extern I_stristr_t I_stristr;
 
 		typedef void (*R_AddCmdDrawText_t)(const char* text, int maxChars, Structs::Font_s* font, float x, float y, float xScale, float yScale, float rotation, const float* colour, int style, Structs::EScreenLayer layer);
 		extern R_AddCmdDrawText_t R_AddCmdDrawText;
@@ -98,6 +95,9 @@ namespace Symbols
 
 		typedef BOOL (*DevGui_IsActive_t)();
 		extern DevGui_IsActive_t DevGui_IsActive;
+
+		typedef const Structs::dvar_t* (*Dvar_FindVar_t)(const char* dvarName);
+		extern Dvar_FindVar_t Dvar_FindVar;
 
 		typedef BOOL (*Key_IsCatcherActive_t)(int localClientNum, int mask);
 		extern Key_IsCatcherActive_t Key_IsCatcherActive;
