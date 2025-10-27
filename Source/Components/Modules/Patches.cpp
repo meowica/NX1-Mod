@@ -114,7 +114,7 @@ namespace Patches
 
 			va_list va;
 			va_start(va, fmt);
-			_vsnprintf_s(message, sizeof(message), fmt, va);
+			vsnprintf_s(message, sizeof(message), fmt, va);
 			message[sizeof(message) - 1] = '\0';
 
 			Symbols::MP::Com_Printf(0, "\n");
@@ -383,7 +383,7 @@ namespace Patches
 
 			va_list va;
 			va_start(va, fmt);
-			_vsnprintf_s(message, sizeof(message), fmt, va);
+			vsnprintf_s(message, sizeof(message), fmt, va);
 			message[sizeof(message) - 1] = '\0';
 
 			Symbols::SP::Com_Printf(0, "\n");
