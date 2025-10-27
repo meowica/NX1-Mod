@@ -3,25 +3,6 @@ namespace CustomCommands
 #ifdef MP_MOD
 	namespace MP
 	{
-		void Cmd_NX1IsGay_f()
-		{
-			Util::Command::Args Args;
-
-			if (Args.Size() < 2)
-			{
-				Symbols::MP::Com_Printf(0, "usage: nx1-is-gay <something>\n");
-				return;
-			}
-
-			Symbols::MP::Com_Printf(0, "nx1-is-gay\n");
-		}
-
-		// TODO: move this into like FastFiles.cpp or something
-		void EnumAssets(Structs::XAssetType type, void (*func)(Structs::XAssetHeader, void*), void* inData, bool includeOverride)
-		{
-			Symbols::MP::DB_EnumXAssets_Internal(type, func, inData, includeOverride);
-		}
-
 		struct XAssetListContext
 		{
 			Structs::XAssetType type;
@@ -70,15 +51,13 @@ namespace CustomCommands
 			ctx.type = type;
 			ctx.totalAssets = 0;
 
-			EnumAssets(type, &XAssetList_f, &ctx, true);
+			Symbols::MP::DB_EnumXAssets_Internal(type, &XAssetList_f, &ctx, true);
 
 			Symbols::MP::Com_Printf(0, "Total of %d assets in %s pool, size %d\n", ctx.totalAssets, Symbols::MP::DB_GetXAssetTypeName(type), Symbols::MP::DB_GetXAssetTypeSize(type));
 		}
 
 		void AddCommands()
 		{
-			Util::Command::Add("nx1-is-gay", Cmd_NX1IsGay_f); // test command
-
 			Util::Command::Add("listassetpool", Cmd_ListAssetPool_f);
 		}
 
@@ -114,25 +93,6 @@ namespace CustomCommands
 #elif SP_MOD
 	namespace SP
 	{
-		void Cmd_NX1IsGay_f()
-		{
-			Util::Command::Args Args;
-
-			if (Args.Size() < 2)
-			{
-				Symbols::SP::Com_Printf(0, "usage: nx1-is-gay <something>\n");
-				return;
-			}
-
-			Symbols::SP::Com_Printf(0, "nx1-is-gay\n");
-		}
-
-		// TODO: move this into like FastFiles.cpp or something
-		void EnumAssets(Structs::XAssetType type, void (*func)(Structs::XAssetHeader, void*), void* inData, bool includeOverride)
-		{
-			Symbols::SP::DB_EnumXAssets_Internal(type, func, inData, includeOverride);
-		}
-
 		struct XAssetListContext
 		{
 			Structs::XAssetType type;
@@ -181,15 +141,13 @@ namespace CustomCommands
 			ctx.type = type;
 			ctx.totalAssets = 0;
 
-			EnumAssets(type, &XAssetList_f, &ctx, true);
+			Symbols::SP::DB_EnumXAssets_Internal(type, &XAssetList_f, &ctx, true);
 
 			Symbols::SP::Com_Printf(0, "Total of %d assets in %s pool, size %d\n", ctx.totalAssets, Symbols::SP::DB_GetXAssetTypeName(type), Symbols::SP::DB_GetXAssetTypeSize(type));
 		}
 
 		void AddCommands()
 		{
-			Util::Command::Add("nx1-is-gay", Cmd_NX1IsGay_f); // test command
-
 			Util::Command::Add("listassetpool", Cmd_ListAssetPool_f);
 		}
 
