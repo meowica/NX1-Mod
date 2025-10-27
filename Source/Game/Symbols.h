@@ -69,6 +69,12 @@ namespace Symbols
 		typedef void (*Con_DrawSolidConsole_t)(int localClientNum);
 		extern Con_DrawSolidConsole_t Con_DrawSolidConsole;
 
+		typedef void (*DB_EnumXAssets_Internal_t)(Structs::XAssetType type, void(__cdecl* func)(Structs::XAssetHeader, void*), const void* inData, bool includeOverride);
+		extern DB_EnumXAssets_Internal_t DB_EnumXAssets_Internal;
+
+		typedef const char* (*DB_GetXAssetName_t)(const Structs::XAsset* asset);
+		extern DB_GetXAssetName_t DB_GetXAssetName;
+
 		typedef BOOL (*DevGui_IsActive_t)();
 		extern DevGui_IsActive_t DevGui_IsActive;
 
@@ -85,6 +91,9 @@ namespace Symbols
 		extern R_AddCmdDrawText_t R_AddCmdDrawText;
 
 		extern Structs::CmdArgs* cmd_args;
+
+		extern const char** g_assetNames;
+		extern int* g_poolSize;
 
 		extern Structs::ScreenPlacement* scrPlaceFull;
 	}

@@ -450,6 +450,77 @@ namespace Patches
 			_snprintf(p_destBuffer, destBufferSize, "\"%s\", 0x%08x, HW Thread %d", name, threadId, info.CurrentProcessor);
 		}
 
+		void EnumAssets(Structs::XAssetType type, void (*func)(Structs::XAssetHeader, void*), void* inData, bool includeOverride)
+		{
+			Symbols::SP::DB_EnumXAssets_Internal(type, func, inData, includeOverride);
+		}
+
+		struct XAssetListContext
+		{
+			Structs::XAssetType type;
+			int totalAssets;
+			std::string filter;
+		};
+
+		void XAssetList_f(Structs::XAssetHeader header, void* inData)
+		{
+			XAssetListContext* ctx = static_cast<XAssetListContext*>(inData);
+			if (!ctx)
+				return;
+
+			const Structs::XAsset asset = { ctx->type, header };
+			const char* assetName = Symbols::SP::DB_GetXAssetName(&asset);
+			ctx->totalAssets++;
+
+			if (!ctx->filter.empty())
+				return;
+
+			Symbols::SP::Com_Printf(0, "%s\n", assetName);
+		}
+
+		void Cmd_ListAssetPool_f()
+		{
+			Util::Command::Args Args;
+
+			if (Args.Size() < 2)
+			{
+				Symbols::SP::Com_Printf(0, "listassetpool <poolnumber> [filter]: list all the assets in the specified pool\n");
+
+				for (int i = 0; i < Structs::ASSET_TYPE_COUNT; i++)
+				{
+					Symbols::SP::Com_Printf(0, "%d %s\n", i, Symbols::SP::g_assetNames[i]);
+				}
+				return;
+			}
+
+			const int typeInt = atoi(Args.Get(1));
+			if (typeInt < 0 || typeInt >= Structs::ASSET_TYPE_COUNT)
+			{
+				Symbols::SP::Com_Printf(0, "Invalid pool passed, must be between [%d, %d]\n", 0, Structs::ASSET_TYPE_COUNT - 1);
+				return;
+			}
+
+			const Structs::XAssetType type = static_cast<Structs::XAssetType>(typeInt);
+			Symbols::SP::Com_Printf(0, "Listing assets in pool %s\n", Symbols::SP::g_assetNames[type]);
+
+			XAssetListContext ctx;
+			ctx.type = type;
+			ctx.totalAssets = 0;
+
+			if (Args.Size() > 2)
+			{
+				ctx.filter = Args.Get(2);
+			}
+			else
+			{
+				ctx.filter.clear();
+			}
+
+			EnumAssets(type, &XAssetList_f, &ctx, true);
+
+			Symbols::SP::Com_Printf(0, "Total %s assets: %d/%d\n", Symbols::SP::g_assetNames[type], ctx.totalAssets, Symbols::SP::g_poolSize[type]);
+		}
+
 		void Cmd_NX1IsGay_f()
 		{
 			Util::Command::Args Args;
@@ -466,6 +537,7 @@ namespace Patches
 		void AddCommands()
 		{
 			Util::Command::Add("nx1-is-gay", Cmd_NX1IsGay_f); // test command
+			Util::Command::Add("listassetpool", Cmd_ListAssetPool_f);
 		}
 
 		Util::Hook::Detour Cmd_Init_Hook;

@@ -36,6 +36,9 @@ namespace Symbols
 		Con_CheckResize_t Con_CheckResize = Con_CheckResize_t(0x822072D0);
 		Con_DrawSolidConsole_t Con_DrawSolidConsole = Con_DrawSolidConsole_t(0x8220E9D0);
 
+		DB_EnumXAssets_Internal_t DB_EnumXAssets_Internal = DB_EnumXAssets_Internal_t(0x82280540);
+		DB_GetXAssetName_t DB_GetXAssetName = DB_GetXAssetName_t(0x82236B30);
+
 		DevGui_IsActive_t DevGui_IsActive = DevGui_IsActive_t(0x8229CB50);
 
 		Key_IsCatcherActive_t Key_IsCatcherActive = Key_IsCatcherActive_t(0x82217FB0);
@@ -46,6 +49,9 @@ namespace Symbols
 		R_AddCmdDrawText_t R_AddCmdDrawText = R_AddCmdDrawText_t(0x826FCB00);
 
 		Structs::CmdArgs* cmd_args = (Structs::CmdArgs*)0x83A76D48;
+
+		const char** g_assetNames = (const char**)0x8280AE60;
+		int* g_poolSize = (int*)0x8280B230;
 
 		Structs::ScreenPlacement* scrPlaceFull = (Structs::ScreenPlacement*)0x82B15C08;
 	}
