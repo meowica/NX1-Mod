@@ -1,0 +1,248 @@
+namespace CustomCommands
+{
+#ifdef MP_MOD
+	namespace MP
+	{
+		void EnumAssets(Structs::XAssetType type, void (*func)(Structs::XAssetHeader, void*), void* inData, bool includeOverride)
+		{
+			Symbols::MP::DB_EnumXAssets_Internal(type, func, inData, includeOverride);
+		}
+
+		struct XAssetListContext
+		{
+			Structs::XAssetType type;
+			int totalAssets;
+			std::string filter;
+		};
+
+		void XAssetList_f(Structs::XAssetHeader header, void* inData)
+		{
+			XAssetListContext* ctx = static_cast<XAssetListContext*>(inData);
+			if (!ctx)
+				return;
+
+			const Structs::XAsset asset = { ctx->type, header };
+			const char* assetName = Symbols::MP::DB_GetXAssetName(&asset);
+			ctx->totalAssets++;
+
+			if (!ctx->filter.empty())
+				return;
+
+			Symbols::MP::Com_Printf(0, "%s\n", assetName);
+		}
+
+		void Cmd_ListAssetPool_f()
+		{
+			Util::Command::Args Args;
+
+			if (Args.Size() < 2)
+			{
+				Symbols::MP::Com_Printf(0, "listassetpool <poolnumber> [filter]: list all the assets in the specified pool\n");
+
+				for (int i = 0; i < Structs::ASSET_TYPE_COUNT; i++)
+				{
+					Symbols::MP::Com_Printf(0, "%d %s\n", i, Symbols::MP::g_assetNames[i]);
+				}
+				return;
+			}
+
+			const int typeInt = atoi(Args.Get(1));
+			if (typeInt < 0 || typeInt >= Structs::ASSET_TYPE_COUNT)
+			{
+				Symbols::MP::Com_Printf(0, "Invalid pool passed, must be between [%d, %d]\n", 0, Structs::ASSET_TYPE_COUNT - 1);
+				return;
+			}
+
+			const Structs::XAssetType type = static_cast<Structs::XAssetType>(typeInt);
+			Symbols::MP::Com_Printf(0, "Listing assets in pool %s\n", Symbols::MP::g_assetNames[type]);
+
+			XAssetListContext ctx;
+			ctx.type = type;
+			ctx.totalAssets = 0;
+
+			if (Args.Size() > 2)
+			{
+				ctx.filter = Args.Get(2);
+			}
+			else
+			{
+				ctx.filter.clear();
+			}
+
+			EnumAssets(type, &XAssetList_f, &ctx, true);
+
+			Symbols::MP::Com_Printf(0, "Total %s assets: %d/%d\n", Symbols::MP::g_assetNames[type], ctx.totalAssets, Symbols::MP::g_poolSize[type]);
+		}
+
+		void Cmd_NX1IsGay_f()
+		{
+			Util::Command::Args Args;
+
+			if (Args.Size() < 2)
+			{
+				Symbols::MP::Com_Printf(0, "usage: nx1-is-gay <something>\n");
+				return;
+			}
+
+			Symbols::MP::Com_Printf(0, "nx1-is-gay\n");
+		}
+
+		void AddCommands()
+		{
+			Util::Command::Add("nx1-is-gay", Cmd_NX1IsGay_f); // test command
+			Util::Command::Add("listassetpool", Cmd_ListAssetPool_f);
+		}
+
+		Util::Hook::Detour Cmd_Init_Hook;
+		void Cmd_Init()
+		{
+			auto Invoke = Cmd_Init_Hook.Invoke<void(*)()>();
+			Invoke();
+
+			AddCommands();
+		}
+
+		void Hooks()
+		{
+			Cmd_Init_Hook.Create(0x82438AD0, Cmd_Init);
+		}
+
+		void ClearHooks()
+		{
+			Cmd_Init_Hook.Clear();
+		}
+
+		void Load()
+		{
+			Hooks();
+		}
+
+		void Unload()
+		{
+			ClearHooks();
+		}
+	}
+#elif SP_MOD
+	namespace SP
+	{
+		void EnumAssets(Structs::XAssetType type, void (*func)(Structs::XAssetHeader, void*), void* inData, bool includeOverride)
+		{
+			Symbols::SP::DB_EnumXAssets_Internal(type, func, inData, includeOverride);
+		}
+
+		struct XAssetListContext
+		{
+			Structs::XAssetType type;
+			int totalAssets;
+			std::string filter;
+		};
+
+		void XAssetList_f(Structs::XAssetHeader header, void* inData)
+		{
+			XAssetListContext* ctx = static_cast<XAssetListContext*>(inData);
+			if (!ctx)
+				return;
+
+			const Structs::XAsset asset = { ctx->type, header };
+			const char* assetName = Symbols::SP::DB_GetXAssetName(&asset);
+			ctx->totalAssets++;
+
+			if (!ctx->filter.empty())
+				return;
+
+			Symbols::SP::Com_Printf(0, "%s\n", assetName);
+		}
+
+		void Cmd_ListAssetPool_f()
+		{
+			Util::Command::Args Args;
+
+			if (Args.Size() < 2)
+			{
+				Symbols::SP::Com_Printf(0, "listassetpool <poolnumber> [filter]: list all the assets in the specified pool\n");
+
+				for (int i = 0; i < Structs::ASSET_TYPE_COUNT; i++)
+				{
+					Symbols::SP::Com_Printf(0, "%d %s\n", i, Symbols::SP::g_assetNames[i]);
+				}
+				return;
+			}
+
+			const int typeInt = atoi(Args.Get(1));
+			if (typeInt < 0 || typeInt >= Structs::ASSET_TYPE_COUNT)
+			{
+				Symbols::SP::Com_Printf(0, "Invalid pool passed, must be between [%d, %d]\n", 0, Structs::ASSET_TYPE_COUNT - 1);
+				return;
+			}
+
+			const Structs::XAssetType type = static_cast<Structs::XAssetType>(typeInt);
+			Symbols::SP::Com_Printf(0, "Listing assets in pool %s\n", Symbols::SP::g_assetNames[type]);
+
+			XAssetListContext ctx;
+			ctx.type = type;
+			ctx.totalAssets = 0;
+
+			if (Args.Size() > 2)
+			{
+				ctx.filter = Args.Get(2);
+			}
+			else
+			{
+				ctx.filter.clear();
+			}
+
+			EnumAssets(type, &XAssetList_f, &ctx, true);
+
+			Symbols::SP::Com_Printf(0, "Total %s assets: %d/%d\n", Symbols::SP::g_assetNames[type], ctx.totalAssets, Symbols::SP::g_poolSize[type]);
+		}
+
+		void Cmd_NX1IsGay_f()
+		{
+			Util::Command::Args Args;
+
+			if (Args.Size() < 2)
+			{
+				Symbols::SP::Com_Printf(0, "usage: nx1-is-gay <something>\n");
+				return;
+			}
+
+			Symbols::SP::Com_Printf(0, "nx1-is-gay\n");
+		}
+
+		void AddCommands()
+		{
+			Util::Command::Add("nx1-is-gay", Cmd_NX1IsGay_f); // test command
+			Util::Command::Add("listassetpool", Cmd_ListAssetPool_f);
+		}
+
+		Util::Hook::Detour Cmd_Init_Hook;
+		void Cmd_Init()
+		{
+			auto Invoke = Cmd_Init_Hook.Invoke<void(*)()>();
+			Invoke();
+
+			AddCommands();
+		}
+
+		void Hooks()
+		{
+			Cmd_Init_Hook.Create(0x82423308, Cmd_Init);
+		}
+
+		void ClearHooks()
+		{
+			Cmd_Init_Hook.Clear();
+		}
+
+		void Load()
+		{
+			Hooks();
+		}
+
+		void Unload()
+		{
+			ClearHooks();
+		}
+	}
+#endif
+}

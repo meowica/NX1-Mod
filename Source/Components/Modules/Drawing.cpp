@@ -43,7 +43,7 @@ namespace Drawing
 							(count >= 50) ? colourOkay : colourBad;
 
 			char text[16];
-			_snprintf(text, sizeof(text), "%d", count);
+			snprintf(text, sizeof(text), "%d", count);
 			text[sizeof(text) - 1] = '\0'; // ensure null-termination
 
 			float x = (count <= 99) ? 1255.0f : 1245.0f;
@@ -130,7 +130,7 @@ namespace Drawing
 							(count >= 50) ? colourOkay : colourBad;
 
 			char text[16];
-			_snprintf(text, sizeof(text), "%d", count);
+			snprintf(text, sizeof(text), "%d", count);
 			text[sizeof(text) - 1] = '\0'; // ensure null-termination
 
 			float x = (count <= 99) ? 1255.0f : 1245.0f;

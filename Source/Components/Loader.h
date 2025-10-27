@@ -3,6 +3,8 @@
 // modules
 #include "Modules\Patches.h"
 
+#include "Modules\CustomCommands.h"
+
 #include "Modules\DevGui.h"
 #include "Modules\Drawing.h"
 #include "Modules\InternalConsole.h"

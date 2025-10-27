@@ -45,6 +45,8 @@ namespace Loader
 	{
 		REGISTER_MODULE(Patches); // we want this to be first
 
+		REGISTER_MODULE(CustomCommands); // yeah.. this would be nice to have pretty early
+
 		REGISTER_MODULE(DevGui);
 		REGISTER_MODULE(Drawing);
 		REGISTER_MODULE(InternalConsole);

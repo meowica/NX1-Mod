@@ -13,6 +13,9 @@ namespace Symbols
 		Con_CheckResize_t Con_CheckResize = Con_CheckResize_t(0x82297850);
 		Con_DrawSolidConsole_t Con_DrawSolidConsole = Con_DrawSolidConsole_t(0x8229F2C8);
 
+		DB_EnumXAssets_Internal_t DB_EnumXAssets_Internal = DB_EnumXAssets_Internal_t(0x823368A8);
+		DB_GetXAssetName_t DB_GetXAssetName = DB_GetXAssetName_t(0x822ECE18);
+
 		DevGui_IsActive_t DevGui_IsActive = DevGui_IsActive_t(0x82352E70);
 
 		Key_IsCatcherActive_t Key_IsCatcherActive = Key_IsCatcherActive_t(0x822A87C0);
@@ -20,6 +23,9 @@ namespace Symbols
 		R_AddCmdDrawText_t R_AddCmdDrawText = R_AddCmdDrawText_t(0x82803710);
 
 		Structs::CmdArgs* cmd_args = (Structs::CmdArgs*)0x83A0C448;
+
+		const char** g_assetNames = (const char**)0x8297CB38;
+		int* g_poolSize = (int*)0x8297CF10;
 
 		Structs::ScreenPlacement* scrPlaceFullUnsafe = (Structs::ScreenPlacement*)0x82B8DDA8;
 	}
@@ -42,9 +48,6 @@ namespace Symbols
 		DevGui_IsActive_t DevGui_IsActive = DevGui_IsActive_t(0x8229CB50);
 
 		Key_IsCatcherActive_t Key_IsCatcherActive = Key_IsCatcherActive_t(0x82217FB0);
-
-		I_strncpyz_t I_strncpyz = I_strncpyz_t(0x826FCB00);
-		I_stristr_t I_stristr = I_stristr_t(0x824ECB90);
 
 		R_AddCmdDrawText_t R_AddCmdDrawText = R_AddCmdDrawText_t(0x826FCB00);
 
