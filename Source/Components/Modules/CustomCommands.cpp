@@ -3,6 +3,19 @@ namespace CustomCommands
 #ifdef MP_MOD
 	namespace MP
 	{
+		void Cmd_NX1IsGay_f()
+		{
+			Util::Command::Args Args;
+
+			if (Args.Size() < 2)
+			{
+				Symbols::MP::Com_Printf(0, "usage: nx1-is-gay <something>\n");
+				return;
+			}
+
+			Symbols::MP::Com_Printf(0, "nx1-is-gay\n");
+		}
+
 		// TODO: move this into like FastFiles.cpp or something
 		void EnumAssets(Structs::XAssetType type, void (*func)(Structs::XAssetHeader, void*), void* inData, bool includeOverride)
 		{
@@ -62,22 +75,10 @@ namespace CustomCommands
 			Symbols::MP::Com_Printf(0, "Total of %d assets in %s pool, size %d\n", ctx.totalAssets, Symbols::MP::DB_GetXAssetTypeName(type), Symbols::MP::DB_GetXAssetTypeSize(type));
 		}
 
-		void Cmd_NX1IsGay_f()
-		{
-			Util::Command::Args Args;
-
-			if (Args.Size() < 2)
-			{
-				Symbols::MP::Com_Printf(0, "usage: nx1-is-gay <something>\n");
-				return;
-			}
-
-			Symbols::MP::Com_Printf(0, "nx1-is-gay\n");
-		}
-
 		void AddCommands()
 		{
 			Util::Command::Add("nx1-is-gay", Cmd_NX1IsGay_f); // test command
+
 			Util::Command::Add("listassetpool", Cmd_ListAssetPool_f);
 		}
 
@@ -113,6 +114,19 @@ namespace CustomCommands
 #elif SP_MOD
 	namespace SP
 	{
+		void Cmd_NX1IsGay_f()
+		{
+			Util::Command::Args Args;
+
+			if (Args.Size() < 2)
+			{
+				Symbols::SP::Com_Printf(0, "usage: nx1-is-gay <something>\n");
+				return;
+			}
+
+			Symbols::SP::Com_Printf(0, "nx1-is-gay\n");
+		}
+
 		// TODO: move this into like FastFiles.cpp or something
 		void EnumAssets(Structs::XAssetType type, void (*func)(Structs::XAssetHeader, void*), void* inData, bool includeOverride)
 		{
@@ -172,22 +186,10 @@ namespace CustomCommands
 			Symbols::SP::Com_Printf(0, "Total of %d assets in %s pool, size %d\n", ctx.totalAssets, Symbols::SP::DB_GetXAssetTypeName(type), Symbols::SP::DB_GetXAssetTypeSize(type));
 		}
 
-		void Cmd_NX1IsGay_f()
-		{
-			Util::Command::Args Args;
-
-			if (Args.Size() < 2)
-			{
-				Symbols::SP::Com_Printf(0, "usage: nx1-is-gay <something>\n");
-				return;
-			}
-
-			Symbols::SP::Com_Printf(0, "nx1-is-gay\n");
-		}
-
 		void AddCommands()
 		{
 			Util::Command::Add("nx1-is-gay", Cmd_NX1IsGay_f); // test command
+
 			Util::Command::Add("listassetpool", Cmd_ListAssetPool_f);
 		}
 
