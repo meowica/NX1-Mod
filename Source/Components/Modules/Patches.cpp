@@ -15,7 +15,7 @@ namespace Patches
 			va_end(args);
 
 			Symbols::MP::Com_Printf(0, "printf: %s", buf);
-		}		
+		}
 
 		Util::Hook::Detour FS_InitFilesystem_Hook;
 		void FS_InitFilesystem()
