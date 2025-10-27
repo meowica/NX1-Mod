@@ -34,4 +34,4 @@
 - Skips main_lockout (SP)
 - Console + DevGui safe area fits the full screen, like it does on PC (SP/MP)
 - Missing localization strings no longer error by default (SP/MP)
-- Added listassetpool command for modders (SP)
+- Added listassetpool command for modders (SP/MP)
