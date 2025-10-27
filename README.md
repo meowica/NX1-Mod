@@ -6,7 +6,7 @@
 
 ## How to use (Xenia Canary)
 ### Patches
-- Download the game [patches](https://github.com/Clippy95/game-patches/tree/NX1/patches) (I'll provide my own soon).
+- Download the required [game patches](https://github.com/hindercanrun/NX1-Mod/tree/main/Xenia/patches).
 - Put them into `xenia\patches`.
 - Make sure `apply_patches` is set to `true` in the Xenia config (It's `true` by default).
 - Done.
