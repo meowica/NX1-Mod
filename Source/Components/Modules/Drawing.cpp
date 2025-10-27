@@ -69,9 +69,9 @@ namespace Drawing
 			CL_DrawScreen_Hook.Create(0x822BD290, CL_DrawScreen);
 
 			// disable some unneeded drawing
-			Util::Hook::SetValue(0x822BD2E8, 0x60000000); // CG_DrawVersion
-			Util::Hook::SetValue(0x82510438, 0x60000000); // UI_DrawBuildNumber
-			Util::Hook::SetValue(0x8229D414, 0x60000000); // Con_DrawOutputVersion
+			Util::Hook::SetValue(0x822BD2E8, PPC_NOP); // CG_DrawVersion
+			Util::Hook::SetValue(0x82510438, PPC_NOP); // UI_DrawBuildNumber
+			Util::Hook::SetValue(0x8229D414, PPC_NOP); // Con_DrawOutputVersion
 		}
 
 		void ClearHooks()
@@ -156,9 +156,9 @@ namespace Drawing
 			CL_DrawScreen_Hook.Create(0x8221F858, CL_DrawScreen);
 
 			// disable some unneeded drawing
-			Util::Hook::SetValue(0x8221F894, 0x60000000); // CG_DrawVersion
-			Util::Hook::SetValue(0x824A6F3C, 0x60000000); // UI_DrawBuildNumber
-			Util::Hook::SetValue(0x8220CB80, 0x60000000); // Con_DrawOutputVersion
+			Util::Hook::SetValue(0x8221F894, PPC_NOP); // CG_DrawVersion
+			Util::Hook::SetValue(0x824A6F3C, PPC_NOP); // UI_DrawBuildNumber
+			Util::Hook::SetValue(0x8220CB80, PPC_NOP); // Con_DrawOutputVersion
 		}
 
 		void ClearHooks()

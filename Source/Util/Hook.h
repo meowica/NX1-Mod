@@ -59,6 +59,10 @@
 #define DCBST(ptr)						__dcbst(0, ptr)
 #define SYNC()							__sync()
 
+
+
+#define PPC_NOP		0x60000000
+
 namespace Util
 {
 	namespace Hook

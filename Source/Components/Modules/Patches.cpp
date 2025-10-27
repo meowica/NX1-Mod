@@ -139,16 +139,16 @@ namespace Patches
 		void Hooks()
 		{
 			// issue fix: disable Black Box
-			Util::Hook::SetValue(0x82456AC0, 0x60000000); // BB_Init
-			Util::Hook::SetValue(0x824577C4, 0x60000000); // BB_Update
+			Util::Hook::SetValue(0x82456AC0, PPC_NOP); // BB_Init
+			Util::Hook::SetValue(0x824577C4, PPC_NOP); // BB_Update
 
 			// disable Anti Cheat
-			Util::Hook::SetValue(0x82456BE8, 0x60000000); // LiveAntiCheat_Init
-			Util::Hook::SetValue(0x82667F30, 0x60000000); // LiveAntiCheat_Pump
-			Util::Hook::SetValue(0x825A67FC, 0x60000000); // LiveAntiCheat_Update
-			Util::Hook::SetValue(0x825A48B4, 0x60000000); // LiveAntiCheat_UserSignedInToLive
-			Util::Hook::SetValue(0x825A3FCC, 0x60000000); // LiveAntiCheat_UserSignedOut
-			Util::Hook::SetValue(0x82667C44, 0x60000000); // LiveAntiCheat_OnChallengesReceived
+			Util::Hook::SetValue(0x82456BE8, PPC_NOP); // LiveAntiCheat_Init
+			Util::Hook::SetValue(0x82667F30, PPC_NOP); // LiveAntiCheat_Pump
+			Util::Hook::SetValue(0x825A67FC, PPC_NOP); // LiveAntiCheat_Update
+			Util::Hook::SetValue(0x825A48B4, PPC_NOP); // LiveAntiCheat_UserSignedInToLive
+			Util::Hook::SetValue(0x825A3FCC, PPC_NOP); // LiveAntiCheat_UserSignedOut
+			Util::Hook::SetValue(0x82667C44, PPC_NOP); // LiveAntiCheat_OnChallengesReceived
 
 			// detour printf output to Com_Printf instead
 			printf_Hook.Create(printf, _printf);
@@ -163,10 +163,10 @@ namespace Patches
 			Com_Init_Hook.Create(0x82457EC8, Com_Init);
 
 			// xenia bug fix: fix console input
-			Util::Hook::SetValue(0x8259F27C, 0x60000000);
+			Util::Hook::SetValue(0x8259F27C, PPC_NOP);
 
 			// bug fix: remove xray material from the scoreboard
-			Util::Hook::SetValue(0x82263204, 0x60000000);
+			Util::Hook::SetValue(0x82263204, PPC_NOP);
 
 			// set build version to mine!
 			getBuildNumber_Hook.Create(0x82425110, getBuildNumber);
@@ -181,20 +181,20 @@ namespace Patches
 			Sys_GetThreadName_Hook.Create(0x82572A88, Sys_GetThreadName);
 
 			// remove autoexec dev
-			Util::Hook::SetValue(0x822C8A74, 0x60000000);
-			Util::Hook::SetValue(0x82453898, 0x60000000);
+			Util::Hook::SetValue(0x822C8A74, PPC_NOP);
+			Util::Hook::SetValue(0x82453898, PPC_NOP);
 		}
 
 		void PrintRemovals()
 		{
-			Util::Hook::SetValue(0x8255628C, 0x60000000); // dvar set
-			Util::Hook::SetValue(0x8253C1B8, 0x60000000); // missing soundalias
-			Util::Hook::SetValue(0x82457F60, 0x60000000); // cmd line
-			Util::Hook::SetValue(0x8259AC34, 0x60000000); // unknown map add to xlast
-			Util::Hook::SetValue(0x82456B1C, 0x60000000); // start $init
-			Util::Hook::SetValue(0x82456BC0, 0x60000000); // end $init
-			Util::Hook::SetValue(0x8226E62C, 0x60000000); // looking for alias
-			Util::Hook::SetValue(0x82456A98, 0x60000000); // com_init_tbf build version
+			Util::Hook::SetValue(0x8255628C, PPC_NOP); // dvar set
+			Util::Hook::SetValue(0x8253C1B8, PPC_NOP); // missing soundalias
+			Util::Hook::SetValue(0x82457F60, PPC_NOP); // cmd line
+			Util::Hook::SetValue(0x8259AC34, PPC_NOP); // unknown map add to xlast
+			Util::Hook::SetValue(0x82456B1C, PPC_NOP); // start $init
+			Util::Hook::SetValue(0x82456BC0, PPC_NOP); // end $init
+			Util::Hook::SetValue(0x8226E62C, PPC_NOP); // looking for alias
+			Util::Hook::SetValue(0x82456A98, PPC_NOP); // com_init_tbf build version
 		}
 
 		void StringEdits()
@@ -398,16 +398,16 @@ namespace Patches
 		void Hooks()
 		{
 			// issue fix: disable Black Box
-			Util::Hook::SetValue(0x8242C930, 0x60000000); // BB_Init
-			Util::Hook::SetValue(0x8242D4F8, 0x60000000); // BB_Update
+			Util::Hook::SetValue(0x8242C930, PPC_NOP); // BB_Init
+			Util::Hook::SetValue(0x8242D4F8, PPC_NOP); // BB_Update
 
 			// disable Anti Cheat
-			Util::Hook::SetValue(0x8242CA38, 0x60000000); // LiveAntiCheat_Init
-			Util::Hook::SetValue(0x825CD3F8, 0x60000000); // LiveAntiCheat_Pump
-			Util::Hook::SetValue(0x825225D4, 0x60000000); // LiveAntiCheat_Update
-			Util::Hook::SetValue(0x82521740, 0x60000000); // LiveAntiCheat_UserSignedInToLive
-			Util::Hook::SetValue(0x8252119C, 0x60000000); // LiveAntiCheat_UserSignedOut
-			Util::Hook::SetValue(0x825CD10C, 0x60000000); // LiveAntiCheat_OnChallengesReceived
+			Util::Hook::SetValue(0x8242CA38, PPC_NOP); // LiveAntiCheat_Init
+			Util::Hook::SetValue(0x825CD3F8, PPC_NOP); // LiveAntiCheat_Pump
+			Util::Hook::SetValue(0x825225D4, PPC_NOP); // LiveAntiCheat_Update
+			Util::Hook::SetValue(0x82521740, PPC_NOP); // LiveAntiCheat_UserSignedInToLive
+			Util::Hook::SetValue(0x8252119C, PPC_NOP); // LiveAntiCheat_UserSignedOut
+			Util::Hook::SetValue(0x825CD10C, PPC_NOP); // LiveAntiCheat_OnChallengesReceived
 
 			// detour printf output to Com_Printf instead
 			printf_Hook.Create(printf, _printf);
@@ -422,7 +422,7 @@ namespace Patches
 			Com_Init_Hook.Create(0x8242DB20, Com_Init);
 
 			// xenia bug fix: fix console input
-			Util::Hook::SetValue(0x8251E97C, 0x60000000);
+			Util::Hook::SetValue(0x8251E97C, PPC_NOP);
 
 			// set build version to mine!
 			getBuildNumber_Hook.Create(0x82410188, getBuildNumber);
@@ -437,28 +437,28 @@ namespace Patches
 			Sys_GetThreadName_Hook.Create(0x824F41B8, Sys_GetThreadName);
 
 			// remove autoexec dev
-			Util::Hook::SetValue(0x8222CC84, 0x60000000);
-			Util::Hook::SetValue(0x82429748, 0x60000000);
+			Util::Hook::SetValue(0x8222CC84, PPC_NOP);
+			Util::Hook::SetValue(0x82429748, PPC_NOP);
 		}
 
 		void PrintRemovals()
 		{
-			Util::Hook::SetValue(0x824D920C, 0x60000000); // dvar set
-			Util::Hook::SetValue(0x824CF6C0, 0x60000000); // missing soundalias
-			Util::Hook::SetValue(0x8242DBB8, 0x60000000); // cmd line
-			Util::Hook::SetValue(0x8251B994, 0x60000000); // unknown map add to xlast
-			Util::Hook::SetValue(0x8242C98C, 0x60000000); // start $init
-			Util::Hook::SetValue(0x8242CA10, 0x60000000); // end $init
-			Util::Hook::SetValue(0x821E32EC, 0x60000000); // looking for alias
-			Util::Hook::SetValue(0x8242C908, 0x60000000); // com_init_tbf build version
+			Util::Hook::SetValue(0x824D920C, PPC_NOP); // dvar set
+			Util::Hook::SetValue(0x824CF6C0, PPC_NOP); // missing soundalias
+			Util::Hook::SetValue(0x8242DBB8, PPC_NOP); // cmd line
+			Util::Hook::SetValue(0x8251B994, PPC_NOP); // unknown map add to xlast
+			Util::Hook::SetValue(0x8242C98C, PPC_NOP); // start $init
+			Util::Hook::SetValue(0x8242CA10, PPC_NOP); // end $init
+			Util::Hook::SetValue(0x821E32EC, PPC_NOP); // looking for alias
+			Util::Hook::SetValue(0x8242C908, PPC_NOP); // com_init_tbf build version
 		}
 
 		void AssertRemovals()
 		{
-			Util::Hook::SetValue(0x824F35F0, 0x60000000); // sys mem changed to something no expected
-			Util::Hook::SetValue(0x824F3D5C, 0x60000000); // ^^
-			Util::Hook::SetValue(0x824F3ABC, 0x60000000); // ^^
-			Util::Hook::SetValue(0x824F3858, 0x60000000); // ^^
+			Util::Hook::SetValue(0x824F35F0, PPC_NOP); // sys mem changed to something no expected
+			Util::Hook::SetValue(0x824F3D5C, PPC_NOP); // ^^
+			Util::Hook::SetValue(0x824F3ABC, PPC_NOP); // ^^
+			Util::Hook::SetValue(0x824F3858, PPC_NOP); // ^^
 		}
 
 		void StringEdits()
