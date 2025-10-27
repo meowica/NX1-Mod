@@ -15,6 +15,8 @@ namespace Symbols
 
 		DB_EnumXAssets_Internal_t DB_EnumXAssets_Internal = DB_EnumXAssets_Internal_t(0x823368A8);
 		DB_GetXAssetName_t DB_GetXAssetName = DB_GetXAssetName_t(0x822ECE18);
+		DB_GetXAssetTypeName_t DB_GetXAssetTypeName = DB_GetXAssetTypeName_t(0x822ECF50);
+		DB_GetXAssetTypeSize_t DB_GetXAssetTypeSize = DB_GetXAssetTypeSize_t(0x822ECEE0);
 
 		DevGui_IsActive_t DevGui_IsActive = DevGui_IsActive_t(0x82352E70);
 
@@ -44,6 +46,8 @@ namespace Symbols
 
 		DB_EnumXAssets_Internal_t DB_EnumXAssets_Internal = DB_EnumXAssets_Internal_t(0x82280540);
 		DB_GetXAssetName_t DB_GetXAssetName = DB_GetXAssetName_t(0x82236B30);
+		DB_GetXAssetTypeName_t DB_GetXAssetTypeName = DB_GetXAssetTypeName_t(0x82236C68);
+		DB_GetXAssetTypeSize_t DB_GetXAssetTypeSize = DB_GetXAssetTypeSize_t(0x82236BF8);
 
 		DevGui_IsActive_t DevGui_IsActive = DevGui_IsActive_t(0x8229CB50);
 

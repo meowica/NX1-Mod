@@ -32,6 +32,12 @@ namespace Symbols
 		typedef const char* (*DB_GetXAssetName_t)(const Structs::XAsset* asset);
 		extern DB_GetXAssetName_t DB_GetXAssetName;
 
+		typedef const char* (*DB_GetXAssetTypeName_t)(unsigned int type);
+		extern DB_GetXAssetTypeName_t DB_GetXAssetTypeName;
+
+		typedef int (*DB_GetXAssetTypeSize_t)(int type);
+		extern DB_GetXAssetTypeSize_t DB_GetXAssetTypeSize;
+
 		typedef BOOL (*DevGui_IsActive_t)();
 		extern DevGui_IsActive_t DevGui_IsActive;
 
@@ -83,6 +89,12 @@ namespace Symbols
 
 		typedef const char* (*DB_GetXAssetName_t)(const Structs::XAsset* asset);
 		extern DB_GetXAssetName_t DB_GetXAssetName;
+
+		typedef const char* (*DB_GetXAssetTypeName_t)(unsigned int type);
+		extern DB_GetXAssetTypeName_t DB_GetXAssetTypeName;
+
+		typedef int (*DB_GetXAssetTypeSize_t)(int type);
+		extern DB_GetXAssetTypeSize_t DB_GetXAssetTypeSize;
 
 		typedef BOOL (*DevGui_IsActive_t)();
 		extern DevGui_IsActive_t DevGui_IsActive;

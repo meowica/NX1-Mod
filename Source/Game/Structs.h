@@ -96,63 +96,6 @@ namespace Structs
 		float subScreenLeft;
 	};
 
-	struct SysFile
-	{
-		HANDLE handle;
-		int startOffset;
-	};
-
-	struct DBFile
-	{
-		SysFile handle;
-		char name[64];
-	};
-
-	struct db_internal_state
-	{
-		int dummy;
-	};
-
-	struct db_z_stream_s
-	{
-		unsigned char *next_in;
-		unsigned int avail_in;
-		unsigned int total_in;
-		unsigned char *next_out;
-		unsigned int avail_out;
-		unsigned int total_out;
-		char *msg;
-		db_internal_state *state;
-		unsigned char *(__cdecl *zalloc)(unsigned char *, unsigned int, unsigned int);
-		void (__cdecl *zfree)(unsigned char *, unsigned char *);
-		unsigned char *opaque;
-		int data_type;
-	};
-
-	struct DBLoadData
-	{
-	  DBFile *p_file;
-	  int outstandingRead;
-	  unsigned char *p_fileBuffer;
-	  unsigned int readSize;
-	  unsigned int completedReadSize;
-	  unsigned int offset;
-	  unsigned char *p_startIn;
-	  OVERLAPPED overlapped;
-	  unsigned int readError;
-	  db_z_stream_s stream;
-	  unsigned int lookaheadReadSize;
-	  unsigned int lookaheadOffset;
-	  unsigned int lookaheadClearAvailIn;
-	};
-
-	struct XZoneInfo
-	{
-		const char* name;
-		int allocFlags;
-		int freeFlags;
-	};
-
 	enum EScreenLayer : int
 	{
 		SL_SYSTEM = 0x0,
