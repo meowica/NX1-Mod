@@ -41,11 +41,11 @@ namespace Util
 		bool Detour::Create(void* place, void* target)
 		{
 			if (originalLength_ != 0)
+				return false;
 
 			place_ = place;
 			target_ = target;
 
-			size_t hookSize = WriteFarBranch(NULL, target_, FALSE, FALSE);
 			size_t hookSize = WriteFarBranch(NULL, target_, false, false);
 			memcpy(originalInstructions_, place_, hookSize);
 			originalLength_ = hookSize;
