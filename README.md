@@ -1,5 +1,9 @@
 # NX1-Mod - Modification for Future Warfare (NX1)
 
+## Supported XEXs
+- 1-nx1sp.xex
+- 2-nx1mp.xex
+
 ## How to use (Xenia Canary)
 ### Patches
 - Download the game [patches](https://github.com/Clippy95/game-patches/tree/NX1/patches) (I'll provide my own soon).
