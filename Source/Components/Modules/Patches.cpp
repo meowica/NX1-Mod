@@ -139,16 +139,16 @@ namespace Patches
 		void Hooks()
 		{
 			// issue fix: disable Black Box
-			Util::Hook::SetValue(0x82456AC0, PPC_NOP); // BB_Init
-			Util::Hook::SetValue(0x824577C4, PPC_NOP); // BB_Update
+			Util::Hook::Nop(0x82456AC0, 2); // BB_Init
+			Util::Hook::Nop(0x824577C4, 2); // BB_Update
 
 			// disable Anti Cheat
-			Util::Hook::SetValue(0x82456BE8, PPC_NOP); // LiveAntiCheat_Init
-			Util::Hook::SetValue(0x82667F30, PPC_NOP); // LiveAntiCheat_Pump
-			Util::Hook::SetValue(0x825A67FC, PPC_NOP); // LiveAntiCheat_Update
-			Util::Hook::SetValue(0x825A48B4, PPC_NOP); // LiveAntiCheat_UserSignedInToLive
-			Util::Hook::SetValue(0x825A3FCC, PPC_NOP); // LiveAntiCheat_UserSignedOut
-			Util::Hook::SetValue(0x82667C44, PPC_NOP); // LiveAntiCheat_OnChallengesReceived
+			Util::Hook::Nop(0x82456BE8, 2); // LiveAntiCheat_Init
+			Util::Hook::Nop(0x82667F30, 2); // LiveAntiCheat_Pump
+			Util::Hook::Nop(0x825A67FC, 2); // LiveAntiCheat_Update
+			Util::Hook::Nop(0x825A48B4, 2); // LiveAntiCheat_UserSignedInToLive
+			Util::Hook::Nop(0x825A3FCC, 2); // LiveAntiCheat_UserSignedOut
+			Util::Hook::Nop(0x82667C44, 2); // LiveAntiCheat_OnChallengesReceived
 
 			// detour printf output to Com_Printf instead
 			printf_Hook.Create(printf, _printf);
@@ -163,10 +163,10 @@ namespace Patches
 			Com_Init_Hook.Create(0x82457EC8, Com_Init);
 
 			// xenia bug fix: fix console input
-			Util::Hook::SetValue(0x8259F27C, PPC_NOP);
+			Util::Hook::Nop(0x8259F27C, 2);
 
 			// bug fix: remove xray material from the scoreboard
-			Util::Hook::SetValue(0x82263204, PPC_NOP);
+			Util::Hook::Nop(0x82263204, 2);
 
 			// set build version to mine!
 			getBuildNumber_Hook.Create(0x82425110, getBuildNumber);
@@ -181,56 +181,51 @@ namespace Patches
 			Sys_GetThreadName_Hook.Create(0x82572A88, Sys_GetThreadName);
 
 			// remove autoexec dev
-			Util::Hook::SetValue(0x822C8A74, PPC_NOP);
-			Util::Hook::SetValue(0x82453898, PPC_NOP);
+			Util::Hook::Nop(0x822C8A74, 2);
+			Util::Hook::Nop(0x82453898, 2);
 		}
 
 		void PrintRemovals()
 		{
-			Util::Hook::SetValue(0x8255628C, PPC_NOP); // dvar set
-			Util::Hook::SetValue(0x8253C1B8, PPC_NOP); // missing soundalias
-			Util::Hook::SetValue(0x82457F60, PPC_NOP); // cmd line
-			Util::Hook::SetValue(0x8259AC34, PPC_NOP); // unknown map add to xlast
-			Util::Hook::SetValue(0x82456B1C, PPC_NOP); // start $init
-			Util::Hook::SetValue(0x82456BC0, PPC_NOP); // end $init
-			Util::Hook::SetValue(0x8226E62C, PPC_NOP); // looking for alias
-			Util::Hook::SetValue(0x82456A98, PPC_NOP); // com_init_tbf build version
+			Util::Hook::Nop(0x8255628C, 2); // dvar set
+			Util::Hook::Nop(0x8253C1B8, 2); // missing soundalias
+			Util::Hook::Nop(0x82457F60, 2); // cmd line
+			Util::Hook::Nop(0x8259AC34, 2); // unknown map add to xlast
+			Util::Hook::Nop(0x82456B1C, 2); // start $init
+			Util::Hook::Nop(0x82456BC0, 2); // end $init
+			Util::Hook::Nop(0x8226E62C, 2); // looking for alias
+			Util::Hook::Nop(0x82456A98, 2); // com_init_tbf build version
 		}
 
 		void StringEdits()
 		{
-			// example:
-			// Util::Hook::SetString(<address>, <string>); // <comment> (optional)
-
-			Util::Hook::SetString(0x8202F8D4, "%s MP > "); // uhh just make NX1-Mod look nicer
-			Util::Hook::SetString(0x8202F8E0, "NX1-Mod"); // NX1 MODDING !!!!!!
-			Util::Hook::SetString(0x8202F740, "Build 1866586"); // shorten that string!
-			Util::Hook::SetString(0x8207FDB4, ""); // timestamp in console log
+			Util::Hook::Set<const char*>(0x8202F8D4, "%s MP > "); // uhh just make NX1-Mod look nicer
+			Util::Hook::Set<const char*>(0x8202F8E0, "NX1-Mod"); // NX1 MODDING !!!!!!
+			Util::Hook::Set<const char*>(0x8202F740, "Build 1866586"); // shorten that string!
+			Util::Hook::Set<const char*>(0x8207FDB4, ""); // timestamp in console log
 		}
 
 		void DVarEdits()
 		{
-			// example:
-			// Util::Hook::SetValue<type (if needed)>(<address>, <value>); // <comment> (optional)
-
-			Util::Hook::SetValue(0x82453098, 0x38800001); // fastfile_allowNoAuth
+			// allow unsigned fast files to load
+			Util::Hook::Set(0x82453098, 0x38800001); // fastfile_allowNoAuth
 
 			// unlock fps
-			Util::Hook::SetValue(0x82812054, 0x38800000); // r_vsync
-			Util::Hook::SetValue(0x82453010, 0x38800000); // com_maxfps
+			Util::Hook::Set(0x82812054, 0x38800000); // r_vsync
+			Util::Hook::Set(0x82453010, 0x38800000); // com_maxfps
 
 			// kill com_statmon, it looks ugly
-			Util::Hook::SetValue(0x828139CC, 0x38800000); // com_statmon
-			Util::Hook::SetValue(0x82453138, 0x38800000);
+			Util::Hook::Set(0x828139CC, 0x38800000); // com_statmon
+			Util::Hook::Set(0x82453138, 0x38800000);
 
 			// kill view pos
-			Util::Hook::SetValue(0x82241314, 0xFC400090); // cg_drawViewpos
+			Util::Hook::Set(0x82241314, 0xFC400090); // cg_drawViewpos
 
 			// kill loc errors
-			Util::Hook::SetValue(0x824EFF5C, 0xFC400090); // loc_warningsAsErrors
+			Util::Hook::Set(0x824EFF5C, 0xFC400090); // loc_warningsAsErrors
 
 			// disable this by default cause of our new fps counter
-			Util::Hook::SetValue(0x822412F0, 0x38800000); // cg_drawFPS
+			Util::Hook::Set(0x822412F0, 0x38800000); // cg_drawFPS
 		}
 
 		void ClearHooks()
@@ -398,16 +393,16 @@ namespace Patches
 		void Hooks()
 		{
 			// issue fix: disable Black Box
-			Util::Hook::SetValue(0x8242C930, PPC_NOP); // BB_Init
-			Util::Hook::SetValue(0x8242D4F8, PPC_NOP); // BB_Update
+			Util::Hook::Nop(0x8242C930, 2); // BB_Init
+			Util::Hook::Nop(0x8242D4F8, 2); // BB_Update
 
 			// disable Anti Cheat
-			Util::Hook::SetValue(0x8242CA38, PPC_NOP); // LiveAntiCheat_Init
-			Util::Hook::SetValue(0x825CD3F8, PPC_NOP); // LiveAntiCheat_Pump
-			Util::Hook::SetValue(0x825225D4, PPC_NOP); // LiveAntiCheat_Update
-			Util::Hook::SetValue(0x82521740, PPC_NOP); // LiveAntiCheat_UserSignedInToLive
-			Util::Hook::SetValue(0x8252119C, PPC_NOP); // LiveAntiCheat_UserSignedOut
-			Util::Hook::SetValue(0x825CD10C, PPC_NOP); // LiveAntiCheat_OnChallengesReceived
+			Util::Hook::Nop(0x8242CA38, 2); // LiveAntiCheat_Init
+			Util::Hook::Nop(0x825CD3F8, 2); // LiveAntiCheat_Pump
+			Util::Hook::Nop(0x825225D4, 2); // LiveAntiCheat_Update
+			Util::Hook::Nop(0x82521740, 2); // LiveAntiCheat_UserSignedInToLive
+			Util::Hook::Nop(0x8252119C, 2); // LiveAntiCheat_UserSignedOut
+			Util::Hook::Nop(0x825CD10C, 2); // LiveAntiCheat_OnChallengesReceived
 
 			// detour printf output to Com_Printf instead
 			printf_Hook.Create(printf, _printf);
@@ -422,7 +417,7 @@ namespace Patches
 			Com_Init_Hook.Create(0x8242DB20, Com_Init);
 
 			// xenia bug fix: fix console input
-			Util::Hook::SetValue(0x8251E97C, PPC_NOP);
+			Util::Hook::Nop(0x8251E97C, 2);
 
 			// set build version to mine!
 			getBuildNumber_Hook.Create(0x82410188, getBuildNumber);
@@ -437,65 +432,59 @@ namespace Patches
 			Sys_GetThreadName_Hook.Create(0x824F41B8, Sys_GetThreadName);
 
 			// remove autoexec dev
-			Util::Hook::SetValue(0x8222CC84, PPC_NOP);
-			Util::Hook::SetValue(0x82429748, PPC_NOP);
+			Util::Hook::Nop(0x8222CC84, 2);
+			Util::Hook::Nop(0x82429748, 2);
 		}
 
 		void PrintRemovals()
 		{
-			Util::Hook::SetValue(0x824D920C, PPC_NOP); // dvar set
-			Util::Hook::SetValue(0x824CF6C0, PPC_NOP); // missing soundalias
-			Util::Hook::SetValue(0x8242DBB8, PPC_NOP); // cmd line
-			Util::Hook::SetValue(0x8251B994, PPC_NOP); // unknown map add to xlast
-			Util::Hook::SetValue(0x8242C98C, PPC_NOP); // start $init
-			Util::Hook::SetValue(0x8242CA10, PPC_NOP); // end $init
-			Util::Hook::SetValue(0x821E32EC, PPC_NOP); // looking for alias
-			Util::Hook::SetValue(0x8242C908, PPC_NOP); // com_init_tbf build version
+			Util::Hook::Nop(0x824D920C, 2); // dvar set
+			Util::Hook::Nop(0x824CF6C0, 2); // missing soundalias
+			Util::Hook::Nop(0x8242DBB8, 2); // cmd line
+			Util::Hook::Nop(0x8251B994, 2); // unknown map add to xlast
+			Util::Hook::Nop(0x8242C98C, 2); // start $init
+			Util::Hook::Nop(0x8242CA10, 2); // end $init
+			Util::Hook::Nop(0x821E32EC, 2); // looking for alias
+			Util::Hook::Nop(0x8242C908, 2); // com_init_tbf build version
 		}
 
 		void AssertRemovals()
 		{
-			Util::Hook::SetValue(0x824F35F0, PPC_NOP); // sys mem changed to something no expected
-			Util::Hook::SetValue(0x824F3D5C, PPC_NOP); // ^^
-			Util::Hook::SetValue(0x824F3ABC, PPC_NOP); // ^^
-			Util::Hook::SetValue(0x824F3858, PPC_NOP); // ^^
+			Util::Hook::Nop(0x824F35F0, 2); // sys mem changed to something no expected
+			Util::Hook::Nop(0x824F3D5C, 2); // ^^
+			Util::Hook::Nop(0x824F3ABC, 2); // ^^
+			Util::Hook::Nop(0x824F3858, 2); // ^^
 		}
 
 		void StringEdits()
 		{
-			// example:
-			// Util::Hook::SetString(<address>, <string>); // <comment> (optional)
-
-			Util::Hook::SetString(0x8201F030, "%s SP > "); // uhh just make NX1-Mod look nicer
-			Util::Hook::SetString(0x8201F03C, "NX1-Mod"); // NX1 MODDING !!!!!!
-			Util::Hook::SetString(0x8201EEC4, "Build 1866586"); // shorten that string!
-			Util::Hook::SetString(0x82076B88, ""); // timestamp in console log
+			Util::Hook::Set<const char*>(0x8201F030, "%s SP > "); // uhh just make NX1-Mod look nicer
+			Util::Hook::Set<const char*>(0x8201F03C, "NX1-Mod"); // NX1 MODDING !!!!!!
+			Util::Hook::Set<const char*>(0x8201EEC4, "Build 1866586"); // shorten that string!
+			Util::Hook::Set<const char*>(0x82076B88, ""); // timestamp in console log
 		}
 
 		void DVarEdits()
 		{
-			// example:
-			// Util::Hook::SetValue<type (if needed)>(<address>, <value>); // <comment> (optional)
-
 			// skip main_lockout menu
-			Util::Hook::SetValue(0x8242CDB8, 0x38800001); // ui_skipMainLockout
+			Util::Hook::Set(0x8242CDB8, 0x38800001); // ui_skipMainLockout
 
 			// unlock fps
-			Util::Hook::SetValue(0x827014DC, 0x38800000); // r_vsync 0
-			Util::Hook::SetValue(0x82428FD0, 0x38800000); // com_maxfps 0
+			Util::Hook::Set(0x827014DC, 0x38800000); // r_vsync 0
+			Util::Hook::Set(0x82428FD0, 0x38800000); // com_maxfps 0
 
 			// kill stat mon, it looks ugly
-			Util::Hook::SetValue(0x82702E54, 0x38800000); // com_statmon
-			Util::Hook::SetValue(0x824290F8, 0x38800000); // com_statmon
+			Util::Hook::Set(0x82702E54, 0x38800000); // com_statmon
+			Util::Hook::Set(0x824290F8, 0x38800000); // com_statmon
 
 			// kill view pos
-			Util::Hook::SetValue(0x821BB110, 0xFC400090); // cg_drawViewpos
+			Util::Hook::Set(0x821BB110, 0xFC400090); // cg_drawViewpos
 
 			// kill loc errors
-			Util::Hook::SetValue(0x82496DFC, 0xFC400090); // loc_warningsAsErrors
+			Util::Hook::Set(0x82496DFC, 0xFC400090); // loc_warningsAsErrors
 
 			// disable this by default cause of our new fps counter
-			Util::Hook::SetValue(0x821BB0F8, 0x38800000); // cg_drawFPS
+			Util::Hook::Set(0x821BB0F8, 0x38800000); // cg_drawFPS
 		}
 
 		void ClearHooks()

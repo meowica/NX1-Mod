@@ -23,7 +23,7 @@ namespace Loader
 		void (*unload)();
 	};
 
-#define MAX_MODULES 128 // big number, nobody should EVER have 128 modules
+#define MAX_MODULES 256 // big number, nobody should EVER have 256 modules
 	extern Module g_modules[MAX_MODULES];
 	extern int g_moduleCount;
 

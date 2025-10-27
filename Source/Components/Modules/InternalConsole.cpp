@@ -19,10 +19,10 @@
 			Con_DrawConsole_Hook.Create(0x8229F388, Con_DrawConsole);
 
 			// change output box size
-			Util::Hook::SetValue(0x82013E14, 36.0f);
+			Util::Hook::Set(0x82013E14, 36.0f);
 
 			// change console font
-			Util::Hook::SetString(0x8203259C, "fonts/fwsmallfont");
+			Util::Hook::Set<const char*>(0x8203259C, "fonts/fwsmallfont");
 		}
 
 		void ClearHooks()
@@ -59,10 +59,10 @@
 			Con_DrawConsole_Hook.Create(0x8220EA90, Con_DrawConsole);
 
 			// change output box size
-			Util::Hook::SetValue(0x8201DF2C, 36.0f);
+			Util::Hook::Set(0x8201DF2C, 36.0f);
 
 			// change console font
-			Util::Hook::SetString(0x820214C0, "fonts/fwsmallfont");
+			Util::Hook::Set<const char*>(0x820214C0, "fonts/fwsmallfont");
 		}
 
 		void ClearHooks()

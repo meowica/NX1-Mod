@@ -5,175 +5,179 @@ SIZE_T Util::Hook::Detour::trampolineSize = 0;
 
 namespace Util
 {
-	namespace Hook
+	Hook::Detour::Detour()
+		: place_(NULL)
+		, target_(NULL)
+		, originalLength_(0)
+		, trampolineAddress_(NULL)
 	{
-		Detour::Detour()
-			: place_(NULL)
-			, target_(NULL)
-			, originalLength_(0)
-			, trampolineAddress_(NULL)
+	}
+
+	Hook::Detour::Detour(void* place, void* target)
+		: place_(NULL)
+		, target_(NULL)
+		, originalLength_(0)
+		, trampolineAddress_(NULL)
+	{
+		Create(place, target);
+	}
+
+	Hook::Detour::Detour(size_t place, void* target)
+		: place_(NULL)
+		, target_(NULL)
+		, originalLength_(0)
+		, trampolineAddress_(NULL)
+	{
+		Create(reinterpret_cast<void*>(place), target);
+	}
+
+	Hook::Detour::~Detour()
+	{
+		Clear();
+	}
+
+	bool Hook::Detour::Create(void* place, void* target)
+	{
+		if (originalLength_ != 0)
+			return false;
+
+		place_ = place;
+		target_ = target;
+
+		size_t hookSize = WriteFarBranch(NULL, target_, false, false);
+		memcpy(originalInstructions_, place_, hookSize);
+		originalLength_ = hookSize;
+
+		trampolineAddress_ = &trampolineBuffer[trampolineSize];
+
+		for (size_t i = 0; i < hookSize / 4; ++i)
 		{
+			UINT32* instrPtr = (UINT32*)((UINT32)place_ + (i * 4));
+			trampolineSize += CopyInstruction((UINT32*)&trampolineBuffer[trampolineSize], instrPtr);
 		}
 
-		Detour::Detour(void* place, void* target)
-			: place_(NULL)
-			, target_(NULL)
-			, originalLength_(0)
-			, trampolineAddress_(NULL)
+		void* afterBranchAddr = (void*)((UINT32)place_ + hookSize);
+		trampolineSize += WriteFarBranch(&trampolineBuffer[trampolineSize], afterBranchAddr, false, true);
+
+		WriteFarBranch(place_, target_, false, false);
+		return true;
+	}
+
+	bool Hook::Detour::Create(size_t place, void* target)
+	{
+		return Create(reinterpret_cast<void*>(place), target);
+	}
+
+	bool Hook::Detour::Clear()
+	{
+		if (place_ && originalLength_ != 0)
 		{
-			Create(place, target);
-		}
-
-		Detour::Detour(size_t place, void* target)
-			: place_(NULL)
-			, target_(NULL)
-			, originalLength_(0)
-			, trampolineAddress_(NULL)
-		{
-			Create(reinterpret_cast<void*>(place), target);
-		}
-
-		Detour::~Detour()
-		{
-			Clear();
-		}
-
-		bool Detour::Create(void* place, void* target)
-		{
-			if (originalLength_ != 0)
-				return false;
-
-			place_ = place;
-			target_ = target;
-
-			size_t hookSize = WriteFarBranch(NULL, target_, false, false);
-			memcpy(originalInstructions_, place_, hookSize);
-			originalLength_ = hookSize;
-
-			trampolineAddress_ = &trampolineBuffer[trampolineSize];
-
-			for (size_t i = 0; i < hookSize / 4; ++i)
-			{
-				UINT32* instrPtr = (UINT32*)((UINT32)place_ + (i * 4));
-				trampolineSize += CopyInstruction((UINT32*)&trampolineBuffer[trampolineSize], instrPtr);
-			}
-
-			void* afterBranchAddr = (void*)((UINT32)place_ + hookSize);
-			trampolineSize += WriteFarBranch(&trampolineBuffer[trampolineSize], afterBranchAddr, false, true);
-
-			WriteFarBranch(place_, target_, false, false);
+			memcpy(place_, originalInstructions_, originalLength_);
+			originalLength_ = 0;
+			place_ = NULL;
 			return true;
 		}
+		return false;
+	}
 
-		bool Detour::Create(size_t place, void* target)
+	size_t Hook::Detour::CopyInstruction(UINT32* dest, const UINT32* src)
+	{
+		UINT32 instr = *src;
+		switch (instr & PPC_OPCODE_MASK)
 		{
-			return Create(reinterpret_cast<void*>(place), target);
+		case PPC_OPCODE_B:
+		case PPC_OPCODE_BC:
+			return RelocateBranch(dest, src);
+		default:
+			*dest = instr;
+			return 4;
+		}
+	}
+
+	size_t Hook::Detour::RelocateBranch(UINT32* dest, const UINT32* src)
+	{
+		UINT32 instr = *src;
+		UINT32 instrAddr = (UINT32)src;
+
+		if (instr & PPC_BRANCH_ABSOLUTE)
+		{
+			*dest = instr;
+			return 4;
 		}
 
-		bool Detour::Clear()
+		INT32 offsetBitSize = 0;
+		INT32 offsetBitBase = 0;
+		UINT32 options = 0;
+		BYTE crBit = 0;
+
+		switch (instr & PPC_OPCODE_MASK)
 		{
-			if (place_ && originalLength_ != 0)
-			{
-				memcpy(place_, originalInstructions_, originalLength_);
-				originalLength_ = 0;
-				place_ = NULL;
-				return true;
-			}
-			return false;
+		case PPC_OPCODE_B:
+			offsetBitSize = 24;
+			offsetBitBase = 2;
+			options = PPC_BRANCH_OPTIONS_ALWAYS;
+			crBit = 0;
+			break;
+		case PPC_OPCODE_BC:
+			offsetBitSize = 14;
+			offsetBitBase = 2;
+			options = (instr >> PPC_BIT32(10)) & MASK_N_BITS(5);
+			crBit = (instr >> PPC_BIT32(15)) & MASK_N_BITS(5);
+			break;
 		}
 
-		size_t Detour::CopyInstruction(UINT32* dest, const UINT32* src)
+		INT32 offset = instr & (MASK_N_BITS(offsetBitSize) << offsetBitBase);
+		if (offset >> ((offsetBitSize + offsetBitBase) - 1))
+			offset |= ~MASK_N_BITS(offsetBitSize + offsetBitBase);
+
+		void* addr = (void*)((INT32)instrAddr + offset);
+		return WriteFarBranchEx(dest, addr, (instr & PPC_BRANCH_LINKED) != 0, true, options, crBit, 11);
+	}
+
+	size_t Hook::Detour::WriteFarBranch(void* dest, const void* target, bool linked, bool preserveReg)
+	{
+		return WriteFarBranchEx(dest, target, linked, preserveReg, PPC_BRANCH_OPTIONS_ALWAYS, 0, 11);
+	}
+
+	size_t Hook::Detour::WriteFarBranchEx(void* dest, const void* target, bool linked, bool preserveReg, UINT32 options, BYTE crBit, BYTE regIndex)
+	{
+		UINT32 farAsm[] =
 		{
-			UINT32 instr = *src;
-			switch (instr & POWERPC_OPCODE_MASK)
-			{
-			case POWERPC_OPCODE_B:
-			case POWERPC_OPCODE_BC:
-				return RelocateBranch(dest, src);
-			default:
-				*dest = instr;
-				return 4;
-			}
-		}
+			PPC_LIS(regIndex, PPC_HI((UINT32)target)),
+			PPC_ORI(regIndex, regIndex, PPC_LO((UINT32)target)),
+			PPC_MTCTR(regIndex),
+			PPC_BCCTR(options, crBit, linked)
+		};
 
-		size_t Detour::RelocateBranch(UINT32* dest, const UINT32* src)
+		UINT32 farAsmPreserve[] =
 		{
-			UINT32 instr = *src;
-			UINT32 instrAddr = (UINT32)src;
+			PPC_STD(regIndex, -0x30, 1),
+			PPC_LIS(regIndex, PPC_HI((UINT32)target)),
+			PPC_ORI(regIndex, regIndex, PPC_LO((UINT32)target)),
+			PPC_MTCTR(regIndex),
+			PPC_LD(regIndex, -0x30, 1),
+			PPC_BCCTR(options, crBit, linked)
+		};
 
-			if (instr & POWERPC_BRANCH_ABSOLUTE)
-			{
-				*dest = instr;
-				return 4;
-			}
+		const UINT32* asmBlock = (preserveReg) ? farAsmPreserve : farAsm;
+		size_t asmSize = (preserveReg) ? sizeof(farAsmPreserve) : sizeof(farAsm);
 
-			INT32 offsetBitSize = 0;
-			INT32 offsetBitBase = 0;
-			UINT32 options = 0;
-			BYTE crBit = 0;
+		if (dest)
+			memcpy(dest, asmBlock, asmSize);
+		return asmSize;
+	}
 
-			switch (instr & POWERPC_OPCODE_MASK)
-			{
-			case POWERPC_OPCODE_B:
-				offsetBitSize = 24;
-				offsetBitBase = 2;
-				options = POWERPC_BRANCH_OPTIONS_ALWAYS;
-				crBit = 0;
-				break;
-			case POWERPC_OPCODE_BC:
-				offsetBitSize = 14;
-				offsetBitBase = 2;
-				options = (instr >> POWERPC_BIT32(10)) & MASK_N_BITS(5);
-				crBit = (instr >> POWERPC_BIT32(15)) & MASK_N_BITS(5);
-				break;
-			}
+	void Hook::Nop(void* place, size_t length)
+	{
+		memset(place, 0x60000000, length);
+			
+		DCBF(place);
+		DCBST(place);
+		SYNC();
+	}
 
-			INT32 offset = instr & (MASK_N_BITS(offsetBitSize) << offsetBitBase);
-			if (offset >> ((offsetBitSize + offsetBitBase) - 1))
-				offset |= ~MASK_N_BITS(offsetBitSize + offsetBitBase);
-
-			void* addr = (void*)((INT32)instrAddr + offset);
-			return WriteFarBranchEx(dest, addr, (instr & POWERPC_BRANCH_LINKED) != 0, true, options, crBit, 11);
-		}
-
-		size_t Detour::WriteFarBranch(void* dest, const void* target, bool linked, bool preserveReg)
-		{
-			return WriteFarBranchEx(dest, target, linked, preserveReg, POWERPC_BRANCH_OPTIONS_ALWAYS, 0, 11);
-		}
-
-		size_t Detour::WriteFarBranchEx(
-			void* dest,
-			const void* target,
-			bool linked,
-			bool preserveReg,
-			UINT32 options,
-			BYTE crBit,
-			BYTE regIndex)
-		{
-			UINT32 farAsm[] =
-			{
-				POWERPC_LIS(regIndex, POWERPC_HI((UINT32)target)),
-				POWERPC_ORI(regIndex, regIndex, POWERPC_LO((UINT32)target)),
-				POWERPC_MTCTR(regIndex),
-				POWERPC_BCCTR(options, crBit, linked)
-			};
-
-			UINT32 farAsmPreserve[] =
-			{
-				POWERPC_STD(regIndex, -0x30, 1),
-				POWERPC_LIS(regIndex, POWERPC_HI((UINT32)target)),
-				POWERPC_ORI(regIndex, regIndex, POWERPC_LO((UINT32)target)),
-				POWERPC_MTCTR(regIndex),
-				POWERPC_LD(regIndex, -0x30, 1),
-				POWERPC_BCCTR(options, crBit, linked)
-			};
-
-			const UINT32* asmBlock = (preserveReg) ? farAsmPreserve : farAsm;
-			size_t asmSize = (preserveReg) ? sizeof(farAsmPreserve) : sizeof(farAsm);
-
-			if (dest)
-				memcpy(dest, asmBlock, asmSize);
-			return asmSize;
-		}
+	void Hook::Nop(DWORD place, size_t length)
+	{
+		Nop(reinterpret_cast<void*>(place), length);
 	}
 }

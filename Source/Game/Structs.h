@@ -96,12 +96,12 @@ namespace Structs
 		float subScreenLeft;
 	};
 
-	enum EScreenLayer : int
+	enum EScreenLayer
 	{
-		SL_SYSTEM = 0x0,
-		SL_HUD_BOB_NO_DISTORT = 0x1,
-		SL_HUD_DISTORT = 0x2,
-		SL_NUM_LAYERS = 0x3,
+		SL_SYSTEM,
+		SL_HUD_BOB_NO_DISTORT,
+		SL_HUD_DISTORT,
+		SL_NUM_LAYERS,
 	};
 
 	enum XAssetType : int

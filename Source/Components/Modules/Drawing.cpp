@@ -63,15 +63,15 @@ namespace Drawing
 
 		void Hooks()
 		{
-			Font = (Structs::Font_s**)0x85ECBACC; // fonts/fwsmallfont
+			Font = reinterpret_cast<Structs::Font_s**>(0x85ECBACC); // fonts/fwsmallfont
 
 			// draw our watermark and fps counter
 			CL_DrawScreen_Hook.Create(0x822BD290, CL_DrawScreen);
 
 			// disable some unneeded drawing
-			Util::Hook::SetValue(0x822BD2E8, PPC_NOP); // CG_DrawVersion
-			Util::Hook::SetValue(0x82510438, PPC_NOP); // UI_DrawBuildNumber
-			Util::Hook::SetValue(0x8229D414, PPC_NOP); // Con_DrawOutputVersion
+			Util::Hook::Nop(0x822BD2E8, 2); // CG_DrawVersion
+			Util::Hook::Nop(0x82510438, 2); // UI_DrawBuildNumber
+			Util::Hook::Nop(0x8229D414, 2); // Con_DrawOutputVersion
 		}
 
 		void ClearHooks()
@@ -150,15 +150,15 @@ namespace Drawing
 
 		void Hooks()
 		{
-			Font = (Structs::Font_s**)0x8423B21C; // fonts/fwsmallfont
+			Font = reinterpret_cast<Structs::Font_s**>(0x8423B21C); // fonts/fwsmallfont
 
 			// draw our watermark and fps counter
 			CL_DrawScreen_Hook.Create(0x8221F858, CL_DrawScreen);
 
 			// disable some unneeded drawing
-			Util::Hook::SetValue(0x8221F894, PPC_NOP); // CG_DrawVersion
-			Util::Hook::SetValue(0x824A6F3C, PPC_NOP); // UI_DrawBuildNumber
-			Util::Hook::SetValue(0x8220CB80, PPC_NOP); // Con_DrawOutputVersion
+			Util::Hook::Nop(0x8221F894, 2); // CG_DrawVersion
+			Util::Hook::Nop(0x824A6F3C, 2); // UI_DrawBuildNumber
+			Util::Hook::Nop(0x8220CB80, 2); // Con_DrawOutputVersion
 		}
 
 		void ClearHooks()

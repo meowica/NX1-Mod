@@ -8,9 +8,6 @@
     <ClCompile Include="..\..\Source\Util\Command.cpp">
       <Filter>Util</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Util\FileSystem.cpp">
-      <Filter>Util</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\Util\Hook.cpp">
       <Filter>Util</Filter>
     </ClCompile>
@@ -51,9 +48,6 @@
       <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Util\Command.h">
-      <Filter>Util</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Util\FileSystem.h">
       <Filter>Util</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Util\Hook.h">

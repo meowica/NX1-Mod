@@ -5,9 +5,6 @@
     <ClCompile Include="..\..\Source\Util\Command.cpp">
       <Filter>Util</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Util\FileSystem.cpp">
-      <Filter>Util</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\Util\Hook.cpp">
       <Filter>Util</Filter>
     </ClCompile>
@@ -53,9 +50,6 @@
     <ClInclude Include="..\..\Source\Util\Command.h">
       <Filter>Util</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Util\FileSystem.h">
-      <Filter>Util</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Source\Util\Hook.h">
       <Filter>Util</Filter>
     </ClInclude>
@@ -94,6 +88,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\Components\Modules\Intro.h">
       <Filter>Components\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Util\PPC.h">
+      <Filter>Util</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

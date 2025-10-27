@@ -5,11 +5,11 @@ namespace Loader
 
 	void RegisterModule(const char* name, void (*load)(), void (*unload)())
 	{
-		// Check for duplicates
+		// check for duplicates
 		for (int i = 0; i < g_moduleCount; ++i)
 		{
 			if (strcmp(g_modules[i].name, name) == 0)
-				return; // Already registered
+				return; // already registered
 		}
 
 		if (g_moduleCount < MAX_MODULES)

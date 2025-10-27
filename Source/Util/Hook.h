@@ -1,69 +1,14 @@
 #pragma once
 
-#define MASK_N_BITS(N)					((1 << (N)) - 1)
+#include "PPC.h"
 
-#define POWERPC_HI(X)					(((X) >> 16) & 0xFFFF)
-#define POWERPC_LO(X)					((X) & 0xFFFF)
-
-// PowerPC most significant bit is addressed as bit 0.
-#define POWERPC_BIT32(N)				(31 - (N))
-
-// Opcode is bits 0-5.
-// Allowing for op codes ranging from 0-63.
-#define POWERPC_OPCODE(OP)				((OP) << 26)
-#define POWERPC_OPCODE_ADDI				POWERPC_OPCODE(14)
-#define POWERPC_OPCODE_ADDIS			POWERPC_OPCODE(15)
-#define POWERPC_OPCODE_BC				POWERPC_OPCODE(16)
-#define POWERPC_OPCODE_B				POWERPC_OPCODE(18)
-#define POWERPC_OPCODE_BCCTR			POWERPC_OPCODE(19)
-#define POWERPC_OPCODE_ORI				POWERPC_OPCODE(24)
-#define POWERPC_OPCODE_EXTENDED			POWERPC_OPCODE(31)
-#define POWERPC_OPCODE_LWZ				POWERPC_OPCODE(32)
-#define POWERPC_OPCODE_STW				POWERPC_OPCODE(36)
-#define POWERPC_OPCODE_LD				POWERPC_OPCODE(58)
-#define POWERPC_OPCODE_STD				POWERPC_OPCODE(62)
-#define POWERPC_OPCODE_MASK				POWERPC_OPCODE(63)
-
-#define POWERPC_EXOPCODE(OP)			((OP) << 1)
-#define POWERPC_EXOPCODE_BCCTR			POWERPC_EXOPCODE(528)
-#define POWERPC_EXOPCODE_MTSPR			POWERPC_EXOPCODE(467)
-
-// SPR field is encoded as two 5-bit fields.
-#define POWERPC_SPR(SPR)				((UINT32)(((SPR) & 0x1F) << 5 | (((SPR) >> 5) & 0x1F)))
-
-// Instruction helpers.
-//
-// rD - Destination register.
-// rS - Source register.
-// rA/rB - Register inputs.
-// SPR - Special purpose register.
-// UIMM/SIMM - Unsigned/signed immediate.
-#define POWERPC_ADDI(rD, rA, SIMM)		((UINT32)(POWERPC_OPCODE_ADDI | ((rD) << POWERPC_BIT32(10)) | ((rA) << POWERPC_BIT32(15)) | (SIMM)))
-#define POWERPC_ADDIS(rD, rA, SIMM)		((UINT32)(POWERPC_OPCODE_ADDIS | ((rD) << POWERPC_BIT32(10)) | ((rA) << POWERPC_BIT32(15)) | (SIMM)))
-#define POWERPC_LIS(rD, SIMM)			POWERPC_ADDIS((rD), 0, (SIMM))
-#define POWERPC_LI(rD, SIMM)			POWERPC_ADDI((rD), 0, (SIMM))
-#define POWERPC_MTSPR(SPR, rS)			((UINT32)(POWERPC_OPCODE_EXTENDED | ((rS) << POWERPC_BIT32(10)) | (POWERPC_SPR(SPR) << POWERPC_BIT32(20)) | POWERPC_EXOPCODE_MTSPR))
-#define POWERPC_MTCTR(rS)				POWERPC_MTSPR(9, (rS))
-#define POWERPC_ORI(rS, rA, UIMM)		((UINT32)(POWERPC_OPCODE_ORI | ((rS) << POWERPC_BIT32(10)) | ((rA) << POWERPC_BIT32(15)) | (UIMM)))
-#define POWERPC_BCCTR(BO, BI, LK)		((UINT32)(POWERPC_OPCODE_BCCTR | ((BO) << POWERPC_BIT32(10)) | ((BI) << POWERPC_BIT32(15)) | ((LK) & 1) | POWERPC_EXOPCODE_BCCTR))
-#define POWERPC_STD(rS, DS, rA)			((UINT32)(POWERPC_OPCODE_STD | ((rS) << POWERPC_BIT32(10)) | ((rA) << POWERPC_BIT32(15)) | ((INT16)(DS) & 0xFFFF)))
-#define POWERPC_LD(rS, DS, rA)			((UINT32)(POWERPC_OPCODE_LD | ((rS) << POWERPC_BIT32(10)) | ((rA) << POWERPC_BIT32(15)) | ((INT16)(DS) & 0xFFFF)))
-
-// Branch related fields.
-#define POWERPC_BRANCH_LINKED			(1)
-#define POWERPC_BRANCH_ABSOLUTE			(2)
-#define POWERPC_BRANCH_OPTIONS_ALWAYS	(20)
-
-#define DCBF(ptr)						__dcbf(0, ptr)
-#define DCBST(ptr)						__dcbst(0, ptr)
-#define SYNC()							__sync()
-
-#define PPC_NOP							0x60000000
+// mostly taken from: https://gist.github.com/iMoD1998/4aa48d5c990535767a3fc3251efc0348
 
 namespace Util
 {
-	namespace Hook
+	class Hook
 	{
+	public:
 		class Detour
 		{
 		public:
@@ -98,25 +43,38 @@ namespace Util
 			static size_t RelocateBranch(UINT32* dest, const UINT32* src);
 
 			static size_t WriteFarBranch(void* dest, const void* target, bool linked, bool preserveReg);
-			static size_t WriteFarBranchEx(void* dest, const void* target, bool linked, bool preserveReg,
-										   UINT32 options, BYTE crBit, BYTE regIndex);
+			static size_t WriteFarBranchEx(void* dest, const void* target, bool linked, bool preserveReg, UINT32 options, BYTE crBit, BYTE regIndex);
 		};
 
-		template <typename T>
-		void SetValue(size_t place, T value)
-		{
-			void* basePtr = reinterpret_cast<void*>(place);
-			memcpy(basePtr, &value, sizeof(T));
+		static void Nop(void* place, size_t length);
+		static void Nop(DWORD place, size_t length);
 
-			DCBF(basePtr);
-			DCBST(basePtr);
+		template <typename T>
+		static void Set(void* place, const T& value)
+		{
+			memcpy(place, &value, sizeof(T));
+			
+			DCBF(place);
+			DCBST(place);
+			SYNC();
+		}
+
+		template <>
+		static void Set<const char*>(void* place, const char* const &value)
+		{
+			strcpy(reinterpret_cast<char*>(place), value);
+			
+			DCBF(place);
+			DCBST(place);
 			SYNC();
 		}
 
 		template <typename T>
-		void SetString(size_t place, T value)
+		static void Set(DWORD place, const T& value)
 		{
-			strcpy(reinterpret_cast<char*>(place), value);
+			Set(reinterpret_cast<void*>(place), value);
 		}
-	}
+
+	private:
+	};
 }
