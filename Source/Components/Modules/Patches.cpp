@@ -51,18 +51,6 @@ namespace Patches
 			Invoke(localClientNum, configFile);
 		}
 
-		Util::Hook::Detour Com_Init_Hook;
-		void Com_Init(const char* p_command_line)
-		{
-			auto Invoke = Com_Init_Hook.Invoke<void(*)(const char*)>();
-			Invoke(p_command_line);
-
-			if (p_command_line && *p_command_line)
-			{
-				Symbols::MP::Com_Printf(16, "Command Line:\n%s\n\n", p_command_line);
-			}
-		}
-
 		Util::Hook::Detour getBuildNumber_Hook;
 		const char* getBuildNumber()
 		{
@@ -160,8 +148,6 @@ namespace Patches
 			// prevent dupe config executions
 			Com_ExecStartupConfigs_Hook.Create(0x82453810, Com_ExecStartupConfigs);
 
-			Com_Init_Hook.Create(0x82457EC8, Com_Init);
-
 			// xenia bug fix: fix console input
 			Util::Hook::Nop(0x8259F27C, 2);
 
@@ -234,7 +220,6 @@ namespace Patches
 			_printf_Hook.Clear();
 			FS_InitFilesystem_Hook.Clear();
 			Com_ExecStartupConfigs_Hook.Clear();
-			Com_Init_Hook.Clear();
 			getBuildNumber_Hook.Clear();
 			LSP_CheckOngoingTasks_Hook.Clear();
 			MAssertVargs_Hook.Clear();
@@ -303,18 +288,6 @@ namespace Patches
 
 			auto Invoke = Com_ExecStartupConfigs_Hook.Invoke<void(*)(int, const char*)>();
 			Invoke(localClientNum, configFile);
-		}
-
-		Util::Hook::Detour Com_Init_Hook;
-		void Com_Init(const char* p_command_line)
-		{
-			auto Invoke = Com_Init_Hook.Invoke<void(*)(const char*)>();
-			Invoke(p_command_line);
-
-			if (p_command_line && *p_command_line)
-			{
-				Symbols::SP::Com_Printf(16, "Command Line:\n%s\n\n", p_command_line);
-			}
 		}
 
 		Util::Hook::Detour getBuildNumber_Hook;
@@ -413,8 +386,6 @@ namespace Patches
 
 			// prevent dupe config executions
 			Com_ExecStartupConfigs_Hook.Create(0x824296C0, Com_ExecStartupConfigs);
-
-			Com_Init_Hook.Create(0x8242DB20, Com_Init);
 
 			// xenia bug fix: fix console input
 			Util::Hook::Nop(0x8251E97C, 2);
