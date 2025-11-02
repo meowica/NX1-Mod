@@ -5,7 +5,21 @@ void StartupThread()
 	// TODO: add memory address validation
 	while (Util::XBox::XGetCurrentTitleId() != TITLE_ID)
 	{
-		Sleep(50); // avoid CPU load
+		// 50 is fine for Xenia, mirror what Heaventh did for Xbox 360
+		if (Util::XBox::IsInXenia())
+		{
+			Sleep(50); // avoid CPU load
+		}
+		else
+		{
+			Sleep(75); // avoid CPU load
+		}
+	}
+
+	// Xenia does not need this
+	if (!Util::XBox::IsInXenia())
+	{
+		Sleep(200); // sleep a tiny bit
 	}
 
 	Loader::RegisterModules();
@@ -27,14 +41,19 @@ VOID OnAttachProcess()
 
 VOID OnDetachProcess()
 {
-	isUnloading = true;
-
-	if (Util::XBox::XGetCurrentTitleId() == TITLE_ID)
+	// Xenia doesn't need this, besides this will NEVER execute in Xenia
+	// but if it does, don't run it
+	if (!Util::XBox::IsInXenia())
 	{
-		Loader::UnloadAllModules(); // keys: does this even do anything??
-	}
+		isUnloading = true;
 
-	Sleep(200);
+		if (Util::XBox::XGetCurrentTitleId() == TITLE_ID)
+		{
+			Loader::UnloadAllModules(); // keys: does this even do anything??
+		}
+
+		Sleep(200);
+	}
 }
 
 BOOL APIENTRY DllMain(

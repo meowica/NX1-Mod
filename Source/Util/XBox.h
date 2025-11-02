@@ -4,6 +4,10 @@ namespace Util
 {
 	namespace XBox
 	{
+		bool IsInXenia();
+
+		void* ResolveFunction(const char* moduleName, unsigned int ordinal);
+
 		DWORD XGetCurrentTitleId();
 
 		typedef struct _DM_THREADINFOEX
