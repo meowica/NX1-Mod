@@ -1,0 +1,9 @@
+title_name = "nx1"
+title_id = "4156089E"
+
+[[plugin]]
+	name = "NX1-Mod"
+	file = "NX1-Mod.xex"
+	hash = "A49321A07235881F" # 2-nx1mp.exe
+
+	is_enabled = true
