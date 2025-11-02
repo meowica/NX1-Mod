@@ -1,13 +1,40 @@
-DWORD WINAPI MainThread(LPVOID)
+bool isUnloading = false;
+
+void StartupThread()
 {
+	// TODO: add memory address validation
 	while (Util::XBox::XGetCurrentTitleId() != TITLE_ID)
 	{
-		Sleep(50);
+		Sleep(50); // avoid CPU load
 	}
 
 	Loader::RegisterModules();
 	Loader::LoadAllModules();
-	return 0;
+}
+
+VOID OnAttachProcess()
+{
+	HANDLE threadHandle;
+	DWORD threadID;
+	
+	ExCreateThread(&threadHandle, NULL, &threadID, XapiThreadStartup, LPTHREAD_START_ROUTINE(StartupThread), NULL, 0x2 | CREATE_SUSPENDED);
+	if (threadHandle != INVALID_HANDLE_VALUE)
+	{
+		XSetThreadProcessor(threadHandle, 4);
+		ResumeThread(threadHandle);
+	}
+}
+
+VOID OnDetachProcess()
+{
+	isUnloading = true;
+
+	if (Util::XBox::XGetCurrentTitleId() == TITLE_ID)
+	{
+		Loader::UnloadAllModules(); // keys: does this even do anything??
+	}
+
+	Sleep(200);
 }
 
 BOOL APIENTRY DllMain(
@@ -18,17 +45,9 @@ BOOL APIENTRY DllMain(
 	switch (reason)
 	{
 	case DLL_PROCESS_ATTACH:
-	{
-		HANDLE hThread = CreateThread(NULL, 0, MainThread, NULL, 0, NULL);
-		if (hThread)
-		{
-			CloseHandle(hThread);
-		}
-		break;
-	}
+		OnAttachProcess();
 	case DLL_PROCESS_DETACH:
-		Loader::UnloadAllModules();
-		break;
+		OnDetachProcess();
 	}
 
 	return TRUE;

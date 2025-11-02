@@ -20,7 +20,7 @@ namespace Loader
 	{
 		const char* name;
 		void (*load)();
-		void (*unload)();
+		void (*unload)(); // does the plugin EVER call this??
 	};
 
 #define MAX_MODULES 256 // big number, nobody should EVER have 256 modules
