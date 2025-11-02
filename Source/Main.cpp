@@ -17,6 +17,7 @@ void StartupThread()
 	}
 
 	// Xenia does not need this
+	// From my testing, this only hinders the plugin, making it inject slower which means we miss out on things
 	if (!Util::XBox::IsInXenia())
 	{
 		Sleep(200); // sleep a tiny bit
