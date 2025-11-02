@@ -8,10 +8,10 @@
 ### Patches
 - Download the required [game patches](https://github.com/hindercanrun/NX1-Mod/tree/main/Xenia/patches).
 - Put them into `xenia\patches`.
-- Make sure `apply_patches` is set to `true` in the Xenia config (It's `true` by default).
+- Make sure `apply_patches` is set to `true` in the Xenia Canary config (It's `true` by default).
 - Done.
 ### Plugins
-- Make sure `allow_plugins` is set to `true` in the Xenia config (It's `false` by default).
+- Make sure `allow_plugins` is set to `true` in the Xenia Canary config (It's `false` by default).
 - Download the latest `NX1-Mod.xex` and place it in into `xenia\plugins\4156089E\`.
 - Place the `plugins.toml` there too, depending on the mode you want, `SP-Mod` for Campaign, `MP-Mod` for Multiplayer.
 - Done.
@@ -22,7 +22,7 @@
 ## How to use (Xbox 360)
 - Uhhh...
 
-## Changes
+## Changes (mode)
 - Removed Black Box (SP/MP)
 - Removed Anti Cheat (SP/MP)
 - Unlocked FPS (SP/MP)
@@ -35,9 +35,8 @@
 - Removed dev autoexec for a cleaner screen (SP/MP)
 - Removed some prints for a cleaner log (SP/MP)
 - Enabled unsecure Fast File loading (MP)
-- Skips main_lockout (SP)
+- Open main_selection instead of main_lockout (SP)
 - Console + DevGui safe area fits the full screen, like it does on PC (SP/MP)
 - Missing localization strings no longer error by default (SP/MP)
 - Added listassetpool command for modders (SP/MP)
 - printf outputs to the console log file (SP/MP)
-- BB_Print outputs to the console log file (SP)
