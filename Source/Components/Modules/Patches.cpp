@@ -363,19 +363,6 @@ namespace Patches
 			snprintf(p_destBuffer, destBufferSize, "\"%s\", 0x%08x, HW Thread %d", name, threadId, info.CurrentProcessor);
 		}
 
-		Util::Hook::Detour BB_Print_Hook;
-		void BB_Print(const char* fmt, ...)
-		{
-			char buf[256];
-
-			va_list args;
-			va_start(args, fmt);
-			vsnprintf(buf, sizeof(buf), fmt, args);
-			va_end(args);
-
-			Symbols::SP::Com_Printf(0, "BB: %s", buf);
-		}
-
 		void Hooks()
 		{
 			// issue fix: disable Black Box
@@ -393,8 +380,6 @@ namespace Patches
 			// detour printf output to Com_Printf instead
 			printf_Hook.Create(printf, _printf);
 			_printf_Hook.Create(0x8277B188, _printf); // make sure we grab the games version too
-
-			BB_Print_Hook.Create(0x824BE510, BB_Print);
 
 			// print all our loaded modules
 			FS_InitFilesystem_Hook.Create(0x824C34F0, FS_InitFilesystem);
