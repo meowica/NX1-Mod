@@ -1,4 +1,10 @@
-# NX1-Mod - Modification for Future Warfare (NX1)
+# NX1-Mod
+
+<p align="center">
+  <img src="Assets/GitHub/Banner.gif?raw=true" />
+</p>
+
+# NX1-Mod - Modification for Future Warfare (NX1).
 
 ## Supported XEXs
 - 1-nx1sp.xex
