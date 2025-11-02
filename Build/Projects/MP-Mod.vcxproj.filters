@@ -38,6 +38,9 @@
     <ClCompile Include="..\..\Source\Components\Modules\Intro.cpp">
       <Filter>Components\Modules</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Components\Modules\Assertion.cpp">
+      <Filter>Components\Modules</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\Std_Include.h" />
@@ -78,6 +81,9 @@
       <Filter>Components\Modules</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Components\Modules\Intro.h">
+      <Filter>Components\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Components\Modules\Assertion.h">
       <Filter>Components\Modules</Filter>
     </ClInclude>
   </ItemGroup>

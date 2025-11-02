@@ -63,56 +63,6 @@ namespace Patches
 			// null stub
 		}
 
-		Util::Hook::Detour MAssertVargs_Hook;
-		int MAssertVargs(const char* filename, int line, int type, int, const char* fmt, ...)
-		{
-			// TODO: Implement symbols printing. For that extra cool debug info
-
-			static const char* lastFilename = nullptr;
-			static int lastLine = -1;
-			static int repeatCount = 0;
-
-			// Check if this is the same assert location as last time
-			if (lastFilename && strcmp(lastFilename, filename) == 0 && lastLine == line)
-			{
-				repeatCount++;
-			}
-			else
-			{
-				lastFilename = filename;
-				lastLine = line;
-				repeatCount = 1;
-			}
-
-			char message[1024];
-
-			va_list va;
-			va_start(va, fmt);
-			vsnprintf_s(message, sizeof(message), fmt, va);
-			message[sizeof(message) - 1] = '\0';
-
-			Symbols::MP::Com_Printf(0, "\n");
-			Symbols::MP::Com_Printf(0, "****************************************\n");
-			Symbols::MP::Com_Printf(0, "*  Assertion Info:\n");
-			Symbols::MP::Com_Printf(0, "*  Message:       %s\n", message);
-			Symbols::MP::Com_Printf(0, "*  File:          %s\n", filename);
-			Symbols::MP::Com_Printf(0, "*  Line:          %d\n", line);
-			Symbols::MP::Com_Printf(0, "****************************************\n");
-
-			if (repeatCount >= 2)
-			{
-				Symbols::MP::Com_Printf(0, "*  Warning:       Same assert triggered multiple times.\n");
-				Symbols::MP::Com_Printf(0, "****************************************\n");
-				return 0;
-			}
-			else
-			{
-				Symbols::MP::Com_Printf(0, "*  Note:          First time this assert occurred.\n");
-				Symbols::MP::Com_Printf(0, "****************************************\n");
-				return 0;
-			}
-		}
-
 		Util::Hook::Detour Sys_GetThreadName_Hook;
 		void Sys_GetThreadName(DWORD threadId, char *p_destBuffer, unsigned int destBufferSize)
 		{
@@ -159,9 +109,6 @@ namespace Patches
 
 			// dont check any lsp tasks
 			LSP_CheckOngoingTasks_Hook.Create(0x82633810, LSP_CheckOngoingTasks);
-
-			// our custom assertion handler
-			MAssertVargs_Hook.Create(0x82527570, MAssertVargs);
 
 			// fix thread names appearing as gibberish
 			Sys_GetThreadName_Hook.Create(0x82572A88, Sys_GetThreadName);
@@ -222,7 +169,6 @@ namespace Patches
 			Com_ExecStartupConfigs_Hook.Clear();
 			getBuildNumber_Hook.Clear();
 			LSP_CheckOngoingTasks_Hook.Clear();
-			MAssertVargs_Hook.Clear();
 			Sys_GetThreadName_Hook.Clear();
 		}
 
@@ -302,56 +248,6 @@ namespace Patches
 			// null stub
 		}
 
-		Util::Hook::Detour MAssertVargs_Hook;
-		int MAssertVargs(const char* filename, int line, int type, int, const char* fmt, ...)
-		{
-			// TODO: Implement symbols printing. For that extra cool debug info
-
-			static const char* lastFilename = nullptr;
-			static int lastLine = -1;
-			static int repeatCount = 0;
-
-			// Check if this is the same assert location as last time
-			if (lastFilename && strcmp(lastFilename, filename) == 0 && lastLine == line)
-			{
-				repeatCount++;
-			}
-			else
-			{
-				lastFilename = filename;
-				lastLine = line;
-				repeatCount = 1;
-			}
-
-			char message[1024];
-
-			va_list va;
-			va_start(va, fmt);
-			vsnprintf_s(message, sizeof(message), fmt, va);
-			message[sizeof(message) - 1] = '\0';
-
-			Symbols::SP::Com_Printf(0, "\n");
-			Symbols::SP::Com_Printf(0, "****************************************\n");
-			Symbols::SP::Com_Printf(0, "*  Assertion Info:\n");
-			Symbols::SP::Com_Printf(0, "*  Message:       %s\n", message);
-			Symbols::SP::Com_Printf(0, "*  File:          %s\n", filename);
-			Symbols::SP::Com_Printf(0, "*  Line:          %d\n", line);
-			Symbols::SP::Com_Printf(0, "****************************************\n");
-
-			if (repeatCount >= 2)
-			{
-				Symbols::SP::Com_Printf(0, "*  Warning:       Same assert triggered multiple times.\n");
-				Symbols::SP::Com_Printf(0, "****************************************\n");
-				return 0;
-			}
-			else
-			{
-				Symbols::SP::Com_Printf(0, "*  Note:          First time this assert occurred.\n");
-				Symbols::SP::Com_Printf(0, "****************************************\n");
-				return 0;
-			}
-		}
-
 		Util::Hook::Detour Sys_GetThreadName_Hook;
 		void Sys_GetThreadName(DWORD threadId, char *p_destBuffer, unsigned int destBufferSize)
 		{
@@ -395,9 +291,6 @@ namespace Patches
 
 			// dont check any lsp tasks
 			LSP_CheckOngoingTasks_Hook.Create(0x825A2C68, LSP_CheckOngoingTasks);
-
-			// our custom assertion handler
-			MAssertVargs_Hook.Create(0x824BCD10, MAssertVargs);
 
 			// fix thread names appearing as gibberish
 			Sys_GetThreadName_Hook.Create(0x824F41B8, Sys_GetThreadName);
@@ -464,7 +357,6 @@ namespace Patches
 			Com_ExecStartupConfigs_Hook.Clear();
 			getBuildNumber_Hook.Clear();
 			LSP_CheckOngoingTasks_Hook.Clear();
-			MAssertVargs_Hook.Clear();
 			Sys_GetThreadName_Hook.Clear();
 		}
 
