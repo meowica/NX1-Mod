@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="kernel">
+      <UniqueIdentifier>{5f100432-80b7-4133-bd6d-3aafbae1bb52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="xam">
+      <UniqueIdentifier>{1a442b04-bfa8-4c0f-a7f1-dc9b543dd136}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="kernel\_kernelext.h">
+      <Filter>kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="kernel\keFileInfo.h">
+      <Filter>kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="kernel\kePrivateStructs.h">
+      <Filter>kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="kernel\keXeCrypt.h">
+      <Filter>kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="kernel\keXeKeys.h">
+      <Filter>kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="kernel\keXexInfo.h">
+      <Filter>kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="xam\_xamext.h">
+      <Filter>xam</Filter>
+    </ClInclude>
+    <ClInclude Include="xam\xamTask.h">
+      <Filter>xam</Filter>
+    </ClInclude>
+    <ClInclude Include="xam\xamXContent.h">
+      <Filter>xam</Filter>
+    </ClInclude>
+    <ClInclude Include="kernel\keSmc.h">
+      <Filter>kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="kernel\console_type.h">
+      <Filter>kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="xam\xamNet.h">
+      <Filter>xam</Filter>
+    </ClInclude>
+    <ClInclude Include="xkelib.h" />
+    <ClInclude Include="exttypes.h" />
+    <ClInclude Include="syssock.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="xam\xamext.def">
+      <Filter>xam</Filter>
+    </None>
+    <None Include="kernel\kernelext.def">
+      <Filter>kernel</Filter>
+    </None>
+  </ItemGroup>
+</Project>

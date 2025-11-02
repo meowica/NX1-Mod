@@ -29,6 +29,7 @@
 #include <direct.h>
 #include <io.h>
 #include <time.h>
+#include <xkelib.h>
 
 #include "Game\Structs.h"
 #include "Game\Symbols.h"
@@ -39,8 +40,3 @@
 #include "Util\XBox.h"
 
 #include "Components\Loader.h"
-
-extern "C"
-{
-	NTSYSAPI DWORD NTAPI XamGetCurrentTitleId(VOID);
-}
