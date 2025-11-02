@@ -45,6 +45,7 @@ namespace Patches
 			{
 				return;
 			}
+
 			alreadyRanFunction = TRUE;
 
 			auto Invoke = Com_ExecStartupConfigs_Hook.Invoke<void(*)(int, const char*)>();
@@ -57,6 +58,7 @@ namespace Patches
 			return Util::String::Va("NX1-Mod MP");
 		}
 
+		// TODO: move this into maybe Network.cpp or LSP.cpp or Live.cpp or something
 		Util::Hook::Detour LSP_CheckOngoingTasks_Hook;
 		void LSP_CheckOngoingTasks(int PacketsInternal)
 		{
@@ -64,9 +66,10 @@ namespace Patches
 		}
 
 		Util::Hook::Detour Sys_GetThreadName_Hook;
-		void Sys_GetThreadName(DWORD threadId, char *p_destBuffer, unsigned int destBufferSize)
+		void Sys_GetThreadName(DWORD threadId, char* p_destBuffer, unsigned int destBufferSize)
 		{
 			Util::XBox::DM_THREADINFOEX info;
+
 			info.Size = sizeof(Util::XBox::DM_THREADINFOEX);
 			Util::XBox::DmGetThreadInfoEx(threadId, &info);
 
@@ -230,6 +233,7 @@ namespace Patches
 			{
 				return;
 			}
+
 			alreadyRanFunction = TRUE;
 
 			auto Invoke = Com_ExecStartupConfigs_Hook.Invoke<void(*)(int, const char*)>();
@@ -242,6 +246,7 @@ namespace Patches
 			return Util::String::Va("NX1-Mod SP");
 		}
 
+		// TODO: move this into maybe Network.cpp or LSP.cpp or Live.cpp or something
 		Util::Hook::Detour LSP_CheckOngoingTasks_Hook;
 		void LSP_CheckOngoingTasks(int PacketsInternal)
 		{
@@ -249,9 +254,10 @@ namespace Patches
 		}
 
 		Util::Hook::Detour Sys_GetThreadName_Hook;
-		void Sys_GetThreadName(DWORD threadId, char *p_destBuffer, unsigned int destBufferSize)
+		void Sys_GetThreadName(DWORD threadId, char* p_destBuffer, unsigned int destBufferSize)
 		{
 			Util::XBox::DM_THREADINFOEX info;
+
 			info.Size = sizeof(Util::XBox::DM_THREADINFOEX);
 			Util::XBox::DmGetThreadInfoEx(threadId, &info);
 
