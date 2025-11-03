@@ -44,7 +44,10 @@ namespace Loader
 	void RegisterModules()
 	{
 		// special modules
-		REGISTER_MODULE(Assertion); // to catch any early asserts
+		if (Util::XBox::IsInXenia())
+		{
+			REGISTER_MODULE(Assertion); // to catch any early asserts
+		}
 		REGISTER_MODULE(Patches);
 		REGISTER_MODULE(CustomCommands); // yeah.. this would be nice to have pretty early
 
