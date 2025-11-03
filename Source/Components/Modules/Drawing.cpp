@@ -71,7 +71,6 @@ namespace Drawing
 			// disable some unneeded drawing
 			Util::Hook::Nop(0x822BD2E8, 2); // CG_DrawVersion
 			Util::Hook::Nop(0x82510438, 2); // UI_DrawBuildNumber
-			Util::Hook::Nop(0x8229D414, 2); // Con_DrawOutputVersion
 		}
 
 		void ClearHooks()

@@ -135,9 +135,9 @@ namespace Patches
 
 		void StringEdits()
 		{
-			Util::Hook::Set<const char*>(0x8202F8D4, "%s MP > "); // uhh just make NX1-Mod look nicer
-			Util::Hook::Set<const char*>(0x8202F8E0, "NX1-Mod"); // NX1 MODDING !!!!!!
-			Util::Hook::Set<const char*>(0x8202F740, "Build 1866586"); // shorten that string!
+			Util::Hook::Set<const char*>(0x8202F8D4, "%s MP > "); // make NX1-Mod look nicer
+			Util::Hook::Set<const char*>(0x8202F8E0, "NX1-Mod"); // console string
+			Util::Hook::Set<const char*>(0x8202F740, "Version: r0"); // change it to our version
 			Util::Hook::Set<const char*>(0x8207FDB4, ""); // timestamp in console log
 		}
 
