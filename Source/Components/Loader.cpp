@@ -48,10 +48,11 @@ namespace Loader
 		{
 			REGISTER_MODULE(Assertion); // to catch any early asserts
 		}
+
 		REGISTER_MODULE(Patches);
-		REGISTER_MODULE(CustomCommands); // yeah.. this would be nice to have pretty early
 
 		// regular modules
+		REGISTER_MODULE(CustomCommands);
 		REGISTER_MODULE(DevGui);
 		REGISTER_MODULE(Drawing);
 		REGISTER_MODULE(InternalConsole);

@@ -56,38 +56,14 @@ namespace CustomCommands
 			Symbols::MP::Com_Printf(0, "Total of %d assets in %s pool, size %d\n", ctx.totalAssets, Symbols::MP::DB_GetXAssetTypeName(type), Symbols::MP::DB_GetXAssetTypeSize(type));
 		}
 
-		void AddCommands()
+		void Load()
 		{
 			Util::Command::Add("listassetpool", Cmd_ListAssetPool_f);
 		}
 
-		Util::Hook::Detour Cmd_Init_Hook;
-		void Cmd_Init()
-		{
-			auto Invoke = Cmd_Init_Hook.Invoke<void(*)()>();
-			Invoke();
-
-			AddCommands();
-		}
-
-		void Hooks()
-		{
-			Cmd_Init_Hook.Create(0x82438AD0, Cmd_Init);
-		}
-
-		void ClearHooks()
-		{
-			Cmd_Init_Hook.Clear();
-		}
-
-		void Load()
-		{
-			Hooks();
-		}
-
 		void Unload()
 		{
-			ClearHooks();
+			// nothing
 		}
 	}
 #elif SP_MOD
@@ -146,38 +122,14 @@ namespace CustomCommands
 			Symbols::SP::Com_Printf(0, "Total of %d assets in %s pool, size %d\n", ctx.totalAssets, Symbols::SP::DB_GetXAssetTypeName(type), Symbols::SP::DB_GetXAssetTypeSize(type));
 		}
 
-		void AddCommands()
+		void Load()
 		{
 			Util::Command::Add("listassetpool", Cmd_ListAssetPool_f);
 		}
 
-		Util::Hook::Detour Cmd_Init_Hook;
-		void Cmd_Init()
-		{
-			auto Invoke = Cmd_Init_Hook.Invoke<void(*)()>();
-			Invoke();
-
-			AddCommands();
-		}
-
-		void Hooks()
-		{
-			Cmd_Init_Hook.Create(0x82423308, Cmd_Init);
-		}
-
-		void ClearHooks()
-		{
-			Cmd_Init_Hook.Clear();
-		}
-
-		void Load()
-		{
-			Hooks();
-		}
-
 		void Unload()
 		{
-			ClearHooks();
+			// nothing
 		}
 	}
 #endif
