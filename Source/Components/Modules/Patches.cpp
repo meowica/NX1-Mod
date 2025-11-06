@@ -139,6 +139,7 @@ namespace Patches
 			Util::Hook::Set<const char*>(0x8202F8E0, "NX1-Mod"); // console string
 			Util::Hook::Set<const char*>(0x8202F740, "Version: r0"); // change it to our version
 			Util::Hook::Set<const char*>(0x8207FDB4, ""); // timestamp in console log
+			Util::Hook::Set<const char*>(0x820A0EC0, "NX1-Host"); // default host name
 		}
 
 		void DVarEdits()
