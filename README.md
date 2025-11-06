@@ -1,7 +1,7 @@
 # NX1-Mod
 
 <p align="center">
-  <img src="Assets/GitHub/Banner.gif?raw=true" />
+  <img src=".github/Banner.gif?raw=true" />
 </p>
 
 # NX1-Mod - Modification for Future Warfare (NX1).
