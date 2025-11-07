@@ -96,12 +96,46 @@ namespace Structs
 		float subScreenLeft;
 	};
 
-	enum EScreenLayer
+	enum EScreenLayer : int
 	{
-		SL_SYSTEM,
+		SL_SYSTEM = 0,
 		SL_HUD_BOB_NO_DISTORT,
 		SL_HUD_DISTORT,
 		SL_NUM_LAYERS,
+	};
+
+	enum consoleChannel_e : int
+	{
+		CON_CHANNEL_DONT_FILTER = 0,
+		CON_CHANNEL_ERROR,
+		CON_CHANNEL_GAMENOTIFY,
+		CON_CHANNEL_BOLDGAME,
+		CON_CHANNEL_SUBTITLE,
+		CON_CHANNEL_OBITUARY ,
+		CON_CHANNEL_LOGFILEONLY,
+		CON_CHANNEL_CONSOLEONLY,
+		CON_CHANNEL_GFX,
+		CON_CHANNEL_SOUND,
+		CON_CHANNEL_FILES,
+		CON_CHANNEL_DEVGUI,
+		CON_CHANNEL_PROFILE,
+		CON_CHANNEL_UI,
+		CON_CHANNEL_CLIENT,
+		CON_CHANNEL_SERVER,
+		CON_CHANNEL_SYSTEM,
+		CON_CHANNEL_PLAYERWEAP,
+		CON_CHANNEL_AI,
+		CON_CHANNEL_ANIM,
+		CON_CHANNEL_PHYS,
+		CON_CHANNEL_FX,
+		CON_CHANNEL_LEADERBOARDS,
+		CON_CHANNEL_PARSERSCRIPT,
+		CON_CHANNEL_SCRIPT,
+		CON_CHANNEL_NETWORK,
+		CON_CHANNEL_VERBOSE,
+		CON_CHANNEL_DEMO,
+
+		CON_BUILTIN_CHANNEL_COUNT,
 	};
 
 	enum XAssetType : int
@@ -171,5 +205,22 @@ namespace Structs
 	{
 		XAssetType type;
 		XAssetHeader header;
+	};
+
+	struct GfxConfiguration
+	{
+		bool inited;
+		unsigned int maxClientViews;
+		unsigned int maxClientRenderViews;
+		unsigned int entCount;
+		unsigned int entnumNone;
+		unsigned int entnumOrdinaryEnd;
+		int threadContextCount;
+		int critSectCount;
+		bool defaultFullscreen;
+		unsigned short defaultFullscreenFlags;
+		int defaultMode;
+		unsigned int textureMinVRamTier1;
+		unsigned int textureMinVRamTier2;
 	};
 }

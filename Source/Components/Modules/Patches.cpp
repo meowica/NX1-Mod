@@ -3,6 +3,23 @@ namespace Patches
 #ifdef MP_MOD
 	namespace MP
 	{
+		Util::Hook::Detour SetupGfxConfig_Hook;
+		void SetupGfxConfig(Structs::GfxConfiguration* config)
+		{
+			Symbols::MP::Com_Printf(Structs::CON_CHANNEL_SYSTEM, "----- Initializing Modules ----\n");
+
+			auto Invoke = SetupGfxConfig_Hook.Invoke<void(*)(Structs::GfxConfiguration*)>();
+			Invoke(config);
+
+			for (int i = 0; i < Loader::g_moduleCount; ++i)
+			{
+				Symbols::MP::Com_Printf(Structs::CON_CHANNEL_SYSTEM, "> %s\n", Loader::g_modules[i].name);
+			}
+
+			Symbols::MP::Com_Printf(Structs::CON_CHANNEL_SYSTEM, "----- Initialized All Modules ----\n\n");
+			Symbols::MP::Com_Printf(Structs::CON_CHANNEL_CLIENT, "----- Initializing Renderer ----\n");
+		}
+
 		Util::Hook::Detour printf_Hook;
 		Util::Hook::Detour _printf_Hook;
 		void _printf(const char* fmt, ...)
@@ -15,26 +32,6 @@ namespace Patches
 			va_end(args);
 
 			Symbols::MP::Com_Printf(0, "printf: %s", buf);
-		}
-
-		Util::Hook::Detour FS_InitFilesystem_Hook;
-		void FS_InitFilesystem()
-		{
-			DWORD start = GetTickCount(); // We could use Sys_Milliseconds here buuut GetTickCount works fine
-
-			Symbols::MP::Com_Printf(0, "Loading modules...\n"); // TODO: figure out why this dont print
-			for (int i = 0; i < Loader::g_moduleCount; ++i)
-			{
-				Symbols::MP::Com_Printf(0, "%d: %s\n", i + 1, Loader::g_modules[i].name);
-			}
-		
-			DWORD end = GetTickCount();
-			DWORD duration = end - start;
-
-			Symbols::MP::Com_Printf(0, "Loaded all modules in %lu ms\n\n", duration);
-
-			auto Invoke = FS_InitFilesystem_Hook.Invoke<void(*)()>();
-			Invoke();
 		}
 
 		Util::Hook::Detour Com_ExecStartupConfigs_Hook;
@@ -84,12 +81,12 @@ namespace Patches
 			Util::Hook::Nop(0x825A3FCC, 2); // LiveAntiCheat_UserSignedOut
 			Util::Hook::Nop(0x82667C44, 2); // LiveAntiCheat_OnChallengesReceived
 
+			// print all our loaded modules
+			SetupGfxConfig_Hook.Create(0x822AFB20, SetupGfxConfig);
+
 			// detour printf output to Com_Printf instead
 			printf_Hook.Create(printf, _printf);
 			_printf_Hook.Create(0x82898D70, _printf); // make sure we grab the games version too
-
-			// print all our loaded modules
-			FS_InitFilesystem_Hook.Create(0x8252F740, FS_InitFilesystem);
 
 			// prevent dupe config executions
 			Com_ExecStartupConfigs_Hook.Create(0x82453810, Com_ExecStartupConfigs);
@@ -121,6 +118,7 @@ namespace Patches
 			Util::Hook::Nop(0x82456BC0, 2); // end $init
 			Util::Hook::Nop(0x8226E62C, 2); // looking for alias
 			Util::Hook::Nop(0x82456A98, 2); // com_init_tbf build version
+			Util::Hook::Nop(0x822AFBE0, 2); // renderer init (i reprint it in SetupGfxConfig hook)
 		}
 
 		void StringEdits()
@@ -157,9 +155,9 @@ namespace Patches
 
 		void ClearHooks()
 		{
+			SetupGfxConfig_Hook.Clear();
 			printf_Hook.Clear();
 			_printf_Hook.Clear();
-			FS_InitFilesystem_Hook.Clear();
 			Com_ExecStartupConfigs_Hook.Clear();
 			getBuildNumber_Hook.Clear();
 			Sys_GetThreadName_Hook.Clear();
@@ -181,6 +179,23 @@ namespace Patches
 #elif SP_MOD
 	namespace SP
 	{
+		Util::Hook::Detour R_ConfigureRenderer_Hook;
+		void R_ConfigureRenderer(Structs::GfxConfiguration* config)
+		{
+			Symbols::SP::Com_Printf(Structs::CON_CHANNEL_SYSTEM, "----- Initializing Modules ----\n");
+
+			auto Invoke = R_ConfigureRenderer_Hook.Invoke<void(*)(Structs::GfxConfiguration*)>();
+			Invoke(config);
+
+			for (int i = 0; i < Loader::g_moduleCount; ++i)
+			{
+				Symbols::SP::Com_Printf(Structs::CON_CHANNEL_SYSTEM, "> %s\n", Loader::g_modules[i].name);
+			}
+
+			Symbols::SP::Com_Printf(Structs::CON_CHANNEL_SYSTEM, "----- Initialized All Modules ----\n\n");
+			Symbols::SP::Com_Printf(Structs::CON_CHANNEL_CLIENT, "----- Initializing Renderer ----\n");
+		}
+
 		Util::Hook::Detour printf_Hook;
 		Util::Hook::Detour _printf_Hook;
 		void _printf(const char* fmt, ...)
@@ -193,26 +208,6 @@ namespace Patches
 			va_end(args);
 
 			Symbols::SP::Com_Printf(0, "printf: %s", buf);
-		}
-
-		Util::Hook::Detour FS_InitFilesystem_Hook;
-		void FS_InitFilesystem()
-		{
-			DWORD start = GetTickCount(); // We could use Sys_Milliseconds here buuut GetTickCount works fine
-
-			Symbols::SP::Com_Printf(0, "Loading modules...\n"); // TODO: figure out why this dont print
-			for (int i = 0; i < Loader::g_moduleCount; ++i)
-			{
-				Symbols::SP::Com_Printf(0, "%d: %s\n", i + 1, Loader::g_modules[i].name);
-			}
-		
-			DWORD end = GetTickCount();
-			DWORD duration = end - start;
-
-			Symbols::SP::Com_Printf(0, "Loaded all modules in %lu ms\n\n", duration);
-
-			auto Invoke = FS_InitFilesystem_Hook.Invoke<void(*)()>();
-			Invoke();
 		}
 
 		Util::Hook::Detour Com_ExecStartupConfigs_Hook;
@@ -262,12 +257,12 @@ namespace Patches
 			Util::Hook::Nop(0x8252119C, 2); // LiveAntiCheat_UserSignedOut
 			Util::Hook::Nop(0x825CD10C, 2); // LiveAntiCheat_OnChallengesReceived
 
+			// print all our loaded modules
+			R_ConfigureRenderer_Hook.Create(0x82704860, R_ConfigureRenderer);
+
 			// detour printf output to Com_Printf instead
 			printf_Hook.Create(printf, _printf);
 			_printf_Hook.Create(0x8277B188, _printf); // make sure we grab the games version too
-
-			// print all our loaded modules
-			FS_InitFilesystem_Hook.Create(0x824C34F0, FS_InitFilesystem);
 
 			// prevent dupe config executions
 			Com_ExecStartupConfigs_Hook.Create(0x824296C0, Com_ExecStartupConfigs);
@@ -296,6 +291,7 @@ namespace Patches
 			Util::Hook::Nop(0x8242CA10, 2); // end $init
 			Util::Hook::Nop(0x821E32EC, 2); // looking for alias
 			Util::Hook::Nop(0x8242C908, 2); // com_init_tbf build version
+			Util::Hook::Nop(0x8221B6F8, 2); // renderer init (i reprint it in R_ConfigureRenderer hook)
 		}
 
 		void AssertRemovals()
@@ -339,9 +335,9 @@ namespace Patches
 
 		void ClearHooks()
 		{
+			R_ConfigureRenderer_Hook.Clear();
 			_printf_Hook.Clear();
 			printf_Hook.Clear();
-			FS_InitFilesystem_Hook.Clear();
 			Com_ExecStartupConfigs_Hook.Clear();
 			getBuildNumber_Hook.Clear();
 			Sys_GetThreadName_Hook.Clear();
