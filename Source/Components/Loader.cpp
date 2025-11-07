@@ -59,6 +59,7 @@ namespace Loader
 		REGISTER_MODULE(Drawing);
 		REGISTER_MODULE(InternalConsole);
 		REGISTER_MODULE(Intro);
+		REGISTER_MODULE(Maps);
 		REGISTER_MODULE(Network);
 	#ifdef SP_MOD
 		REGISTER_MODULE(GameLog);
