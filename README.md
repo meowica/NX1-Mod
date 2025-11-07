@@ -59,3 +59,14 @@
 - NX1-Host is the default host name, used to be CoD4Host (MP)
 - Game no longer performs a session sanity check on Xenia (SP/MP)
 - SP BSP resolving works in MP (and vice versa) (SP/MP)
+- Reallocated some asset sizes (MP):
+  - Loaded Sound: 5400
+  - FX: 2400
+  - Localize Entry: 14000
+  - XAnim: 16384
+  - Phys Preset: 128
+  - Pixel Shader: 10000
+  - Weapon: 2400
+  - String Table: 800
+  - Impact FX: 8
+
