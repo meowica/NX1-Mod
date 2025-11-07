@@ -29,9 +29,9 @@ namespace Util
 			return XamGetCurrentTitleId();
 		}
 
-		const char* GetFakeThreadName(uint32_t threadId)
+		static const char* GetFakeThreadName(DWORD dwThreadId)
 		{
-			switch (threadId % 8)
+			switch (dwThreadId % 8)
 			{
 			case 0:
 				return "Main";
@@ -54,21 +54,37 @@ namespace Util
 			}
 		}
 
-		int DmGetThreadInfoEx(uint32_t threadId, DM_THREADINFOEX* info)
+		HRESULT DmGetThreadInfoEx(DWORD dwThreadId, PDM_THREADINFOEX pdmti)
 		{
-			if (!info)
+			// Warning: This will 101% fail on Xbox, but not much I can do
+			// I guess maybe I could just remove this code on Xbox, but then the thread names will be gibberish...
+
+			if (!pdmti)
 				return -1;
 
-			std::memset(info, 0, sizeof(DM_THREADINFOEX));
-			info->Size = sizeof(DM_THREADINFOEX);
-			info->CurrentProcessor = threadId % 6;
-			info->ThreadNameAddress = const_cast<char*>(GetFakeThreadName(threadId));
+			std::memset(pdmti, 0, sizeof(PDM_THREADINFOEX));
+			pdmti->Size = sizeof(PDM_THREADINFOEX);
 
-			info->Priority = 8 + (threadId % 3);
-			info->SuspendCount = 0;
-			info->StartAddress = 0x82000000 + (threadId * 0x1000);
-			info->StackBase = 0x85000000;
-			info->StackLimit = 0x84FF0000;
+			pdmti->Priority = 12 + (dwThreadId % 4);  
+			pdmti->SuspendCount = 0;
+
+			pdmti->TlsBase = reinterpret_cast<void*>(0x83000000 + (dwThreadId * 0x100));
+			pdmti->StartAddress = reinterpret_cast<void*>(0x82000000 + (dwThreadId * 0x2000));
+			pdmti->StackBase = reinterpret_cast<void*>(0x83000000 + (dwThreadId * 0x8000));
+			pdmti->StackLimit = reinterpret_cast<void*>(0x82F00000 + (dwThreadId * 0x8000));
+
+			pdmti->StackSlackSpace = 0x2000;
+
+			const char* name = GetFakeThreadName(dwThreadId);
+			pdmti->ThreadNameAddress = const_cast<char*>(name);
+			pdmti->ThreadNameLength  = std::strlen(name);
+
+			pdmti->CurrentProcessor = static_cast<unsigned char>(dwThreadId % 6);
+
+			pdmti->CreateTime.dwLowDateTime  = 0xA1B2C3D4;
+			pdmti->CreateTime.dwHighDateTime = 0x01234567;
+
+			pdmti->LastError = 0;
 			return S_OK;
 		}
 	}

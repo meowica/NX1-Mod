@@ -12,21 +12,24 @@ namespace Util
 
 		typedef struct _DM_THREADINFOEX
 		{
-			uint32_t Size;
-			uint32_t SuspendCount;
-			uint32_t Priority;
-			uint32_t LastError;
-			uint32_t TlsBase;
-			uint32_t StartAddress;
-			uint32_t StackBase;
-			uint32_t StackLimit;
-			uint32_t KernelTime;
-			uint32_t UserTime;
-			uint32_t CreateTime;
-			uint32_t CurrentProcessor;
+			unsigned int Size;
+			unsigned int SuspendCount;
+			unsigned int Priority;
+
+			void* TlsBase;
+			void* StartAddress;
+			void* StackBase;
+			void* StackLimit;
+
+			FILETIME CreateTime;
+
+			unsigned int StackSlackSpace;
 			char* ThreadNameAddress;
+			unsigned int ThreadNameLength;
+			unsigned char CurrentProcessor;
+			unsigned int LastError;
 		} DM_THREADINFOEX, *PDM_THREADINFOEX;
 
-		int DmGetThreadInfoEx(uint32_t threadId, DM_THREADINFOEX* info);
+		HRESULT DmGetThreadInfoEx(DWORD dwThreadId, PDM_THREADINFOEX pdmti);
 	}
 }
