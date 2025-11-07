@@ -17,6 +17,7 @@ namespace Symbols
 		DB_GetXAssetName_t DB_GetXAssetName = DB_GetXAssetName_t(0x822ECE18);
 		DB_GetXAssetTypeName_t DB_GetXAssetTypeName = DB_GetXAssetTypeName_t(0x822ECF50);
 		DB_GetXAssetTypeSize_t DB_GetXAssetTypeSize = DB_GetXAssetTypeSize_t(0x822ECEE0);
+		DB_GetXAssetSizeHandler_t* DB_GetXAssetSizeHandlers = (DB_GetXAssetSizeHandler_t*)0x8297CD78;
 
 		DevGui_IsActive_t DevGui_IsActive = DevGui_IsActive_t(0x82352E70);
 
@@ -30,6 +31,7 @@ namespace Symbols
 
 		const char** g_assetNames = (const char**)0x8297CB38;
 		int* g_poolSize = (int*)0x8297CF10;
+		void** DB_XAssetPool = (void**)0x8297D210;
 
 		Structs::ScreenPlacement* scrPlaceFullUnsafe = (Structs::ScreenPlacement*)0x82B8DDA8;
 	}

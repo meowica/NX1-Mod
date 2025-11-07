@@ -42,6 +42,9 @@ namespace Symbols
 		typedef int (*DB_GetXAssetTypeSize_t)(int type);
 		extern DB_GetXAssetTypeSize_t DB_GetXAssetTypeSize;
 
+		typedef int (*DB_GetXAssetSizeHandler_t)();
+		extern DB_GetXAssetSizeHandler_t* DB_GetXAssetSizeHandlers;
+
 		typedef BOOL (*DevGui_IsActive_t)();
 		extern DevGui_IsActive_t DevGui_IsActive;
 
@@ -60,6 +63,8 @@ namespace Symbols
 
 		extern const char** g_assetNames;
 		extern int* g_poolSize;
+		extern void** DB_XAssetPool;
+		extern Structs::ScreenPlacement* scrPlaceFullUnsafe;
 
 		extern Structs::ScreenPlacement* scrPlaceFullUnsafe;
 	}

@@ -7,6 +7,7 @@
 #include "Modules\CustomCommands.h"
 
 // regular modules
+#include "Modules\AssetHandler.h"
 #include "Modules\DevGui.h"
 #include "Modules\Drawing.h"
 #include "Modules\InternalConsole.h"

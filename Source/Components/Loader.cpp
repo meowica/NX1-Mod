@@ -54,6 +54,7 @@ namespace Loader
 		REGISTER_MODULE(Patches);
 
 		// regular modules
+		REGISTER_MODULE(AssetHandler);
 		REGISTER_MODULE(CustomCommands);
 		REGISTER_MODULE(DevGui);
 		REGISTER_MODULE(Drawing);

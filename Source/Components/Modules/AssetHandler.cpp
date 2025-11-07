@@ -1,0 +1,53 @@
+namespace AssetHandler
+{
+#ifdef MP_MOD	
+	namespace MP
+	{
+		void* ReallocateAssetPool(uint32_t type, unsigned int newSize)
+		{
+			int elSize = Symbols::MP::DB_GetXAssetSizeHandlers[type]();
+
+			void* poolEntry = malloc(newSize * elSize);
+			Symbols::MP::DB_XAssetPool[type] = poolEntry;
+			Symbols::MP::g_poolSize[type] = newSize;
+
+			return poolEntry;
+		}
+
+		void Load()
+		{
+			ReallocateAssetPool(Structs::ASSET_TYPE_GAMEWORLD_SP, 1);
+			// ReallocateAssetPool(Structs::ASSET_TYPE_IMAGE, 7168); // Causes the game to crash somewhere else, if the default limit is exceeded
+			ReallocateAssetPool(Structs::ASSET_TYPE_LOADED_SOUND, 2700 * 2);
+			ReallocateAssetPool(Structs::ASSET_TYPE_FX, 1200 * 2);
+			ReallocateAssetPool(Structs::ASSET_TYPE_LOCALIZE_ENTRY, 14000);
+			ReallocateAssetPool(Structs::ASSET_TYPE_XANIMPARTS, 16384);
+			// ReallocateAssetPool(Structs::ASSET_TYPE_XMODEL, 10250); // Causes the game to crash somewhere else, if the default limit is exceeded
+			ReallocateAssetPool(Structs::ASSET_TYPE_PHYSPRESET, 128);
+			ReallocateAssetPool(Structs::ASSET_TYPE_PIXELSHADER, 10000);
+			// ReallocateAssetPool(Structs::ASSET_TYPE_MATERIAL, 16384); // Causes the game to crash somewhere else, if the default limit is exceeded
+			ReallocateAssetPool(Structs::ASSET_TYPE_WEAPON, 2400);
+			ReallocateAssetPool(Structs::ASSET_TYPE_STRINGTABLE, 800);
+			ReallocateAssetPool(Structs::ASSET_TYPE_IMPACT_FX, 8);
+		}
+
+		void Unload()
+		{
+
+		}
+	}
+#elif SP_MOD
+	namespace SP
+	{
+		void Load()
+		{
+
+		}
+
+		void Unload()
+		{
+
+		}
+	}
+#endif
+}

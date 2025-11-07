@@ -50,6 +50,9 @@
     <ClCompile Include="..\..\Source\Components\Modules\Maps.cpp">
       <Filter>Components\Modules</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Components\Modules\AssetHandler.cpp">
+      <Filter>Components\Modules</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\Std_Include.h" />
@@ -102,6 +105,9 @@
       <Filter>Components\Modules</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Components\Modules\Maps.h">
+      <Filter>Components\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Components\Modules\AssetHandler.h">
       <Filter>Components\Modules</Filter>
     </ClInclude>
   </ItemGroup>
