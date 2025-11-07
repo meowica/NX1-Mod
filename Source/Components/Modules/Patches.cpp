@@ -40,13 +40,13 @@ namespace Patches
 		Util::Hook::Detour Com_ExecStartupConfigs_Hook;
 		void Com_ExecStartupConfigs(int localClientNum, const char* configFile)
 		{
-			static bool alreadyRanFunction = FALSE;
+			static bool alreadyRanFunction = false;
 			if (alreadyRanFunction)
 			{
 				return;
 			}
 
-			alreadyRanFunction = TRUE;
+			alreadyRanFunction = true;
 
 			auto Invoke = Com_ExecStartupConfigs_Hook.Invoke<void(*)(int, const char*)>();
 			Invoke(localClientNum, configFile);
@@ -56,20 +56,6 @@ namespace Patches
 		const char* getBuildNumber()
 		{
 			return Util::String::Va("NX1-Mod MP");
-		}
-
-		// TODO: move this into maybe Network.cpp or LSP.cpp or Live.cpp or something
-		Util::Hook::Detour SanityCheckSession_Hook;
-		void SanityCheckSession(const char** unknown)
-		{
-			return;
-		}
-
-		// TODO: move this into maybe Network.cpp or LSP.cpp or Live.cpp or something
-		Util::Hook::Detour LSP_CheckOngoingTasks_Hook;
-		void LSP_CheckOngoingTasks(int PacketsInternal)
-		{
-			// null stub
 		}
 
 		Util::Hook::Detour Sys_GetThreadName_Hook;
@@ -116,15 +102,6 @@ namespace Patches
 
 			// set build version to mine!
 			getBuildNumber_Hook.Create(0x82425110, getBuildNumber);
-
-			// dont check the session state on xenia
-			if (Util::XBox::IsInXenia())
-			{
-				SanityCheckSession_Hook.Create(0x82625188, SanityCheckSession);
-			}
-
-			// dont check any lsp tasks
-			LSP_CheckOngoingTasks_Hook.Create(0x82633810, LSP_CheckOngoingTasks);
 
 			// fix thread names appearing as gibberish
 			Sys_GetThreadName_Hook.Create(0x82572A88, Sys_GetThreadName);
@@ -185,8 +162,6 @@ namespace Patches
 			FS_InitFilesystem_Hook.Clear();
 			Com_ExecStartupConfigs_Hook.Clear();
 			getBuildNumber_Hook.Clear();
-			SanityCheckSession_Hook.Clear();
-			LSP_CheckOngoingTasks_Hook.Clear();
 			Sys_GetThreadName_Hook.Clear();
 		}
 
@@ -243,13 +218,13 @@ namespace Patches
 		Util::Hook::Detour Com_ExecStartupConfigs_Hook;
 		void Com_ExecStartupConfigs(int localClientNum, const char* configFile)
 		{
-			static bool alreadyRanFunction = FALSE;
+			static bool alreadyRanFunction = false;
 			if (alreadyRanFunction)
 			{
 				return;
 			}
 
-			alreadyRanFunction = TRUE;
+			alreadyRanFunction = true;
 
 			auto Invoke = Com_ExecStartupConfigs_Hook.Invoke<void(*)(int, const char*)>();
 			Invoke(localClientNum, configFile);
@@ -259,20 +234,6 @@ namespace Patches
 		const char* getBuildNumber()
 		{
 			return Util::String::Va("NX1-Mod SP");
-		}
-
-		// TODO: move this into maybe Network.cpp or LSP.cpp or Live.cpp or something
-		Util::Hook::Detour SanityCheckSession_Hook;
-		void SanityCheckSession(const char** unknown)
-		{
-			return;
-		}
-
-		// TODO: move this into maybe Network.cpp or LSP.cpp or Live.cpp or something
-		Util::Hook::Detour LSP_CheckOngoingTasks_Hook;
-		void LSP_CheckOngoingTasks(int PacketsInternal)
-		{
-			// null stub
 		}
 
 		Util::Hook::Detour Sys_GetThreadName_Hook;
@@ -316,15 +277,6 @@ namespace Patches
 
 			// set build version to mine!
 			getBuildNumber_Hook.Create(0x82410188, getBuildNumber);
-
-			// dont check the session state on xenia
-			if (Util::XBox::IsInXenia())
-			{
-				SanityCheckSession_Hook.Create(0x82597720, SanityCheckSession);
-			}
-
-			// dont check any lsp tasks
-			LSP_CheckOngoingTasks_Hook.Create(0x825A2C68, LSP_CheckOngoingTasks);
 
 			// fix thread names appearing as gibberish
 			Sys_GetThreadName_Hook.Create(0x824F41B8, Sys_GetThreadName);
@@ -392,8 +344,6 @@ namespace Patches
 			FS_InitFilesystem_Hook.Clear();
 			Com_ExecStartupConfigs_Hook.Clear();
 			getBuildNumber_Hook.Clear();
-			SanityCheckSession_Hook.Clear();
-			LSP_CheckOngoingTasks_Hook.Clear();
 			Sys_GetThreadName_Hook.Clear();
 		}
 

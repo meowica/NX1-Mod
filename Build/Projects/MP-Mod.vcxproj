@@ -140,6 +140,7 @@
     <ClCompile Include="..\..\Source\Components\Modules\Drawing.cpp" />
     <ClCompile Include="..\..\Source\Components\Modules\InternalConsole.cpp" />
     <ClCompile Include="..\..\Source\Components\Modules\Intro.cpp" />
+    <ClCompile Include="..\..\Source\Components\Modules\Network.cpp" />
     <ClCompile Include="..\..\Source\Components\Modules\Patches.cpp" />
     <ClCompile Include="..\..\Source\Game\Symbols.cpp" />
     <ClCompile Include="..\..\Source\Main.cpp" />
@@ -157,6 +158,7 @@
     <ClInclude Include="..\..\Source\Components\Modules\Drawing.h" />
     <ClInclude Include="..\..\Source\Components\Modules\InternalConsole.h" />
     <ClInclude Include="..\..\Source\Components\Modules\Intro.h" />
+    <ClInclude Include="..\..\Source\Components\Modules\Network.h" />
     <ClInclude Include="..\..\Source\Components\Modules\Patches.h" />
     <ClInclude Include="..\..\Source\Game\Structs.h" />
     <ClInclude Include="..\..\Source\Game\Symbols.h" />

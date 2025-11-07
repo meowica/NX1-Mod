@@ -11,6 +11,7 @@
 #include "Modules\Drawing.h"
 #include "Modules\InternalConsole.h"
 #include "Modules\Intro.h"
+#include "Modules\Network.h"
 #ifdef SP_MOD
 #include "Modules\GameLog.h"
 #endif
