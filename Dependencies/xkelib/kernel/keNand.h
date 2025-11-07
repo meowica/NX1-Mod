@@ -1,7 +1,7 @@
-#ifndef __KENAND_H
-#define __KENAND_H
+#pragma once
 
-typedef struct _BLDR_HEADER{
+typedef struct _BLDR_HEADER
+{
 	WORD Magic;
 	WORD Build;
 	WORD Qfe;
@@ -10,7 +10,8 @@ typedef struct _BLDR_HEADER{
 	DWORD Size;
 } BLDR_HEADER, *PBLDR_HEADER;
 
-typedef struct _BLDR_FLASH{ // magic 0xFF4f
+typedef struct _BLDR_FLASH // magic 0xFF4f
+{
 	BLDR_HEADER blHeader;
 	char achCopyright[64];
 	BYTE abReserved[16]; // 0x0 filled
@@ -24,5 +25,3 @@ typedef struct _BLDR_FLASH{ // magic 0xFF4f
 	DWORD dwSmcBootSize; // size of smc.bin
 	DWORD dwSmcBootAddr; // offset of smc.bin from 0
 } BLDR_FLASH, *PBLDR_FLASH;
-
-#endif // __KENAND_H

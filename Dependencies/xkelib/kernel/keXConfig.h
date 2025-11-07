@@ -1,13 +1,14 @@
 // xconfig.h currently updated to 15574
-#ifndef _XCONFIG_H
-#define _XCONFIG_H
+
+#pragma once
 
 #ifndef __cplusplus
 	// disable: warning C4214: nonstandard extension used : bit field types other than int
 	#pragma warning(disable:4214)
 #endif
 
-//const char XConfig_names[][38] = { // names of categories
+// const char XConfig_names[][38] =
+// { // names of categories
 //	"XCONFIG_STATIC_CATEGORY", 
 //	"XCONFIG_STATISTIC_CATEGORY", 
 //	"XCONFIG_SECURED_CATEGORY", 
@@ -19,9 +20,10 @@
 //	"XCONFIG_DVD_CATEGORY", 
 //	"XCONFIG_IPTV_CATEGORY", 
 //	"XCONFIG_SYSTEM_CATEGORY"
-//};
+// };
 
-enum { // category enumerator
+enum // category enumerator
+{
 	//XCONFIG_CATEGORY_TYPES
 	XCONFIG_STATIC_CATEGORY = 0x0,					//_XCONFIG_STATIC_SETTINGS
 	XCONFIG_STATISTIC_CATEGORY = 0x1,				//_XCONFIG_STATISTIC_SETTINGS
@@ -38,14 +40,14 @@ enum { // category enumerator
 	XCONFIG_CATEGORY_MAX
 };
 
-
 #pragma warning(push)
-#pragma warning(disable: 4201)  // unnamed struct/union
+#pragma warning(disable: 4201) // unnamed struct/union
 #pragma pack(push, 1)
 
 /* **************************** _XCONFIG_SECURED_SETTINGS **************************** */
 //XCONFIG_SECURED_ENTRIES
-enum{
+enum
+{
 	XCONFIG_SECURED_DATA = 0x0,
 	XCONFIG_SECURED_MAC_ADDRESS = 0x1,
 	XCONFIG_SECURED_AV_REGION = 0x2,
@@ -70,12 +72,14 @@ enum{
 #define XK_SECURED_8(x) &x.SystemFlags //??		// ??key 0x6 4 bytes?? key 0x8 4 bytes?? NOT SURE WHICH, 0x8 or 0x6
 #define XK_SECURED_9(x) &x.PowerVcsControl		// key 0x9 2 bytes
 
-typedef struct _XCONFIG_POWER_MODE{ // used by _XCONFIG_SECURED_SETTINGS
+typedef struct _XCONFIG_POWER_MODE // used by _XCONFIG_SECURED_SETTINGS
+{
 	BYTE VIDDelta;
 	BYTE Reserved;
 } XCONFIG_POWER_MODE, *PXCONFIG_POWER_MODE;
 
-typedef struct _XCONFIG_POWER_VCS_CONTROL{ // used by _XCONFIG_SECURED_SETTINGS
+typedef struct _XCONFIG_POWER_VCS_CONTROL // used by _XCONFIG_SECURED_SETTINGS
+{
 	USHORT Configured : 1;
 	USHORT Reserved : 3;
 	USHORT Full : 4;
@@ -83,7 +87,8 @@ typedef struct _XCONFIG_POWER_VCS_CONTROL{ // used by _XCONFIG_SECURED_SETTINGS
 	USHORT Fuse : 4;
 } XCONFIG_POWER_VCS_CONTROL, *PXCONFIG_POWER_VCS_CONTROL; // 2 bytes
 
-typedef struct _XCONFIG_SECURED_SETTINGS{
+typedef struct _XCONFIG_SECURED_SETTINGS
+{
 	DWORD Checksum; //0
 	DWORD Version; //4
 	char OnlineNetworkID[4]; //??key 0x6 4 bytes?? key 0x8 4 bytes?? NOT SURE WHICH, 0x8 or 0x6
@@ -105,7 +110,8 @@ typedef struct _XCONFIG_SECURED_SETTINGS{
 
 /* **************************** _XCONFIG_CONSOLE_SETTINGS **************************** */
 //XCONFIG_CONSOLE_ENTRIES
-enum _XCONFIG_CONSOLE_ENTRIES {
+enum _XCONFIG_CONSOLE_ENTRIES
+{
 	XCONFIG_CONSOLE_DATA = 0x0,
 	XCONFIG_CONSOLE_SCREEN_SAVER = 0x1,
 	XCONFIG_CONSOLE_AUTO_SHUT_OFF = 0x2,
@@ -144,14 +150,16 @@ enum _XCONFIG_CONSOLE_ENTRIES {
 #define XK_CONSOLE_F(x) &x.ConsoleDiscoverable					// key 0xF 1 byte
 #define XK_CONSOLE_10(x) &x.LiveTVProvider						// key 0xE 4 byte
 
-typedef struct _XCONFIG_PLAYTIMERDATA{ // used by _XCONFIG_CONSOLE_SETTINGS
+typedef struct _XCONFIG_PLAYTIMERDATA // used by _XCONFIG_CONSOLE_SETTINGS
+{
 	ULARGE_INTEGER uliResetDate;
 	DWORD dwPlayTimerFrequency;
 	DWORD dwTotalPlayTime;
 	DWORD dwRemainingPlayTime;
 } XCONFIG_PLAYTIMERDATA, *PXCONFIG_PLAYTIMERDATA;
 
-typedef struct _XCONFIG_NUI { 
+typedef struct _XCONFIG_NUI
+{ 
 	DWORD Flags; // 0x0 sz:0x4
 	float DistanceToPlayspace; // 0x4 sz:0x4
 	s32 AutoTiltAngle; // 0x8 sz:0x4
@@ -159,12 +167,14 @@ typedef struct _XCONFIG_NUI {
 } XCONFIG_NUI, *PXCONFIG_NUI; // size 28
 C_ASSERT(sizeof(XCONFIG_NUI) == 0x1C);
 
-typedef struct _XCONFIG_PC_TITLE_EXEMPTIONS { 
+typedef struct _XCONFIG_PC_TITLE_EXEMPTIONS
+{ 
 	DWORD TitleIDs[0x19]; // 0x0 sz:0x64
 } XCONFIG_PC_TITLE_EXEMPTIONS, *PXCONFIG_PC_TITLE_EXEMPTIONS; // size 100
 C_ASSERT(sizeof(XCONFIG_PC_TITLE_EXEMPTIONS) == 0x64);
 
-typedef struct _XCONFIG_CONSOLE_SETTINGS{
+typedef struct _XCONFIG_CONSOLE_SETTINGS
+{
 	DWORD CheckSum;
 	DWORD Version;
 	s16 ScreenSaver; // key 0x1 2 bytes
@@ -189,7 +199,8 @@ C_ASSERT(sizeof(XCONFIG_CONSOLE_SETTINGS) == 0x1CC);
 
 /* **************************** _XCONFIG_DVD_SETTINGS **************************** */
 //XCONFIG_DVD_ENTRIES
-enum{
+enum
+{
 	XCONFIG_DVD_ALL = 0x0,
 	XCONFIG_DVD_VOLUME_ID = 0x1,
 	XCONFIG_DVD_BOOKMARK = 0x2,
@@ -200,7 +211,8 @@ enum{
 #define XK_DVD_1(x) &x.VolumeId	// key 0x1 20 bytes
 #define XK_DVD_2(x) &x.Data		// key 0x2 640 bytes
 
-typedef struct _XCONFIG_DVD_SETTINGS{
+typedef struct _XCONFIG_DVD_SETTINGS
+{
 	DWORD Version;
 	BYTE VolumeId[20]; // key 0x1 20 bytes
 	BYTE Data[640]; // key 0x2 640 bytes
@@ -209,7 +221,8 @@ typedef struct _XCONFIG_DVD_SETTINGS{
 
 /* **************************** _XCONFIG_IPTV_SETTINGS **************************** */
 //XCONFIG_IPTV_ENTRIES
-enum{
+enum
+{
 	XCONFIG_IPTV_DATA = 0x0,
 	XCONFIG_IPTV_SERVICE_PROVIDER_NAME = 0x1,
 	XCONFIG_IPTV_PROVISIONING_SERVER_URL = 0x2,
@@ -224,7 +237,8 @@ enum{
 #define XK_IPTV_3(x) &x.SupportInfo				// key 0x3 128 bytes
 #define XK_IPTV_4(x) &x.BootstrapServerURL		// key 0x4 128 bytes
 
-typedef struct _XCONFIG_IPTV_SETTINGS{
+typedef struct _XCONFIG_IPTV_SETTINGS
+{
 	DWORD CheckSum;
 	DWORD Version;
 	wchar_t	ServiceProviderName[60];  // key 0x1 120 bytes
@@ -236,7 +250,8 @@ typedef struct _XCONFIG_IPTV_SETTINGS{
 
 /* **************************** _XCONFIG_MEDIA_CENTER_SETTINGS **************************** */
 //XCONFIG_MEDIA_CENTER_ENTRIES
-enum{
+enum
+{
 	XCONFIG_MEDIA_CENTER_DATA = 0x0,
 	XCONFIG_MEDIA_CENTER_MEDIA_PLAYER = 0x1,
 	XCONFIG_MEDIA_CENTER_XESLED_VERSION = 0x2,
@@ -263,7 +278,8 @@ enum{
 #define XK_MC_9(x) &x.ServerName			// key 0x9 128 bytes
 #define XK_MC_A(x) &x.ServerFlag			// key 0xa 4 bytes
 
-typedef struct _XCONFIG_MEDIA_CENTER_SETTINGS{
+typedef struct _XCONFIG_MEDIA_CENTER_SETTINGS
+{
 	DWORD CheckSum;
 	DWORD Version;
 	char MediaPlayer[20];// key 0x1 20 bytes
@@ -281,7 +297,8 @@ typedef struct _XCONFIG_MEDIA_CENTER_SETTINGS{
 
 /* **************************** _XCONFIG_SYSTEM_SETTINGS **************************** */
 //XCONFIG_SYSTEM_ENTRIES
-enum{
+enum
+{
 	XCONFIG_SYSTEM_ALL = 0x0,
 	XCONFIG_SYSTEM_ALARM_TIME = 0x1,
 	XCONFIG_SYSTEM_PREVIOUS_FLASH_VERSION = 0x2,
@@ -292,7 +309,8 @@ enum{
 #define XK_SYSTEM_1(x) &x.AlarmTime				// key 0x1  8 bytes
 #define XK_SYSTEM_2(x) &x.PreviousFlashVersion	// key 0x2 4 bytes
 
-typedef struct _XCONFIG_SYSTEM_SETTINGS{
+typedef struct _XCONFIG_SYSTEM_SETTINGS
+{
 	DWORD Version;
 	union _LARGE_INTEGER AlarmTime; // key 0x1  8 bytes
 	DWORD PreviousFlashVersion; // key 0x2 4 bytes
@@ -301,7 +319,8 @@ typedef struct _XCONFIG_SYSTEM_SETTINGS{
 
 /* **************************** _XCONFIG_USER_SETTINGS **************************** */
 //XCONFIG_USER_ENTRIES
-enum{
+enum
+{
 	XCONFIG_USER_DATA = 0x0,
 	XCONFIG_USER_TIME_ZONE_BIAS = 0x1,
 	XCONFIG_USER_TIME_ZONE_STD_NAME = 0x2,
@@ -419,14 +438,16 @@ enum{
                                          (XC_MISC_FLAG_24HCLOCK) | (XC_MISC_FLAG_NO_NOTIFY_DISPLAY) | (XC_MISC_FLAG_NO_NOTIFY_SOUND) | \
                                          (XC_MISC_FLAG_OOBE_HAS_RUN))
 
-typedef struct _XCONFIG_TIMEZONE_DATE{ // used by _XCONFIG_USER_SETTINGS
+typedef struct _XCONFIG_TIMEZONE_DATE // used by _XCONFIG_USER_SETTINGS
+{
 	BYTE Month;
 	BYTE Day;
 	BYTE DayOfWeek;
 	BYTE Hour;
 } XCONFIG_TIMEZONE_DATE, *PXCONFIG_TIMEZONE_DATE;
 
-typedef struct _XCONFIG_USER_SETTINGS{
+typedef struct _XCONFIG_USER_SETTINGS
+{
 	DWORD CheckSum;
 	DWORD Version;
 	DWORD TimeZoneBias; // key 0x1 4 bytes
@@ -483,7 +504,8 @@ typedef struct _XCONFIG_USER_SETTINGS{
 
 /* **************************** _XCONFIG_XNET_SETTINGS **************************** */
 //XCONFIG_XNET_ENTRIES
-enum{
+enum
+{
 	XCONFIG_XNET_ALL = 0x0,
 	XCONFIG_XNET_DATA = 0x1,
 	XCONFIG_XNET_ENTRIES_MAX
@@ -493,13 +515,15 @@ enum{
 #define XK_XNET_1(x) &x.Data // key 0x01 492 bytes
 
 // decrypted xconfig machine account (mobilec.dat)
-typedef struct _XNetConfigSectorHeader { 
+typedef struct _XNetConfigSectorHeader
+{ 
 	BYTE abHash[0x14]; // 0x0 sz:0x14
 	BYTE abConfounder[0x8]; // 0x14 sz:0x8
 } XNetConfigSectorHeader, *PXNetConfigSectorHeader; // size 28
 C_ASSERT(sizeof(XNetConfigSectorHeader) == 0x1C);
 
-typedef struct _NetLogonMachineAccount { 
+typedef struct _NetLogonMachineAccount
+{ 
 	XNetConfigSectorHeader Header; // 0x0 sz:0x1C
 	DWORD dwServiceNetworkID; // 0x1C sz:0x4
 	QWORD qwId; // 0x20 sz:0x8
@@ -512,9 +536,12 @@ typedef struct _NetLogonMachineAccount {
 } XNetLogonMachineAccount, *PXNetLogonMachineAccount; // size 492
 C_ASSERT(sizeof(XNetLogonMachineAccount) == 0x1EC);
 
-typedef struct _XCONFIG_XNET_SETTINGS{
+typedef struct _XCONFIG_XNET_SETTINGS
+{
 	DWORD version;
-	union { // key 0x01 492 bytes
+
+	union // key 0x01 492 bytes
+	{
 		BYTE abData[492];
 		XNetLogonMachineAccount xnAccount; // applies only after decrypting this blob from category XCONFIG_XNET_MACHINE_ACCOUNT_CATEGORY
 	} Data;
@@ -523,7 +550,8 @@ typedef struct _XCONFIG_XNET_SETTINGS{
 
 /* **************************** _XCONFIG_STATISTIC_SETTINGS **************************** */
 //XCONFIG_STATISTIC_ENTRIES
-enum{
+enum
+{
 	XCONFIG_STATISTICS_DATA = 0x0,
 	XCONFIG_STATISTICS_XUID_MAC_ADDRESS = 0x1,
 	XCONFIG_STATISTICS_XUID_COUNT = 0x2,
@@ -550,7 +578,8 @@ enum{
 #define XK_STATISTIC_9(x) &x.TemperatureData	// key 0x9 200 bytes
 #define XK_STATISTIC_A(x) &x.XeKeysWriteFailure	// key 0x9 16 bytes
 
-typedef struct _XCONFIG_XEKEYS_WRITE_FAILURE { 
+typedef struct _XCONFIG_XEKEYS_WRITE_FAILURE
+{ 
 	LARGE_INTEGER DateTime; // 0x0 sz:0x8
 	DWORD Status; // 0x8 sz:0x4
 	BYTE File; // 0xC sz:0x1
@@ -558,7 +587,8 @@ typedef struct _XCONFIG_XEKEYS_WRITE_FAILURE {
 } XCONFIG_XEKEYS_WRITE_FAILURE, *PXCONFIG_XEKEYS_WRITE_FAILURE; // size 16
 C_ASSERT(sizeof(XCONFIG_XEKEYS_WRITE_FAILURE) == 0x10);
 
-typedef struct _XCONFIG_STATISTIC_SETTINGS { 
+typedef struct _XCONFIG_STATISTIC_SETTINGS
+{ 
 	DWORD CheckSum; // 0x0 sz:0x4
 	DWORD Version; // 0x4 sz:0x4
 	BYTE XUIDMACAddress[6]; // 0x8 sz:0x6
@@ -579,7 +609,8 @@ C_ASSERT(sizeof(XCONFIG_STATISTIC_SETTINGS) == 0x600);
 
 /* **************************** _XCONFIG_STATIC_SETTINGS **************************** */
 //XCONFIG_STATIC_ENTRIES
-enum{
+enum
+{
 	XCONFIG_STATIC_DATA = 0x0,
 	XCONFIG_STATIC_FIRST_POWER_ON_DATE = 0x1,
 	XCONFIG_STATIC_SMC_CONFIG = 0x2,
@@ -590,19 +621,22 @@ enum{
 #define XK_STATIC_1(x) &x.FirstPowerOnDate // key 0x1 5 bytes
 #define XK_STATIC_2(x) &x.SMCConfig // key 0x2 256 bytes
 
-typedef struct _FanOverride{ // used by _XCONFIG_STATIC_SETTINGS // 01111111 <- normally disabled as 0x7F
+typedef struct _FanOverride // used by _XCONFIG_STATIC_SETTINGS // 01111111 <- normally disabled as 0x7F
+{
 	BYTE Enable : 1; // says 7 is bit 0
 	BYTE Speed : 7; // says 0 bit 7
 } FanOverride, *PFanOverride; // 1 byte
 
-typedef struct _Thermal{ // used by _XCONFIG_STATIC_SETTINGS
+typedef struct _Thermal // used by _XCONFIG_STATIC_SETTINGS
+{
 	BYTE Cpu;
 	BYTE Gpu;
 	BYTE Edram;
 } Thermal, *PThermal; // 3 bytes
 C_ASSERT(sizeof(Thermal) == 0x3);
 
-typedef struct _ViperData{ // used by _XCONFIG_STATIC_SETTINGS
+typedef struct _ViperData // used by _XCONFIG_STATIC_SETTINGS
+{
 	BYTE GpuVoltageNotSetting : 1; // bit 7
 	BYTE MemoryVoltageNotSetting : 1; // bit 6 (bit 5 thru 0 unused
 	//BYTE unknown : 6; // 1 byte
@@ -612,19 +646,22 @@ typedef struct _ViperData{ // used by _XCONFIG_STATIC_SETTINGS
 } ViperData, *PViperData; // 4 bytes
 C_ASSERT(sizeof(ViperData) == 0x4);
 
-typedef struct _TempCalData{ // used by _XCONFIG_STATIC_SETTINGS
+typedef struct _TempCalData // used by _XCONFIG_STATIC_SETTINGS
+{
 	USHORT Gain;
 	USHORT Offset; 
 } TempCalData, *PTempCalData; // 4 bytes
 
-typedef struct _TempSetting{ // used by _XCONFIG_STATIC_SETTINGS
+typedef struct _TempSetting // used by _XCONFIG_STATIC_SETTINGS
+{
 	TempCalData Cpu;
 	TempCalData Gpu;
 	TempCalData Edram;
 	TempCalData Board; 
 } TempSetting, *PTempSetting; // 16 bytes
 
-typedef struct _ThermalCalData{ // used by _XCONFIG_STATIC_SETTINGS
+typedef struct _ThermalCalData // used by _XCONFIG_STATIC_SETTINGS
+{
 	TempSetting therm; // 16 bytes
 	char AnaFuseValue;
 	Thermal SetPoint; // 3 bytes
@@ -632,7 +669,8 @@ typedef struct _ThermalCalData{ // used by _XCONFIG_STATIC_SETTINGS
 } ThermalCalData, *PThermalCalData;
 C_ASSERT(sizeof(ThermalCalData) == 0x17);
 
-typedef struct _SMCBlock { 
+typedef struct _SMCBlock
+{
 	BYTE StructureVersion; // 0x0 sz:0x1
 	BYTE ConfigSource; // 0x1 sz:0x1
 	s8 ClockSelect; // 0x2 sz:0x1
@@ -665,7 +703,8 @@ typedef struct _SMCBlock {
 } SMCBlock, *PSMCBlock; // size 256
 C_ASSERT(sizeof(SMCBlock) == 0x100);
 
-typedef struct _XCONFIG_STATIC_SETTINGS{
+typedef struct _XCONFIG_STATIC_SETTINGS
+{
 	DWORD CheckSum; // 0x0 *** see below ***
 	DWORD Version; // 0x4
 	char FirstPowerOnDate[5]; // 0x8 key 0x1 5 bytes
@@ -676,7 +715,8 @@ C_ASSERT(sizeof(XCONFIG_STATIC_SETTINGS) == 0x10E);
 
 /* **************************** _XCONFIG_DEVKIT_SETTINGS **************************** */
 //XCONFIG_DEVKIT_ENTRIES
-enum _XCONFIG_DEVKIT_ENTRIES {
+enum _XCONFIG_DEVKIT_ENTRIES
+{
 	XCONFIG_DEVKIT_DATA = 0x0,
 	XCONFIG_DEVKIT_USBD_ROOT_HUB_PORT_DISABLE_MASK = 0x1,
 	XCONFIG_DEVKIT_XAM_FEATURE_ENABLE_DISABLE_MASK = 0x2,
@@ -684,19 +724,22 @@ enum _XCONFIG_DEVKIT_ENTRIES {
 	XCONFIG_DEVKIT_MAX
 };
 
-typedef struct _XCONFIG_DEVKIT_XAM_FEATURE_MASK { 
+typedef struct _XCONFIG_DEVKIT_XAM_FEATURE_MASK
+{ 
 	DWORD DevkitEnableMask; // 0x0 sz:0x4
 	DWORD ConsoleDisableMask; // 0x4 sz:0x4
 	DWORD Reserved[2]; // 0x8 sz:0x8
 } XCONFIG_DEVKIT_XAM_FEATURE_MASK, *PXCONFIG_DEVKIT_XAM_FEATURE_MASK; // size 16
 C_ASSERT(sizeof(XCONFIG_DEVKIT_XAM_FEATURE_MASK) == 0x10);
 
-typedef struct _XCONFIG_USBD_ROOT_HUB_PORT_MASK { 
+typedef struct _XCONFIG_USBD_ROOT_HUB_PORT_MASK
+{ 
 	BYTE Mask[2]; // 0x0 sz:0x2
 } XCONFIG_USBD_ROOT_HUB_PORT_MASK, *PXCONFIG_USBD_ROOT_HUB_PORT_MASK; // size 2
 C_ASSERT(sizeof(XCONFIG_USBD_ROOT_HUB_PORT_MASK) == 0x2);
 
-typedef struct _XCONFIG_DEVKIT_SETTINGS { 
+typedef struct _XCONFIG_DEVKIT_SETTINGS
+{ 
 	DWORD Version; // 0x0 sz:0x4
 	XCONFIG_USBD_ROOT_HUB_PORT_MASK UsbdRootHubPortDisableMask; // 0x4 sz:0x2
 	XCONFIG_DEVKIT_XAM_FEATURE_MASK XamFeatureMask; // 0x6 sz:0x10
@@ -704,11 +747,8 @@ typedef struct _XCONFIG_DEVKIT_SETTINGS {
 } XCONFIG_DEVKIT_SETTINGS, *PXCONFIG_DEVKIT_SETTINGS; // size 22
 C_ASSERT(sizeof(XCONFIG_DEVKIT_SETTINGS) == 0x1A);
 
-
-
 #pragma warning(pop)  // unnamed struct/union
 #pragma pack(pop)
-
 
 /*
 USHORT XConfig_numEntr[XCONFIG_CATEGORY_MAX] = {
@@ -725,6 +765,7 @@ USHORT XConfig_numEntr[XCONFIG_CATEGORY_MAX] = {
 	XCONFIG_SYSTEM_ENTRIES_MAX,
 }; // the number of entries in each category
 */
+
 /*
 // this and internal SMCBlock checksums seem to be the only ones used at this point
 //
@@ -761,6 +802,3 @@ NTSTATUS SetTreshHolds(BYTE cpu, BYTE gpu, BYTE mem, BYTE cpuOff, BYTE gpuOff, B
 	return sta;
 }
 */
-
-#endif // _XCONFIG_H
-
