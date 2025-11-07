@@ -20,7 +20,7 @@
     <ClInclude Include="..\..\Dependencies\xkelib\kernel\keXeKeys.h" />
     <ClInclude Include="..\..\Dependencies\xkelib\kernel\keXexInfo.h" />
     <ClInclude Include="..\..\Dependencies\xkelib\kernel\_kernelext.h" />
-    <ClInclude Include="..\..\Dependencies\xkelib\syssock.h" />
+    <ClInclude Include="..\..\Dependencies\xkelib\sysSock.h" />
     <ClInclude Include="..\..\Dependencies\xkelib\xam\xamNet.h" />
     <ClInclude Include="..\..\Dependencies\xkelib\xam\xamTask.h" />
     <ClInclude Include="..\..\Dependencies\xkelib\xam\xamXContent.h" />
