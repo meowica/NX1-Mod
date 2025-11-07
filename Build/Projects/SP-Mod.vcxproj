@@ -118,7 +118,7 @@
       <AdditionalDependencies>xapilib.lib;d3d9ltcg.lib;d3dx9.lib;xgraphics.lib;xboxkrnl.lib;xnet.lib;xaudio2.lib;xact3ltcg.lib;x3daudioltcg.lib;xmcoreltcg.lib;vcomp.lib</AdditionalDependencies>
       <AdditionalOptions>/dll /ALIGN:128,4096 %(AdditionalOptions)</AdditionalOptions>
       <GenerateMapFile>true</GenerateMapFile>
-      <AdditionalLibraryDirectories>$(ProjectDir)..\..\Dependencies\xkelib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\..\Dependencies\xkelib\libs\</AdditionalLibraryDirectories>
     </Link>
     <ImageXex>
       <ConfigurationFile>..\build-xex.xml</ConfigurationFile>
