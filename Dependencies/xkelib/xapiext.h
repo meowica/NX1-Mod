@@ -1,12 +1,10 @@
 // general things found in the xapilib.lib from the sdk, but not in the sdk headers
-#ifndef __XAPIEXT_DEFINES_H
-#define __XAPIEXT_DEFINES_H
-
+#pragma once
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
-
 	VOID
 	RtlSnprintf(
 		CHAR * Buffer,
@@ -18,7 +16,7 @@ extern "C" {
 	// untested
 	VOID
 	RtlSwprintf(
-		WCHAR * Buffer,
+		WCHAR* Buffer,
 		DWORD MaxLength,
 		LPCWSTR Format,
 		...
@@ -26,7 +24,7 @@ extern "C" {
 	
 	VOID
 	RtlSnwprintf(
-		WCHAR * Buffer,
+		WCHAR* Buffer,
 		DWORD MaxLength,
 		LPCWSTR Format,
 		...
@@ -34,7 +32,7 @@ extern "C" {
 
 	// SDK library function
 	VOID XapiThreadStartup(
-		IN		VOID (__cdecl *StartRoutine)(VOID *),
+		IN		VOID (__cdecl* StartRoutine)(VOID*),
 		IN		PVOID StartContext,
 		IN		DWORD dwExitCode
 	);
@@ -51,7 +49,7 @@ extern "C" {
 		IN OUT	PHANDLE pHandle
 	);
 
-	// SDK library function? sdk links it directly to XamLoaderGetGameInfo @427
+	// SDK library function? SDK links it directly to XamLoaderGetGameInfo @427
 	// UNTESTED!!!
 	HRESULT
 	XamGetGameInfo(
@@ -60,6 +58,7 @@ extern "C" {
 		PBYTE* ppbUnk,
 		QWORD* pqwUnk
 	);
+
 	// SDK library function?
 	DWORD
 	XContentCreateDeviceEnumerator(
@@ -71,7 +70,7 @@ extern "C" {
 	);
 
 	// disc format function for fatx found in xapilib.lib
-	// ie "\\Device\\SomeDevice", use RtlInitAnsiString and modify ??((Length+0x10000) - 1)??
+	// ie "\\Device\\SomeDevice", use RtlInitAnsiString and modify ??((Length + 0x10000) - 1)??
 	NTSTATUS
 	XapiFormatFATVolume(
 		PANSI_STRING deviceName
@@ -97,5 +96,3 @@ extern "C" {
 #ifdef __cplusplus
 }
 #endif
-
-#endif // __XAPIEXT_DEFINES_H

@@ -1,5 +1,4 @@
-#ifndef __KEXECRYPT_H
-#define __KEXECRYPT_H
+#pragma once
 
 #define XECRYPT_DES_BLOCK_SIZE      (0x8)
 #define XECRYPT_DES_KEY_SIZE        (0x8)
@@ -13,12 +12,14 @@
 #define XECRYPT_PARVE_SBOX_SIZE     (0x100)
 #define XECRYPT_PARVE_MAC_SIZE      (0x8)
 
-
 /* ******************* console certificate stuff ******************* */
 #pragma pack(push, 1)
-typedef struct _XE_CONSOLE_ID {
-	union{
-		struct {
+typedef struct _XE_CONSOLE_ID
+{
+	union
+	{
+		struct
+		{
 			BYTE refurbBits : 4;
 			BYTE ManufactureMonth : 4;
 			DWORD ManufactureYear : 4;
@@ -27,19 +28,22 @@ typedef struct _XE_CONSOLE_ID {
 			DWORD MacIndex5 : 8;
 			DWORD Crc : 4;
 		} asBits;
+
 		BYTE abData[5];
 	};
 } XE_CONSOLE_ID, *PXE_CONSOLE_ID; // size 5
 C_ASSERT(sizeof(XE_CONSOLE_ID) == 0x5);
 #pragma pack(pop)
 
-typedef struct _CONSOLE_PUBLIC_KEY { 
+typedef struct _CONSOLE_PUBLIC_KEY
+{ 
 	BYTE PublicExponent[0x4]; // 0x0 sz:0x4
 	BYTE Modulus[0x80]; // 0x4 sz:0x80
 } CONSOLE_PUBLIC_KEY, *PCONSOLE_PUBLIC_KEY; // size 132
 C_ASSERT(sizeof(CONSOLE_PUBLIC_KEY) == 0x84);
 
-typedef struct _XE_CONSOLE_CERTIFICATE { 
+typedef struct _XE_CONSOLE_CERTIFICATE
+{ 
 	WORD CertSize; // 0x0 sz:0x2
 	XE_CONSOLE_ID ConsoleId; // 0x2 sz:0x5
 	BYTE ConsolePartNumber[0xB]; // 0x7 sz:0xB
@@ -52,33 +56,38 @@ typedef struct _XE_CONSOLE_CERTIFICATE {
 } XE_CONSOLE_CERTIFICATE, *PXE_CONSOLE_CERTIFICATE; // size 424
 C_ASSERT(sizeof(XE_CONSOLE_CERTIFICATE) == 0x1A8);
 
-typedef struct _XE_CONSOLE_SIGNATURE { 
+typedef struct _XE_CONSOLE_SIGNATURE
+{ 
 	XE_CONSOLE_CERTIFICATE Cert; // 0x0 sz:0x1A8
 	BYTE Signature[0x80]; // 0x1A8 sz:0x80
 } XE_CONSOLE_SIGNATURE, *PXE_CONSOLE_SIGNATURE; // size 552
 C_ASSERT(sizeof(XE_CONSOLE_SIGNATURE) == 0x228);
 
 /* ******************* DES stuff ******************* */
-typedef struct _XECRYPT_DES_STATE { 
+typedef struct _XECRYPT_DES_STATE
+{ 
 	DWORD keytab[0x10][0x2]; // 0x0 sz:0x80
 } XECRYPT_DES_STATE, *PXECRYPT_DES_STATE; // size 128
 C_ASSERT(sizeof(XECRYPT_DES_STATE) == 0x80);
 
 /* ******************* DES3 stuff ******************* */
-typedef struct _XECRYPT_DES3_STATE { 
+typedef struct _XECRYPT_DES3_STATE
+{ 
 	XECRYPT_DES_STATE aDesState[0x3]; // 0x0 sz:0x180
 } XECRYPT_DES3_STATE, *PXECRYPT_DES3_STATE; // size 384
 C_ASSERT(sizeof(XECRYPT_DES3_STATE) == 0x180);
 
 /* ******************* AES stuff ******************* */
-typedef struct _XECRYPT_AES_STATE { 
+typedef struct _XECRYPT_AES_STATE
+{ 
 	BYTE keytabenc[0xB][0x4][0x4]; // 0x0 sz:0xB0
 	BYTE keytabdec[0xB][0x4][0x4]; // 0xB0 sz:0xB0
 } XECRYPT_AES_STATE, *PXECRYPT_AES_STATE; // size 352
 C_ASSERT(sizeof(XECRYPT_AES_STATE) == 0x160);
 
 /* ******************* RC4 stuff ******************* */
-typedef struct _XECRYPT_RC4_STATE { 
+typedef struct _XECRYPT_RC4_STATE
+{ 
 	BYTE S[0x100]; // 0x0 sz:0x100
 	BYTE i; // 0x100 sz:0x1
 	BYTE j; // 0x101 sz:0x1
@@ -86,7 +95,8 @@ typedef struct _XECRYPT_RC4_STATE {
 C_ASSERT(sizeof(XECRYPT_RC4_STATE) == 0x102);
 
 /* ******************* SHA stuff ******************* */
-typedef struct _XECRYPT_SHA_STATE { 
+typedef struct _XECRYPT_SHA_STATE
+{ 
 	DWORD count; // 0x0 sz:0x4
 	DWORD state[0x5]; // 0x4 sz:0x14
 	BYTE buffer[0x40]; // 0x18 sz:0x40
@@ -94,13 +104,15 @@ typedef struct _XECRYPT_SHA_STATE {
 C_ASSERT(sizeof(XECRYPT_SHA_STATE) == 0x58);
 
 /* ******************* HMACSHA stuff ******************* */
-typedef struct _XECRYPT_HMACSHA_STATE { 
+typedef struct _XECRYPT_HMACSHA_STATE
+{ 
 	XECRYPT_SHA_STATE ShaState[0x2]; // 0x0 sz:0xB0
 } XECRYPT_HMACSHA_STATE, *PXECRYPT_HMACSHA_STATE; // size 176
 C_ASSERT(sizeof(XECRYPT_HMACSHA_STATE) == 0xB0);
 
 /* ******************* MD5 stuff ******************* */
-typedef struct _XECRYPT_MD5_STATE { 
+typedef struct _XECRYPT_MD5_STATE
+{ 
 	DWORD count; // 0x0 sz:0x4
 	DWORD buf[0x4]; // 0x4 sz:0x10
 	BYTE in[0x40]; // 0x14 sz:0x40
@@ -108,44 +120,51 @@ typedef struct _XECRYPT_MD5_STATE {
 C_ASSERT(sizeof(XECRYPT_MD5_STATE) == 0x54);
 
 /* ******************* HMACMD5 stuff ******************* */
-typedef struct _XECRYPT_HMACMD5_STATE { 
+typedef struct _XECRYPT_HMACMD5_STATE
+{ 
 	XECRYPT_MD5_STATE Md5State[0x2]; // 0x0 sz:0xA8
 } XECRYPT_HMACMD5_STATE, *PXECRYPT_HMACMD5_STATE; // size 168
 C_ASSERT(sizeof(XECRYPT_HMACMD5_STATE) == 0xA8);
 
 /* ******************* RSA stuff ******************* */
-typedef struct _XECRYPT_RSA { 
+typedef struct _XECRYPT_RSA
+{ 
 	DWORD cqw; // 0x0 sz:0x4
 	DWORD dwPubExp; // 0x4 sz:0x4
 	QWORD qwReserved; // 0x8 sz:0x8
 } XECRYPT_RSA, *PXECRYPT_RSA; // size 16
 C_ASSERT(sizeof(XECRYPT_RSA) == 0x10);
 
-typedef struct _XECRYPT_RSAPUB_1024 { 
+typedef struct _XECRYPT_RSAPUB_1024
+{ 
 	XECRYPT_RSA Rsa; // 0x0 sz:0x10
 	QWORD aqwM[0x10]; // 0x10 sz:0x80
 } XECRYPT_RSAPUB_1024, *PXECRYPT_RSAPUB_1024; // size 144
 C_ASSERT(sizeof(XECRYPT_RSAPUB_1024) == 0x90);
 
-typedef struct _XECRYPT_RSAPUB_1536 { 
+typedef struct _XECRYPT_RSAPUB_1536
+{ 
 	XECRYPT_RSA Rsa; // 0x0 sz:0x10
 	QWORD aqwM[0x18]; // 0x10 sz:0xC0
 } XECRYPT_RSAPUB_1536, *PXECRYPT_RSAPUB_1536; // size 208
 C_ASSERT(sizeof(XECRYPT_RSAPUB_1536) == 0xD0);
 
-typedef struct _XECRYPT_RSAPUB_2048 { 
+typedef struct _XECRYPT_RSAPUB_2048
+{ 
 	XECRYPT_RSA Rsa; // 0x0 sz:0x10
 	QWORD aqwM[0x20]; // 0x10 sz:0x100
 } XECRYPT_RSAPUB_2048, *PXECRYPT_RSAPUB_2048; // size 272
 C_ASSERT(sizeof(XECRYPT_RSAPUB_2048) == 0x110);
 
-typedef struct _XECRYPT_RSAPUB_4096 { 
+typedef struct _XECRYPT_RSAPUB_4096
+{ 
 	XECRYPT_RSA Rsa; // 0x0 sz:0x10
 	QWORD aqwM[0x40]; // 0x10 sz:0x200
 } XECRYPT_RSAPUB_4096, *PXECRYPT_RSAPUB_4096; // size 528
 C_ASSERT(sizeof(XECRYPT_RSAPUB_4096) == 0x210);
 
-typedef struct _XECRYPT_RSAPRV_1024 { 
+typedef struct _XECRYPT_RSAPRV_1024
+{ 
 	XECRYPT_RSAPUB_1024 RsaPub; // 0x0 sz:0x10
 	QWORD aqwP[0x8]; // 0x90 sz:0x40
 	QWORD aqwQ[0x8]; // 0xD0 sz:0x40
@@ -155,7 +174,8 @@ typedef struct _XECRYPT_RSAPRV_1024 {
 } XECRYPT_RSAPRV_1024, *PXECRYPT_RSAPRV_1024; // size 464
 C_ASSERT(sizeof(XECRYPT_RSAPRV_1024) == 0x1D0);
 
-typedef struct _XECRYPT_RSAPRV_1536 { 
+typedef struct _XECRYPT_RSAPRV_1536
+{ 
 	XECRYPT_RSAPUB_1536 RsaPub; // 0x0 sz:0x10
 	QWORD aqwP[0xC]; // 0xD0 sz:0x60
 	QWORD aqwQ[0xC]; // 0x130 sz:0x60
@@ -165,7 +185,8 @@ typedef struct _XECRYPT_RSAPRV_1536 {
 } XECRYPT_RSAPRV_1536, *PXECRYPT_RSAPRV_1536; // size 688
 C_ASSERT(sizeof(XECRYPT_RSAPRV_1536) == 0x2B0);
 
-typedef struct _XECRYPT_RSAPRV_2048 { 
+typedef struct _XECRYPT_RSAPRV_2048
+{ 
 	XECRYPT_RSAPUB_2048 RsaPub; // 0x0 sz:0x10
 	QWORD aqwP[0x10]; // 0x110 sz:0x80
 	QWORD aqwQ[0x10]; // 0x190 sz:0x80
@@ -175,7 +196,8 @@ typedef struct _XECRYPT_RSAPRV_2048 {
 } XECRYPT_RSAPRV_2048, *PXECRYPT_RSAPRV_2048; // size 912
 C_ASSERT(sizeof(XECRYPT_RSAPRV_2048) == 0x390);
 
-typedef struct _XECRYPT_RSAPRV_4096 { 
+typedef struct _XECRYPT_RSAPRV_4096
+{ 
 	XECRYPT_RSAPUB_4096 RsaPub; // 0x0 sz:0x10
 	QWORD aqwP[0x20]; // 0x210 sz:0x100
 	QWORD aqwQ[0x20]; // 0x310 sz:0x100
@@ -186,7 +208,8 @@ typedef struct _XECRYPT_RSAPRV_4096 {
 C_ASSERT(sizeof(XECRYPT_RSAPRV_4096) == 0x710);
 
 /* ******************* SIG stuff ******************* */
-typedef struct _XECRYPT_SIG { 
+typedef struct _XECRYPT_SIG
+{ 
 	QWORD aqwPad[0x1C]; // 0x0 sz:0xE0
 	BYTE bOne; // 0xE0 sz:0x1
 	BYTE abSalt[0xA]; // 0xE1 sz:0xA
@@ -196,20 +219,23 @@ typedef struct _XECRYPT_SIG {
 C_ASSERT(sizeof(XECRYPT_SIG) == 0x100);
 
 /* ******************* Diffie-Hellman stuff ******************* */
-typedef struct _XECRYPT_DH { 
+typedef struct _XECRYPT_DH
+{ 
 	DWORD cqw; // 0x0 sz:0x4
 	DWORD dwReserved; // 0x4 sz:0x4
 } XECRYPT_DH, *PXECRYPT_DH; // size 8
 C_ASSERT(sizeof(XECRYPT_DH) == 0x8);
 
-typedef struct _XECRYPT_DH_768 { 
+typedef struct _XECRYPT_DH_768
+{ 
 	XECRYPT_DH Dh; // 0x0 sz:0x8
 	QWORD aqwM[0xC]; // 0x8 sz:0x60
 	QWORD aqwG[0xC]; // 0x68 sz:0x60
 } XECRYPT_DH_768, *PXECRYPT_DH_768; // size 200
 C_ASSERT(sizeof(XECRYPT_DH_768) == 0xC8);
 
-typedef struct _XECRYPT_DH_1024 { 
+typedef struct _XECRYPT_DH_1024
+{ 
 	XECRYPT_DH Dh; // 0x0 sz:0x8
 	QWORD aqwM[0x10]; // 0x8 sz:0x80
 	QWORD aqwB[0x10]; // 0x88 sz:0x80
@@ -217,7 +243,8 @@ typedef struct _XECRYPT_DH_1024 {
 C_ASSERT(sizeof(XECRYPT_DH_1024) == 0x108);
 
 /* ******************* eliptic curve stuff ******************* */
-typedef struct _XECRYPT_ECPUB { 
+typedef struct _XECRYPT_ECPUB
+{ 
 	DWORD cqw; // 0x0 sz:0x4
 	BYTE cbitR; // 0x4 sz:0x1
 	BYTE cbitS; // 0x5 sz:0x1
@@ -226,7 +253,8 @@ typedef struct _XECRYPT_ECPUB {
 } XECRYPT_ECPUB, *PXECRYPT_ECPUB; // size 8
 C_ASSERT(sizeof(XECRYPT_ECPUB) == 0x8);
 
-typedef struct _XECRYPT_ECPUB_512 { 
+typedef struct _XECRYPT_ECPUB_512
+{ 
 	XECRYPT_ECPUB EcPub; // 0x0 sz:0x8
 	QWORD aqwM[0x8]; // 0x8 sz:0x40
 	QWORD aqwC[0x10]; // 0x48 sz:0x80
@@ -238,7 +266,8 @@ C_ASSERT(sizeof(XECRYPT_ECPUB_512) == 0x1C8);
 /* ******************* Functions ******************* */
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 	NTSYSAPI
 	EXPORTNUM(345)
@@ -884,7 +913,6 @@ extern "C" {
 		IN		DWORD cqw
 	);
 
-	
 	/* ** not included
 	XeCryptSha256Init @784
 	XeCryptSha256Update @785
@@ -906,6 +934,3 @@ extern "C" {
 #ifdef __cplusplus
 }
 #endif
-
-
-#endif // __KEXECRYPT_H

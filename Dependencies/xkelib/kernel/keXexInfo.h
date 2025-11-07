@@ -1,5 +1,4 @@
-#ifndef __KEXEXINFO_H
-#define __KEXEXINFO_H
+#pragma once
 
 // flags for XexLoadImage/XexLoadModule
 #define XEX_MODULE_FLAG_TITLE_PROCESS   0x0001
@@ -18,7 +17,8 @@
 #define XEX_MODULE_FLAG_BOUND_PATH      0x40000000
 #define XEX_MODULE_FLAG_SILENT_LOAD     0x80000000
 
-typedef enum XEXPRIVS{
+typedef enum XEXPRIVS
+{
 	XEX_PRIVILEGE_NO_FORCE_REBOOT					= 0,
 	XEX_PRIVILEGE_FOREGROUND_TASKS					= 1,
 	XEX_PRIVILEGE_NO_ODD_MAPPING					= 2,
@@ -70,26 +70,30 @@ typedef enum XEXPRIVS{
 
 };
 
-typedef struct _CV_INFO_PDB70 {
+typedef struct _CV_INFO_PDB70
+{
 	DWORD      CvSignature; 
-	GUID       Guid;       // unique identifier 
-	DWORD      Age;             // an always-incrementing value 
-	BYTE       PdbFileName[1];  // zero terminated string with the name of the PDB file 
+	GUID       Guid;			// unique identifier 
+	DWORD      Age;				// an always-incrementing value 
+	BYTE       PdbFileName[1];	// zero terminated string with the name of the PDB file 
 } CV_INFO_PDB70, *PCV_INFO_PDB70;
 
-typedef struct _PAGE_DESCIPTION {
+typedef struct _PAGE_DESCIPTION
+{
 	DWORD	Size : 28;
 	DWORD	Info : 4;
 } PAGE_DESCIPTION, *PPAGE_DESCIPTION;
 C_ASSERT(sizeof(PAGE_DESCIPTION) == 0x4);
 
-typedef struct _HV_PAGE_INFO { 
+typedef struct _HV_PAGE_INFO
+{ 
 	PAGE_DESCIPTION PageDescription; // 0x0 sz:0x4
 	BYTE DataDigest[0x14]; // 0x4 sz:0x14
 } HV_PAGE_INFO, *PHV_PAGE_INFO; // size 24
 C_ASSERT(sizeof(HV_PAGE_INFO) == 0x18);
 
-typedef struct _HV_IMAGE_EXPORT_TABLE { 
+typedef struct _HV_IMAGE_EXPORT_TABLE
+{ 
 	DWORD Magic[3]; // 0x0 sz:0xC
 	DWORD ModuleNumber[2]; // 0xC sz:0x8
 	DWORD Version[3]; // 0x14 sz:0xC
@@ -99,7 +103,8 @@ typedef struct _HV_IMAGE_EXPORT_TABLE {
 } HV_IMAGE_EXPORT_TABLE, *PHV_IMAGE_EXPORT_TABLE; // size 44
 C_ASSERT(sizeof(HV_IMAGE_EXPORT_TABLE) == 0x2C);
 
-typedef struct _HV_IMAGE_IMPORT_TABLE { 
+typedef struct _HV_IMAGE_IMPORT_TABLE
+{ 
 	BYTE NextImportDigest[0x14]; // 0x0 sz:0x14
 	DWORD ModuleNumber; // 0x14 sz:0x4
 	DWORD Version[2]; // 0x18 sz:0x8
@@ -109,17 +114,23 @@ typedef struct _HV_IMAGE_IMPORT_TABLE {
 } HV_IMAGE_IMPORT_TABLE, *PHV_IMAGE_IMPORT_TABLE; // size 36
 C_ASSERT(sizeof(HV_IMAGE_IMPORT_TABLE) == 0x24);
 
-typedef struct _XEX_EXECUTION_ID { 
+typedef struct _XEX_EXECUTION_ID
+{ 
 	DWORD MediaID; // 0x0 sz:0x4
 	DWORD Version; // 0x4 sz:0x4
 	DWORD BaseVersion; // 0x8 sz:0x4
-	union {
+
+	union
+	{
 		DWORD TitleID; // 0xC sz:0x4
-		struct {
+
+		struct
+		{
 			WORD PublisherID; // 0xC sz:0x2
 			WORD GameID; // 0xE sz:0x2
 		};
 	};
+
 	BYTE Platform; // 0x10 sz:0x1
 	BYTE ExecutableType; // 0x11 sz:0x1
 	BYTE DiscNum; // 0x12 sz:0x1
@@ -128,12 +139,14 @@ typedef struct _XEX_EXECUTION_ID {
 } XEX_EXECUTION_ID, *PXEX_EXECUTION_ID; // size 24
 C_ASSERT(sizeof(XEX_EXECUTION_ID) == 0x18);
 
-typedef struct _XEX_IMPORT_TABLE_ENT {
+typedef struct _XEX_IMPORT_TABLE_ENT
+{
 	DWORD ImportDestAddr;
 	DWORD ImportStubAddr;
 } XEX_IMPORT_TABLE_ENT, *PXEX_IMPORT_TABLE_ENT;
 
-typedef struct _XEX_IMPORT_TABLE { 
+typedef struct _XEX_IMPORT_TABLE
+{ 
 	DWORD TableSize;
 	BYTE NextImportDigest[20];
 	DWORD ModuleNumber;
@@ -144,13 +157,15 @@ typedef struct _XEX_IMPORT_TABLE {
 	DWORD ImportStubAddr[1];
 } XEX_IMPORT_TABLE, *PXEX_IMPORT_TABLE;
 
-typedef struct _XEX_IMPORT_TABLE_ORG { 
+typedef struct _XEX_IMPORT_TABLE_ORG
+{ 
 	DWORD TableSize; // 0x0 sz:0x4
 	HV_IMAGE_IMPORT_TABLE ImportTable; // 0x4 sz:0x24
 } XEX_IMPORT_TABLE_ORG, *PXEX_IMPORT_TABLE_ORG; // size 40
 C_ASSERT(sizeof(XEX_IMPORT_TABLE_ORG) == 0x28);
 
-typedef struct _XEX_IMPORT_DESCRIPTOR { 
+typedef struct _XEX_IMPORT_DESCRIPTOR
+{ 
 	DWORD Size; // 0x0 sz:0x4
 	DWORD NameTableSize; // 0x4 sz:0x4
 	DWORD ModuleCount; // 0x8 sz:0x4
@@ -159,7 +174,8 @@ typedef struct _XEX_IMPORT_DESCRIPTOR {
 } XEX_IMPORT_DESCRIPTOR, *PXEX_IMPORT_DESCRIPTOR; // size 12
 C_ASSERT(sizeof(XEX_IMPORT_DESCRIPTOR) == 0xC);
 
-typedef struct _IMAGE_EXPORT_ADDRESS_TABLE { 
+typedef struct _IMAGE_EXPORT_ADDRESS_TABLE
+{ 
 	DWORD Magic[3]; // 48 00 00 00 00 48 56 45 48 00 00 00
 	DWORD ModuleNumber[2];
 	DWORD Version[3];
@@ -169,7 +185,8 @@ typedef struct _IMAGE_EXPORT_ADDRESS_TABLE {
 	DWORD ordOffset[1]; // ordOffset[0]+ (ImageBaseAddress<<8) = function offset of ordinal 1
 } IMAGE_EXPORT_ADDRESS_TABLE, *PIMAGE_EXPORT_ADDRESS_TABLE;
 
-typedef struct _HV_IMAGE_INFO { 
+typedef struct _HV_IMAGE_INFO
+{ 
 	BYTE Signature[0x100]; // 0x0 sz:0x100
 	DWORD InfoSize; // 0x100 sz:0x4
 	DWORD ImageFlags; // 0x104 sz:0x4
@@ -185,7 +202,8 @@ typedef struct _HV_IMAGE_INFO {
 } HV_IMAGE_INFO, *PHV_IMAGE_INFO; // size 372
 C_ASSERT(sizeof(HV_IMAGE_INFO) == 0x174);
 
-typedef struct _XEX_SECURITY_INFO { 
+typedef struct _XEX_SECURITY_INFO
+{ 
 	DWORD Size; // 0x0 sz:0x4
 	DWORD ImageSize; // 0x4 sz:0x4
 	HV_IMAGE_INFO ImageInfo; // 0x8 sz:0x174
@@ -194,13 +212,15 @@ typedef struct _XEX_SECURITY_INFO {
 } XEX_SECURITY_INFO, *PXEX_SECURITY_INFO; // size 388
 C_ASSERT(sizeof(XEX_SECURITY_INFO) == 0x184);
 
-typedef struct _XEX_HEADER_STRING { 
+typedef struct _XEX_HEADER_STRING
+{ 
 	DWORD Size; // 0x0 sz:0x4
 	BYTE Data[1]; // 0x4 sz:0x1
 } XEX_HEADER_STRING, *PXEX_HEADER_STRING; // size 8
 C_ASSERT(sizeof(XEX_HEADER_STRING) == 0x8);
 
-typedef struct _IMAGE_XEX_HEADER { 
+typedef struct _IMAGE_XEX_HEADER
+{ 
 	DWORD Magic; // 0x0 sz:0x4
 	DWORD ModuleFlags; // 0x4 sz:0x4
 	DWORD SizeOfHeaders; // 0x8 sz:0x4
@@ -210,7 +230,8 @@ typedef struct _IMAGE_XEX_HEADER {
 } IMAGE_XEX_HEADER, *PIMAGE_XEX_HEADER; // size 24
 C_ASSERT(sizeof(IMAGE_XEX_HEADER) == 0x18);
 
-typedef struct _LDR_DATA_TABLE_ENTRY { 
+typedef struct _LDR_DATA_TABLE_ENTRY
+{ 
 	LIST_ENTRY InLoadOrderLinks;  // 0x0 sz:0x8
 	LIST_ENTRY InClosureOrderLinks;  // 0x8 sz:0x8
 	LIST_ENTRY InInitializationOrderLinks; // 0x10 sz:0x8
@@ -230,9 +251,13 @@ typedef struct _LDR_DATA_TABLE_ENTRY {
 	DWORD TimeDateStamp; // 0x50 sz:0x4
 	PVOID LoadedImports; // 0x54 sz:0x4
 	PVOID XexHeaderBase; // 0x58 sz:0x4
-	union{
+
+	union
+	{
 		STRING LoadFileName; // 0x5C sz:0x8
-		struct {
+
+		struct
+		{
 			PVOID ClosureRoot; // 0x5C sz:0x4 LDR_DATA_TABLE_ENTRY
 			PVOID TraversalParent; // 0x60 sz:0x4 LDR_DATA_TABLE_ENTRY
 		} asEntry;
@@ -240,45 +265,53 @@ typedef struct _LDR_DATA_TABLE_ENTRY {
 } LDR_DATA_TABLE_ENTRY, *PLDR_DATA_TABLE_ENTRY; // size 100
 C_ASSERT(sizeof(LDR_DATA_TABLE_ENTRY) == 0x64);
 
-typedef struct _XEX_GAME_RATINGS {
+typedef struct _XEX_GAME_RATINGS
+{
 	BYTE	Ratings[0x40];
 } XEX_GAME_RATINGS, *PXEX_GAME_RATINGS;
 
-typedef struct _XEX_LAN_KEY {
+typedef struct _XEX_LAN_KEY
+{
 	BYTE	Key[0x10];
 } XEX_LAN_KEY, *PXEX_LAN_KEY;
 
-typedef struct _IMAGE_XEX_DIRECTORY_ENTRY { 
+typedef struct _IMAGE_XEX_DIRECTORY_ENTRY
+{ 
 	DWORD Key; // 0x0 sz:0x4
 	DWORD Value; // 0x4 sz:0x4
 } IMAGE_XEX_DIRECTORY_ENTRY, *PIMAGE_XEX_DIRECTORY_ENTRY; // size 8
 C_ASSERT(sizeof(IMAGE_XEX_DIRECTORY_ENTRY) == 0x8);
 
-typedef struct _XEX_SECTION_HEADER { 
+typedef struct _XEX_SECTION_HEADER
+{ 
 	char SectionName[0x8]; // 0x0 sz:0x8
 	DWORD VirtualAddress; // 0x8 sz:0x4
 	DWORD VirtualSize; // 0xC sz:0x4
 } XEX_SECTION_HEADER, *PXEX_SECTION_HEADER; // size 16
 C_ASSERT(sizeof(XEX_SECTION_HEADER) == 0x10);
 
-typedef struct _XEX_SECTION_INFO {
+typedef struct _XEX_SECTION_INFO
+{
 	DWORD			   Size;
 	XEX_SECTION_HEADER Section[1];
 } XEX_SECTION_INFO, *PXEX_SECTION_INFO;
 
-typedef struct _XEX_DATA_DESCRIPTOR { 
+typedef struct _XEX_DATA_DESCRIPTOR
+{ 
 	DWORD Size; // 0x0 sz:0x4
 	BYTE DataDigest[0x14]; // 0x4 sz:0x14
 } XEX_DATA_DESCRIPTOR, *PXEX_DATA_DESCRIPTOR; // size 24
 C_ASSERT(sizeof(XEX_DATA_DESCRIPTOR) == 0x18);
 
-typedef struct _XEX_COMPRESSED_DATA_DESCRIPTOR { 
+typedef struct _XEX_COMPRESSED_DATA_DESCRIPTOR
+{ 
 	DWORD WindowSize; // 0x0 sz:0x4
 	XEX_DATA_DESCRIPTOR FirstDescriptor; // 0x4 sz:0x18
 } XEX_COMPRESSED_DATA_DESCRIPTOR, *PXEX_COMPRESSED_DATA_DESCRIPTOR; // size 28
 C_ASSERT(sizeof(XEX_COMPRESSED_DATA_DESCRIPTOR) == 0x1C);
 
-typedef struct _XEX_RAW_DATA_DESCRIPTOR { 
+typedef struct _XEX_RAW_DATA_DESCRIPTOR
+{ 
 	DWORD DataSize; // 0x0 sz:0x4
 	DWORD ZeroSize; // 0x4 sz:0x4
 } XEX_RAW_DATA_DESCRIPTOR, *PXEX_RAW_DATA_DESCRIPTOR; // size 8
@@ -290,11 +323,14 @@ C_ASSERT(sizeof(XEX_RAW_DATA_DESCRIPTOR) == 0x8);
 #define XEX_DATA_FORMAT_COMPRESSED          0x0002
 #define XEX_DATA_FORMAT_DELTA_COMPRESSED    0x0003
 
-typedef struct _XEX_FILE_DATA_DESCRIPTOR { 
+typedef struct _XEX_FILE_DATA_DESCRIPTOR
+{ 
 	DWORD Size; // 0x0 sz:0x4
 	WORD Flags; // 0x4 sz:0x2
 	WORD Format; // 0x6 sz:0x2
-	// union {
+
+	// union
+	// {
 		// XEX_DATA_DESCRIPTOR data;
 		// XEX_RAW_DATA_DESCRIPTOR raw;
 		// XEX_COMPRESSED_DATA_DESCRIPTOR compressed;
@@ -302,7 +338,8 @@ typedef struct _XEX_FILE_DATA_DESCRIPTOR {
 } XEX_FILE_DATA_DESCRIPTOR, *PXEX_FILE_DATA_DESCRIPTOR; // size 8
 C_ASSERT(sizeof(XEX_FILE_DATA_DESCRIPTOR) == 0x8);
 
-typedef struct _XEX_DELTA_PATCH_DESCRIPTOR { 
+typedef struct _XEX_DELTA_PATCH_DESCRIPTOR
+{ 
 	DWORD Size; // 0x0 sz:0x4
 	DWORD TargetVersion; // 0x4 sz:0x4
 	DWORD SourceVersion; // 0x8 sz:0x4
@@ -318,13 +355,15 @@ typedef struct _XEX_DELTA_PATCH_DESCRIPTOR {
 } XEX_DELTA_PATCH_DESCRIPTOR, *PXEX_DELTA_PATCH_DESCRIPTOR; // size 76
 C_ASSERT(sizeof(XEX_DELTA_PATCH_DESCRIPTOR) == 0x4C);
 
-typedef struct _XEX_VITAL_STATS { 
+typedef struct _XEX_VITAL_STATS
+{ 
 	DWORD CheckSum; // 0x0 sz:0x4
 	DWORD TimeDateStamp; // 0x4 sz:0x4
 } XEX_VITAL_STATS, *PXEX_VITAL_STATS; // size 8
 C_ASSERT(sizeof(XEX_VITAL_STATS) == 0x8);
 
-typedef struct _XEX_CALLCAP_IMPORTS { 
+typedef struct _XEX_CALLCAP_IMPORTS
+{ 
 	DWORD BeginFunctionThunkAddress; // 0x0 sz:0x4
 	DWORD EndFunctionThunkAddress; // 0x4 sz:0x4
 } XEX_CALLCAP_IMPORTS, *PXEX_CALLCAP_IMPORTS; // size 8
@@ -334,14 +373,19 @@ C_ASSERT(sizeof(XEX_CALLCAP_IMPORTS) == 0x8);
 // #pragma bitfield_order(push, lsb_to_msb)
 // #endif
 
-typedef struct _XEXIMAGE_LIBRARY_VERSION { 
+typedef struct _XEXIMAGE_LIBRARY_VERSION
+{ 
 	BYTE LibraryName[0x8]; // 0x0 sz:0x8
 	WORD MajorVersion; // 0x8 sz:0x2
 	WORD MinorVersion; // 0xA sz:0x2
 	WORD BuildVersion; // 0xC sz:0x2
-	// union{
+
+	// union
+	// {
 		// WORD AsWord;
-		// struct {
+		//
+		// struct
+		// {
 			WORD DebugBuild : 1; // 0xE bfo:0x15
 			WORD ApprovedLibrary : 2; // 0xE bfo:0x13
 			WORD XEXVersion : 1; // 0xE bfo:0x12
@@ -358,7 +402,8 @@ C_ASSERT(sizeof(XEXIMAGE_LIBRARY_VERSION) == 0x10);
 // #pragma bitfield_order(pop)
 // #endif
 
-typedef struct _XEX_TLS_DATA { 
+typedef struct _XEX_TLS_DATA
+{ 
 	DWORD TlsSlotCount; // 0x0 sz:0x4
 	PVOID AddressOfRawData; // 0x4 sz:0x4
 	DWORD SizeOfRawData; // 0x8 sz:0x4
@@ -366,45 +411,48 @@ typedef struct _XEX_TLS_DATA {
 } XEX_TLS_DATA, *PXEX_TLS_DATA; // size 16
 C_ASSERT(sizeof(XEX_TLS_DATA) == 0x10);
 
-typedef struct _XEX_SERVICE_ID_LIST { 
+typedef struct _XEX_SERVICE_ID_LIST
+{ 
 	DWORD Size; // 0x0 sz:0x4
 	DWORD CustomServiceIDs[0x4]; // 0x4 sz:0x10
 } XEX_SERVICE_ID_LIST, *PXEX_SERVICE_ID_LIST; // size 20
 C_ASSERT(sizeof(XEX_SERVICE_ID_LIST) == 0x14);
 
-typedef struct _XEX_KEY_VAULT_PRIVILEGES { 
+typedef struct _XEX_KEY_VAULT_PRIVILEGES
+{ 
 	QWORD Mask; // 0x0 sz:0x8
 	QWORD Match; // 0x8 sz:0x8
 } XEX_KEY_VAULT_PRIVILEGES, *PXEX_KEY_VAULT_PRIVILEGES; // size 16
 C_ASSERT(sizeof(XEX_KEY_VAULT_PRIVILEGES) == 0x10);
 
-typedef struct _XEX_SYSTEM_TIME_RANGE { 
+typedef struct _XEX_SYSTEM_TIME_RANGE
+{ 
 	QWORD Start; // 0x0 sz:0x8
 	QWORD End; // 0x8 sz:0x8
 } XEX_SYSTEM_TIME_RANGE, *PXEX_SYSTEM_TIME_RANGE; // size 16
 C_ASSERT(sizeof(XEX_SYSTEM_TIME_RANGE) == 0x10);
 
-typedef struct _XEX_PAGE_HEAP_OPTIONS { 
+typedef struct _XEX_PAGE_HEAP_OPTIONS
+{ 
 	DWORD Size; // 0x0 sz:0x4
 	DWORD Flags; // 0x4 sz:0x4
 } XEX_PAGE_HEAP_OPTIONS, *PXEX_PAGE_HEAP_OPTIONS; // size 8
 C_ASSERT(sizeof(XEX_PAGE_HEAP_OPTIONS) == 0x8);
 
-typedef struct _XEX_CONSOLE_ID_TABLE { 
+typedef struct _XEX_CONSOLE_ID_TABLE
+{ 
 	DWORD Size; // 0x0 sz:0x4
 	// console IDs here, this is just a regular sized struct
-	//BYTE abConsoleId[0x5][(size/5)];
+	//BYTE abConsoleId[0x5][(size / 5)];
 } XEX_CONSOLE_ID_TABLE, *PXEX_CONSOLE_ID_TABLE; // size 4
 C_ASSERT(sizeof(XEX_CONSOLE_ID_TABLE) == 0x4);
 
-
-#define XEX_HEADER_STRUCT(key, struct)	(((key) << 8) | (sizeof (struct) >> 2))
-#define XEX_HEADER_FIXED_SIZE(key, size)(((key) << 8) | ((size) >> 2))
-#define XEX_HEADER_ULONG(key) 			(((key) << 8) | 1)
-#define XEX_HEADER_FLAG(key) 			((key) << 8)
-#define XEX_HEADER_SIZEDSTRUCT(key)		(((key) << 8) | 0xFF)
-#define XEX_HEADER_STRING_FIELD(key)	XEX_HEADER_SIZEDSTRUCT(key)
-
+#define XEX_HEADER_STRUCT(key, struct)		(((key) << 8) | (sizeof (struct) >> 2))
+#define XEX_HEADER_FIXED_SIZE(key, size)	(((key) << 8) | ((size) >> 2))
+#define XEX_HEADER_ULONG(key) 				(((key) << 8) | 1)
+#define XEX_HEADER_FLAG(key) 				((key) << 8)
+#define XEX_HEADER_SIZEDSTRUCT(key)			(((key) << 8) | 0xFF)
+#define XEX_HEADER_STRING_FIELD(key)		XEX_HEADER_SIZEDSTRUCT(key)
 
 // for RtlImageXexHeaderField, RtlImageXexHeaderString
 #define XEX_HEADER_SECTION_TABLE			XEX_HEADER_SIZEDSTRUCT(0x0002)
@@ -441,6 +489,3 @@ C_ASSERT(sizeof(XEX_CONSOLE_ID_TABLE) == 0x4);
 #define XEX_HEADER_MULTIDISK_MEDIA_IDS		XEX_HEADER_SIZEDSTRUCT(0x0406)
 #define XEX_HEADER_ALTERNATE_TITLE_IDS		XEX_HEADER_SIZEDSTRUCT(0x0407)
 #define XEX_HEADER_ADDITIONAL_TITLE_MEM		XEX_HEADER_ULONG(0x0408)
-
-
-#endif // __KEXEXINFO_H

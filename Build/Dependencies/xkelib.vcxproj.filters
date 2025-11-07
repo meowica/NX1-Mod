@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="kernel">
+      <UniqueIdentifier>{5f100432-80b7-4133-bd6d-3aafbae1bb52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="xam">
+      <UniqueIdentifier>{1a442b04-bfa8-4c0f-a7f1-dc9b543dd136}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Dependencies\xkelib\xam\_xamext.h">
+      <Filter>xam</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Dependencies\xkelib\xam\xamNet.h">
+      <Filter>xam</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Dependencies\xkelib\xam\xamTask.h">
+      <Filter>xam</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Dependencies\xkelib\xam\xamXContent.h">
+      <Filter>xam</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Dependencies\xkelib\kernel\_kernelext.h">
+      <Filter>kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Dependencies\xkelib\kernel\console_type.h">
+      <Filter>kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Dependencies\xkelib\kernel\keFileInfo.h">
+      <Filter>kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Dependencies\xkelib\kernel\kePrivateStructs.h">
+      <Filter>kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Dependencies\xkelib\kernel\keSmc.h">
+      <Filter>kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Dependencies\xkelib\kernel\keXeCrypt.h">
+      <Filter>kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Dependencies\xkelib\kernel\keXeKeys.h">
+      <Filter>kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Dependencies\xkelib\kernel\keXexInfo.h">
+      <Filter>kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Dependencies\xkelib\exttypes.h" />
+    <ClInclude Include="..\..\Dependencies\xkelib\syssock.h" />
+    <ClInclude Include="..\..\Dependencies\xkelib\xkelib.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Dependencies\xkelib\xam\xamext.def">
+      <Filter>xam</Filter>
+    </None>
+    <None Include="..\..\Dependencies\xkelib\kernel\kernelext.def">
+      <Filter>kernel</Filter>
+    </None>
+  </ItemGroup>
+</Project>

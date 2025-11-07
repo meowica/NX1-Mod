@@ -1,7 +1,7 @@
-#ifndef __KESMC_H
-#define __KESMC_H
+#pragma once
 
-typedef enum SMC_CMD{
+typedef enum SMC_CMD
+{
 	smc_poweron_type = 0x1,
 	smc_query_rtc = 0x4,
 	smc_query_sensor = 0x7,
@@ -33,23 +33,24 @@ typedef enum SMC_CMD{
 	smc_set_9F_interrupts = 0x9f,
 };
 
-typedef enum SMC_PWR_REAS{
-	SMC_PWR_REAS_11_PWRBTN		= 0x11, // xss5 power button pushed
-	SMC_PWR_REAS_12_EJECT		= 0x12, // xss6 eject button pushed
-		SMC_PWR_REAS_15_ALARM		= 0x15, // xss guess ~ should be the wake alarm ~
-	SMC_PWR_REAS_20_REMOPWR 	= 0x20, // xss2 power button on 3rd party remote/ xbox universal remote
-		SMC_PWR_REAS_21_REMOEJC 	= 0x21, // eject button on xbox universal remote
-	SMC_PWR_REAS_22_REMOX		= 0x22, // xss3 xbox universal media remote X button
-	SMC_PWR_REAS_24_WINBTN		= 0x24, // xss4 windows button pushed IR remote
-		SMC_PWR_REAS_30_RESET		= 0x30, // xss HalReturnToFirmware(1 or 2 or 3) = hard reset by smc
-		SMC_PWR_REAS_31_RECHARGE_RESET	= 0x31, // after leaving pnc charge mode via power button
-	SMC_PWR_REAS_41_KIOSK 		= 0x41, // xss7 console powered on by kiosk pin
-	SMC_PWR_REAS_55_WIRELESS 	= 0x55, // xss8 wireless controller middle button/start button pushed to power on controller and console
-	SMC_PWR_REAS_56_WIRED_F1	= 0x56, // xss9 wired guide button; fat front top USB port, slim front left USB port
-	SMC_PWR_REAS_57_WIRED_F2 	= 0x57, // xssA wired guide button; fat front botton USB port, slim front right USB port
-	SMC_PWR_REAS_58_WIRED_R2	= 0x58, // xssB wired guide button; slim back middle USB port
-	SMC_PWR_REAS_59_WIRED_R3	= 0x59, // xssC wired guide button; slim back top USB port
-	SMC_PWR_REAS_5A_WIRED_R1	= 0x5A, // xssD wired guide button; fat back USB port, slim back bottom USB port
+typedef enum SMC_PWR_REAS
+{
+	SMC_PWR_REAS_11_PWRBTN			= 0x11, // xss5 power button pushed
+	SMC_PWR_REAS_12_EJECT			= 0x12, // xss6 eject button pushed
+	SMC_PWR_REAS_15_ALARM			= 0x15, // xss guess ~ should be the wake alarm ~
+	SMC_PWR_REAS_20_REMOPWR 		= 0x20, // xss2 power button on 3rd party remote/ xbox universal remote
+	SMC_PWR_REAS_21_REMOEJC 		= 0x21, // eject button on xbox universal remote
+	SMC_PWR_REAS_22_REMOX			= 0x22, // xss3 xbox universal media remote X button
+	SMC_PWR_REAS_24_WINBTN			= 0x24, // xss4 windows button pushed IR remote
+	SMC_PWR_REAS_30_RESET			= 0x30, // xss HalReturnToFirmware(1 or 2 or 3) = hard reset by smc
+	SMC_PWR_REAS_31_RECHARGE_RESET	= 0x31, // after leaving pnc charge mode via power button
+	SMC_PWR_REAS_41_KIOSK 			= 0x41, // xss7 console powered on by kiosk pin
+	SMC_PWR_REAS_55_WIRELESS 		= 0x55, // xss8 wireless controller middle button/start button pushed to power on controller and console
+	SMC_PWR_REAS_56_WIRED_F1		= 0x56, // xss9 wired guide button; fat front top USB port, slim front left USB port
+	SMC_PWR_REAS_57_WIRED_F2 		= 0x57, // xssA wired guide button; fat front botton USB port, slim front right USB port
+	SMC_PWR_REAS_58_WIRED_R2		= 0x58, // xssB wired guide button; slim back middle USB port
+	SMC_PWR_REAS_59_WIRED_R3		= 0x59, // xssC wired guide button; slim back top USB port
+	SMC_PWR_REAS_5A_WIRED_R1		= 0x5A, // xssD wired guide button; fat back USB port, slim back bottom USB port
 	// possibles/reboot reasons  0x23, 0x2A, 0x42, 0x61, 0x64
 
 	// slim with wired controller when horozontal, 3 back usb ports top to bottom 0x59, 0x58, 0x5A front left 0x56, right 0x57
@@ -63,5 +64,3 @@ typedef enum SMC_PWR_REAS{
 	// Using Guitar controller from Activision Guitar Hero 5: 0x55
 };
 
-
-#endif // __KESMC_H

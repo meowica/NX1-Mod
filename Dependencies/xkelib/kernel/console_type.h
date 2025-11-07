@@ -1,7 +1,7 @@
-#ifndef __CONSOLE_TYPE_H
-#define __CONSOLE_TYPE_H
+#pragma once
 
-typedef enum {
+typedef enum
+{
 	CONSOLE_TYPE_XENON			= 0x00000000,
 	CONSOLE_TYPE_ZEPHYR			= 0x10000000,
 	CONSOLE_TYPE_FALCON			= 0x20000000,
@@ -14,5 +14,3 @@ typedef enum {
 #define CONSOLE_TYPE_FLAGS_MASK 	(0xF0000000)
 #define CONSOLE_TYPE_FROM_FLAGS 	(XboxHardwareInfo->Flags & CONSOLE_TYPE_FLAGS_MASK)
 #define IS_CONSOLE_TYPE_SLIM		(CONSOLE_TYPE_FROM_FLAGS > CONSOLE_TYPE_JASPER)
-
-#endif // __CONSOLE_TYPE_H

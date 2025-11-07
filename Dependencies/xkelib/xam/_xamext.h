@@ -1,5 +1,4 @@
-#ifndef __XAMEXT_DEFINES_H
-#define __XAMEXT_DEFINES_H
+#pragma once
 
 #pragma comment(lib, "xkelib")
 #pragma comment(lib, "xav")
@@ -8,7 +7,7 @@
 #include "xamTask.h"
 #include "xamNet.h"
 
-typedef PVOID                           HXAMAPP, *PHXAMAPP;
+typedef PVOID HXAMAPP, *PHXAMAPP;
 
 typedef enum
 {
@@ -21,7 +20,8 @@ typedef enum
 	XHUDOPENSTATE_COUNT = 0x6,
 } XHUDOPENSTATE, *PXHUDOPENSTATE;
 
-typedef enum {
+typedef enum
+{
 	XNOTIFYUI_TYPE_FRIENDONLINE = 0,
 	XNOTIFYUI_TYPE_GAMEINVITE = 1,
 	XNOTIFYUI_TYPE_FRIENDREQUEST = 2,
@@ -96,14 +96,16 @@ typedef enum {
 	XNOTIFYUI_TYPE_SMARTGLASSAVAILABLE = 77
 } XNOTIFYQUEUEUI_TYPE;
 
-typedef enum {
+typedef enum
+{
 	XNOTIFYUI_PRIORITY_LOW = 0,
 	XNOTIFYUI_PRIORITY_DEFAULT = 1,
 	XNOTIFYUI_PRIORITY_HIGH = 2,
 	XNOTIFYUI_PRIORITY_PERSISTENT = 3,
 } XNOTIFYUI_PRIORITY;
 
-typedef enum {
+typedef enum
+{
 	XTILETYPE_ACHIEVEMENT = 0x0,
 	XTILETYPE_GAME_ICON = 0x1,
 	XTILETYPE_GAMER_TILE = 0x2,
@@ -122,7 +124,8 @@ typedef enum {
 	XTILETYPE_AVATAR_FULL_BODY = 0xF,
 } XTILETYPE;
 
-typedef enum {
+typedef enum
+{
 	XamLoaderStateNone = 0x0,
 	XamLoaderStateBooting = 0x1,
 	XamLoaderStateTitleUnloading = 0x2,
@@ -131,14 +134,16 @@ typedef enum {
 	XamLoaderStateTitleRunning = 0x5,
 } XamLoaderState;
 
-typedef enum  {
+typedef enum 
+{
 	XAM_DEFAULT_IMAGE_SYSTEM = 0x0, 	// "xam" 		"defaultsystemimage.png"
 	XAM_DEFAULT_IMAGE_DASHICON = 0x1,	// "xam" 		"dashicon.png"
 	XAM_DEFAULT_IMAGE_SETTINGS = 0x2,	// "shrdres" 	"ico_64x_licensestore.png"
 	XAM_DEFAULT_IMAGE_ID_COUNT = 0x3,
 } XAM_DEFAULT_IMAGE_ID;
 
-typedef enum _DVD_MEDIA_TYPES {
+typedef enum _DVD_MEDIA_TYPES
+{
 	DVD_MEDIA_TYPE_NONE					= 0x00,
 	DVD_MEDIA_TYPE_GAME_XBOX_360		= 0x01,
 	DVD_MEDIA_TYPE_GAME_XBOX_ORIGINAL	= 0x02,
@@ -152,7 +157,8 @@ typedef enum _DVD_MEDIA_TYPES {
 	DVD_MEDIA_TYPE_DVD_HD				= 0x0A,
 } DVD_MEDIA_TYPES;
 
-typedef enum _DVD_TRAY_STATE {
+typedef enum _DVD_TRAY_STATE
+{
 	DVD_TRAY_STATE_EMPTY,
 	DVD_TRAY_STATE_CLOSING,
 	DVD_TRAY_STATE_OPEN,
@@ -161,7 +167,8 @@ typedef enum _DVD_TRAY_STATE {
 	DVD_TRAY_STATE_ERROR
 } DVD_TRAY_STATE;
 
-typedef enum _STAGING_MODE {
+typedef enum _STAGING_MODE
+{
 	STAGING_MODE_PRODUCTION = 0x0,
 	STAGING_MODE_STAGING = 0x1,
 } STAGING_MODE;
@@ -169,7 +176,7 @@ typedef enum _STAGING_MODE {
 typedef VOID (CALLBACK *PFNMSGBOXRETURN)(
 	IN      INT                         iButtonPressed,
 	OUT     PXHUDOPENSTATE              pHudRestoreState
-	);
+);
 
 typedef struct _XUIBRUSH*	HXUIBRUSH;
 
@@ -190,7 +197,8 @@ typedef DWORD (*MBOXRESULT)(DWORD r3);
 //													0x00020000
 //													0x00010000 XSSUI_FLAGS_ADDUSER
 
-typedef struct _XSHOWSIGNINUI_PARAMS { 
+typedef struct _XSHOWSIGNINUI_PARAMS
+{ 
 	DWORD dwTrackingID; // 0x0 sz:0x4
 	DWORD dwUserIndex; // 0x4 sz:0x4
 	DWORD cPanes; // 0x8 sz:0x4
@@ -199,7 +207,8 @@ typedef struct _XSHOWSIGNINUI_PARAMS {
 } XSHOWSIGNINUI_PARAMS, *PXSHOWSIGNINUI_PARAMS; // size 20
 C_ASSERT(sizeof(XSHOWSIGNINUI_PARAMS) == 0x14);
 
-typedef struct _MESSAGEBOX_PARAMS { 
+typedef struct _MESSAGEBOX_PARAMS
+{ 
 	DWORD dwTrackingID; // 0x0 sz:0x4
 	DWORD dwUserIndex; // 0x4 sz:0x4
 	DWORD eHudType; // 0x8 sz:0x4 enum HUDSCENE
@@ -216,7 +225,8 @@ typedef struct _MESSAGEBOX_PARAMS {
 } MESSAGEBOX_PARAMS, *PMESSAGEBOX_PARAMS; // size 1148
 C_ASSERT(sizeof(MESSAGEBOX_PARAMS) == 0x47C);
 
-typedef struct _XINPUT_DEVICE_STATS {
+typedef struct _XINPUT_DEVICE_STATS
+{
 	DWORD BatteryLevel; // 0x0 sz:0x4
 	DWORD BatteryType; // 0x4 sz:0x4
 	DWORD SignalStrength; // 0x8 sz:0x4
@@ -227,7 +237,8 @@ typedef struct _XINPUT_DEVICE_STATS {
 } XINPUT_DEVICE_STATS, *PXINPUT_DEVICE_STATS; // size 28
 C_ASSERT(sizeof(XINPUT_DEVICE_STATS) == 0x1C);
 
-typedef enum {
+typedef enum
+{
 	XDASHLAUNCHDATA_COMMAND_DEFAULT = 0, // 14719
 	XDASHLAUNCHDATA_COMMAND_SIGNUP = 1,
 	XDASHLAUNCHDATA_COMMAND_NETWORKTROUBLESHOOTER = 2,
@@ -258,7 +269,8 @@ typedef enum {
 	XDASHLAUNCHDATA_COMMAND_SYSTEM_SETTINGS = 47, // 14719
 } XDASHLAUNCHDATA_COMMAND;
 
-typedef struct _XDASHLAUNCHDATA { 
+typedef struct _XDASHLAUNCHDATA
+{ 
 	DWORD dwVersion; // 0x0 sz:0x4
 	DWORD dwCommand; // 0x4 sz:0x4
 	DWORD dwUserIndex; // 0x8 sz:0x4
@@ -266,7 +278,8 @@ typedef struct _XDASHLAUNCHDATA {
 } XDASHLAUNCHDATA, *PXDASHLAUNCHDATA; // size 1020
 C_ASSERT(sizeof(XDASHLAUNCHDATA) == 0x3FC);
 
-typedef struct _FU_LAUNCH_DATA { 
+typedef struct _FU_LAUNCH_DATA
+{ 
 	DWORD Source; // 0x0 sz:0x4
 	DWORD Reason; // 0x4 sz:0x4
 	DWORD LiveEnabled; // 0x8 sz:0x4
@@ -275,7 +288,8 @@ typedef struct _FU_LAUNCH_DATA {
 } FU_LAUNCH_DATA, *PFU_LAUNCH_DATA; // size 1020
 C_ASSERT(sizeof(FU_LAUNCH_DATA) == 0x3FC);
 
-typedef struct _XLAUNCHDATA_EPIX { 
+typedef struct _XLAUNCHDATA_EPIX
+{ 
 	DWORD dwID; // 0x0 sz:0x4
 	DWORD dwUserIndex; // 0x4 sz:0x4
 	DWORD dwFlags; // 0x8 sz:0x4
@@ -283,7 +297,8 @@ typedef struct _XLAUNCHDATA_EPIX {
 } XLAUNCHDATA_EPIX, *PXLAUNCHDATA_EPIX; // size 268
 C_ASSERT(sizeof(XLAUNCHDATA_EPIX) == 0x10C);
 
-typedef struct _XLAUNCHDATA_CAFEBABE { 
+typedef struct _XLAUNCHDATA_CAFEBABE
+{ 
 	DWORD dwID; // 0x0 sz:0x4 << 0xCAFEBABE
 	BYTE Param[0x2C]; // 0x4 sz:0x
 	DWORD deviceId; // 0x30 sz:0x4
@@ -291,7 +306,8 @@ typedef struct _XLAUNCHDATA_CAFEBABE {
 C_ASSERT(sizeof(XLAUNCHDATA_CAFEBABE) == 0x34);
 
 // from Xna_TitleLauncher.xex
-typedef struct _XLAUNCHDATA_CAFEBABE2 { 
+typedef struct _XLAUNCHDATA_CAFEBABE2
+{ 
 	XLAUNCHDATA_CAFEBABE param; // 0x0
 	DWORD unused; // 0x34
 	QWORD qwUnk; // 0x38
@@ -301,33 +317,38 @@ typedef struct _XLAUNCHDATA_CAFEBABE2 {
 C_ASSERT(sizeof(XLAUNCHDATA_CAFEBABE2) == 0x178);
 
 // from Xna_TitleLauncher.xex
-typedef struct _XLAUNCHDATA_CAFEBABE3 { 
+typedef struct _XLAUNCHDATA_CAFEBABE3
+{ 
 	XLAUNCHDATA_CAFEBABE param; // 0x0
 	DWORD unused; // 0x34
 	BYTE bParm[0x200]; // 0x38
 } XLAUNCHDATA_CAFEBABE3, *PXLAUNCHDATA_CAFEBABE3; // size 568
 C_ASSERT(sizeof(XLAUNCHDATA_CAFEBABE3) == 0x238);
 
-typedef struct _XDASHLAUNCHDATA_XAMUIAPP { 
+typedef struct _XDASHLAUNCHDATA_XAMUIAPP
+{ 
 	DWORD dwID; // 0x0 sz:0x4
 	BYTE Reserved[0x3EC]; // 0x4 sz:0x3EC
 } XDASHLAUNCHDATA_XAMUIAPP, *PXDASHLAUNCHDATA_XAMUIAPP; // size 1008
 C_ASSERT(sizeof(XDASHLAUNCHDATA_XAMUIAPP) == 0x3F0);
 
-typedef struct _XLAUNCHDATA_DASHAPP { 
+typedef struct _XLAUNCHDATA_DASHAPP
+{ 
 	char AppName[0x40]; // 0x0 sz:0x40
 	DWORD AppParamsSize; // 0x40 sz:0x4
 	BYTE AppParams[0x200]; // 0x44 sz:0x200
 } XLAUNCHDATA_DASHAPP, *PXLAUNCHDATA_DASHAPP; // size 580
 C_ASSERT(sizeof(XLAUNCHDATA_DASHAPP) == 0x244);
 
-typedef struct _XAVATAR_AWARDS_COUNTER { 
+typedef struct _XAVATAR_AWARDS_COUNTER
+{ 
 	BYTE bEarned; // 0x0 sz:0x1
 	BYTE bPossible; // 0x1 sz:0x1
 } XAVATAR_AWARDS_COUNTER, *PXAVATAR_AWARDS_COUNTER; // size 2
 C_ASSERT(sizeof(XAVATAR_AWARDS_COUNTER) == 0x2);
 
-typedef struct _XUSER_TITLE_PLAYED { 
+typedef struct _XUSER_TITLE_PLAYED
+{ 
 	DWORD dwTitleId; // 0x0 sz:0x4
 	DWORD dwAchievementsPossible; // 0x4 sz:0x4
 	DWORD dwAchievementsEarned; // 0x8 sz:0x4
@@ -347,7 +368,8 @@ C_ASSERT(sizeof(XUSER_TITLE_PLAYED) == 0xA8);
 // *********** PACKING STARTS HERE **************//
 #pragma pack(push, 1)
 // *********** PACKING STARTS HERE **************//
-typedef struct _XAMACCOUNTINFO { 
+typedef struct _XAMACCOUNTINFO
+{ 
 	DWORD dwReserved; // 0x0 sz:0x4
 	DWORD dwLiveFlags; // 0x4 sz:0x4
 	WCHAR szGamerTag[0x10]; // 0x8 sz:0x20
@@ -364,15 +386,16 @@ typedef struct _XAMACCOUNTINFO {
 } XAMACCOUNTINFO, *PXAMACCOUNTINFO; // size 380
 C_ASSERT(sizeof(XAMACCOUNTINFO) == 0x17C);
 
-typedef struct _PROFILEENUMRESULT { 
+typedef struct _PROFILEENUMRESULT
+{ 
 	XUID xuidOffline; // 0x0 sz:0x8
 	XAMACCOUNTINFO xai; // 0x8 sz:0x17C
 	DWORD DeviceID; // 0x184 sz:0x4
 } PROFILEENUMRESULT, *PPROFILEENUMRESULT; // size 392
 C_ASSERT(sizeof(PROFILEENUMRESULT) == 0x188);
 
-
-typedef enum _XAM_CACHE_FILE_TYPE { 
+typedef enum _XAM_CACHE_FILE_TYPE
+{ 
 		XAM_CACHE_SYSTEM_UPDATE = 0xC,  
 		XAM_CACHE_GAMER_TILE = 0x3,  
 		XAM_CACHE_GAME_TILE = 0x1,  
@@ -407,14 +430,13 @@ typedef enum _XAM_CACHE_FILE_TYPE {
 		XAM_CACHE_DASHBOARD_APP = 0xD  
 	} XAM_CACHE_FILE_TYPE;
 
-
 // *********** PACKING ENDS HERE **************//
 #pragma pack(pop)
 // *********** PACKING ENDS HERE **************//
 
-
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
 	NTSYSAPI
@@ -1818,11 +1840,6 @@ extern "C" {
 		PXOVERLAPPED pXOverlapped
 	);
 	*/
-
 #ifdef __cplusplus
 }
 #endif
-
-
-
-#endif // __XAMEXT_DEFINES_H

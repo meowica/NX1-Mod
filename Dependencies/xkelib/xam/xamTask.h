@@ -1,5 +1,4 @@
-#ifndef __XAMTASK_H
-#define __XAMTASK_H
+#pragma once
 
 typedef HRESULT (WINAPI *PXAMTASKPROC)(IN PVOID pvParam);
 
@@ -62,6 +61,7 @@ typedef PVOID                           HXAMTASKOBJ, *PHXAMTASKOBJ; // Generic h
 typedef struct _XAMTASKATTRIBUTES
 {
 	DWORD                               dwProperties;
+
 	union
 	{
 		DWORD                           dwPeriod;
@@ -70,5 +70,3 @@ typedef struct _XAMTASKATTRIBUTES
 		HXAMTASKQUEUE                   hxamtaskqueue;
 	}typ;
 } XAMTASKATTRIBUTES, *PXAMTASKATTRIBUTES;
-
-#endif // __XAMTASK_H

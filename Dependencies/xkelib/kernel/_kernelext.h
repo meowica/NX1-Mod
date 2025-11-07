@@ -1,5 +1,4 @@
-#ifndef __KERNEL_DEFINES_H
-#define __KERNEL_DEFINES_H
+#pragma once
 
 #pragma comment(lib, "xkelib")
 
@@ -28,14 +27,16 @@
 #define __isync()		__emit(0x4C00012C)
 
 #define doSync(addr) \
-	do { \
+	do \
+	{ \
 	__dcbst(0, addr); \
 	__sync(); \
 	__isync(); \
 	} while (0)
 
 #define doLightSync(addr) \
-	do { \
+	do \
+	{ \
 	__dcbst(0, addr); \
 	__sync(); \
 	} while (0)
@@ -112,7 +113,8 @@
 //??? #define EX_CREATE_FLAG_HIDDEN		0x4 // hides the thread from debugger thread list???
 #define EX_CREATE_FLAG_TITLE_EXEC	0x100 // title execution thread
 
-typedef enum _POOL_TYPE {
+typedef enum _POOL_TYPE
+{
 	PoolTypeThread = 0x0,
 	PoolTypeTitle = 0x1,
 	PoolTypeSystem = 0x2,
@@ -120,7 +122,8 @@ typedef enum _POOL_TYPE {
 	PoolTypeSystemDebug = 0x4,
 } POOL_TYPE;
 
-typedef enum { // effects on jtag noted in comment
+typedef enum // effects on jtag noted in comment
+{
 	HalHaltRoutine = 0x0, // hard poweroff (used by hotplug HDD) HalpPowerDownSystemNow
 	HalRebootRoutine = 0x1, // hard reset (video error) HalpRebootSystem
 	HalKdRebootRoutine = 0x2, // hard reset (used for dumpwritedump/frozen processor) HalpRebootSystem
@@ -134,7 +137,8 @@ typedef enum { // effects on jtag noted in comment
 } FIRMWARE_REENTRY;
 
 /* description about xex exe headers in memory */
-typedef struct _XBOX_HARDWARE_INFO {
+typedef struct _XBOX_HARDWARE_INFO
+{
 	DWORD Flags;
 	unsigned char NumberOfProcessors;
 	unsigned char PCIBridgeRevisionID;
@@ -150,13 +154,15 @@ typedef struct _EX_TITLE_TERMINATE_REGISTRATION
 	LIST_ENTRY ListEntry; // already defined in winnt.h
 } EX_TITLE_TERMINATE_REGISTRATION, *PEX_TITLE_TERMINATE_REGISTRATION;
 
-typedef struct _EX_THREAD_REGISTRATION {
+typedef struct _EX_THREAD_REGISTRATION
+{
 	void* NotificationRoutine;
 	DWORD Priority;
 	LIST_ENTRY ListEntry;
 } EX_THREAD_REGISTRATION, *PEX_THREAD_REGISTRATION;
 
-typedef struct _VD_NOTIFICATION_REGISTRATION { 
+typedef struct _VD_NOTIFICATION_REGISTRATION
+{ 
 	PVOID NotificationRoutine; // 0x0 sz:0x4 void(*)()
 	long Priority; // 0x4 sz:0x4
 	LIST_ENTRY ListEntry; // 0x8 sz:0x8
@@ -166,26 +172,30 @@ C_ASSERT(sizeof(VD_NOTIFICATION_REGISTRATION) == 0x10);
 typedef void (*pfnThreadNotificationRoutine)(PEX_THREAD_REGISTRATION ThisRegistration, PKTHREAD Thread, BOOL Creating);
 typedef int (*LP_VD_NOTIFICATION_CALLBACK)(const PVD_NOTIFICATION_REGISTRATION vdReg, DWORD type, void * buf);
 
-typedef struct _XBOX_KRNL_VERSION{
+typedef struct _XBOX_KRNL_VERSION
+{
 	WORD Major; // for 360 this is always 2
 	WORD Minor; // usually 0
 	WORD Build; // current version, for example 9199
 	WORD Qfe;
 } XBOX_KRNL_VERSION, *PXBOX_KRNL_VERSION;
 
-typedef struct _KTIME_STAMP_BUNDLE { 
+typedef struct _KTIME_STAMP_BUNDLE
+{ 
 	LARGE_INTEGER InterruptTime; // 0
 	LARGE_INTEGER SystemTime; // 8
 	DWORD TickCount; // 10
 } KTIME_STAMP_BUNDLE, *PKTIME_STAMP_BUNDLE;
 
-typedef struct _LZX_DECOMPRESS {
+typedef struct _LZX_DECOMPRESS
+{
 	LONG WindowSize;
 	LONG CpuType;
 } LZX_DECOMPRESS, *PLZX_DECOMPRESS;
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
 	NTSYSAPI
@@ -1498,7 +1508,3 @@ extern "C" {
 #ifdef __cplusplus
 }
 #endif
-
-
-#endif	//__KERNEL_DEFINES_H
-

@@ -7,25 +7,25 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="exttypes.h" />
-    <ClInclude Include="kernel\console_type.h" />
-    <ClInclude Include="kernel\keFileInfo.h" />
-    <ClInclude Include="kernel\kePrivateStructs.h" />
-    <ClInclude Include="kernel\keSmc.h" />
-    <ClInclude Include="kernel\keXeCrypt.h" />
-    <ClInclude Include="kernel\keXeKeys.h" />
-    <ClInclude Include="kernel\keXexInfo.h" />
-    <ClInclude Include="kernel\_kernelext.h" />
-    <ClInclude Include="syssock.h" />
-    <ClInclude Include="xam\xamNet.h" />
-    <ClInclude Include="xam\xamTask.h" />
-    <ClInclude Include="xam\xamXContent.h" />
-    <ClInclude Include="xam\_xamext.h" />
-    <ClInclude Include="xkelib.h" />
+    <ClInclude Include="..\..\Dependencies\xkelib\exttypes.h" />
+    <ClInclude Include="..\..\Dependencies\xkelib\kernel\console_type.h" />
+    <ClInclude Include="..\..\Dependencies\xkelib\kernel\keFileInfo.h" />
+    <ClInclude Include="..\..\Dependencies\xkelib\kernel\kePrivateStructs.h" />
+    <ClInclude Include="..\..\Dependencies\xkelib\kernel\keSmc.h" />
+    <ClInclude Include="..\..\Dependencies\xkelib\kernel\keXeCrypt.h" />
+    <ClInclude Include="..\..\Dependencies\xkelib\kernel\keXeKeys.h" />
+    <ClInclude Include="..\..\Dependencies\xkelib\kernel\keXexInfo.h" />
+    <ClInclude Include="..\..\Dependencies\xkelib\kernel\_kernelext.h" />
+    <ClInclude Include="..\..\Dependencies\xkelib\syssock.h" />
+    <ClInclude Include="..\..\Dependencies\xkelib\xam\xamNet.h" />
+    <ClInclude Include="..\..\Dependencies\xkelib\xam\xamTask.h" />
+    <ClInclude Include="..\..\Dependencies\xkelib\xam\xamXContent.h" />
+    <ClInclude Include="..\..\Dependencies\xkelib\xam\_xamext.h" />
+    <ClInclude Include="..\..\Dependencies\xkelib\xkelib.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="kernel\kernelext.def" />
-    <None Include="xam\xamext.def" />
+    <None Include="..\..\Dependencies\xkelib\kernel\kernelext.def" />
+    <None Include="..\..\Dependencies\xkelib\xam\xamext.def" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{83FEF217-22EE-4768-80BF-9F48D5B4564C}</ProjectGuid>
@@ -72,7 +72,7 @@
     </Link>
     <PreBuildEvent>
       <Command>del "$(TargetDir)$(TargetName)$(TargetExt)" "$(TargetDir)$(TargetName).exp"
-lib /def:kernel\kernelext.def /def:xam\xamext.def /MACHINE:PPCBE /OUT:"$(TargetDir)$(TargetName)$(TargetExt)"
+lib /def:kernel\kernelext.def /def:D:\ns\nx\1\plugins\NX1Gaming\Dependencies\xkelib\xam\xamext.def /MACHINE:PPCBE /OUT:"$(TargetDir)$(TargetName)$(TargetExt)"
 </Command>
     </PreBuildEvent>
     <PreBuildEvent>

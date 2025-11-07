@@ -7,7 +7,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SP-Mod", "Projects\SP-Mod.v
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependencies", "Dependencies", "{70A4B4D0-7150-4D5A-8051-2E0156B33F46}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "xkelib", "..\Dependencies\xkelib\xkelib.vcxproj", "{83FEF217-22EE-4768-80BF-9F48D5B4564C}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "xkelib", "Dependencies\xkelib.vcxproj", "{83FEF217-22EE-4768-80BF-9F48D5B4564C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

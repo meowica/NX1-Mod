@@ -1,5 +1,4 @@
-#ifndef __XAMNET_DEFINES_H
-#define __XAMNET_DEFINES_H
+#pragma once
 
 #define SO_MCASTMEMBER		0x0005 // dword (0xEFFFFFFA)
 #define SO_MARKINSECURE		0x5801 // bool TRUE for insecure
@@ -8,7 +7,7 @@
 #define SO_NOT_SURE1		0x5804 // dword 4 or 0x58 to 0x5B4 ?set SACK errorlevel?
 #define SO_EN_SACKERRL		0x5805 // dword ?4? enable SACK
 
-// these are in the sdk
+// these are in the SDK
 // #define XNET_OPTID_STARTUP_PARAMS				1
 // #define XNET_OPTID_NIC_XMIT_BYTES				2
 // #define XNET_OPTID_NIC_XMIT_FRAMES				3
@@ -42,7 +41,8 @@
 #define XNET_OPTID_BOUND_NIC				0x2734 // BaseModifyBoundNicDevices DWORD* min 4
 #define XNET_OPTID_DSCP_VALUE				0x2f01 // PBYTE min/max 1 
 
-typedef enum {
+typedef enum
+{
 	XNCALLER_INVALID = 0x0,
 	XNCALLER_TITLE = 0x1,
 	XNCALLER_SYSAPP = 0x2,
@@ -88,7 +88,8 @@ typedef struct _XNetConfigParams
 #define XNPARP_LOOKUP_ENTRY_NOT_FOUND 		2
 
 #pragma pack(push, 1)
-typedef struct _XNPARPENTRY {
+typedef struct _XNPARPENTRY
+{
 	DWORD status; // 0x0 sz 4
 	IN_ADDR inIp; // 0x4 sz 4
 	BYTE macAddr[6]; // 0x8 sz 6
@@ -97,7 +98,8 @@ typedef struct _XNPARPENTRY {
 #pragma pack(pop)
 C_ASSERT(sizeof(XNPARPENTRY) == 0x10);
 
-typedef struct _XNPROUTEENTRY {
+typedef struct _XNPROUTEENTRY
+{
 	DWORD dwFlags; // 0x0 sz 4
 	DWORD dwType; // 0x4 sz 4 - when setting use -1 for broadcast
 	IN_ADDR iaDestAddr; // 0x8 sz 4
@@ -107,7 +109,8 @@ typedef struct _XNPROUTEENTRY {
 } XNPROUTEENTRY, *PXNPROUTEENTRY; // 0x18
 C_ASSERT(sizeof(XNPROUTEENTRY) == 0x18);
 
-typedef struct _XnSecAssocInfo {
+typedef struct _XnSecAssocInfo
+{
    IN_ADDR inaddrSec; // 0x00-0x04
    XNCALLER_TYPE CallerType; // 0x04-0x08
    DWORD dwInfoFlags; // 0x08-0x0C
@@ -125,7 +128,8 @@ typedef struct _XnSecAssocInfo {
 } XnSecAssocInfo, *PXnSecAssocInfo; // 0x78
 C_ASSERT(sizeof(XnSecAssocInfo) == 0x78);
 
-typedef struct XNetCapBuffer { 
+typedef struct XNetCapBuffer
+{ 
 	DWORD cbCap; // 0x0 sz:0x4
 	PBYTE pbCapHead; // 0x4 sz:0x4
 	PBYTE pbCapTail; // 0x8 sz:0x4
@@ -133,26 +137,30 @@ typedef struct XNetCapBuffer {
 } XNetCapBuffer, *PXNetCapBuffer; // size 16
 C_ASSERT(sizeof(XNetCapBuffer) == 0x10);
 
-typedef union _UPNP_VALUE {
+typedef union _UPNP_VALUE
+{
 	int   iValue; // 0x00-0x04
 	CHAR* pszValue; // 0x00-0x04
 } UPNP_VALUE, *PUPNP_VALUE;  // 0x04
 
-typedef struct _UPNP_ACTION_OUTPUT_PARAMETER {
+typedef struct _UPNP_ACTION_OUTPUT_PARAMETER
+{
 	CHAR* pszName; // 0x00-0x04
 	enum  UPNP_VALUE_TYPE ValueType; // 0x04-0x08
 	DWORD dwValueSize; // 0x08-0x0C
 	UPNP_VALUE Value; // 0x0C-0x10
 } UPNP_ACTION_OUTPUT_PARAMETER, *PUPNP_ACTION_OUTPUT_PARAMETER; // 0x10
 
-typedef struct _UPNP_DEVICE {
+typedef struct _UPNP_DEVICE
+{
 	CHAR		szDeviceUuid[0x80];
 	struct sockaddr_in saddrinHost;
 	CHAR		szRelativePath[0x100];
 	DWORD		dwLastUpdateTime;
 } UPNP_DEVICE, *PUPNP_DEVICE;
 
-typedef struct _UPNP_SERVICE_DESCRIPTION {
+typedef struct _UPNP_SERVICE_DESCRIPTION
+{
    CHAR szType[0x80];
    CHAR szId[0x81];
    WORD wDescriptionPort;
@@ -161,11 +169,12 @@ typedef struct _UPNP_SERVICE_DESCRIPTION {
    CHAR szControlURL[0x100];
    WORD wEventPort;
    CHAR szEventURL[0x100];
-   struct _UPNP_DEVICE_DESCRIPTION *  pOwningDevice;
-   struct _UPNP_SERVICE_DESCRIPTION * pNextService;
+   struct _UPNP_DEVICE_DESCRIPTION*  pOwningDevice;
+   struct _UPNP_SERVICE_DESCRIPTION* pNextService;
 } UPNP_SERVICE_DESCRIPTION, *PUPNP_SERVICE_DESCRIPTION;
 
-typedef struct _UPNP_DEVICE_DESCRIPTION {
+typedef struct _UPNP_DEVICE_DESCRIPTION
+{
    CHAR szUuid[0x80];
    CHAR szType[0x80];
    CHAR szFriendlyName[0x41];
@@ -177,17 +186,18 @@ typedef struct _UPNP_DEVICE_DESCRIPTION {
    CHAR szModelURL[0x100];
    CHAR szSerialNumber[0x41];
    CHAR szUPC[0xD];
-   struct _UPNP_DEVICE_DESCRIPTION * pParent;
-   struct _UPNP_DEVICE_DESCRIPTION * pNextSibling;
-   struct _UPNP_DEVICE_DESCRIPTION * pFirstChild;
-   struct _UPNP_SERVICE_DESCRIPTION * pFirstService;
+   struct _UPNP_DEVICE_DESCRIPTION* pParent;
+   struct _UPNP_DEVICE_DESCRIPTION* pNextSibling;
+   struct _UPNP_DEVICE_DESCRIPTION* pFirstChild;
+   struct _UPNP_SERVICE_DESCRIPTION* pFirstService;
 } UPNP_DEVICE_DESCRIPTION, *PUPNP_DEVICE_DESCRIPTION;
 
-typedef int (*LP_INTERCEPT_XMIT_FUNC)(PVOID pvCallbackUserData, const BYTE * pbXmitData, DWORD dwCbData); // return 0 on success
-typedef int (*LP_INTERCEPT_RECV_FUNC)(PVOID pvCallbackUserData, const BYTE * pbRecvData, DWORD dwCbData); // return 0 on success
+typedef int (*LP_INTERCEPT_XMIT_FUNC)(PVOID pvCallbackUserData, const BYTE* pbXmitData, DWORD dwCbData); // return 0 on success
+typedef int (*LP_INTERCEPT_RECV_FUNC)(PVOID pvCallbackUserData, const BYTE* pbRecvData, DWORD dwCbData); // return 0 on success
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 	// **WARNING** this is never called directly UNLESS dash version is < 2610
 	// NTSYSAPI
@@ -1148,5 +1158,3 @@ extern "C" {
 #ifdef __cplusplus
 }
 #endif
-
-#endif // __XAMNET_DEFINES_H

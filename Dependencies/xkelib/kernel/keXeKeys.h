@@ -1,17 +1,18 @@
-#ifndef __KEXEKEYS_H
-#define __KEXEKEYS_H
+#pragma once
 
 /* note, not all keys are allowed to be accessed directly from kernel! */
 
 #define XEKEY_CONSOLETYPE_DEVKIT	0x00000001
 #define XEKEY_CONSOLETYPE_RETAIL	0x00000002
 
-typedef enum _XEKEY_OBFUSCATE {
+typedef enum _XEKEY_OBFUSCATE
+{
 	XEKEY_OBFUSCATE_CONSOLE = 0, // uses XEKEY_CONSOLE_OBFUSCATION_KEY = 0x17
 	XEKEY_OBFUSCATE_ROAM = 1, // uses XEKEY_ROAMABLE_OBFUSCATION_KEY = 0x19
 } XEKEY_OBFUSCATE;
 
-typedef enum _XEKEY_INDEX {
+typedef enum _XEKEY_INDEX
+{
 	XEKEY_MANUFACTURING_MODE = 0x0,
 	XEKEY_ALTERNATE_KEY_VAULT = 0x1,
 	XEKEY_RESTRICTED_PRIVILEGES_FLAGS = 0x2,
@@ -99,7 +100,8 @@ typedef enum _XEKEY_INDEX {
 	XEKEY_SECURED_DATA_LIMIT = 0x2000,
 } XEKEY_INDEX;
 
-typedef enum _XEKEYEX_INDEX {
+typedef enum _XEKEYEX_INDEX
+{
 	XEKEYEX_COUNT = 0xE,
 	XEKEYEX_START = 0xFF,
 	// video device keys
@@ -124,7 +126,8 @@ typedef enum _XEKEYEX_INDEX {
 	XEKEYEX_MAX_KEY_INDEX = 0x10E,
 } XEKEYEX_INDEX;
 
-typedef struct _XEKEYS_EXEC_HEADER {
+typedef struct _XEKEYS_EXEC_HEADER
+{
 	WORD magic; // ((this ^ hvmagic) & 0xF000) must equal 0; (this & 0x0F0F) must equal 0x0D0D
 	WORD Build; // 2
 	WORD Qfe; // 4
@@ -133,5 +136,3 @@ typedef struct _XEKEYS_EXEC_HEADER {
 	DWORD Size; // 0xC must be 0x10 aligned and > 0x120
 	BYTE bNonce[0x10]; // data used to decrypt
 } XEKEYS_EXEC_HEADER, *PXEKEYS_EXEC_HEADER;
-
-#endif // __KEXEKEYS_H
