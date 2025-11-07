@@ -18,8 +18,8 @@ namespace AssetHandler
 		{
 			ReallocateAssetPool(Structs::ASSET_TYPE_GAMEWORLD_SP, 1);
 			// ReallocateAssetPool(Structs::ASSET_TYPE_IMAGE, 7168); // Causes the game to crash somewhere else, if the default limit is exceeded
-			ReallocateAssetPool(Structs::ASSET_TYPE_LOADED_SOUND, 2700 * 2);
-			ReallocateAssetPool(Structs::ASSET_TYPE_FX, 1200 * 2);
+			ReallocateAssetPool(Structs::ASSET_TYPE_LOADED_SOUND, 5400);
+			ReallocateAssetPool(Structs::ASSET_TYPE_FX, 2400);
 			ReallocateAssetPool(Structs::ASSET_TYPE_LOCALIZE_ENTRY, 14000);
 			ReallocateAssetPool(Structs::ASSET_TYPE_XANIMPARTS, 16384);
 			// ReallocateAssetPool(Structs::ASSET_TYPE_XMODEL, 10250); // Causes the game to crash somewhere else, if the default limit is exceeded
