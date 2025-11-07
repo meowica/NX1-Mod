@@ -1,11 +1,11 @@
-# vs cache files
+# Visual Studio files
 .vs/
-
-# build results
-Build/Output/
 
 *.user
 *.sdf
 *.suo
 *.opensdf
 *.ipch
+
+# build results
+Build/Output/
