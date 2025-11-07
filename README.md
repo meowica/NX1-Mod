@@ -58,3 +58,4 @@
 - Removed un-needed build version from the external console window (SP/MP)
 - NX1-Host is the default host name, used to be CoD4Host (MP)
 - Game no longer performs a session sanity check on Xenia (SP/MP)
+- SP BSP resolving works in MP (and vice versa) (SP/MP)
