@@ -1,4 +1,5 @@
 #include "../../Util/FPS.h"
+#include "Config.h"
 
 namespace Drawing
 {
@@ -9,6 +10,8 @@ namespace Drawing
 
 		void DrawWatermark()
 		{
+			if (!Config::ShouldShowWatermark())
+				return;
 			if (!*Font)
 				return;
 			if (Symbols::MP::Con_IsActive(0))
@@ -25,6 +28,8 @@ namespace Drawing
 
 		void DrawFPS()
 		{
+			if (!Config::ShouldShowFPSCounter())
+				return;
 			if (!*Font)
 				return;
 			if (Symbols::MP::Con_IsActive(0))
@@ -95,6 +100,8 @@ namespace Drawing
 
 		void DrawWatermark()
 		{
+			if (!Config::ShouldShowWatermark())
+				return;
 			if (!*Font)
 				return;
 			if (Symbols::SP::Con_IsActive(0))
@@ -111,6 +118,8 @@ namespace Drawing
 
 		void DrawFPS()
 		{
+			if (!Config::ShouldShowFPSCounter())
+				return;
 			if (!*Font)
 				return;
 			if (Symbols::SP::Con_IsActive(0))
@@ -157,7 +166,6 @@ namespace Drawing
 			// disable some unneeded drawing
 			Util::Hook::Nop(0x8221F894, 2); // CG_DrawVersion
 			Util::Hook::Nop(0x824A6F3C, 2); // UI_DrawBuildNumber
-			Util::Hook::Nop(0x8220CB80, 2); // Con_DrawOutputVersion
 		}
 
 		void ClearHooks()

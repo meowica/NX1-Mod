@@ -1,6 +1,7 @@
 #pragma once
 
 // special modules
+#include "Modules\Config.h"
 #include "Modules\Assertion.h"
 #include "Modules\Patches.h"
 #include "Modules\CustomCommands.h"
