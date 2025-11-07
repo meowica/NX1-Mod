@@ -50,3 +50,4 @@
 - Added listassetpool command for modders (SP/MP)
 - printf outputs to the console log file (SP/MP)
 - Removed un-needed build version from the external console window (SP/MP)
+- NX1-Host is the default host name, used to be CoD4Host (MP)
