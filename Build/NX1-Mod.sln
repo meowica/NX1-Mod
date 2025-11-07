@@ -13,7 +13,6 @@ Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Xbox 360 = Debug|Xbox 360
 		Release|Xbox 360 = Release|Xbox 360
-		Release21256.0|Xbox 360 = Release21256.0|Xbox 360
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{590B22B0-B65E-4E94-8035-693C29BAD0D2}.Debug|Xbox 360.ActiveCfg = Debug|Xbox 360
@@ -28,9 +27,9 @@ Global
 		{97114FA4-AB73-444A-AB82-6066E25C1E1D}.Release|Xbox 360.ActiveCfg = Release|Xbox 360
 		{97114FA4-AB73-444A-AB82-6066E25C1E1D}.Release|Xbox 360.Build.0 = Release|Xbox 360
 		{97114FA4-AB73-444A-AB82-6066E25C1E1D}.Release|Xbox 360.Deploy.0 = Release|Xbox 360
-		{83FEF217-22EE-4768-80BF-9F48D5B4564C}.Debug|Xbox 360.ActiveCfg = Release|Xbox 360
-		{83FEF217-22EE-4768-80BF-9F48D5B4564C}.Debug|Xbox 360.Build.0 = Release|Xbox 360
-		{83FEF217-22EE-4768-80BF-9F48D5B4564C}.Debug|Xbox 360.Deploy.0 = Release|Xbox 360
+		{83FEF217-22EE-4768-80BF-9F48D5B4564C}.Debug|Xbox 360.ActiveCfg = Debug|Xbox 360
+		{83FEF217-22EE-4768-80BF-9F48D5B4564C}.Debug|Xbox 360.Build.0 = Debug|Xbox 360
+		{83FEF217-22EE-4768-80BF-9F48D5B4564C}.Debug|Xbox 360.Deploy.0 = Debug|Xbox 360
 		{83FEF217-22EE-4768-80BF-9F48D5B4564C}.Release|Xbox 360.ActiveCfg = Release|Xbox 360
 		{83FEF217-22EE-4768-80BF-9F48D5B4564C}.Release|Xbox 360.Build.0 = Release|Xbox 360
 		{83FEF217-22EE-4768-80BF-9F48D5B4564C}.Release|Xbox 360.Deploy.0 = Release|Xbox 360
