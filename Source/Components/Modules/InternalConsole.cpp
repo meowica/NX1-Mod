@@ -23,6 +23,9 @@
 
 			// change console font
 			Util::Hook::Set<const char*>(0x8203259C, "fonts/fwsmallfont");
+
+			// we dont need this
+			Util::Hook::Nop(0x8229D414, 2); // Con_DrawOutputVersion
 		}
 
 		void ClearHooks()
@@ -63,6 +66,9 @@
 
 			// change console font
 			Util::Hook::Set<const char*>(0x820214C0, "fonts/fwsmallfont");
+
+			// we dont need this
+			Util::Hook::Nop(0x8220CB80, 2); // Con_DrawOutputVersion
 		}
 
 		void ClearHooks()

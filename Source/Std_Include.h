@@ -2,7 +2,7 @@
 
 #define TITLE_ID			0x4156089E // nx1
 
-#define BASE_FOLDER			"nx1-data"
+#define BASE_FOLDER			"NX1-Mod"
 
 #define NOMINMAX
 #define MAX_CHARS			std::numeric_limits<int>::max()

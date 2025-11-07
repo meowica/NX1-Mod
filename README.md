@@ -1,7 +1,7 @@
 # NX1-Mod
 
 <p align="center">
-  <img src=".github/Banner.gif?raw=true" />
+  <img src="Assets/GitHub/Banner.gif?raw=true" />
 </p>
 
 # NX1-Mod - Modification for Future Warfare (NX1).
@@ -12,7 +12,7 @@
 
 ## How to use (Xenia Canary)
 ### Patches
-- Download the required [game patches](https://github.com/hindercanrun/NX1-Mod/tree/main/Xenia/patches).
+- Download the required [game patches](https://github.com/hindercanrun/NX1-Mod/tree/main/Assets/Xenia/patches).
 - Put them into `xenia\patches`.
 - Make sure `apply_patches` is set to `true` in the Xenia Canary config (It's `true` by default).
 - Done.
@@ -28,7 +28,10 @@
 ## How to use (Xbox 360)
 - Uhhh...
 
-## Changes (mode)
+## Changelist
+- You can disable any of these changes (soon) within the NX1-Mod.ini
+
+### Changes
 - Removed Black Box (SP/MP)
 - Removed Anti Cheat (SP/MP)
 - Unlocked FPS (SP/MP)
@@ -41,8 +44,9 @@
 - Removed dev autoexec for a cleaner screen (SP/MP)
 - Removed some prints for a cleaner log (SP/MP)
 - Enabled unsecure Fast File loading (MP)
-- Open main_selection instead of main_lockout (SP)
+- Inital menu is now main_selection instead of main_lockout (SP)
 - Console + DevGui safe area fits the full screen, like it does on PC (SP/MP)
 - Missing localization strings no longer error by default (SP/MP)
 - Added listassetpool command for modders (SP/MP)
 - printf outputs to the console log file (SP/MP)
+- Removed un-needed build version from the external console window (SP/MP)

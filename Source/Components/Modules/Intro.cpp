@@ -1,3 +1,5 @@
+#include "Config.h"
+
 namespace Intro
 {
 #ifdef MP_MOD
@@ -12,11 +14,14 @@ namespace Intro
 			// Why hook here? I hooked here because COM_PlayIntroMovies is inlined and because this is the closest function to it
 			// Hooking directly into Com_Init_TBF works fine, but this is more accurate at the intro movie placement
 
-			const auto intro = Symbols::MP::Dvar_FindVar("intro");
-			if (intro->current.enabled)
-			{
-				Symbols::MP::Cbuf_AddText(0, "autocinematic title\n");
-			}
+			if (Config::ShouldShowIntroMovie())
+				return;
+
+			const auto introAlreadyPlayed = Symbols::MP::Dvar_FindVar("intro");
+			if (!introAlreadyPlayed->current.enabled)
+				return;
+
+			Symbols::MP::Cbuf_AddText(0, "autocinematic title\n");
 		}
 
 		void Hooks()
@@ -46,11 +51,14 @@ namespace Intro
 		Util::Hook::Detour COM_PlayIntroMovies_Hook;
 		void COM_PlayIntroMovies()
 		{
-			const auto playIntro = Symbols::SP::Dvar_FindVar("intro");
-			if (!playIntro->current.enabled)
-			{
-				Symbols::SP::Cbuf_AddText(0, "autocinematic title\n");
-			}
+			if (Config::ShouldShowIntroMovie())
+				return;
+
+			const auto introAlreadyPlayed = Symbols::SP::Dvar_FindVar("intro");
+			if (!introAlreadyPlayed->current.enabled)
+				return;
+
+			Symbols::SP::Cbuf_AddText(0, "autocinematic title\n");
 		}
 
 		void Hooks()
