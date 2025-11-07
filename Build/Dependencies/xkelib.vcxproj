@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
-    <ProjectConfiguration Include="Release21256.0|Xbox 360">
-      <Configuration>Release21256.0</Configuration>
+    <ProjectConfiguration Include="Release|Xbox 360">
+      <Configuration>Release</Configuration>
       <Platform>Xbox 360</Platform>
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Dependencies\xkelib\exttypes.h" />
+    <ClInclude Include="..\..\Dependencies\xkelib\extTypes.h" />
     <ClInclude Include="..\..\Dependencies\xkelib\kernel\console_type.h" />
     <ClInclude Include="..\..\Dependencies\xkelib\kernel\keFileInfo.h" />
     <ClInclude Include="..\..\Dependencies\xkelib\kernel\kePrivateStructs.h" />
@@ -32,25 +32,25 @@
     <Keyword>Xbox360Proj</Keyword>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release21256.0|Xbox 360'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Xbox 360'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release21256.0|Xbox 360'" Label="PropertySheets">
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Xbox 360'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release21256.0|Xbox 360'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Xbox 360'">
     <CustomBuildAfterTargets />
     <CustomBuildBeforeTargets />
     <OutDir>$(SolutionDir)Output\Bin\Release\xkelib\</OutDir>
     <IntDir>$(SolutionDir)Output\Obj\Release\xkelib\</IntDir>
     <OutputFile>$(SolutionDir)Output\Bin\Release\xkelib\xkelib.lib</OutputFile>
   </PropertyGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release21256.0|Xbox 360'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Xbox 360'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>

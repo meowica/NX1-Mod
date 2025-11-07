@@ -45,9 +45,9 @@
     <ClInclude Include="..\..\Dependencies\xkelib\kernel\keXexInfo.h">
       <Filter>kernel</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Dependencies\xkelib\exttypes.h" />
     <ClInclude Include="..\..\Dependencies\xkelib\syssock.h" />
     <ClInclude Include="..\..\Dependencies\xkelib\xkelib.h" />
+    <ClInclude Include="..\..\Dependencies\xkelib\extTypes.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Dependencies\xkelib\xam\xamext.def">
