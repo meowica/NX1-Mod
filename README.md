@@ -18,7 +18,7 @@
 - Done.
 ### Plugins
 - Make sure `allow_plugins` is set to `true` in the Xenia Canary config (It's `false` by default).
-- Download the latest `NX1-Mod.xex` and place it in into `xenia\plugins\4156089E\`.
+- Download the [latest version](https://github.com/hindercanrun/NX1-Mod/releases) and place it in into `Xenia Canary\plugins\4156089E\`.
 - Place the `plugins.toml` there too, depending on the mode you want, `SP-Mod` for Campaign, `MP-Mod` for Multiplayer.
 - Done.
 ### Playing
