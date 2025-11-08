@@ -5,12 +5,11 @@ namespace AssetHandler
 	{
 		void* ReallocateAssetPool(uint32_t type, unsigned int newSize)
 		{
-			int elSize = Symbols::MP::DB_GetXAssetSizeHandlers[type]();
+			int oldSize = Symbols::MP::DB_GetXAssetSizeHandlers[type]();
 
-			void* poolEntry = malloc(newSize * elSize);
+			void* poolEntry = malloc(newSize * oldSize);
 			Symbols::MP::DB_XAssetPool[type] = poolEntry;
 			Symbols::MP::g_poolSize[type] = newSize;
-
 			return poolEntry;
 		}
 
