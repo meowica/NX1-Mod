@@ -57,18 +57,14 @@ VOID OnDetachProcess()
 	}
 }
 
-BOOL APIENTRY DllMain(
-	HANDLE handle,
-	DWORD reason,
-	LPVOID reserved)
+BOOL WINAPI DllMain(HANDLE hInst, DWORD dwReason, LPVOID lpReserved)
 {
-	switch (reason)
+	switch (dwReason)
 	{
 	case DLL_PROCESS_ATTACH:
 		OnAttachProcess();
 	case DLL_PROCESS_DETACH:
 		OnDetachProcess();
 	}
-
 	return TRUE;
 }
