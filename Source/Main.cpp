@@ -3,7 +3,7 @@ bool isUnloading = false;
 void StartupThread()
 {
 	// TODO: add memory address validation
-	while (Util::XBox::XGetCurrentTitleId() != TITLE_ID)
+	while (Util::XBox::XGetCurrentTitleId() != NX1_TITLE_ID)
 	{
 		// 50 is fine for Xenia, mirror what Heaventh did for Xbox 360
 		if (Util::XBox::IsInXenia())
@@ -48,7 +48,7 @@ VOID OnDetachProcess()
 	{
 		isUnloading = true;
 
-		if (Util::XBox::XGetCurrentTitleId() == TITLE_ID)
+		if (Util::XBox::XGetCurrentTitleId() == NX1_TITLE_ID)
 		{
 			Loader::UnloadAllModules(); // keys: does this even do anything??
 		}

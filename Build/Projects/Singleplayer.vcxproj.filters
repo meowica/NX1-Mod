@@ -61,7 +61,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Source\Std_Include.h" />
     <ClInclude Include="..\..\Source\Util\Command.h">
       <Filter>Util</Filter>
     </ClInclude>
@@ -122,6 +121,7 @@
     <ClInclude Include="..\..\Source\Components\Modules\AssetHandler.h">
       <Filter>Components\Modules</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\StdAfx.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Game">

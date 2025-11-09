@@ -68,9 +68,9 @@
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PreprocessorDefinitions>IS_SINGLEPLAYER;NDEBUG;_XBOX;RELEASE</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <PrecompiledHeaderFile>Std_Include.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>StdAfx.h</PrecompiledHeaderFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <ForcedIncludeFiles>$(ProjectDir)..\..\Source\Std_Include.h</ForcedIncludeFiles>
+      <ForcedIncludeFiles>$(ProjectDir)..\..\Source\StdAfx.h</ForcedIncludeFiles>
       <AdditionalIncludeDirectories>$(ProjectDir)..\..\Dependencies\xkelib</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
@@ -105,8 +105,8 @@
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PreprocessorDefinitions>IS_SINGLEPLAYER;NDEBUG;_XBOX;</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <ForcedIncludeFiles>$(ProjectDir)..\..\Source\Std_Include.h</ForcedIncludeFiles>
-      <PrecompiledHeaderFile>Std_Include.h</PrecompiledHeaderFile>
+      <ForcedIncludeFiles>$(ProjectDir)..\..\Source\StdAfx.h</ForcedIncludeFiles>
+      <PrecompiledHeaderFile>StdAfx.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(ProjectDir)..\..\Dependencies\xkelib</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
@@ -166,7 +166,7 @@
     <ClInclude Include="..\..\Source\Components\Modules\Patches.h" />
     <ClInclude Include="..\..\Source\Game\Structs.h" />
     <ClInclude Include="..\..\Source\Game\Symbols.h" />
-    <ClInclude Include="..\..\Source\Std_Include.h" />
+    <ClInclude Include="..\..\Source\StdAfx.h" />
     <ClInclude Include="..\..\Source\Util\Command.h" />
     <ClInclude Include="..\..\Source\Util\Hook.h" />
     <ClInclude Include="..\..\Source\Util\PPC.h" />
