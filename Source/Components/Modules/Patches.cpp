@@ -1,23 +1,23 @@
 namespace Patches
 {
 #ifdef IS_MULTIPLAYER
-	namespace MP
+	namespace Multiplayer
 	{
 		Util::Hook::Detour SetupGfxConfig_Hook;
 		void SetupGfxConfig(Structs::GfxConfiguration* config)
 		{
-			Symbols::MP::Com_Printf(Structs::CON_CHANNEL_SYSTEM, "----- Initializing Modules ----\n");
+			Symbols::Multiplayer::Com_Printf(Structs::CON_CHANNEL_SYSTEM, "----- Initializing Modules ----\n");
 
 			auto Invoke = SetupGfxConfig_Hook.Invoke<void(*)(Structs::GfxConfiguration*)>();
 			Invoke(config);
 
 			for (int i = 0; i < Loader::g_moduleCount; ++i)
 			{
-				Symbols::MP::Com_Printf(Structs::CON_CHANNEL_SYSTEM, "> %s\n", Loader::g_modules[i].name);
+				Symbols::Multiplayer::Com_Printf(Structs::CON_CHANNEL_SYSTEM, "> %s\n", Loader::g_modules[i].name);
 			}
 
-			Symbols::MP::Com_Printf(Structs::CON_CHANNEL_SYSTEM, "----- Initialized All Modules ----\n\n");
-			Symbols::MP::Com_Printf(Structs::CON_CHANNEL_CLIENT, "----- Initializing Renderer ----\n");
+			Symbols::Multiplayer::Com_Printf(Structs::CON_CHANNEL_SYSTEM, "----- Initialized All Modules ----\n\n");
+			Symbols::Multiplayer::Com_Printf(Structs::CON_CHANNEL_CLIENT, "----- Initializing Renderer ----\n");
 		}
 
 		Util::Hook::Detour printf_Hook;
@@ -31,7 +31,7 @@ namespace Patches
 			vsnprintf(buf, sizeof(buf), fmt, args);
 			va_end(args);
 
-			Symbols::MP::Com_Printf(0, "printf: %s", buf);
+			Symbols::Multiplayer::Com_Printf(0, "printf: %s", buf);
 		}
 
 		Util::Hook::Detour Com_ExecStartupConfigs_Hook;
@@ -177,23 +177,23 @@ namespace Patches
 		}
 	}
 #elif IS_SINGLEPLAYER
-	namespace SP
+	namespace Singleplayer
 	{
 		Util::Hook::Detour R_ConfigureRenderer_Hook;
 		void R_ConfigureRenderer(Structs::GfxConfiguration* config)
 		{
-			Symbols::SP::Com_Printf(Structs::CON_CHANNEL_SYSTEM, "----- Initializing Modules ----\n");
+			Symbols::Singleplayer::Com_Printf(Structs::CON_CHANNEL_SYSTEM, "----- Initializing Modules ----\n");
 
 			auto Invoke = R_ConfigureRenderer_Hook.Invoke<void(*)(Structs::GfxConfiguration*)>();
 			Invoke(config);
 
 			for (int i = 0; i < Loader::g_moduleCount; ++i)
 			{
-				Symbols::SP::Com_Printf(Structs::CON_CHANNEL_SYSTEM, "> %s\n", Loader::g_modules[i].name);
+				Symbols::Singleplayer::Com_Printf(Structs::CON_CHANNEL_SYSTEM, "> %s\n", Loader::g_modules[i].name);
 			}
 
-			Symbols::SP::Com_Printf(Structs::CON_CHANNEL_SYSTEM, "----- Initialized All Modules ----\n\n");
-			Symbols::SP::Com_Printf(Structs::CON_CHANNEL_CLIENT, "----- Initializing Renderer ----\n");
+			Symbols::Singleplayer::Com_Printf(Structs::CON_CHANNEL_SYSTEM, "----- Initialized All Modules ----\n\n");
+			Symbols::Singleplayer::Com_Printf(Structs::CON_CHANNEL_CLIENT, "----- Initializing Renderer ----\n");
 		}
 
 		Util::Hook::Detour printf_Hook;
@@ -207,7 +207,7 @@ namespace Patches
 			vsnprintf(buf, sizeof(buf), fmt, args);
 			va_end(args);
 
-			Symbols::SP::Com_Printf(0, "printf: %s", buf);
+			Symbols::Singleplayer::Com_Printf(0, "printf: %s", buf);
 		}
 
 		Util::Hook::Detour Com_ExecStartupConfigs_Hook;

@@ -3,7 +3,7 @@
 namespace GameLog
 {
 #ifdef IS_SINGLEPLAYER
-	namespace SP
+	namespace Singleplayer
 	{
 		void Load();
 		void Unload();

@@ -3,7 +3,7 @@
 namespace Symbols
 {
 #ifdef IS_MULTIPLAYER
-	namespace MP
+	namespace Multiplayer
 	{
 		typedef void (*Cmd_AddCommand_t)(const char* cmdName, void (__cdecl* function)(),
 			Structs::cmd_function_s* allocedCmd);
@@ -69,7 +69,7 @@ namespace Symbols
 		extern Structs::ScreenPlacement* scrPlaceFullUnsafe;
 	}
 #elif IS_SINGLEPLAYER
-	namespace SP
+	namespace Singleplayer
 	{
 		typedef void (*Cmd_AddCommand_t)(const char* cmdName, void (__cdecl* function)(),
 			Structs::cmd_function_s* allocedCmd);

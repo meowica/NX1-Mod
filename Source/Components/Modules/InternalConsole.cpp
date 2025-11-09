@@ -1,15 +1,15 @@
 ﻿namespace InternalConsole
 {
 #ifdef IS_MULTIPLAYER
-	namespace MP
+	namespace Multiplayer
 	{
 		Util::Hook::Detour Con_DrawConsole_Hook;
 		void Con_DrawConsole(int localClientNum)
 		{
-			Symbols::MP::Con_CheckResize(Symbols::MP::scrPlaceFullUnsafe);
-			if (Symbols::MP::Key_IsCatcherActive(localClientNum, KEYCATCH_CONSOLE))
+			Symbols::Multiplayer::Con_CheckResize(Symbols::Multiplayer::scrPlaceFullUnsafe);
+			if (Symbols::Multiplayer::Key_IsCatcherActive(localClientNum, KEYCATCH_CONSOLE))
 			{
-				Symbols::MP::Con_DrawSolidConsole(localClientNum);
+				Symbols::Multiplayer::Con_DrawSolidConsole(localClientNum);
 			}
 		}
 
@@ -44,15 +44,15 @@
 		}
 	}
 #elif IS_SINGLEPLAYER
-	namespace SP
+	namespace Singleplayer
 	{
 		Util::Hook::Detour Con_DrawConsole_Hook;
 		void Con_DrawConsole(int localClientNum)
 		{
-			Symbols::SP::Con_CheckResize(Symbols::SP::scrPlaceFull);
-			if (Symbols::SP::Key_IsCatcherActive(localClientNum, KEYCATCH_CONSOLE))
+			Symbols::Singleplayer::Con_CheckResize(Symbols::Singleplayer::scrPlaceFull);
+			if (Symbols::Singleplayer::Key_IsCatcherActive(localClientNum, KEYCATCH_CONSOLE))
 			{
-				Symbols::SP::Con_DrawSolidConsole(localClientNum);
+				Symbols::Singleplayer::Con_DrawSolidConsole(localClientNum);
 			}
 		}
 

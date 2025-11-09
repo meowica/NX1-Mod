@@ -1,7 +1,7 @@
 namespace Assertion
 {
 #ifdef IS_MULTIPLAYER
-	namespace MP
+	namespace Multiplayer
 	{
 		Util::Hook::Detour MAssertVargs_Hook;
 		int MAssertVargs(const char* filename, int line, int type, int unknown, const char* fmt, ...)
@@ -31,25 +31,25 @@ namespace Assertion
 			vsnprintf_s(message, sizeof(message), fmt, va);
 			message[sizeof(message) - 1] = '\0';
 
-			Symbols::MP::Com_Printf(0, "\n");
-			Symbols::MP::Com_Printf(0, "****************************************\n");
-			Symbols::MP::Com_Printf(0, "*  Assertion Info:\n");
-			Symbols::MP::Com_Printf(0, "*  Message:       %s\n", message);
-			Symbols::MP::Com_Printf(0, "*  File:          %s\n", filename);
-			Symbols::MP::Com_Printf(0, "*  Line:          %d\n", line);
-			Symbols::MP::Com_Printf(0, "*  Type:          %d\n", type);
-			Symbols::MP::Com_Printf(0, "****************************************\n");
+			Symbols::Multiplayer::Com_Printf(0, "\n");
+			Symbols::Multiplayer::Com_Printf(0, "****************************************\n");
+			Symbols::Multiplayer::Com_Printf(0, "*  Assertion Info:\n");
+			Symbols::Multiplayer::Com_Printf(0, "*  Message:       %s\n", message);
+			Symbols::Multiplayer::Com_Printf(0, "*  File:          %s\n", filename);
+			Symbols::Multiplayer::Com_Printf(0, "*  Line:          %d\n", line);
+			Symbols::Multiplayer::Com_Printf(0, "*  Type:          %d\n", type);
+			Symbols::Multiplayer::Com_Printf(0, "****************************************\n");
 
 			if (repeatCount >= 2)
 			{
-				Symbols::MP::Com_Printf(0, "*  Warning:       Same assert triggered multiple times.\n");
-				Symbols::MP::Com_Printf(0, "****************************************\n");
+				Symbols::Multiplayer::Com_Printf(0, "*  Warning:       Same assert triggered multiple times.\n");
+				Symbols::Multiplayer::Com_Printf(0, "****************************************\n");
 				return 0;
 			}
 			else
 			{
-				Symbols::MP::Com_Printf(0, "*  Note:          First time this assert occurred.\n");
-				Symbols::MP::Com_Printf(0, "****************************************\n");
+				Symbols::Multiplayer::Com_Printf(0, "*  Note:          First time this assert occurred.\n");
+				Symbols::Multiplayer::Com_Printf(0, "****************************************\n");
 				return 0;
 			}
 		}
@@ -76,7 +76,7 @@ namespace Assertion
 		}
 	}
 #elif IS_SINGLEPLAYER
-	namespace SP
+	namespace Singleplayer
 	{
 		Util::Hook::Detour MAssertVargs_Hook;
 		int MAssertVargs(const char* filename, int line, int type, int unknown, const char* fmt, ...)
@@ -106,25 +106,25 @@ namespace Assertion
 			vsnprintf_s(message, sizeof(message), fmt, va);
 			message[sizeof(message) - 1] = '\0';
 
-			Symbols::SP::Com_Printf(0, "\n");
-			Symbols::SP::Com_Printf(0, "****************************************\n");
-			Symbols::SP::Com_Printf(0, "*  Assertion Info:\n");
-			Symbols::SP::Com_Printf(0, "*  Message:       %s\n", message);
-			Symbols::SP::Com_Printf(0, "*  File:          %s\n", filename);
-			Symbols::SP::Com_Printf(0, "*  Line:          %d\n", line);
-			Symbols::SP::Com_Printf(0, "*  Type:          %d\n", type);
-			Symbols::SP::Com_Printf(0, "****************************************\n");
+			Symbols::Singleplayer::Com_Printf(0, "\n");
+			Symbols::Singleplayer::Com_Printf(0, "****************************************\n");
+			Symbols::Singleplayer::Com_Printf(0, "*  Assertion Info:\n");
+			Symbols::Singleplayer::Com_Printf(0, "*  Message:       %s\n", message);
+			Symbols::Singleplayer::Com_Printf(0, "*  File:          %s\n", filename);
+			Symbols::Singleplayer::Com_Printf(0, "*  Line:          %d\n", line);
+			Symbols::Singleplayer::Com_Printf(0, "*  Type:          %d\n", type);
+			Symbols::Singleplayer::Com_Printf(0, "****************************************\n");
 
 			if (repeatCount >= 2)
 			{
-				Symbols::SP::Com_Printf(0, "*  Warning:       Same assert triggered multiple times.\n");
-				Symbols::SP::Com_Printf(0, "****************************************\n");
+				Symbols::Singleplayer::Com_Printf(0, "*  Warning:       Same assert triggered multiple times.\n");
+				Symbols::Singleplayer::Com_Printf(0, "****************************************\n");
 				return 0;
 			}
 			else
 			{
-				Symbols::SP::Com_Printf(0, "*  Note:          First time this assert occurred.\n");
-				Symbols::SP::Com_Printf(0, "****************************************\n");
+				Symbols::Singleplayer::Com_Printf(0, "*  Note:          First time this assert occurred.\n");
+				Symbols::Singleplayer::Com_Printf(0, "****************************************\n");
 				return 0;
 			}
 		}

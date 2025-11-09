@@ -1,7 +1,7 @@
 namespace Maps
 {
 #ifdef IS_MULTIPLAYER
-	namespace MP
+	namespace Multiplayer
 	{
 		Util::Hook::Detour Com_GetBspFilename_Hook;
 		void Com_GetBspFilename(char* filename, int size, const char* mapname)
@@ -41,7 +41,7 @@ namespace Maps
 		}
 	}
 #elif IS_SINGLEPLAYER
-	namespace SP
+	namespace Singleplayer
 	{
 		Util::Hook::Detour Com_GetBspFilename_Hook;
 		void Com_GetBspFilename(char* filename, int size, const char* mapname)

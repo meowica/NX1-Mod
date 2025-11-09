@@ -1,7 +1,7 @@
 namespace DevGui
 {
 #ifdef IS_MULTIPLAYER
-	namespace MP
+	namespace Multiplayer
 	{
 		Util::Hook::Detour DevGui_GetScreenXPad_Hook;
 		int DevGui_GetScreenXPad()
@@ -39,7 +39,7 @@ namespace DevGui
 		}
 	}
 #elif IS_SINGLEPLAYER
-	namespace SP
+	namespace Singleplayer
 	{
 		Util::Hook::Detour DevGui_GetScreenXPad_Hook;
 		int DevGui_GetScreenXPad()

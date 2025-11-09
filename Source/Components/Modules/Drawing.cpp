@@ -4,7 +4,7 @@
 namespace Drawing
 {
 #ifdef IS_MULTIPLAYER
-	namespace MP
+	namespace Multiplayer
 	{
 		Structs::Font_s** Font;
 
@@ -14,14 +14,14 @@ namespace Drawing
 				return;
 			if (!*Font)
 				return;
-			if (Symbols::MP::Con_IsActive(0))
+			if (Symbols::Multiplayer::Con_IsActive(0))
 				return;
-			if (Symbols::MP::DevGui_IsActive())
+			if (Symbols::Multiplayer::DevGui_IsActive())
 				return;
 
 			float colour[4] = { 1.0f, 1.0f, 1.0f, 0.25f };
 
-			Symbols::MP::R_AddCmdDrawText("NX1-Mod MP", MAX_CHARS, *Font, 2.0f, 20.0f, 0.8f, 0.8f, 0.0f, colour, 3, Structs::SL_SYSTEM);
+			Symbols::Multiplayer::R_AddCmdDrawText("NX1-Mod MP", MAX_CHARS, *Font, 2.0f, 20.0f, 0.8f, 0.8f, 0.0f, colour, 3, Structs::SL_SYSTEM);
 		}
 
 		Util::FPS g_fps;
@@ -32,7 +32,7 @@ namespace Drawing
 				return;
 			if (!*Font)
 				return;
-			if (Symbols::MP::Con_IsActive(0))
+			if (Symbols::Multiplayer::Con_IsActive(0))
 				return;
 
 			g_fps.Update();
@@ -53,7 +53,7 @@ namespace Drawing
 
 			float x = (count <= 99) ? 1255.0f : 1245.0f;
 
-			Symbols::MP::R_AddCmdDrawText(text, MAX_CHARS, *Font, x, 20.0f, 1.0f, 1.0f, 0.0f, colour, 3, Structs::SL_SYSTEM);
+			Symbols::Multiplayer::R_AddCmdDrawText(text, MAX_CHARS, *Font, x, 20.0f, 1.0f, 1.0f, 0.0f, colour, 3, Structs::SL_SYSTEM);
 		}
 
 		Util::Hook::Detour CL_DrawScreen_Hook;
@@ -94,7 +94,7 @@ namespace Drawing
 		}
 	}
 #elif IS_SINGLEPLAYER
-	namespace SP
+	namespace Singleplayer
 	{
 		Structs::Font_s** Font;
 
@@ -104,14 +104,14 @@ namespace Drawing
 				return;
 			if (!*Font)
 				return;
-			if (Symbols::SP::Con_IsActive(0))
+			if (Symbols::Singleplayer::Con_IsActive(0))
 				return;
-			if (Symbols::SP::DevGui_IsActive())
+			if (Symbols::Singleplayer::DevGui_IsActive())
 				return;
 
 			float colour[4] = { 1.0f, 1.0f, 1.0f, 0.25f };
 
-			Symbols::SP::R_AddCmdDrawText("NX1-Mod SP", MAX_CHARS, *Font, 2.0f, 20.0f, 0.8f, 0.8f, 0.0f, colour, 3, Structs::SL_SYSTEM);
+			Symbols::Singleplayer::R_AddCmdDrawText("NX1-Mod SP", MAX_CHARS, *Font, 2.0f, 20.0f, 0.8f, 0.8f, 0.0f, colour, 3, Structs::SL_SYSTEM);
 		}
 
 		Util::FPS g_fps;
@@ -122,7 +122,7 @@ namespace Drawing
 				return;
 			if (!*Font)
 				return;
-			if (Symbols::SP::Con_IsActive(0))
+			if (Symbols::Singleplayer::Con_IsActive(0))
 				return;
 
 			g_fps.Update();
@@ -143,7 +143,7 @@ namespace Drawing
 
 			float x = (count <= 99) ? 1255.0f : 1245.0f;
 
-			Symbols::SP::R_AddCmdDrawText(text, MAX_CHARS, *Font, x, 20.0f, 1.0f, 1.0f, 0.0f, colour, 3, Structs::SL_SYSTEM);
+			Symbols::Singleplayer::R_AddCmdDrawText(text, MAX_CHARS, *Font, x, 20.0f, 1.0f, 1.0f, 0.0f, colour, 3, Structs::SL_SYSTEM);
 		}
 
 		Util::Hook::Detour CL_DrawScreen_Hook;

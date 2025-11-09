@@ -39,9 +39,9 @@ namespace Loader
 }
 
 #ifdef IS_MULTIPLAYER
-	#define MODULE_NAME(name) name::MP
+	#define MODULE_NAME(name) name::Multiplayer
 #elif IS_SINGLEPLAYER
-	#define MODULE_NAME(name) name::SP
+	#define MODULE_NAME(name) name::Singleplayer
 #endif
 
 struct ModuleRegistrator

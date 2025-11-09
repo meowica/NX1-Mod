@@ -4,9 +4,9 @@ namespace Util
 	{
 		static std::vector<Structs::cmd_function_s*> cmds;
 #ifdef IS_MULTIPLAYER
-		static Structs::CmdArgs*& g_cmdArgs = Symbols::MP::cmd_args;
+		static Structs::CmdArgs*& g_cmdArgs = Symbols::Multiplayer::cmd_args;
 #elif IS_SINGLEPLAYER
-		static Structs::CmdArgs*& g_cmdArgs = Symbols::SP::cmd_args;
+		static Structs::CmdArgs*& g_cmdArgs = Symbols::Singleplayer::cmd_args;
 #endif
 
 		Args::Args()
@@ -39,9 +39,9 @@ namespace Util
 		void Add(const char* cmdName, void(__cdecl* function)())
 		{
 #ifdef IS_MULTIPLAYER
-			Symbols::MP::Cmd_AddCommand(cmdName, function, allocedCmd());
+			Symbols::Multiplayer::Cmd_AddCommand(cmdName, function, allocedCmd());
 #elif IS_SINGLEPLAYER
-			Symbols::SP::Cmd_AddCommand(cmdName, function, allocedCmd());
+			Symbols::Singleplayer::Cmd_AddCommand(cmdName, function, allocedCmd());
 #endif
 		}
 	}

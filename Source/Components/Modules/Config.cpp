@@ -234,7 +234,7 @@ namespace Config
 	}
 
 #ifdef IS_MULTIPLAYER
-	namespace MP
+	namespace Multiplayer
 	{
 		void Load()
 		{
@@ -247,7 +247,7 @@ namespace Config
 		}
 	}
 #elif IS_SINGLEPLAYER
-	namespace SP
+	namespace Singleplayer
 	{
 		void Load()
 		{

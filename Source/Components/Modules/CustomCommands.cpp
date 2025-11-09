@@ -1,7 +1,7 @@
 namespace CustomCommands
 {
 #ifdef IS_MULTIPLAYER
-	namespace MP
+	namespace Multiplayer
 	{
 		struct XAssetListContext
 		{
@@ -16,10 +16,10 @@ namespace CustomCommands
 				return;
 
 			const Structs::XAsset asset = { ctx->type, header };
-			const char* assetName = Symbols::MP::DB_GetXAssetName(&asset);
+			const char* assetName = Symbols::Multiplayer::DB_GetXAssetName(&asset);
 			ctx->totalAssets++;
 
-			Symbols::MP::Com_Printf(0, "%s\n", assetName);
+			Symbols::Multiplayer::Com_Printf(0, "%s\n", assetName);
 		}
 
 		void Cmd_ListAssetPool_f()
@@ -28,11 +28,11 @@ namespace CustomCommands
 
 			if (Args.Size() < 2)
 			{
-				Symbols::MP::Com_Printf(0, "listassetpool <poolnumber>: lists all the assets in the specified pool\n");
+				Symbols::Multiplayer::Com_Printf(0, "listassetpool <poolnumber>: lists all the assets in the specified pool\n");
 
 				for (int i = 0; i < Structs::ASSET_TYPE_COUNT; i++)
 				{
-					Symbols::MP::Com_Printf(0, "%d %s\n", i, Symbols::MP::DB_GetXAssetTypeName(i));
+					Symbols::Multiplayer::Com_Printf(0, "%d %s\n", i, Symbols::Multiplayer::DB_GetXAssetTypeName(i));
 				}
 				return;
 			}
@@ -40,20 +40,20 @@ namespace CustomCommands
 			const int typeInt = atoi(Args.Get(1));
 			if (typeInt < 0 || typeInt >= Structs::ASSET_TYPE_COUNT)
 			{
-				Symbols::MP::Com_Printf(0, "Invalid pool, must be between [%d, %d]\n", 0, Structs::ASSET_TYPE_COUNT - 1);
+				Symbols::Multiplayer::Com_Printf(0, "Invalid pool, must be between [%d, %d]\n", 0, Structs::ASSET_TYPE_COUNT - 1);
 				return;
 			}
 
 			const Structs::XAssetType type = static_cast<Structs::XAssetType>(typeInt);
-			Symbols::MP::Com_Printf(16, "Listing assets in %s pool.\n", Symbols::MP::DB_GetXAssetTypeName(type));
+			Symbols::Multiplayer::Com_Printf(16, "Listing assets in %s pool.\n", Symbols::Multiplayer::DB_GetXAssetTypeName(type));
 
 			XAssetListContext ctx;
 			ctx.type = type;
 			ctx.totalAssets = 0;
 
-			Symbols::MP::DB_EnumXAssets_Internal(type, &XAssetList_f, &ctx, true);
+			Symbols::Multiplayer::DB_EnumXAssets_Internal(type, &XAssetList_f, &ctx, true);
 
-			Symbols::MP::Com_Printf(0, "Total of %d assets in %s pool, size %d\n", ctx.totalAssets, Symbols::MP::DB_GetXAssetTypeName(type), Symbols::MP::DB_GetXAssetTypeSize(type));
+			Symbols::Multiplayer::Com_Printf(0, "Total of %d assets in %s pool, size %d\n", ctx.totalAssets, Symbols::Multiplayer::DB_GetXAssetTypeName(type), Symbols::Multiplayer::DB_GetXAssetTypeSize(type));
 		}
 
 		void Load()
@@ -67,7 +67,7 @@ namespace CustomCommands
 		}
 	}
 #elif IS_SINGLEPLAYER
-	namespace SP
+	namespace Singleplayer
 	{
 		struct XAssetListContext
 		{
@@ -82,10 +82,10 @@ namespace CustomCommands
 				return;
 
 			const Structs::XAsset asset = { ctx->type, header };
-			const char* assetName = Symbols::SP::DB_GetXAssetName(&asset);
+			const char* assetName = Symbols::Singleplayer::DB_GetXAssetName(&asset);
 			ctx->totalAssets++;
 
-			Symbols::SP::Com_Printf(0, "%s\n", assetName);
+			Symbols::Singleplayer::Com_Printf(0, "%s\n", assetName);
 		}
 
 		void Cmd_ListAssetPool_f()
@@ -94,11 +94,11 @@ namespace CustomCommands
 
 			if (Args.Size() < 2)
 			{
-				Symbols::SP::Com_Printf(0, "listassetpool <poolnumber>: lists all the assets in the specified pool\n");
+				Symbols::Singleplayer::Com_Printf(0, "listassetpool <poolnumber>: lists all the assets in the specified pool\n");
 
 				for (int i = 0; i < Structs::ASSET_TYPE_COUNT; i++)
 				{
-					Symbols::SP::Com_Printf(0, "%d %s\n", i, Symbols::SP::DB_GetXAssetTypeName(i));
+					Symbols::Singleplayer::Com_Printf(0, "%d %s\n", i, Symbols::Singleplayer::DB_GetXAssetTypeName(i));
 				}
 				return;
 			}
@@ -106,20 +106,20 @@ namespace CustomCommands
 			const int typeInt = atoi(Args.Get(1));
 			if (typeInt < 0 || typeInt >= Structs::ASSET_TYPE_COUNT)
 			{
-				Symbols::SP::Com_Printf(0, "Invalid pool, must be between [%d, %d]\n", 0, Structs::ASSET_TYPE_COUNT - 1);
+				Symbols::Singleplayer::Com_Printf(0, "Invalid pool, must be between [%d, %d]\n", 0, Structs::ASSET_TYPE_COUNT - 1);
 				return;
 			}
 
 			const Structs::XAssetType type = static_cast<Structs::XAssetType>(typeInt);
-			Symbols::SP::Com_Printf(16, "Listing assets in %s pool.\n", Symbols::SP::DB_GetXAssetTypeName(type));
+			Symbols::Singleplayer::Com_Printf(16, "Listing assets in %s pool.\n", Symbols::Singleplayer::DB_GetXAssetTypeName(type));
 
 			XAssetListContext ctx;
 			ctx.type = type;
 			ctx.totalAssets = 0;
 
-			Symbols::SP::DB_EnumXAssets_Internal(type, &XAssetList_f, &ctx, true);
+			Symbols::Singleplayer::DB_EnumXAssets_Internal(type, &XAssetList_f, &ctx, true);
 
-			Symbols::SP::Com_Printf(0, "Total of %d assets in %s pool, size %d\n", ctx.totalAssets, Symbols::SP::DB_GetXAssetTypeName(type), Symbols::SP::DB_GetXAssetTypeSize(type));
+			Symbols::Singleplayer::Com_Printf(0, "Total of %d assets in %s pool, size %d\n", ctx.totalAssets, Symbols::Singleplayer::DB_GetXAssetTypeName(type), Symbols::Singleplayer::DB_GetXAssetTypeSize(type));
 		}
 
 		void Load()

@@ -3,7 +3,7 @@
 namespace Intro
 {
 #ifdef IS_MULTIPLAYER
-	namespace MP
+	namespace Multiplayer
 	{
 		Util::Hook::Detour SV_InitServerThread_Hook;
 		void SV_InitServerThread()
@@ -17,11 +17,11 @@ namespace Intro
 			if (Config::ShouldShowIntroMovie())
 				return;
 
-			const auto introAlreadyPlayed = Symbols::MP::Dvar_FindVar("intro");
+			const auto introAlreadyPlayed = Symbols::Multiplayer::Dvar_FindVar("intro");
 			if (!introAlreadyPlayed->current.enabled)
 				return;
 
-			Symbols::MP::Cbuf_AddText(0, "autocinematic title\n");
+			Symbols::Multiplayer::Cbuf_AddText(0, "autocinematic title\n");
 		}
 
 		void Hooks()
@@ -46,7 +46,7 @@ namespace Intro
 		}
 	}
 #elif IS_SINGLEPLAYER
-	namespace SP
+	namespace Singleplayer
 	{
 		Util::Hook::Detour COM_PlayIntroMovies_Hook;
 		void COM_PlayIntroMovies()
@@ -54,11 +54,11 @@ namespace Intro
 			if (Config::ShouldShowIntroMovie())
 				return;
 
-			const auto introAlreadyPlayed = Symbols::SP::Dvar_FindVar("intro");
+			const auto introAlreadyPlayed = Symbols::Singleplayer::Dvar_FindVar("intro");
 			if (!introAlreadyPlayed->current.enabled)
 				return;
 
-			Symbols::SP::Cbuf_AddText(0, "autocinematic title\n");
+			Symbols::Singleplayer::Cbuf_AddText(0, "autocinematic title\n");
 		}
 
 		void Hooks()

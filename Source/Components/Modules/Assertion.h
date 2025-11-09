@@ -3,13 +3,13 @@
 namespace Assertion
 {
 #ifdef IS_MULTIPLAYER
-	namespace MP
+	namespace Multiplayer
 	{
 		void Load();
 		void Unload();
 	}
 #elif IS_SINGLEPLAYER
-	namespace SP
+	namespace Singleplayer
 	{
 		void Load();
 		void Unload();

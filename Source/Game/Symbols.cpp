@@ -1,7 +1,7 @@
 namespace Symbols
 {
 #ifdef IS_MULTIPLAYER
-	namespace MP
+	namespace Multiplayer
 	{
 		Cmd_AddCommand_t Cmd_AddCommand = Cmd_AddCommand_t(0x82437980);
 		Cbuf_AddText_t Cbuf_AddText = Cbuf_AddText_t(0x82436918);
@@ -36,7 +36,7 @@ namespace Symbols
 		Structs::ScreenPlacement* scrPlaceFullUnsafe = (Structs::ScreenPlacement*)0x82B8DDA8;
 	}
 #elif IS_SINGLEPLAYER
-	namespace SP
+	namespace Singleplayer
 	{
 		Cmd_AddCommand_t Cmd_AddCommand = Cmd_AddCommand_t(0x824221C8);
 		Cbuf_AddText_t Cbuf_AddText = Cbuf_AddText_t(0x82421160);

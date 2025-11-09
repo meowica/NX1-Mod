@@ -1,7 +1,7 @@
 namespace Network
 {
 #ifdef IS_MULTIPLAYER
-	namespace MP
+	namespace Multiplayer
 	{
 		Util::Hook::Detour SanityCheckSession_Hook;
 		void SanityCheckSession(const char** unknown)
@@ -44,7 +44,7 @@ namespace Network
 		}
 	}
 #elif IS_SINGLEPLAYER
-	namespace SP
+	namespace Singleplayer
 	{
 		Util::Hook::Detour SanityCheckSession_Hook;
 		void SanityCheckSession(const char** unknown)
