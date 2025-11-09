@@ -1,6 +1,6 @@
 namespace Network
 {
-#ifdef MP_MOD	
+#ifdef IS_MULTIPLAYER
 	namespace MP
 	{
 		Util::Hook::Detour SanityCheckSession_Hook;
@@ -43,7 +43,7 @@ namespace Network
 			ClearHooks();
 		}
 	}
-#elif SP_MOD
+#elif IS_SINGLEPLAYER
 	namespace SP
 	{
 		Util::Hook::Detour SanityCheckSession_Hook;

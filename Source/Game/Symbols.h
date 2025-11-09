@@ -2,7 +2,7 @@
 
 namespace Symbols
 {
-#ifdef MP_MOD
+#ifdef IS_MULTIPLAYER
 	namespace MP
 	{
 		typedef void (*Cmd_AddCommand_t)(const char* cmdName, void (__cdecl* function)(),
@@ -68,7 +68,7 @@ namespace Symbols
 
 		extern Structs::ScreenPlacement* scrPlaceFullUnsafe;
 	}
-#elif SP_MOD
+#elif IS_SINGLEPLAYER
 	namespace SP
 	{
 		typedef void (*Cmd_AddCommand_t)(const char* cmdName, void (__cdecl* function)(),

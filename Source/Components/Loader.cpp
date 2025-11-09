@@ -62,7 +62,7 @@ namespace Loader
 		REGISTER_MODULE(Intro);
 		REGISTER_MODULE(Maps);
 		REGISTER_MODULE(Network);
-	#ifdef SP_MOD
+	#ifdef IS_SINGLEPLAYER
 		REGISTER_MODULE(GameLog);
 	#endif
 	}

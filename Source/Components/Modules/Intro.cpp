@@ -2,7 +2,7 @@
 
 namespace Intro
 {
-#ifdef MP_MOD
+#ifdef IS_MULTIPLAYER
 	namespace MP
 	{
 		Util::Hook::Detour SV_InitServerThread_Hook;
@@ -45,7 +45,7 @@ namespace Intro
 			ClearHooks();
 		}
 	}
-#elif SP_MOD
+#elif IS_SINGLEPLAYER
 	namespace SP
 	{
 		Util::Hook::Detour COM_PlayIntroMovies_Hook;

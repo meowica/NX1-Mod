@@ -1,6 +1,6 @@
 namespace Maps
 {
-#ifdef MP_MOD	
+#ifdef IS_MULTIPLAYER
 	namespace MP
 	{
 		Util::Hook::Detour Com_GetBspFilename_Hook;
@@ -40,7 +40,7 @@ namespace Maps
 			ClearHooks();
 		}
 	}
-#elif SP_MOD
+#elif IS_SINGLEPLAYER
 	namespace SP
 	{
 		Util::Hook::Detour Com_GetBspFilename_Hook;

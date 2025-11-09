@@ -14,7 +14,7 @@
 #include "Modules\Intro.h"
 #include "Modules\Maps.h"
 #include "Modules\Network.h"
-#ifdef SP_MOD
+#ifdef IS_SINGLEPLAYER
 #include "Modules\GameLog.h"
 #endif
 
@@ -38,9 +38,9 @@ namespace Loader
 	void RegisterModules();
 }
 
-#ifdef MP_MOD
+#ifdef IS_MULTIPLAYER
 	#define MODULE_NAME(name) name::MP
-#elif SP_MOD
+#elif IS_SINGLEPLAYER
 	#define MODULE_NAME(name) name::SP
 #endif
 

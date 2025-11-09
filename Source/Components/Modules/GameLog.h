@@ -2,7 +2,7 @@
 
 namespace GameLog
 {
-#ifdef SP_MOD
+#ifdef IS_SINGLEPLAYER
 	namespace SP
 	{
 		void Load();

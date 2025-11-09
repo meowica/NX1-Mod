@@ -3,7 +3,7 @@
 
 namespace Drawing
 {
-#ifdef MP_MOD	
+#ifdef IS_MULTIPLAYER
 	namespace MP
 	{
 		Structs::Font_s** Font;
@@ -93,7 +93,7 @@ namespace Drawing
 			ClearHooks();
 		}
 	}
-#elif SP_MOD
+#elif IS_SINGLEPLAYER
 	namespace SP
 	{
 		Structs::Font_s** Font;

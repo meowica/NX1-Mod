@@ -1,6 +1,6 @@
 namespace Patches
 {
-#ifdef MP_MOD
+#ifdef IS_MULTIPLAYER
 	namespace MP
 	{
 		Util::Hook::Detour SetupGfxConfig_Hook;
@@ -176,7 +176,7 @@ namespace Patches
 			ClearHooks();
 		}
 	}
-#elif SP_MOD
+#elif IS_SINGLEPLAYER
 	namespace SP
 	{
 		Util::Hook::Detour R_ConfigureRenderer_Hook;

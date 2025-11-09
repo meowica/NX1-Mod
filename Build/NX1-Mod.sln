@@ -1,15 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MP-Mod", "Projects\MP-Mod.vcxproj", "{590B22B0-B65E-4E94-8035-693C29BAD0D2}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SP-Mod", "Projects\SP-Mod.vcxproj", "{97114FA4-AB73-444A-AB82-6066E25C1E1D}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependencies", "Dependencies", "{70A4B4D0-7150-4D5A-8051-2E0156B33F46}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "xkelib", "Dependencies\xkelib.vcxproj", "{83FEF217-22EE-4768-80BF-9F48D5B4564C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NX1-Mod", "NX1-Mod", "{0E036C5C-AA41-4AC0-BAFE-F94455E59CCD}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Multiplayer", "Projects\Multiplayer.vcxproj", "{590B22B0-B65E-4E94-8035-693C29BAD0D2}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Singleplayer", "Projects\Singleplayer.vcxproj", "{97114FA4-AB73-444A-AB82-6066E25C1E1D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,6 +17,12 @@ Global
 		Release|Xbox 360 = Release|Xbox 360
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{83FEF217-22EE-4768-80BF-9F48D5B4564C}.Debug|Xbox 360.ActiveCfg = Debug|Xbox 360
+		{83FEF217-22EE-4768-80BF-9F48D5B4564C}.Debug|Xbox 360.Build.0 = Debug|Xbox 360
+		{83FEF217-22EE-4768-80BF-9F48D5B4564C}.Debug|Xbox 360.Deploy.0 = Debug|Xbox 360
+		{83FEF217-22EE-4768-80BF-9F48D5B4564C}.Release|Xbox 360.ActiveCfg = Release|Xbox 360
+		{83FEF217-22EE-4768-80BF-9F48D5B4564C}.Release|Xbox 360.Build.0 = Release|Xbox 360
+		{83FEF217-22EE-4768-80BF-9F48D5B4564C}.Release|Xbox 360.Deploy.0 = Release|Xbox 360
 		{590B22B0-B65E-4E94-8035-693C29BAD0D2}.Debug|Xbox 360.ActiveCfg = Debug|Xbox 360
 		{590B22B0-B65E-4E94-8035-693C29BAD0D2}.Debug|Xbox 360.Build.0 = Debug|Xbox 360
 		{590B22B0-B65E-4E94-8035-693C29BAD0D2}.Debug|Xbox 360.Deploy.0 = Debug|Xbox 360
@@ -29,12 +35,6 @@ Global
 		{97114FA4-AB73-444A-AB82-6066E25C1E1D}.Release|Xbox 360.ActiveCfg = Release|Xbox 360
 		{97114FA4-AB73-444A-AB82-6066E25C1E1D}.Release|Xbox 360.Build.0 = Release|Xbox 360
 		{97114FA4-AB73-444A-AB82-6066E25C1E1D}.Release|Xbox 360.Deploy.0 = Release|Xbox 360
-		{83FEF217-22EE-4768-80BF-9F48D5B4564C}.Debug|Xbox 360.ActiveCfg = Debug|Xbox 360
-		{83FEF217-22EE-4768-80BF-9F48D5B4564C}.Debug|Xbox 360.Build.0 = Debug|Xbox 360
-		{83FEF217-22EE-4768-80BF-9F48D5B4564C}.Debug|Xbox 360.Deploy.0 = Debug|Xbox 360
-		{83FEF217-22EE-4768-80BF-9F48D5B4564C}.Release|Xbox 360.ActiveCfg = Release|Xbox 360
-		{83FEF217-22EE-4768-80BF-9F48D5B4564C}.Release|Xbox 360.Build.0 = Release|Xbox 360
-		{83FEF217-22EE-4768-80BF-9F48D5B4564C}.Release|Xbox 360.Deploy.0 = Release|Xbox 360
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

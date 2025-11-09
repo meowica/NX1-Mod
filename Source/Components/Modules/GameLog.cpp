@@ -1,6 +1,6 @@
 namespace GameLog
 {
-#ifdef SP_MOD
+#ifdef IS_SINGLEPLAYER
 	namespace SP
 	{
 		Util::Hook::Detour Vehicle_ClearServerDefs_Hook;

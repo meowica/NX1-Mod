@@ -7,13 +7,13 @@ namespace Config
 	bool ShouldShowWatermark();
 	bool ShouldShowFPSCounter();
 
-#ifdef MP_MOD
+#ifdef IS_MULTIPLAYER
 	namespace MP
 	{
 		void Load();
 		void Unload();
 	}
-#elif SP_MOD
+#elif IS_SINGLEPLAYER
 	namespace SP
 	{
 		void Load();

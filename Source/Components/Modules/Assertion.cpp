@@ -1,6 +1,6 @@
 namespace Assertion
 {
-#ifdef MP_MOD	
+#ifdef IS_MULTIPLAYER
 	namespace MP
 	{
 		Util::Hook::Detour MAssertVargs_Hook;
@@ -75,7 +75,7 @@ namespace Assertion
 			ClearHooks();
 		}
 	}
-#elif SP_MOD
+#elif IS_SINGLEPLAYER
 	namespace SP
 	{
 		Util::Hook::Detour MAssertVargs_Hook;

@@ -1,6 +1,6 @@
 ﻿namespace InternalConsole
 {
-#ifdef MP_MOD
+#ifdef IS_MULTIPLAYER
 	namespace MP
 	{
 		Util::Hook::Detour Con_DrawConsole_Hook;
@@ -43,7 +43,7 @@
 			ClearHooks();
 		}
 	}
-#elif SP_MOD
+#elif IS_SINGLEPLAYER
 	namespace SP
 	{
 		Util::Hook::Detour Con_DrawConsole_Hook;

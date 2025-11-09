@@ -233,7 +233,7 @@ namespace Config
 		return ShowFPSCounter;
 	}
 
-#ifdef MP_MOD
+#ifdef IS_MULTIPLAYER
 	namespace MP
 	{
 		void Load()
@@ -246,7 +246,7 @@ namespace Config
 			// nothing
 		}
 	}
-#elif SP_MOD
+#elif IS_SINGLEPLAYER
 	namespace SP
 	{
 		void Load()

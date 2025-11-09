@@ -1,6 +1,6 @@
 namespace AssetHandler
 {
-#ifdef MP_MOD	
+#ifdef IS_MULTIPLAYER
 	namespace MP
 	{
 		void* ReallocateAssetPool(uint32_t type, unsigned int newSize)
@@ -35,7 +35,7 @@ namespace AssetHandler
 
 		}
 	}
-#elif SP_MOD
+#elif IS_SINGLEPLAYER
 	namespace SP
 	{
 		void Load()

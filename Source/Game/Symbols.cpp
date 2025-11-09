@@ -1,6 +1,6 @@
 namespace Symbols
 {
-#ifdef MP_MOD
+#ifdef IS_MULTIPLAYER
 	namespace MP
 	{
 		Cmd_AddCommand_t Cmd_AddCommand = Cmd_AddCommand_t(0x82437980);
@@ -35,7 +35,7 @@ namespace Symbols
 
 		Structs::ScreenPlacement* scrPlaceFullUnsafe = (Structs::ScreenPlacement*)0x82B8DDA8;
 	}
-#elif SP_MOD
+#elif IS_SINGLEPLAYER
 	namespace SP
 	{
 		Cmd_AddCommand_t Cmd_AddCommand = Cmd_AddCommand_t(0x824221C8);
