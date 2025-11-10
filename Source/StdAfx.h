@@ -1,6 +1,6 @@
 #pragma once
 
-#define NX1_TITLE_ID		0x4156089E
+#define TITLE_ID			0x4156089E // nx1
 
 #define BASE_FOLDER			"NX1-Mod"
 

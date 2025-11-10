@@ -1,56 +1,55 @@
-bool isUnloading = false;
-
-void StartupThread()
+namespace
 {
-	// TODO: add memory address validation
-	while (Util::XBox::XGetCurrentTitleId() != NX1_TITLE_ID)
+	volatile bool isUnloading = false;
+
+	void StartupThread()
 	{
-		// 50 is fine for Xenia, mirror what Heaventh did for Xbox 360
-		if (Util::XBox::IsInXenia())
+		while (Util::XBox::XGetCurrentTitleId() != TITLE_ID)
 		{
-			Sleep(50); // avoid CPU load
+			// Xenia likely doesn't need this
+			// Let's do 50 for it
+			// But for Xbox 360, let's do 75 just like how Heaventh does it
+			Sleep((Util::XBox::IsInXenia()) ? 50 : 75); // Avoid CPU load
 		}
-		else
+
+		// This 'breaks' the plugin more then it helps it
+		// On Xenia atleast, it prevented a ton of things in this plugin from being registered
+		// I have no idea if it's fine on Xbox 360, but let's only keep it on that platform for now
+		if (!Util::XBox::IsInXenia())
 		{
-			Sleep(75); // avoid CPU load
+			Sleep(200); // Sleep a tiny bit
 		}
+
+		// Register our modules now
+		Loader::RegisterModules();
+		Loader::LoadAllModules();
 	}
 
-	// Xenia does not need this
-	// From my testing, this only hinders the plugin, making it inject slower which means we miss out on things
-	if (!Util::XBox::IsInXenia())
+	VOID OnAttachProcess()
 	{
-		Sleep(200); // sleep a tiny bit
-	}
-
-	Loader::RegisterModules();
-	Loader::LoadAllModules();
-}
-
-VOID OnAttachProcess()
-{
-	HANDLE threadHandle;
-	DWORD threadID;
+		HANDLE threadHandle;
+		DWORD threadID;
 	
-	ExCreateThread(&threadHandle, NULL, &threadID, XapiThreadStartup, LPTHREAD_START_ROUTINE(StartupThread), NULL, 0x2 | CREATE_SUSPENDED);
-	if (threadHandle != INVALID_HANDLE_VALUE)
-	{
-		XSetThreadProcessor(threadHandle, 4);
-		ResumeThread(threadHandle);
+		ExCreateThread(&threadHandle, NULL, &threadID, XapiThreadStartup, LPTHREAD_START_ROUTINE(StartupThread), NULL, 0x2 | CREATE_SUSPENDED);
+		if (threadHandle != INVALID_HANDLE_VALUE)
+		{
+			XSetThreadProcessor(threadHandle, 4);
+			ResumeThread(threadHandle);
+		}
 	}
-}
 
-VOID OnDetachProcess()
-{
-	// Xenia doesn't need this, besides this will NEVER execute in Xenia
-	// but if it does, don't run it
-	if (!Util::XBox::IsInXenia())
+	VOID OnDetachProcess()
 	{
+		// Xenia doesn't need this, besides this will NEVER execute in Xenia
+		// but if it does somehow, don't run it
+		if (Util::XBox::IsInXenia())
+			return;
+
 		isUnloading = true;
 
-		if (Util::XBox::XGetCurrentTitleId() == NX1_TITLE_ID)
+		if (Util::XBox::XGetCurrentTitleId() == TITLE_ID)
 		{
-			Loader::UnloadAllModules(); // keys: does this even do anything??
+			Loader::UnloadAllModules();
 		}
 
 		Sleep(200);
@@ -63,8 +62,10 @@ BOOL WINAPI DllMain(HANDLE hInst, DWORD dwReason, LPVOID lpReserved)
 	{
 	case DLL_PROCESS_ATTACH:
 		OnAttachProcess();
+		break;
 	case DLL_PROCESS_DETACH:
 		OnDetachProcess();
+		break;
 	}
 	return TRUE;
 }
