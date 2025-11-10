@@ -128,6 +128,7 @@ namespace Patches
 			Util::Hook::Set<const char*>(0x8202F740, "Build 1866586"); // shorten that string! 
 			Util::Hook::Set<const char*>(0x8207FDB4, ""); // timestamp in console log
 			Util::Hook::Set<const char*>(0x820A0EC0, "NX1-Host"); // default host name
+			Util::Hook::Set<const char*>(0x8207FAAC, "mod");
 		}
 
 		void DVarEdits()
