@@ -1,3 +1,7 @@
+#ifndef IS_SINGLEPLAYER
+#error This file is for Singeplayer only!!
+#endif
+
 namespace GameLog
 {
 #ifdef IS_SINGLEPLAYER
