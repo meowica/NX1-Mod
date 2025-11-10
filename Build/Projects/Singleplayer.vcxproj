@@ -139,6 +139,7 @@
     <ClCompile Include="..\..\Source\Components\Modules\GameLog.cpp" />
     <ClCompile Include="..\..\Source\Components\Modules\InternalConsole.cpp" />
     <ClCompile Include="..\..\Source\Components\Modules\Intro.cpp" />
+    <ClCompile Include="..\..\Source\Components\Modules\Log.cpp" />
     <ClCompile Include="..\..\Source\Components\Modules\Maps.cpp" />
     <ClCompile Include="..\..\Source\Components\Modules\Network.cpp" />
     <ClCompile Include="..\..\Source\Components\Modules\Patches.cpp" />
@@ -161,6 +162,7 @@
     <ClInclude Include="..\..\Source\Components\Modules\GameLog.h" />
     <ClInclude Include="..\..\Source\Components\Modules\InternalConsole.h" />
     <ClInclude Include="..\..\Source\Components\Modules\Intro.h" />
+    <ClInclude Include="..\..\Source\Components\Modules\Log.h" />
     <ClInclude Include="..\..\Source\Components\Modules\Maps.h" />
     <ClInclude Include="..\..\Source\Components\Modules\Network.h" />
     <ClInclude Include="..\..\Source\Components\Modules\Patches.h" />

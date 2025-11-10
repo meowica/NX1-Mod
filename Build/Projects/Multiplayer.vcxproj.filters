@@ -53,6 +53,9 @@
       <Filter>Components\Modules</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\DllMain.cpp" />
+    <ClCompile Include="..\..\Source\Components\Modules\Log.cpp">
+      <Filter>Components\Modules</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\Game\Symbols.h">
@@ -110,6 +113,9 @@
       <Filter>Components\Modules</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\StdAfx.h" />
+    <ClInclude Include="..\..\Source\Components\Modules\Log.h">
+      <Filter>Components\Modules</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Game">

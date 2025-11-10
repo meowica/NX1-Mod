@@ -12,6 +12,7 @@
 #include "Modules\Drawing.h"
 #include "Modules\InternalConsole.h"
 #include "Modules\Intro.h"
+#include "Modules\Log.h"
 #include "Modules\Maps.h"
 #include "Modules\Network.h"
 #ifdef IS_SINGLEPLAYER
