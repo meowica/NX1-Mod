@@ -69,4 +69,5 @@
   - Weapon: 2400
   - String Table: 800
   - Impact FX: 8
+- mod.ff support, drop a mod.ff into your game files, and the client will auto-load it (MP)
 
