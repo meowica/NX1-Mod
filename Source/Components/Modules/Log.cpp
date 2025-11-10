@@ -21,6 +21,23 @@ namespace Log
 			Symbols::Multiplayer::Com_Printf(Structs::CON_CHANNEL_CLIENT, "----- Initializing Renderer ----\n");
 		}
 
+		// Borrowed from Rattpak S2MP-Mod: https://github.com/Rattpak/S2MP-Mod/blob/71ebb9646b7fcbbd90292b5dd87599390f9b2742/src/PrintPatches.cpp#L61
+		Util::Hook::Detour CM_LoadMap_Hook;
+		void CM_LoadMap(const char* name, int* checksum)
+		{
+			if (name)
+			{
+				Symbols::Multiplayer::Com_Printf(0, "Loading Map: %s\n", name);
+			}
+			else
+			{
+				Symbols::Multiplayer::Com_Printf(0, "Invalid name passed into CM_LoadMap\n");
+			}
+
+			auto Invoke = CM_LoadMap_Hook.Invoke<void(*)(const char*, int*)>();
+			Invoke(name, checksum);
+		}
+
 		Util::Hook::Detour printf_Hook;
 		Util::Hook::Detour _printf_Hook;
 		void _printf(const char* fmt, ...)
@@ -39,6 +56,8 @@ namespace Log
 		{
 			// print all our loaded modules
 			SetupGfxConfig_Hook.Create(0x822AFB20, SetupGfxConfig);
+
+			CM_LoadMap_Hook.Create(0x82425428, CM_LoadMap);
 
 			// detour printf output to Com_Printf instead
 			printf_Hook.Create(printf, _printf);
