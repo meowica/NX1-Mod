@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="..\..\Source\Main.cpp" />
     <ClCompile Include="..\..\Source\Util\Command.cpp">
       <Filter>Util</Filter>
     </ClCompile>
@@ -59,6 +58,7 @@
     <ClCompile Include="..\..\Source\Components\Modules\AssetHandler.cpp">
       <Filter>Components\Modules</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\DllMain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\Util\Command.h">
