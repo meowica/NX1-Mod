@@ -14,11 +14,8 @@ namespace IntroMovie
 			// Why hook here? I hooked here because COM_PlayIntroMovies is inlined and because this is the closest function to it
 			// Hooking directly into Com_Init_TBF works fine, but this is more accurate at the intro movie placement
 
-			if (Config::ShouldShowIntroMovie())
-				return;
-
-			const auto introAlreadyPlayed = Symbols::Multiplayer::Dvar_FindVar("intro");
-			if (!introAlreadyPlayed->current.enabled)
+			const auto playIntro = Symbols::Multiplayer::Dvar_FindVar("intro");
+			if (!Config::ShouldShowIntroMovie() || !playIntro->current.enabled)
 				return;
 
 			Symbols::Multiplayer::Cbuf_AddText(0, "autocinematic title\n");
@@ -51,11 +48,8 @@ namespace IntroMovie
 		Util::Hook::Detour COM_PlayIntroMovies_Hook;
 		void COM_PlayIntroMovies()
 		{
-			if (Config::ShouldShowIntroMovie())
-				return;
-
-			const auto introAlreadyPlayed = Symbols::Singleplayer::Dvar_FindVar("intro");
-			if (!introAlreadyPlayed->current.enabled)
+			const auto playIntro = Symbols::Singleplayer::Dvar_FindVar("intro");
+			if (!Config::ShouldShowIntroMovie() || !playIntro->current.enabled)
 				return;
 
 			Symbols::Singleplayer::Cbuf_AddText(0, "autocinematic title\n");

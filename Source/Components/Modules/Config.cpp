@@ -106,7 +106,7 @@ namespace Config
 	// =============================
 
 	// Intro
-	static bool SkipIntroMovie = false;
+	static bool ShowIntroMovie = true;
 
 	// Drawing
 	static bool ShowWatermark = true;
@@ -203,9 +203,9 @@ namespace Config
 			IniHelper::SanitizeIniValue(key);
 			IniHelper::SanitizeIniValue(value);
 
-			if (key == "SkipIntroMovie")
+			if (key == "ShowIntroMovie")
 			{
-				SkipIntroMovie = (value == "true" || value == "1");
+				ShowIntroMovie = (value == "true" || value == "1");
 			}
 			else if (key == "ShowWatermark")
 			{
@@ -220,7 +220,7 @@ namespace Config
 
 	bool ShouldShowIntroMovie()
 	{
-		return SkipIntroMovie;
+		return ShowIntroMovie;
 	}
 
 	bool ShouldShowWatermark()
