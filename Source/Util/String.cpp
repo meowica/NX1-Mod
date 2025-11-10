@@ -2,7 +2,7 @@ namespace Util
 {
 	namespace String
 	{
-		const char* Va(const char* fmt, ...)
+		const char* VA(const char* fmt, ...)
 		{
 			static char buf[32000];
 

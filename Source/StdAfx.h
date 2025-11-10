@@ -4,6 +4,14 @@
 
 #define BASE_FOLDER			"NX1-Mod"
 
+#ifdef IS_MULTIPLAYER
+	#define BRANDING_STR		"NX1-Mod MP"
+#elif IS_SINGLEPLAYER
+	#define BRANDING_STR		"NX1-Mod SP"
+#else
+	#define BRANDING_STR		"NX1-Mod"
+#endif
+
 #define NOMINMAX
 #define MAX_CHARS			std::numeric_limits<int>::max()
 

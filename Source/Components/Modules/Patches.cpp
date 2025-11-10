@@ -52,7 +52,7 @@ namespace Patches
 		Util::Hook::Detour getBuildNumber_Hook;
 		const char* getBuildNumber()
 		{
-			return Util::String::Va("NX1-Mod MP");
+			return Util::String::VA(BRANDING_STR);
 		}
 
 		Util::Hook::Detour Sys_GetThreadName_Hook;
@@ -228,7 +228,7 @@ namespace Patches
 		Util::Hook::Detour getBuildNumber_Hook;
 		const char* getBuildNumber()
 		{
-			return Util::String::Va("NX1-Mod SP");
+			return Util::String::VA(BRANDING_STR);
 		}
 
 		Util::Hook::Detour Sys_GetThreadName_Hook;

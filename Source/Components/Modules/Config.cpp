@@ -114,7 +114,7 @@ namespace Config
 
 	static void ReadConfig()
 	{
-		const char* g_configPath = Util::String::Va("game:\\" BASE_FOLDER "\\NX1-Mod.ini");
+		const char* g_configPath = Util::String::VA("game:\\" BASE_FOLDER "\\NX1-Mod.ini");
 
 		HANDLE hFile = CreateFileA(g_configPath, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 		if (hFile == INVALID_HANDLE_VALUE)

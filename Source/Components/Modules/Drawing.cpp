@@ -15,7 +15,7 @@ namespace Drawing
 
 			float colour[4] = { 1.0f, 1.0f, 1.0f, 0.25f };
 
-			Symbols::Multiplayer::R_AddCmdDrawText("NX1-Mod MP", MAX_CHARS, *fwSmallFont, 2.0f, 20.0f, 0.8f, 0.8f, 0.0f, colour, 3, Structs::SL_SYSTEM);
+			Symbols::Multiplayer::R_AddCmdDrawText(BRANDING_STR, MAX_CHARS, *fwSmallFont, 2.0f, 20.0f, 0.8f, 0.8f, 0.0f, colour, 3, Structs::SL_SYSTEM);
 		}
 
 		Util::FPS g_fps;
@@ -93,7 +93,7 @@ namespace Drawing
 
 			float colour[4] = { 1.0f, 1.0f, 1.0f, 0.25f };
 
-			Symbols::Singleplayer::R_AddCmdDrawText("NX1-Mod SP", MAX_CHARS, *fwSmallFont, 2.0f, 20.0f, 0.8f, 0.8f, 0.0f, colour, 3, Structs::SL_SYSTEM);
+			Symbols::Singleplayer::R_AddCmdDrawText(BRANDING_STR, MAX_CHARS, *fwSmallFont, 2.0f, 20.0f, 0.8f, 0.8f, 0.0f, colour, 3, Structs::SL_SYSTEM);
 		}
 
 		Util::FPS g_fps;
