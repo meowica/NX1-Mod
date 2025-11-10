@@ -34,10 +34,7 @@
 ## How to use (Xbox 360)
 - Uhhh...
 
-## Changelist
-- You can disable any of these changes (soon) within the NX1-Mod.ini
-
-#### Changes
+## Changes
 - Removed Black Box (SP/MP)
 - Removed Anti Cheat (SP/MP)
 - Unlocked FPS (SP/MP)
