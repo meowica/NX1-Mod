@@ -3,11 +3,11 @@
 
 namespace Drawing
 {
+	Structs::Font_s** fwSmallFont;
+
 #ifdef IS_MULTIPLAYER
 	namespace Multiplayer
 	{
-		Structs::Font_s** fwSmallFont;
-
 		void DrawWatermark()
 		{
 			if (!Config::ShouldShowWatermark() || !*fwSmallFont || Symbols::Multiplayer::Con_IsActive(0) || Symbols::Multiplayer::DevGui_IsActive())
@@ -86,8 +86,6 @@ namespace Drawing
 #elif IS_SINGLEPLAYER
 	namespace Singleplayer
 	{
-		Structs::Font_s** fwSmallFont;
-
 		void DrawWatermark()
 		{
 			if (!Config::ShouldShowWatermark() || !*fwSmallFont || Symbols::Singleplayer::Con_IsActive(0) || Symbols::Singleplayer::DevGui_IsActive())
