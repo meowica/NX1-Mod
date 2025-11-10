@@ -6,6 +6,7 @@ namespace Patches
 		Util::Hook::Detour SetupGfxConfig_Hook;
 		void SetupGfxConfig(Structs::GfxConfiguration* config)
 		{
+			Symbols::Multiplayer::Com_Printf(Structs::CON_CHANNEL_SYSTEM, "");
 			Symbols::Multiplayer::Com_Printf(Structs::CON_CHANNEL_SYSTEM, "----- Initializing Modules ----\n");
 
 			auto Invoke = SetupGfxConfig_Hook.Invoke<void(*)(Structs::GfxConfiguration*)>();
@@ -183,6 +184,7 @@ namespace Patches
 		Util::Hook::Detour R_ConfigureRenderer_Hook;
 		void R_ConfigureRenderer(Structs::GfxConfiguration* config)
 		{
+			Symbols::Singleplayer::Com_Printf(Structs::CON_CHANNEL_SYSTEM, "");
 			Symbols::Singleplayer::Com_Printf(Structs::CON_CHANNEL_SYSTEM, "----- Initializing Modules ----\n");
 
 			auto Invoke = R_ConfigureRenderer_Hook.Invoke<void(*)(Structs::GfxConfiguration*)>();
