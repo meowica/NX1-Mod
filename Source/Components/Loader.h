@@ -15,7 +15,7 @@
 #include "Modules\Maps.h"
 #include "Modules\Network.h"
 #ifdef IS_SINGLEPLAYER
-#include "Modules\GameLog.h"
+	#include "Modules\GameLog.h"
 #endif
 
 namespace Loader

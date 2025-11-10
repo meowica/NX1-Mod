@@ -15,6 +15,8 @@ namespace AssetHandler
 
 		void Load()
 		{
+			// IW4x limits
+
 			ReallocateAssetPool(Structs::ASSET_TYPE_GAMEWORLD_SP, 1);
 			// ReallocateAssetPool(Structs::ASSET_TYPE_IMAGE, 7168); // Causes the game to crash somewhere else, if the default limit is exceeded
 			ReallocateAssetPool(Structs::ASSET_TYPE_LOADED_SOUND, 5400);

@@ -6,33 +6,23 @@ namespace Drawing
 #ifdef IS_MULTIPLAYER
 	namespace Multiplayer
 	{
-		Structs::Font_s** Font;
+		Structs::Font_s** fwSmallFont;
 
 		void DrawWatermark()
 		{
-			if (!Config::ShouldShowWatermark())
-				return;
-			if (!*Font)
-				return;
-			if (Symbols::Multiplayer::Con_IsActive(0))
-				return;
-			if (Symbols::Multiplayer::DevGui_IsActive())
+			if (!Config::ShouldShowWatermark() || !*fwSmallFont || Symbols::Multiplayer::Con_IsActive(0) || Symbols::Multiplayer::DevGui_IsActive())
 				return;
 
 			float colour[4] = { 1.0f, 1.0f, 1.0f, 0.25f };
 
-			Symbols::Multiplayer::R_AddCmdDrawText("NX1-Mod MP", MAX_CHARS, *Font, 2.0f, 20.0f, 0.8f, 0.8f, 0.0f, colour, 3, Structs::SL_SYSTEM);
+			Symbols::Multiplayer::R_AddCmdDrawText("NX1-Mod MP", MAX_CHARS, *fwSmallFont, 2.0f, 20.0f, 0.8f, 0.8f, 0.0f, colour, 3, Structs::SL_SYSTEM);
 		}
 
 		Util::FPS g_fps;
 
 		void DrawFPS()
 		{
-			if (!Config::ShouldShowFPSCounter())
-				return;
-			if (!*Font)
-				return;
-			if (Symbols::Multiplayer::Con_IsActive(0))
+			if (!Config::ShouldShowFPSCounter() || !*fwSmallFont || Symbols::Multiplayer::Con_IsActive(0))
 				return;
 
 			g_fps.Update();
@@ -53,7 +43,7 @@ namespace Drawing
 
 			float x = (count <= 99) ? 1255.0f : 1245.0f;
 
-			Symbols::Multiplayer::R_AddCmdDrawText(text, MAX_CHARS, *Font, x, 20.0f, 1.0f, 1.0f, 0.0f, colour, 3, Structs::SL_SYSTEM);
+			Symbols::Multiplayer::R_AddCmdDrawText(text, MAX_CHARS, *fwSmallFont, x, 20.0f, 1.0f, 1.0f, 0.0f, colour, 3, Structs::SL_SYSTEM);
 		}
 
 		Util::Hook::Detour CL_DrawScreen_Hook;
@@ -68,7 +58,7 @@ namespace Drawing
 
 		void Hooks()
 		{
-			Font = reinterpret_cast<Structs::Font_s**>(0x85ECBACC); // fonts/fwsmallfont
+			fwSmallFont = reinterpret_cast<Structs::Font_s**>(0x85ECBACC); // fonts/fwsmallfont
 
 			// draw our watermark and fps counter
 			CL_DrawScreen_Hook.Create(0x822BD290, CL_DrawScreen);
@@ -96,33 +86,23 @@ namespace Drawing
 #elif IS_SINGLEPLAYER
 	namespace Singleplayer
 	{
-		Structs::Font_s** Font;
+		Structs::Font_s** fwSmallFont;
 
 		void DrawWatermark()
 		{
-			if (!Config::ShouldShowWatermark())
-				return;
-			if (!*Font)
-				return;
-			if (Symbols::Singleplayer::Con_IsActive(0))
-				return;
-			if (Symbols::Singleplayer::DevGui_IsActive())
+			if (!Config::ShouldShowWatermark() || !*fwSmallFont || Symbols::Singleplayer::Con_IsActive(0) || Symbols::Singleplayer::DevGui_IsActive())
 				return;
 
 			float colour[4] = { 1.0f, 1.0f, 1.0f, 0.25f };
 
-			Symbols::Singleplayer::R_AddCmdDrawText("NX1-Mod SP", MAX_CHARS, *Font, 2.0f, 20.0f, 0.8f, 0.8f, 0.0f, colour, 3, Structs::SL_SYSTEM);
+			Symbols::Singleplayer::R_AddCmdDrawText("NX1-Mod SP", MAX_CHARS, *fwSmallFont, 2.0f, 20.0f, 0.8f, 0.8f, 0.0f, colour, 3, Structs::SL_SYSTEM);
 		}
 
 		Util::FPS g_fps;
 
 		void DrawFPS()
 		{
-			if (!Config::ShouldShowFPSCounter())
-				return;
-			if (!*Font)
-				return;
-			if (Symbols::Singleplayer::Con_IsActive(0))
+			if (!Config::ShouldShowFPSCounter() || !*fwSmallFont || Symbols::Singleplayer::Con_IsActive(0))
 				return;
 
 			g_fps.Update();
@@ -143,7 +123,7 @@ namespace Drawing
 
 			float x = (count <= 99) ? 1255.0f : 1245.0f;
 
-			Symbols::Singleplayer::R_AddCmdDrawText(text, MAX_CHARS, *Font, x, 20.0f, 1.0f, 1.0f, 0.0f, colour, 3, Structs::SL_SYSTEM);
+			Symbols::Singleplayer::R_AddCmdDrawText(text, MAX_CHARS, *fwSmallFont, x, 20.0f, 1.0f, 1.0f, 0.0f, colour, 3, Structs::SL_SYSTEM);
 		}
 
 		Util::Hook::Detour CL_DrawScreen_Hook;
@@ -158,7 +138,7 @@ namespace Drawing
 
 		void Hooks()
 		{
-			Font = reinterpret_cast<Structs::Font_s**>(0x8423B21C); // fonts/fwsmallfont
+			fwSmallFont = reinterpret_cast<Structs::Font_s**>(0x8423B21C); // fonts/fwsmallfont
 
 			// draw our watermark and fps counter
 			CL_DrawScreen_Hook.Create(0x8221F858, CL_DrawScreen);
