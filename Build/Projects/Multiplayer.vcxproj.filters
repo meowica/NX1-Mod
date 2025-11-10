@@ -34,9 +34,6 @@
     <ClCompile Include="..\..\Source\Components\Modules\CustomCommands.cpp">
       <Filter>Components\Modules</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Components\Modules\Intro.cpp">
-      <Filter>Components\Modules</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\Components\Modules\Assertion.cpp">
       <Filter>Components\Modules</Filter>
     </ClCompile>
@@ -54,6 +51,9 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\DllMain.cpp" />
     <ClCompile Include="..\..\Source\Components\Modules\Log.cpp">
+      <Filter>Components\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Components\Modules\IntroMovie.cpp">
       <Filter>Components\Modules</Filter>
     </ClCompile>
   </ItemGroup>
@@ -94,9 +94,6 @@
     <ClInclude Include="..\..\Source\Components\Modules\CustomCommands.h">
       <Filter>Components\Modules</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Components\Modules\Intro.h">
-      <Filter>Components\Modules</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Source\Components\Modules\Assertion.h">
       <Filter>Components\Modules</Filter>
     </ClInclude>
@@ -114,6 +111,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\StdAfx.h" />
     <ClInclude Include="..\..\Source\Components\Modules\Log.h">
+      <Filter>Components\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Components\Modules\IntroMovie.h">
       <Filter>Components\Modules</Filter>
     </ClInclude>
   </ItemGroup>

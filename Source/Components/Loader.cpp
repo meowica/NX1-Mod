@@ -59,12 +59,9 @@ namespace Loader
 		REGISTER_MODULE(DevGui);
 		REGISTER_MODULE(Drawing);
 		REGISTER_MODULE(InternalConsole);
-		REGISTER_MODULE(Intro);
+		REGISTER_MODULE(IntroMovie);
 		REGISTER_MODULE(Log);
 		REGISTER_MODULE(Maps);
 		REGISTER_MODULE(Network);
-	#ifdef IS_SINGLEPLAYER
-		REGISTER_MODULE(GameLog);
-	#endif
 	}
 }

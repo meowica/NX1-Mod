@@ -1,6 +1,6 @@
 #pragma once
 
-namespace Intro
+namespace IntroMovie
 {
 #ifdef IS_MULTIPLAYER
 	namespace Multiplayer

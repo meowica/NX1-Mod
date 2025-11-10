@@ -11,13 +11,10 @@
 #include "Modules\DevGui.h"
 #include "Modules\Drawing.h"
 #include "Modules\InternalConsole.h"
-#include "Modules\Intro.h"
+#include "Modules\IntroMovie.h"
 #include "Modules\Log.h"
 #include "Modules\Maps.h"
 #include "Modules\Network.h"
-#ifdef IS_SINGLEPLAYER
-	#include "Modules\GameLog.h"
-#endif
 
 namespace Loader
 {

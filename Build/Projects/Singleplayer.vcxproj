@@ -136,9 +136,8 @@
     <ClCompile Include="..\..\Source\Components\Modules\CustomCommands.cpp" />
     <ClCompile Include="..\..\Source\Components\Modules\DevGui.cpp" />
     <ClCompile Include="..\..\Source\Components\Modules\Drawing.cpp" />
-    <ClCompile Include="..\..\Source\Components\Modules\GameLog.cpp" />
     <ClCompile Include="..\..\Source\Components\Modules\InternalConsole.cpp" />
-    <ClCompile Include="..\..\Source\Components\Modules\Intro.cpp" />
+    <ClCompile Include="..\..\Source\Components\Modules\IntroMovie.cpp" />
     <ClCompile Include="..\..\Source\Components\Modules\Log.cpp" />
     <ClCompile Include="..\..\Source\Components\Modules\Maps.cpp" />
     <ClCompile Include="..\..\Source\Components\Modules\Network.cpp" />
@@ -159,9 +158,8 @@
     <ClInclude Include="..\..\Source\Components\Modules\CustomCommands.h" />
     <ClInclude Include="..\..\Source\Components\Modules\DevGui.h" />
     <ClInclude Include="..\..\Source\Components\Modules\Drawing.h" />
-    <ClInclude Include="..\..\Source\Components\Modules\GameLog.h" />
     <ClInclude Include="..\..\Source\Components\Modules\InternalConsole.h" />
-    <ClInclude Include="..\..\Source\Components\Modules\Intro.h" />
+    <ClInclude Include="..\..\Source\Components\Modules\IntroMovie.h" />
     <ClInclude Include="..\..\Source\Components\Modules\Log.h" />
     <ClInclude Include="..\..\Source\Components\Modules\Maps.h" />
     <ClInclude Include="..\..\Source\Components\Modules\Network.h" />

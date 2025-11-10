@@ -97,6 +97,18 @@ namespace Log
 			Symbols::Singleplayer::Com_Printf(Structs::CON_CHANNEL_CLIENT, "----- Initializing Renderer ----\n");
 		}
 
+		Util::Hook::Detour Vehicle_ClearServerDefs_Hook;
+		void Vehicle_ClearServerDefs()
+		{
+			Symbols::Singleplayer::Com_Printf(15, "------- Game Initialization -------\n");
+			Symbols::Singleplayer::Com_Printf(15, "NX1-Mod\n");
+			Symbols::Singleplayer::Com_Printf(15, "Time: %s\n", Util::String::GetCurrentTime());
+			Symbols::Singleplayer::Com_Printf(15, "-----------------------------------\n");
+
+			auto Invoke = Vehicle_ClearServerDefs_Hook.Invoke<void(*)()>();
+			Invoke();
+		}
+
 		Util::Hook::Detour printf_Hook;
 		Util::Hook::Detour _printf_Hook;
 		void _printf(const char* fmt, ...)
@@ -115,6 +127,9 @@ namespace Log
 		{
 			// print all our loaded modules
 			R_ConfigureRenderer_Hook.Create(0x82704860, R_ConfigureRenderer);
+
+			// print game init + current time
+			Vehicle_ClearServerDefs_Hook.Create(0x8256F0F8, Vehicle_ClearServerDefs);
 
 			// detour printf output to Com_Printf instead
 			printf_Hook.Create(printf, _printf);
@@ -137,6 +152,7 @@ namespace Log
 		void ClearHooks()
 		{
 			R_ConfigureRenderer_Hook.Clear();
+			Vehicle_ClearServerDefs_Hook.Clear();
 			_printf_Hook.Clear();
 			printf_Hook.Clear();
 		}
