@@ -1,4 +1,4 @@
-#include "Config.h"
+#include "IniConfig.h"
 
 namespace IntroMovie
 {
@@ -15,7 +15,7 @@ namespace IntroMovie
 			// Hooking directly into Com_Init_TBF works fine, but this is more accurate at the intro movie placement
 
 			const auto playIntro = Symbols::Multiplayer::Dvar_FindVar("intro");
-			if (!Config::ShouldShowIntroMovie() || !playIntro->current.enabled)
+			if (!IniConfig::ShouldShowIntroMovie() || !playIntro->current.enabled)
 				return;
 
 			Symbols::Multiplayer::Cbuf_AddText(0, "autocinematic title\n");
@@ -49,7 +49,7 @@ namespace IntroMovie
 		void COM_PlayIntroMovies()
 		{
 			const auto playIntro = Symbols::Singleplayer::Dvar_FindVar("intro");
-			if (!Config::ShouldShowIntroMovie() || !playIntro->current.enabled)
+			if (!IniConfig::ShouldShowIntroMovie() || !playIntro->current.enabled)
 				return;
 
 			Symbols::Singleplayer::Cbuf_AddText(0, "autocinematic title\n");

@@ -1,5 +1,5 @@
 #include "../../Util/FPS.h"
-#include "Config.h"
+#include "IniConfig.h"
 
 namespace Drawing
 {
@@ -10,7 +10,7 @@ namespace Drawing
 	{
 		void DrawWatermark()
 		{
-			if (!Config::ShouldShowWatermark() || !*fwSmallFont || Symbols::Multiplayer::Con_IsActive(0) || Symbols::Multiplayer::DevGui_IsActive())
+			if (!IniConfig::ShouldShowWatermark() || !*fwSmallFont || Symbols::Multiplayer::Con_IsActive(0) || Symbols::Multiplayer::DevGui_IsActive())
 				return;
 
 			float colour[4] = { 1.0f, 1.0f, 1.0f, 0.25f };
@@ -22,7 +22,7 @@ namespace Drawing
 
 		void DrawFPS()
 		{
-			if (!Config::ShouldShowFPSCounter() || !*fwSmallFont || Symbols::Multiplayer::Con_IsActive(0))
+			if (!IniConfig::ShouldShowFPSCounter() || !*fwSmallFont || Symbols::Multiplayer::Con_IsActive(0))
 				return;
 
 			g_fps.Update();
@@ -88,7 +88,7 @@ namespace Drawing
 	{
 		void DrawWatermark()
 		{
-			if (!Config::ShouldShowWatermark() || !*fwSmallFont || Symbols::Singleplayer::Con_IsActive(0) || Symbols::Singleplayer::DevGui_IsActive())
+			if (!IniConfig::ShouldShowWatermark() || !*fwSmallFont || Symbols::Singleplayer::Con_IsActive(0) || Symbols::Singleplayer::DevGui_IsActive())
 				return;
 
 			float colour[4] = { 1.0f, 1.0f, 1.0f, 0.25f };
@@ -100,7 +100,7 @@ namespace Drawing
 
 		void DrawFPS()
 		{
-			if (!Config::ShouldShowFPSCounter() || !*fwSmallFont || Symbols::Singleplayer::Con_IsActive(0))
+			if (!IniConfig::ShouldShowFPSCounter() || !*fwSmallFont || Symbols::Singleplayer::Con_IsActive(0))
 				return;
 
 			g_fps.Update();

@@ -44,7 +44,7 @@ namespace Loader
 	void RegisterModules()
 	{
 		// special modules
-		REGISTER_MODULE(Config); // need this to be first
+		REGISTER_MODULE(IniConfig); // need this to be first
 
 		if (Util::XBox::IsInXenia())
 		{

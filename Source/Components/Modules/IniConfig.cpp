@@ -99,7 +99,7 @@ namespace IniHelper
 	}
 }
 
-namespace Config
+namespace IniConfig
 {
 	// =============================
 	// Ini Variables

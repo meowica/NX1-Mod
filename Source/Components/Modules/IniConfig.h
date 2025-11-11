@@ -1,6 +1,6 @@
 #pragma once
 
-namespace Config
+namespace IniConfig
 {
 	bool ShouldShowIntroMovie();
 

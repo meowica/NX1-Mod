@@ -37,9 +37,6 @@
     <ClCompile Include="..\..\Source\Components\Modules\Assertion.cpp">
       <Filter>Components\Modules</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Components\Modules\Config.cpp">
-      <Filter>Components\Modules</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\Components\Modules\Network.cpp">
       <Filter>Components\Modules</Filter>
     </ClCompile>
@@ -54,6 +51,9 @@
       <Filter>Components\Modules</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Components\Modules\IntroMovie.cpp">
+      <Filter>Components\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Components\Modules\IniConfig.cpp">
       <Filter>Components\Modules</Filter>
     </ClCompile>
   </ItemGroup>
@@ -97,9 +97,6 @@
     <ClInclude Include="..\..\Source\Components\Modules\Assertion.h">
       <Filter>Components\Modules</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Components\Modules\Config.h">
-      <Filter>Components\Modules</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Source\Components\Modules\Network.h">
       <Filter>Components\Modules</Filter>
     </ClInclude>
@@ -114,6 +111,9 @@
       <Filter>Components\Modules</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Components\Modules\IntroMovie.h">
+      <Filter>Components\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Components\Modules\IniConfig.h">
       <Filter>Components\Modules</Filter>
     </ClInclude>
   </ItemGroup>

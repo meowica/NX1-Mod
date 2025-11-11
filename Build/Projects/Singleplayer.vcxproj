@@ -132,10 +132,10 @@
     <ClCompile Include="..\..\Source\Components\Loader.cpp" />
     <ClCompile Include="..\..\Source\Components\Modules\Assertion.cpp" />
     <ClCompile Include="..\..\Source\Components\Modules\AssetHandler.cpp" />
-    <ClCompile Include="..\..\Source\Components\Modules\Config.cpp" />
     <ClCompile Include="..\..\Source\Components\Modules\CustomCommands.cpp" />
     <ClCompile Include="..\..\Source\Components\Modules\DevGui.cpp" />
     <ClCompile Include="..\..\Source\Components\Modules\Drawing.cpp" />
+    <ClCompile Include="..\..\Source\Components\Modules\IniConfig.cpp" />
     <ClCompile Include="..\..\Source\Components\Modules\InternalConsole.cpp" />
     <ClCompile Include="..\..\Source\Components\Modules\IntroMovie.cpp" />
     <ClCompile Include="..\..\Source\Components\Modules\Log.cpp" />
@@ -154,10 +154,10 @@
     <ClInclude Include="..\..\Source\Components\Loader.h" />
     <ClInclude Include="..\..\Source\Components\Modules\Assertion.h" />
     <ClInclude Include="..\..\Source\Components\Modules\AssetHandler.h" />
-    <ClInclude Include="..\..\Source\Components\Modules\Config.h" />
     <ClInclude Include="..\..\Source\Components\Modules\CustomCommands.h" />
     <ClInclude Include="..\..\Source\Components\Modules\DevGui.h" />
     <ClInclude Include="..\..\Source\Components\Modules\Drawing.h" />
+    <ClInclude Include="..\..\Source\Components\Modules\IniConfig.h" />
     <ClInclude Include="..\..\Source\Components\Modules\InternalConsole.h" />
     <ClInclude Include="..\..\Source\Components\Modules\IntroMovie.h" />
     <ClInclude Include="..\..\Source\Components\Modules\Log.h" />
