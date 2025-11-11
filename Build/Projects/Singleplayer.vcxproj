@@ -145,7 +145,6 @@
     <ClCompile Include="..\..\Source\Game\Symbols.cpp" />
     <ClCompile Include="..\..\Source\DllMain.cpp" />
     <ClCompile Include="..\..\Source\Util\Command.cpp" />
-    <ClCompile Include="..\..\Source\Util\FPS.h" />
     <ClCompile Include="..\..\Source\Util\Hook.cpp" />
     <ClCompile Include="..\..\Source\Util\String.cpp" />
     <ClCompile Include="..\..\Source\Util\XBox.cpp" />
@@ -168,6 +167,7 @@
     <ClInclude Include="..\..\Source\Game\Symbols.h" />
     <ClInclude Include="..\..\Source\StdAfx.h" />
     <ClInclude Include="..\..\Source\Util\Command.h" />
+    <ClInclude Include="..\..\Source\Util\FPS.h" />
     <ClInclude Include="..\..\Source\Util\Hook.h" />
     <ClInclude Include="..\..\Source\Util\Ini.h" />
     <ClInclude Include="..\..\Source\Util\PPC.h" />

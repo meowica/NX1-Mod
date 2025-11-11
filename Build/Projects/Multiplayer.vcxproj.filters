@@ -119,6 +119,9 @@
     <ClInclude Include="..\..\Source\Util\Ini.h">
       <Filter>Util</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Util\FPS.h">
+      <Filter>Util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Game">

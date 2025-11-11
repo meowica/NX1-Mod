@@ -1,8 +1,8 @@
 #pragma once
 
-#define TITLE_ID			0x4156089E // nx1
+#define TITLE_ID				0x4156089E // nx1
 
-#define BASE_FOLDER			"NX1-Mod"
+#define BASE_FOLDER				"NX1-Mod"
 
 #ifdef IS_MULTIPLAYER
 	#define BRANDING_STR		"NX1-Mod MP"
@@ -13,14 +13,14 @@
 #endif
 
 #define NOMINMAX
-#define MAX_CHARS			std::numeric_limits<int>::max()
+#define MAX_CHARS				std::numeric_limits<int>::max()
 
 #ifdef _XBOX
-	#define snprintf _snprintf
+	#define snprintf			_snprintf
 #endif
 
 // quake define
-#define KEYCATCH_CONSOLE	0x0001
+#define KEYCATCH_CONSOLE		0x0001
 
 #include <cstdint>
 #include <cstring>
@@ -45,6 +45,7 @@
 #include "Game\Symbols.h"
 
 #include "Util\Command.h"
+#include "Util\FPS.h"
 #include "Util\Hook.h"
 #include "Util\Ini.h"
 #include "Util\String.h"

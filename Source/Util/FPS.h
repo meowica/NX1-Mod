@@ -45,6 +45,12 @@ namespace Util
 			return 1000.0f / avg;
 		}
 
+		static FPS& GetInstance()
+		{
+			static FPS instance;
+			return instance;
+		}
+
 	private:
 		static const int SAMPLE_COUNT = 32;
 		float frameTimes[SAMPLE_COUNT];

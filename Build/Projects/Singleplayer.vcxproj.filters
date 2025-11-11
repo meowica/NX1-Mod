@@ -19,9 +19,6 @@
     <ClCompile Include="..\..\Source\Components\Modules\Patches.cpp">
       <Filter>Components\Modules</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Util\FPS.h">
-      <Filter>Util</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\Components\Modules\Drawing.cpp">
       <Filter>Components\Modules</Filter>
     </ClCompile>
@@ -123,6 +120,9 @@
       <Filter>Components\Modules</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Util\Ini.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Util\FPS.h">
       <Filter>Util</Filter>
     </ClInclude>
   </ItemGroup>

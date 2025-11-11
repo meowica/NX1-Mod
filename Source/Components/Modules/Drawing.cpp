@@ -1,4 +1,3 @@
-#include "../../Util/FPS.h"
 #include "IniConfig.h"
 
 namespace Drawing
@@ -18,20 +17,19 @@ namespace Drawing
 			Symbols::Multiplayer::R_AddCmdDrawText(BRANDING_STR, MAX_CHARS, *fwSmallFont, 2.0f, 20.0f, 0.8f, 0.8f, 0.0f, colour, 3, Structs::SL_SYSTEM);
 		}
 
-		Util::FPS g_fps;
-
 		void DrawFPS()
 		{
 			if (!IniConfig::ShouldShowFPSCounter() || !*fwSmallFont || Symbols::Multiplayer::Con_IsActive(0))
 				return;
 
-			g_fps.Update();
-
 			float colourGood[4] = { 0.6f, 1.0f, 0.0f, 1.0f };
 			float colourOkay[4] = { 1.0f, 0.7f, 0.3f, 1.0f };
 			float colourBad[4]  = { 1.0f, 0.3f, 0.3f, 1.0f };
 
-			float fpsValue = g_fps.GetFPS();
+			Util::FPS& fps = Util::FPS::GetInstance();
+			fps.Update();
+
+			float fpsValue = fps.GetFPS();
 			int count = static_cast<int>(fpsValue + 0.5f);
 
 			float* colour = (count >= 60) ? colourGood :
@@ -39,11 +37,21 @@ namespace Drawing
 
 			char text[16];
 			snprintf(text, sizeof(text), "%d", count);
-			text[sizeof(text) - 1] = '\0'; // ensure null-termination
 
 			float x = (count <= 99) ? 1255.0f : 1245.0f;
 
-			Symbols::Multiplayer::R_AddCmdDrawText(text, MAX_CHARS, *fwSmallFont, x, 20.0f, 1.0f, 1.0f, 0.0f, colour, 3, Structs::SL_SYSTEM);
+			Symbols::Multiplayer::R_AddCmdDrawText(
+				text,
+				MAX_CHARS,
+				*fwSmallFont,
+				x,
+				20.0f,
+				1.0f,
+				1.0f,
+				0.0f,
+				colour,
+				3,
+				Structs::SL_SYSTEM);
 		}
 
 		Util::Hook::Detour CL_DrawScreen_Hook;
@@ -96,20 +104,19 @@ namespace Drawing
 			Symbols::Singleplayer::R_AddCmdDrawText(BRANDING_STR, MAX_CHARS, *fwSmallFont, 2.0f, 20.0f, 0.8f, 0.8f, 0.0f, colour, 3, Structs::SL_SYSTEM);
 		}
 
-		Util::FPS g_fps;
-
 		void DrawFPS()
 		{
 			if (!IniConfig::ShouldShowFPSCounter() || !*fwSmallFont || Symbols::Singleplayer::Con_IsActive(0))
 				return;
 
-			g_fps.Update();
-
 			float colourGood[4] = { 0.6f, 1.0f, 0.0f, 1.0f };
 			float colourOkay[4] = { 1.0f, 0.7f, 0.3f, 1.0f };
 			float colourBad[4]  = { 1.0f, 0.3f, 0.3f, 1.0f };
 
-			float fpsValue = g_fps.GetFPS();
+			Util::FPS& fps = Util::FPS::GetInstance();
+			fps.Update();
+
+			float fpsValue = fps.GetFPS();
 			int count = static_cast<int>(fpsValue + 0.5f);
 
 			float* colour = (count >= 60) ? colourGood :
@@ -117,11 +124,21 @@ namespace Drawing
 
 			char text[16];
 			snprintf(text, sizeof(text), "%d", count);
-			text[sizeof(text) - 1] = '\0'; // ensure null-termination
 
 			float x = (count <= 99) ? 1255.0f : 1245.0f;
 
-			Symbols::Singleplayer::R_AddCmdDrawText(text, MAX_CHARS, *fwSmallFont, x, 20.0f, 1.0f, 1.0f, 0.0f, colour, 3, Structs::SL_SYSTEM);
+			Symbols::Singleplayer::R_AddCmdDrawText(
+				text,
+				MAX_CHARS,
+				*fwSmallFont,
+				x,
+				20.0f,
+				1.0f,
+				1.0f,
+				0.0f,
+				colour,
+				3,
+				Structs::SL_SYSTEM);
 		}
 
 		Util::Hook::Detour CL_DrawScreen_Hook;
