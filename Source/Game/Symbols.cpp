@@ -34,6 +34,8 @@ namespace Symbols
 		void** DB_XAssetPool = (void**)0x8297D210;
 
 		Structs::ScreenPlacement* scrPlaceFullUnsafe = (Structs::ScreenPlacement*)0x82B8DDA8;
+
+		Structs::Font_s** fwSmallFont = (Structs::Font_s**)0x85ECBACC;
 	}
 #elif IS_SINGLEPLAYER
 	namespace Singleplayer

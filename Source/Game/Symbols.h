@@ -66,7 +66,7 @@ namespace Symbols
 		extern void** DB_XAssetPool;
 		extern Structs::ScreenPlacement* scrPlaceFullUnsafe;
 
-		extern Structs::ScreenPlacement* scrPlaceFullUnsafe;
+		extern Structs::Font_s** fwSmallFont;
 	}
 #elif IS_SINGLEPLAYER
 	namespace Singleplayer

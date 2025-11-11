@@ -2,48 +2,67 @@
 
 namespace Drawing
 {
-	Structs::Font_s** fwSmallFont;
-
 #ifdef IS_MULTIPLAYER
 	namespace Multiplayer
 	{
 		void DrawWatermark()
 		{
-			if (!IniConfig::ShouldShowWatermark() || !*fwSmallFont || Symbols::Multiplayer::Con_IsActive(0) || Symbols::Multiplayer::DevGui_IsActive())
+			if (!IniConfig::ShouldShowWatermark() ||
+				!*Symbols::Multiplayer::fwSmallFont ||
+				Symbols::Multiplayer::Con_IsActive(0) ||
+				Symbols::Multiplayer::DevGui_IsActive())
+			{
 				return;
+			}
 
 			float colour[4] = { 1.0f, 1.0f, 1.0f, 0.25f };
 
-			Symbols::Multiplayer::R_AddCmdDrawText(BRANDING_STR, MAX_CHARS, *fwSmallFont, 2.0f, 20.0f, 0.8f, 0.8f, 0.0f, colour, 3, Structs::SL_SYSTEM);
+			Symbols::Multiplayer::R_AddCmdDrawText(
+				BRANDING_STR,
+				MAX_CHARS,
+				*Symbols::Multiplayer::fwSmallFont,
+				2.0f,
+				20.0f,
+				0.8f,
+				0.8f,
+				0.0f,
+				colour,
+				3,
+				Structs::SL_SYSTEM);
 		}
 
-		void DrawFPS()
+		void DrawFPSCounter()
 		{
-			if (!IniConfig::ShouldShowFPSCounter() || !*fwSmallFont || Symbols::Multiplayer::Con_IsActive(0))
+			if (!IniConfig::ShouldShowFPSCounter() ||
+				!*Symbols::Multiplayer::fwSmallFont ||
+				Symbols::Multiplayer::Con_IsActive(0))
+			{
 				return;
+			}
 
 			float colourGood[4] = { 0.6f, 1.0f, 0.0f, 1.0f };
 			float colourOkay[4] = { 1.0f, 0.7f, 0.3f, 1.0f };
 			float colourBad[4]  = { 1.0f, 0.3f, 0.3f, 1.0f };
 
-			Util::FPS& fps = Util::FPS::GetInstance();
-			fps.Update();
+			// im only doing this cause im too lazy to grab the games version
+			Util::FPS& FPS = Util::FPS::GetInstance();
+			FPS.Update();
 
-			float fpsValue = fps.GetFPS();
+			float fpsValue = FPS.GetFPS();
 			int count = static_cast<int>(fpsValue + 0.5f);
 
 			float* colour = (count >= 60) ? colourGood :
 							(count >= 50) ? colourOkay : colourBad;
 
-			char text[16];
+			char text[4];
 			snprintf(text, sizeof(text), "%d", count);
 
-			float x = (count <= 99) ? 1255.0f : 1245.0f;
+			float x = (count <= 99) ? 1255.0f : 1243.0f;
 
 			Symbols::Multiplayer::R_AddCmdDrawText(
 				text,
 				MAX_CHARS,
-				*fwSmallFont,
+				*Symbols::Multiplayer::fwSmallFont,
 				x,
 				20.0f,
 				1.0f,
@@ -58,7 +77,7 @@ namespace Drawing
 		void CL_DrawScreen()
 		{
 			DrawWatermark();
-			DrawFPS();
+			DrawFPSCounter();
 
 			auto Invoke = CL_DrawScreen_Hook.Invoke<void(*)()>();
 			Invoke();
@@ -66,8 +85,6 @@ namespace Drawing
 
 		void Hooks()
 		{
-			fwSmallFont = reinterpret_cast<Structs::Font_s**>(0x85ECBACC); // fonts/fwsmallfont
-
 			// draw our watermark and fps counter
 			CL_DrawScreen_Hook.Create(0x822BD290, CL_DrawScreen);
 
@@ -96,36 +113,57 @@ namespace Drawing
 	{
 		void DrawWatermark()
 		{
-			if (!IniConfig::ShouldShowWatermark() || !*fwSmallFont || Symbols::Singleplayer::Con_IsActive(0) || Symbols::Singleplayer::DevGui_IsActive())
+			if (!IniConfig::ShouldShowWatermark() ||
+				!*fwSmallFont ||
+				Symbols::Singleplayer::Con_IsActive(0) ||
+				Symbols::Singleplayer::DevGui_IsActive())
+			{
 				return;
+			}
 
 			float colour[4] = { 1.0f, 1.0f, 1.0f, 0.25f };
 
-			Symbols::Singleplayer::R_AddCmdDrawText(BRANDING_STR, MAX_CHARS, *fwSmallFont, 2.0f, 20.0f, 0.8f, 0.8f, 0.0f, colour, 3, Structs::SL_SYSTEM);
+			Symbols::Singleplayer::R_AddCmdDrawText(
+				BRANDING_STR,
+				MAX_CHARS,
+				*fwSmallFont,
+				2.0f,
+				20.0f,
+				0.8f,
+				0.8f,
+				0.0f,
+				colour,
+				3,
+				Structs::SL_SYSTEM);
 		}
 
-		void DrawFPS()
+		void DrawFPSCounter()
 		{
-			if (!IniConfig::ShouldShowFPSCounter() || !*fwSmallFont || Symbols::Singleplayer::Con_IsActive(0))
+			if (!IniConfig::ShouldShowFPSCounter() ||
+				!*fwSmallFont ||
+				Symbols::Singleplayer::Con_IsActive(0))
+			{
 				return;
+			}
 
 			float colourGood[4] = { 0.6f, 1.0f, 0.0f, 1.0f };
 			float colourOkay[4] = { 1.0f, 0.7f, 0.3f, 1.0f };
 			float colourBad[4]  = { 1.0f, 0.3f, 0.3f, 1.0f };
 
-			Util::FPS& fps = Util::FPS::GetInstance();
-			fps.Update();
+			// im only doing this cause im too lazy to grab the games version
+			Util::FPS& FPS = Util::FPS::GetInstance();
+			FPS.Update();
 
-			float fpsValue = fps.GetFPS();
+			float fpsValue = FPS.GetFPS();
 			int count = static_cast<int>(fpsValue + 0.5f);
 
 			float* colour = (count >= 60) ? colourGood :
 							(count >= 50) ? colourOkay : colourBad;
 
-			char text[16];
+			char text[4];
 			snprintf(text, sizeof(text), "%d", count);
 
-			float x = (count <= 99) ? 1255.0f : 1245.0f;
+			float x = (count <= 99) ? 1253.0f : 1243.0f;
 
 			Symbols::Singleplayer::R_AddCmdDrawText(
 				text,
@@ -145,7 +183,7 @@ namespace Drawing
 		void CL_DrawScreen()
 		{
 			DrawWatermark();
-			DrawFPS();
+			DrawFPSCounter();
 
 			auto Invoke = CL_DrawScreen_Hook.Invoke<void(*)()>();
 			Invoke();
