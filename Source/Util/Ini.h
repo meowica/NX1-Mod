@@ -60,7 +60,6 @@ namespace Util
 			return true;
 		}
 
-		// Returns empty string if missing
 		std::string GetString(const std::string& section, const std::string& key, const std::string& def = "") const
 		{
 			SectionMap::const_iterator itS = data_.find(section);

@@ -1,16 +1,11 @@
-// We could use an external lib for this, but i think this is better... for now atleast
+// We could use an external lib for this, but I think this is better... for now atleast
 // We're also pretty limited as this is in C++03-11
 //
 // Credits:
-// - Lil Poop - idea + inital work
-// - Wemino - for https://github.com/Wemino/EchoPatch, I used a few things from this patch
+// - Lil Poop - Idea + inital work
 
 namespace IniConfig
 {
-	// =============================
-	// Ini Variables
-	// =============================
-
 	// Intro
 	static bool ShowIntroMovie = true;
 
@@ -26,10 +21,14 @@ namespace IniConfig
 		if (!iniFile.Load(g_configPath))
 			return;
 
-		// read our keys
+		// read the keys
+
+		// Intro
 		ShowIntroMovie = iniFile.GetBool("Intro", "ShowIntroMovie", ShowIntroMovie);
-		ShowWatermark   = iniFile.GetBool("Drawing", "ShowWatermark", ShowWatermark);
-		ShowFPSCounter  = iniFile.GetBool("Drawing", "ShowFPSCounter", ShowFPSCounter);
+
+		// Drawing
+		ShowWatermark  = iniFile.GetBool("Drawing", "ShowWatermark",  ShowWatermark);
+		ShowFPSCounter = iniFile.GetBool("Drawing", "ShowFPSCounter", ShowFPSCounter);
 	}
 
 	bool ShouldShowIntroMovie()
