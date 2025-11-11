@@ -28,6 +28,8 @@
 #include <vector>
 #include <fstream>
 #include <sstream>
+#include <cctype>
+#include <map>
 
 #include <xtl.h>
 #include <xbox.h>
@@ -44,6 +46,7 @@
 
 #include "Util\Command.h"
 #include "Util\Hook.h"
+#include "Util\Ini.h"
 #include "Util\String.h"
 #include "Util\XBox.h"
 

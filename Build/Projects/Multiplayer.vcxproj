@@ -171,6 +171,7 @@
     <ClInclude Include="..\..\Source\StdAfx.h" />
     <ClInclude Include="..\..\Source\Util\Command.h" />
     <ClInclude Include="..\..\Source\Util\Hook.h" />
+    <ClInclude Include="..\..\Source\Util\Ini.h" />
     <ClInclude Include="..\..\Source\Util\String.h" />
     <ClInclude Include="..\..\Source\Util\XBox.h" />
   </ItemGroup>
