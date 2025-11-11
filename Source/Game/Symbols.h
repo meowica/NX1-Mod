@@ -128,6 +128,8 @@ namespace Symbols
 		extern int* g_poolSize;
 
 		extern Structs::ScreenPlacement* scrPlaceFull;
+
+		extern Structs::Font_s** fwSmallFont;
 	}
 #endif
 }

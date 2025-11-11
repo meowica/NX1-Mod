@@ -114,7 +114,7 @@ namespace Drawing
 		void DrawWatermark()
 		{
 			if (!IniConfig::ShouldShowWatermark() ||
-				!*fwSmallFont ||
+				!*Symbols::Singleplayer::fwSmallFont ||
 				Symbols::Singleplayer::Con_IsActive(0) ||
 				Symbols::Singleplayer::DevGui_IsActive())
 			{
@@ -126,7 +126,7 @@ namespace Drawing
 			Symbols::Singleplayer::R_AddCmdDrawText(
 				BRANDING_STR,
 				MAX_CHARS,
-				*fwSmallFont,
+				*Symbols::Singleplayer::fwSmallFont,
 				2.0f,
 				20.0f,
 				0.8f,
@@ -140,7 +140,7 @@ namespace Drawing
 		void DrawFPSCounter()
 		{
 			if (!IniConfig::ShouldShowFPSCounter() ||
-				!*fwSmallFont ||
+				!*Symbols::Singleplayer::fwSmallFont ||
 				Symbols::Singleplayer::Con_IsActive(0))
 			{
 				return;
@@ -163,12 +163,12 @@ namespace Drawing
 			char text[4];
 			snprintf(text, sizeof(text), "%d", count);
 
-			float x = (count <= 99) ? 1253.0f : 1243.0f;
+			float x = (count <= 99) ? 1255.0f : 1243.0f;
 
 			Symbols::Singleplayer::R_AddCmdDrawText(
 				text,
 				MAX_CHARS,
-				*fwSmallFont,
+				*Symbols::Singleplayer::fwSmallFont,
 				x,
 				20.0f,
 				1.0f,
@@ -191,8 +191,6 @@ namespace Drawing
 
 		void Hooks()
 		{
-			fwSmallFont = reinterpret_cast<Structs::Font_s**>(0x8423B21C); // fonts/fwsmallfont
-
 			// draw our watermark and fps counter
 			CL_DrawScreen_Hook.Create(0x8221F858, CL_DrawScreen);
 

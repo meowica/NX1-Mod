@@ -69,6 +69,8 @@ namespace Symbols
 		int* g_poolSize = (int*)0x8280B230;
 
 		Structs::ScreenPlacement* scrPlaceFull = (Structs::ScreenPlacement*)0x82B15C08;
+
+		Structs::Font_s** fwSmallFont = (Structs::Font_s**)0x8423B21C;
 	}
 #endif
 }
