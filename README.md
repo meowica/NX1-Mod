@@ -64,4 +64,5 @@
   - String Table: 800
   - Impact FX: 8
 - mod.ff support, drop a mod.ff into your game files, and the client will auto-load it (MP)
+- Added a print that tells you what .d3dbsp has loaded (MP)
 
