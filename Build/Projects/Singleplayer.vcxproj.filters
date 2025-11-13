@@ -43,9 +43,6 @@
     <ClCompile Include="..\..\Source\Components\Modules\Maps.cpp">
       <Filter>Components\Modules</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Components\Modules\AssetHandler.cpp">
-      <Filter>Components\Modules</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\DllMain.cpp" />
     <ClCompile Include="..\..\Source\Components\Modules\Log.cpp">
       <Filter>Components\Modules</Filter>
@@ -55,6 +52,15 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\Components\Modules\IniConfig.cpp">
       <Filter>Components\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Util\FileSystem.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Components\Modules\Assets\AssetHandler.cpp">
+      <Filter>Components\Modules\Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Components\Modules\Assets\Interfaces\IMapEnts.cpp">
+      <Filter>Components\Modules\Assets\Interfaces</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -106,9 +112,6 @@
     <ClInclude Include="..\..\Source\Components\Modules\Maps.h">
       <Filter>Components\Modules</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Components\Modules\AssetHandler.h">
-      <Filter>Components\Modules</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Source\StdAfx.h" />
     <ClInclude Include="..\..\Source\Components\Modules\Log.h">
       <Filter>Components\Modules</Filter>
@@ -125,6 +128,15 @@
     <ClInclude Include="..\..\Source\Util\FPS.h">
       <Filter>Util</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Util\FileSystem.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Components\Modules\Assets\AssetHandler.h">
+      <Filter>Components\Modules\Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Components\Modules\Assets\Interfaces\IMapEnts.h">
+      <Filter>Components\Modules\Assets\Interfaces</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Game">
@@ -138,6 +150,12 @@
     </Filter>
     <Filter Include="Components\Modules">
       <UniqueIdentifier>{426541c6-6b9d-456a-b45b-37a68853105a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\Modules\Assets">
+      <UniqueIdentifier>{cd5b1d25-eaaa-4c3f-a264-3cecb8380407}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\Modules\Assets\Interfaces">
+      <UniqueIdentifier>{54bde677-d5d0-40dd-aebc-f005be69528d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -30,6 +30,7 @@
 #include <sstream>
 #include <cctype>
 #include <map>
+#include <algorithm>
 
 #include <xtl.h>
 #include <xbox.h>
@@ -45,6 +46,7 @@
 #include "Game\Symbols.h"
 
 #include "Util\Command.h"
+#include "Util\FileSystem.h"
 #include "Util\FPS.h"
 #include "Util\Hook.h"
 #include "Util\Ini.h"

@@ -1,8 +1,21 @@
+// interfaces
+#include "Interfaces\IMapEnts.h"
+
 namespace AssetHandler
 {
 #ifdef IS_MULTIPLAYER
 	namespace Multiplayer
 	{
+		void RegisterDumpers()
+		{
+			// maybe..
+		}
+
+		void RegisterLoaders()
+		{
+			IMapEnts::Multiplayer::Load();
+		}
+
 		void* ReallocateAssetPool(uint32_t type, unsigned int newSize)
 		{
 			int oldSize = Symbols::Multiplayer::DB_GetXAssetSizeHandlers[type]();
@@ -30,6 +43,9 @@ namespace AssetHandler
 			ReallocateAssetPool(Structs::ASSET_TYPE_WEAPON, 2400);
 			ReallocateAssetPool(Structs::ASSET_TYPE_STRINGTABLE, 800);
 			ReallocateAssetPool(Structs::ASSET_TYPE_IMPACT_FX, 8);
+
+			// Register our asset loaders
+			RegisterLoaders();
 		}
 
 		void Unload()
@@ -40,9 +56,19 @@ namespace AssetHandler
 #elif IS_SINGLEPLAYER
 	namespace Singleplayer
 	{
+		void RegisterDumpers()
+		{
+			// maybe..
+		}
+
+		void RegisterLoaders()
+		{
+			IMapEnts::Singleplayer::Load();
+		}
+
 		void Load()
 		{
-			// add soon
+			RegisterLoaders();
 		}
 
 		void Unload()
