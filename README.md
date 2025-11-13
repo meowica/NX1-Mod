@@ -6,10 +6,6 @@
 
 # NX1-Mod - Modification for Future Warfare (NX1).
 
-![downloads](https://img.shields.io/github/downloads/hindercanrun/NX1-Mod/total?style=flat-square&label=Total%20Downloads&labelColor=F3F8FF&color=F88379)
-![latest release](https://img.shields.io/github/v/tag/hindercanrun/NX1-Mod?filter=!v*-pre&style=flat-square&label=Latest%20Release&labelColor=F3F8FF&color=F88379)
-![release date](https://img.shields.io/github/release-date-pre/hindercanrun/NX1-Mod?style=flat-square&label=Release%20Date&labelColor=F3F8FF&color=F88379)
-![code size](https://img.shields.io/github/languages/code-size/hindercanrun/NX1-Mod?style=flat-square&label=Code%20Size&labelColor=F3F8FF&color=F88379)
 </div>
 
 ## Supported XEXs
@@ -66,5 +62,5 @@
   - Weapon: 2400
   - String Table: 800
   - Impact FX: 8
-- mod.ff support, drop a mod.ff into your game files, and the client will auto-load it (MP)
+- Added a print that tells you what .d3dbsp has loaded (MP)
 
