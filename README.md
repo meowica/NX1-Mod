@@ -63,4 +63,6 @@
   - String Table: 800
   - Impact FX: 8
 - Added a print that tells you what .d3dbsp has loaded (MP)
-
+- Added asset loaders (SP/MP):
+  - Map Ents - Load any entity files from NX1-Mod/raw/maps
+- replaced IW4 references with NX1
