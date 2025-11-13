@@ -5,20 +5,13 @@ namespace
 	void StartupThread()
 	{
 		while (Util::XBox::XGetCurrentTitleId() != TITLE_ID)
-		{
-			// Xenia likely doesn't need this
-			// Let's do 50 for it
-			// But for Xbox 360, let's do 75 just like how Heaventh does it
 			Sleep((Util::XBox::IsInXenia()) ? 50 : 75); // Avoid CPU load
-		}
 
-		// This 'breaks' the plugin more then it helps it
-		// On Xenia atleast, it prevented a ton of things in this plugin from being registered
-		// I have no idea if it's fine on Xbox 360, but let's only keep it on that platform for now
+		// On Xenia, this delays the plugin loading which prevents
+		// some things from being registered, on real hardware it's fine
+		// So we're keeping it only on real hardware
 		if (!Util::XBox::IsInXenia())
-		{
 			Sleep(200); // Sleep a tiny bit
-		}
 
 		// Register our modules now
 		Loader::RegisterModules();
