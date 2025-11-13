@@ -14,7 +14,9 @@ namespace AssetHandler
 		void RegisterLoaders()
 		{
 			if (IniConfig::ShouldEnableMapEntsLoader())
+			{
 				IMapEnts::Multiplayer::Load();
+			}
 		}
 
 		void* ReallocateAssetPool(uint32_t type, unsigned int newSize)
@@ -64,7 +66,10 @@ namespace AssetHandler
 
 		void RegisterLoaders()
 		{
-			IMapEnts::Singleplayer::Load();
+			if (IniConfig::ShouldEnableMapEntsLoader())
+			{
+				IMapEnts::Singleplayer::Load();
+			}
 		}
 
 		void Load()
