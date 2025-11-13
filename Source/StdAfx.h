@@ -53,4 +53,7 @@
 #include "Util\String.h"
 #include "Util\XBox.h"
 
+// client config
+#include "Components\Modules\IniConfig.h"
+
 #include "Components\Loader.h"

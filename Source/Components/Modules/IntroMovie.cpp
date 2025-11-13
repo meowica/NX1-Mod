@@ -1,5 +1,3 @@
-#include "IniConfig.h"
-
 namespace IntroMovie
 {
 #ifdef IS_MULTIPLAYER

@@ -1,8 +1,6 @@
 // interfaces
 #include "Interfaces\IMapEnts.h"
 
-#include "../IniConfig.h"
-
 namespace AssetHandler
 {
 #ifdef IS_MULTIPLAYER

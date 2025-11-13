@@ -1,5 +1,3 @@
-#include "IniConfig.h"
-
 namespace Drawing
 {
 #ifdef IS_MULTIPLAYER
