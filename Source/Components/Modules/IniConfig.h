@@ -7,6 +7,8 @@ namespace IniConfig
 	bool ShouldShowWatermark();
 	bool ShouldShowFPSCounter();
 
+	bool ShouldEnableMapEntsLoader();
+
 #ifdef IS_MULTIPLAYER
 	namespace Multiplayer
 	{

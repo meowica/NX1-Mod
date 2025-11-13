@@ -1,6 +1,8 @@
 // interfaces
 #include "Interfaces\IMapEnts.h"
 
+#include "../IniConfig.h"
+
 namespace AssetHandler
 {
 #ifdef IS_MULTIPLAYER
@@ -13,7 +15,8 @@ namespace AssetHandler
 
 		void RegisterLoaders()
 		{
-			IMapEnts::Multiplayer::Load();
+			if (IniConfig::ShouldEnableMapEntsLoader())
+				IMapEnts::Multiplayer::Load();
 		}
 
 		void* ReallocateAssetPool(uint32_t type, unsigned int newSize)

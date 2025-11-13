@@ -6,12 +6,17 @@
 
 namespace IniConfig
 {
+	// Variables
+
 	// Intro
 	static bool ShowIntroMovie = true;
 
 	// Drawing
 	static bool ShowWatermark = true;
 	static bool ShowFPSCounter = false;
+
+	// Loaders
+	static bool EnableMapEntsLoader = true;
 
 	static void ReadConfig()
 	{
@@ -29,12 +34,19 @@ namespace IniConfig
 		// Drawing
 		ShowWatermark  = iniFile.GetBool("Drawing", "ShowWatermark",  ShowWatermark);
 		ShowFPSCounter = iniFile.GetBool("Drawing", "ShowFPSCounter", ShowFPSCounter);
+
+		// Loaders
+		EnableMapEntsLoader = iniFile.GetBool("Loaders", "EnableMapEntsLoader", EnableMapEntsLoader);
 	}
+
+	// Intro
 
 	bool ShouldShowIntroMovie()
 	{
 		return ShowIntroMovie;
 	}
+
+	// Drawing
 
 	bool ShouldShowWatermark()
 	{
@@ -44,6 +56,13 @@ namespace IniConfig
 	bool ShouldShowFPSCounter()
 	{
 		return ShowFPSCounter;
+	}
+
+	// Loaders
+
+	bool ShouldEnableMapEntsLoader()
+	{
+		return EnableMapEntsLoader;
 	}
 
 #ifdef IS_MULTIPLAYER
