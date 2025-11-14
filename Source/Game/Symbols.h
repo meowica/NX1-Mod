@@ -68,7 +68,9 @@ namespace Symbols
 
 		extern Structs::Font_s** fwSmallFont;
 	}
-#elif IS_SINGLEPLAYER
+#endif // IS_MULTIPLAYER
+	
+#ifdef IS_SINGLEPLAYER
 	namespace Singleplayer
 	{
 		typedef void (*Cmd_AddCommand_t)(const char* cmdName, void (__cdecl* function)(),
@@ -131,5 +133,5 @@ namespace Symbols
 
 		extern Structs::Font_s** fwSmallFont;
 	}
-#endif
+#endif // IS_SINGLEPLAYER
 }

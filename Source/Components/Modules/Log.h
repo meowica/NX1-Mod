@@ -8,11 +8,13 @@ namespace Log
 		void Load();
 		void Unload();
 	}
-#elif IS_SINGLEPLAYER
+#endif // IS_MULTIPLAYER
+
+#ifdef IS_SINGLEPLAYER
 	namespace Singleplayer
 	{
 		void Load();
 		void Unload();
 	}
-#endif
+#endif // IS_SINGLEPLAYER
 }
