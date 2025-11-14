@@ -75,6 +75,10 @@ namespace Log
 			Util::Hook::Nop(0x8226E62C, 2); // looking for alias
 			Util::Hook::Nop(0x82456A98, 2); // com_init_tbf build version
 			Util::Hook::Nop(0x822AFBE0, 2); // renderer init (i reprint it in SetupGfxConfig hook)
+			Util::Hook::Nop(0x825707F8, 2); // loading from disc, not update drive
+			Util::Hook::Nop(0x822C27DC, 2); // adding/hiding channel
+			Util::Hook::Nop(0x822C280C, 2); // no channels added/hidden
+			Util::Hook::Nop(0x82455788, 2); // logfile opened on <date>
 		}
 
 		void ClearHooks()
