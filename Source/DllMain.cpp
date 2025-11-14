@@ -18,7 +18,7 @@ namespace
 		Loader::LoadAllModules();
 	}
 
-	VOID OnAttachProcess()
+	void OnAttachProcess()
 	{
 		HANDLE threadHandle;
 		DWORD threadID;
@@ -31,7 +31,7 @@ namespace
 		}
 	}
 
-	VOID OnDetachProcess()
+	void OnDetachProcess()
 	{
 		// Xenia doesn't need this, besides this will NEVER execute in Xenia
 		// but if it does somehow, don't run it
