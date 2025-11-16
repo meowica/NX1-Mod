@@ -15,13 +15,11 @@ namespace IniConfig
 		void Load();
 		void Unload();
 	}
-#endif // IS_MULTIPLAYER
-
-#ifdef IS_SINGLEPLAYER
+#elif IS_SINGLEPLAYER
 	namespace Singleplayer
 	{
 		void Load();
 		void Unload();
 	}
-#endif // IS_SINGLEPLAYER
+#endif
 }

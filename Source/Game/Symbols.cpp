@@ -37,9 +37,7 @@ namespace Symbols
 
 		Structs::Font_s** fwSmallFont = (Structs::Font_s**)0x85ECBACC;
 	}
-#endif // IS_MULTIPLAYER
-	
-#ifdef IS_SINGLEPLAYER
+#elif IS_SINGLEPLAYER
 	namespace Singleplayer
 	{
 		Cmd_AddCommand_t Cmd_AddCommand = Cmd_AddCommand_t(0x824221C8);
@@ -74,5 +72,5 @@ namespace Symbols
 
 		Structs::Font_s** fwSmallFont = (Structs::Font_s**)0x8423B21C;
 	}
-#endif // IS_SINGLEPLAYER
+#endif
 }

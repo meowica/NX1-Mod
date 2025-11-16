@@ -132,5 +132,5 @@ namespace CustomCommands
 			// nothing
 		}
 	}
-#endif // IS_SINGLEPLAYER
+#endif
 }
