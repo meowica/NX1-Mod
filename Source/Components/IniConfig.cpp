@@ -18,6 +18,9 @@ namespace IniConfig
 	// Loaders
 	static bool EnableMapEntsLoader = true;
 
+	// Dumpers
+	static bool EnablePhysPresetDumper = false;
+
 	static void ReadConfig()
 	{
 		const char* g_configPath = Util::String::VA("game:\\" BASE_FOLDER "\\NX1-Mod.ini");
@@ -37,6 +40,9 @@ namespace IniConfig
 
 		// Loaders
 		EnableMapEntsLoader = iniFile.GetBool("Loaders", "EnableMapEntsLoader", EnableMapEntsLoader);
+
+		// Dumpers
+		EnablePhysPresetDumper = iniFile.GetBool("Dumpers", "EnablePhysPresetDumper", EnablePhysPresetDumper);
 	}
 
 	// Intro
@@ -63,6 +69,13 @@ namespace IniConfig
 	bool ShouldEnableMapEntsLoader()
 	{
 		return EnableMapEntsLoader;
+	}
+
+	// Dumpers
+
+	bool ShouldEnablePhysPresetDumper()
+	{
+		return EnablePhysPresetDumper;
 	}
 
 #ifdef IS_MP

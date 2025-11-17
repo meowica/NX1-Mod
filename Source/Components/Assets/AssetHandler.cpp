@@ -1,4 +1,5 @@
 // interfaces
+#include "Interfaces\IPhysPreset.h"
 #include "Interfaces\IMapEnts.h"
 
 namespace AssetHandler
@@ -8,6 +9,10 @@ namespace AssetHandler
 	{
 		void RegisterDumpers()
 		{
+			if (IniConfig::ShouldEnablePhysPresetDumper())
+			{
+				IPhysPreset::MP::Dump();
+			}
 		}
 
 		void RegisterLoaders()
@@ -48,6 +53,7 @@ namespace AssetHandler
 
 			// Register our asset loaders
 			RegisterLoaders();
+			RegisterDumpers();
 		}
 
 		void Unload()

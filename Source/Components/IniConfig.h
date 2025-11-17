@@ -9,6 +9,8 @@ namespace IniConfig
 
 	bool ShouldEnableMapEntsLoader();
 
+	bool ShouldEnablePhysPresetDumper();
+
 #ifdef IS_MP
 	namespace MP
 	{
