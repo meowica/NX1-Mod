@@ -66,7 +66,7 @@
       <ExceptionHandling>false</ExceptionHandling>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <PreprocessorDefinitions>IS_SINGLEPLAYER;NDEBUG;_XBOX;RELEASE</PreprocessorDefinitions>
+      <PreprocessorDefinitions>IS_SP;NDEBUG;_XBOX;RELEASE</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <PrecompiledHeaderFile>StdAfx.h</PrecompiledHeaderFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -103,7 +103,7 @@
       <ExceptionHandling>false</ExceptionHandling>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <PreprocessorDefinitions>IS_SINGLEPLAYER;NDEBUG;_XBOX;</PreprocessorDefinitions>
+      <PreprocessorDefinitions>IS_SP;NDEBUG;_XBOX;</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <ForcedIncludeFiles>$(ProjectDir)..\..\Source\StdAfx.h</ForcedIncludeFiles>
       <PrecompiledHeaderFile>StdAfx.h</PrecompiledHeaderFile>
@@ -129,22 +129,22 @@
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\Components\Loader.cpp" />
-    <ClCompile Include="..\..\Source\Components\Modules\Assertion.cpp" />
-    <ClCompile Include="..\..\Source\Components\Modules\Assets\AssetHandler.cpp" />
-    <ClCompile Include="..\..\Source\Components\Modules\Assets\Interfaces\IMapEnts.cpp" />
-    <ClCompile Include="..\..\Source\Components\Modules\CustomCommands.cpp" />
-    <ClCompile Include="..\..\Source\Components\Modules\DevGui.cpp" />
-    <ClCompile Include="..\..\Source\Components\Modules\Drawing.cpp" />
-    <ClCompile Include="..\..\Source\Components\Modules\IniConfig.cpp" />
-    <ClCompile Include="..\..\Source\Components\Modules\InternalConsole.cpp" />
-    <ClCompile Include="..\..\Source\Components\Modules\IntroMovie.cpp" />
-    <ClCompile Include="..\..\Source\Components\Modules\Log.cpp" />
-    <ClCompile Include="..\..\Source\Components\Modules\Maps.cpp" />
-    <ClCompile Include="..\..\Source\Components\Modules\Network.cpp" />
-    <ClCompile Include="..\..\Source\Components\Modules\Patches.cpp" />
+    <ClCompile Include="..\..\Source\Components\Assertion.cpp" />
+    <ClCompile Include="..\..\Source\Components\Assets\AssetHandler.cpp" />
+    <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IMapEnts.cpp" />
+    <ClCompile Include="..\..\Source\Components\CustomCommands.cpp" />
+    <ClCompile Include="..\..\Source\Components\DevGui.cpp" />
+    <ClCompile Include="..\..\Source\Components\Drawing.cpp" />
+    <ClCompile Include="..\..\Source\Components\IniConfig.cpp" />
+    <ClCompile Include="..\..\Source\Components\InternalConsole.cpp" />
+    <ClCompile Include="..\..\Source\Components\IntroMovie.cpp" />
+    <ClCompile Include="..\..\Source\Components\Log.cpp" />
+    <ClCompile Include="..\..\Source\Components\Maps.cpp" />
+    <ClCompile Include="..\..\Source\Components\Network.cpp" />
+    <ClCompile Include="..\..\Source\Components\Patches.cpp" />
     <ClCompile Include="..\..\Source\Game\Symbols.cpp" />
     <ClCompile Include="..\..\Source\DllMain.cpp" />
+    <ClCompile Include="..\..\Source\Loader.cpp" />
     <ClCompile Include="..\..\Source\Util\Command.cpp" />
     <ClCompile Include="..\..\Source\Util\FileSystem.cpp" />
     <ClCompile Include="..\..\Source\Util\Hook.cpp" />
@@ -152,22 +152,22 @@
     <ClCompile Include="..\..\Source\Util\XBox.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Source\Components\Loader.h" />
-    <ClInclude Include="..\..\Source\Components\Modules\Assertion.h" />
-    <ClInclude Include="..\..\Source\Components\Modules\Assets\AssetHandler.h" />
-    <ClInclude Include="..\..\Source\Components\Modules\Assets\Interfaces\IMapEnts.h" />
-    <ClInclude Include="..\..\Source\Components\Modules\CustomCommands.h" />
-    <ClInclude Include="..\..\Source\Components\Modules\DevGui.h" />
-    <ClInclude Include="..\..\Source\Components\Modules\Drawing.h" />
-    <ClInclude Include="..\..\Source\Components\Modules\IniConfig.h" />
-    <ClInclude Include="..\..\Source\Components\Modules\InternalConsole.h" />
-    <ClInclude Include="..\..\Source\Components\Modules\IntroMovie.h" />
-    <ClInclude Include="..\..\Source\Components\Modules\Log.h" />
-    <ClInclude Include="..\..\Source\Components\Modules\Maps.h" />
-    <ClInclude Include="..\..\Source\Components\Modules\Network.h" />
-    <ClInclude Include="..\..\Source\Components\Modules\Patches.h" />
+    <ClInclude Include="..\..\Source\Components\Assertion.h" />
+    <ClInclude Include="..\..\Source\Components\Assets\AssetHandler.h" />
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IMapEnts.h" />
+    <ClInclude Include="..\..\Source\Components\CustomCommands.h" />
+    <ClInclude Include="..\..\Source\Components\DevGui.h" />
+    <ClInclude Include="..\..\Source\Components\Drawing.h" />
+    <ClInclude Include="..\..\Source\Components\IniConfig.h" />
+    <ClInclude Include="..\..\Source\Components\InternalConsole.h" />
+    <ClInclude Include="..\..\Source\Components\IntroMovie.h" />
+    <ClInclude Include="..\..\Source\Components\Log.h" />
+    <ClInclude Include="..\..\Source\Components\Maps.h" />
+    <ClInclude Include="..\..\Source\Components\Network.h" />
+    <ClInclude Include="..\..\Source\Components\Patches.h" />
     <ClInclude Include="..\..\Source\Game\Structs.h" />
     <ClInclude Include="..\..\Source\Game\Symbols.h" />
+    <ClInclude Include="..\..\Source\Loader.h" />
     <ClInclude Include="..\..\Source\StdAfx.h" />
     <ClInclude Include="..\..\Source\Util\Command.h" />
     <ClInclude Include="..\..\Source\Util\FileSystem.h" />

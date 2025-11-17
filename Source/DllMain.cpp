@@ -4,52 +4,55 @@ namespace
 
 	void StartupThread()
 	{
-		while (Util::XBox::XGetCurrentTitleId() != TITLE_ID)
-			Sleep((Util::XBox::IsInXenia()) ? 50 : 75); // Avoid CPU load
+		DWORD expectedTitleId = Util::XBox::XGetCurrentTitleId();
 
-		// On Xenia, this delays the plugin loading which prevents
-		// some things from being registered, on real hardware it's fine
-		// So we're keeping it only on real hardware
+		while (expectedTitleId != TITLE_ID)
+			Sleep(50); // avoid CPU load
+
 		if (!Util::XBox::IsInXenia())
-			Sleep(200); // Sleep a tiny bit
+			Sleep(200);
 
-		// Register our modules now
-		Loader::RegisterModules();
-		Loader::LoadAllModules();
+		Loader::LoadComponents();
 	}
 
 	void OnAttachProcess()
 	{
-		HANDLE threadHandle;
-		DWORD threadID;
-	
-		ExCreateThread(&threadHandle, NULL, &threadID, XapiThreadStartup, LPTHREAD_START_ROUTINE(StartupThread), NULL, 0x2 | CREATE_SUSPENDED);
-		if (threadHandle != INVALID_HANDLE_VALUE)
-		{
-			XSetThreadProcessor(threadHandle, 4);
-			ResumeThread(threadHandle);
-		}
+        HANDLE threadHandle = nullptr;
+        DWORD threadID = 0;
+
+        DWORD ret = ExCreateThread(
+            &threadHandle,
+            0,
+            &threadID,
+            XapiThreadStartup,
+            LPTHREAD_START_ROUTINE(StartupThread),
+            nullptr,
+            0x2 | CREATE_SUSPENDED);
+
+        if (threadHandle)
+        {
+            XSetThreadProcessor(threadHandle, 4);
+            ResumeThread(threadHandle);
+        }
 	}
 
 	void OnDetachProcess()
 	{
-		// Xenia doesn't need this, besides this will NEVER execute in Xenia
-		// but if it does somehow, don't run it
 		if (Util::XBox::IsInXenia())
 			return;
 
 		isUnloading = true;
 
-		if (Util::XBox::XGetCurrentTitleId() == TITLE_ID)
-		{
-			Loader::UnloadAllModules();
-		}
+		DWORD expectedTitleId = Util::XBox::XGetCurrentTitleId();
+
+		if (expectedTitleId == TITLE_ID)
+			Loader::UnloadComponents();
 
 		Sleep(200);
 	}
-}
+} // namespace
 
-BOOL WINAPI DllMain(HANDLE hInst, DWORD dwReason, LPVOID lpReserved)
+BOOL WINAPI DllMain(HANDLE hInstance, DWORD dwReason, LPVOID)
 {
 	switch (dwReason)
 	{

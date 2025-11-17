@@ -2,8 +2,8 @@
 
 namespace Symbols
 {
-#ifdef IS_MULTIPLAYER
-	namespace Multiplayer
+#ifdef IS_MP
+	namespace MP
 	{
 		typedef void (*Cmd_AddCommand_t)(const char* cmdName, void (__cdecl* function)(),
 			Structs::cmd_function_s* allocedCmd);
@@ -68,8 +68,8 @@ namespace Symbols
 
 		extern Structs::Font_s** fwSmallFont;
 	}
-#elif IS_SINGLEPLAYER
-	namespace Singleplayer
+#elif IS_SP
+	namespace SP
 	{
 		typedef void (*Cmd_AddCommand_t)(const char* cmdName, void (__cdecl* function)(),
 			Structs::cmd_function_s* allocedCmd);

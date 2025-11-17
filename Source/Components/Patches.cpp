@@ -1,16 +1,14 @@
 namespace Patches
 {
-#ifdef IS_MULTIPLAYER
-	namespace Multiplayer
+#ifdef IS_MP
+	namespace MP
 	{
 		Util::Hook::Detour Com_ExecStartupConfigs_Hook;
 		void Com_ExecStartupConfigs(int localClientNum, const char* configFile)
 		{
 			static bool alreadyRanFunction = false;
 			if (alreadyRanFunction)
-			{
 				return;
-			}
 
 			alreadyRanFunction = true;
 
@@ -36,7 +34,7 @@ namespace Patches
 			snprintf(p_destBuffer, destBufferSize, "\"%s\", 0x%08x, HW Thread %d", name, threadId, info.CurrentProcessor);
 		}
 
-		void Hooks()
+		void Patches()
 		{
 			// issue fix: disable Black Box
 			Util::Hook::Nop(0x82456AC0, 2); // BB_Init
@@ -103,36 +101,29 @@ namespace Patches
 			Util::Hook::Set(0x822412F0, 0x38800000); // cg_drawFPS
 		}
 
-		void ClearHooks()
-		{
-			Com_ExecStartupConfigs_Hook.Clear();
-			getBuildNumber_Hook.Clear();
-			Sys_GetThreadName_Hook.Clear();
-		}
-
 		void Load()
 		{
-			Hooks();
+			Patches();
 			StringEdits();
 			DVarEdits();
 		}
 
 		void Unload()
 		{
-			ClearHooks();
+			Com_ExecStartupConfigs_Hook.Clear();
+			getBuildNumber_Hook.Clear();
+			Sys_GetThreadName_Hook.Clear();
 		}
 	}
-#elif IS_SINGLEPLAYER
-	namespace Singleplayer
+#elif IS_SP
+	namespace SP
 	{
 		Util::Hook::Detour Com_ExecStartupConfigs_Hook;
 		void Com_ExecStartupConfigs(int localClientNum, const char* configFile)
 		{
 			static bool alreadyRanFunction = false;
 			if (alreadyRanFunction)
-			{
 				return;
-			}
 
 			alreadyRanFunction = true;
 
@@ -158,7 +149,7 @@ namespace Patches
 			snprintf(p_destBuffer, destBufferSize, "\"%s\", 0x%08x, HW Thread %d", name, threadId, info.CurrentProcessor);
 		}
 
-		void Hooks()
+		void Patches()
 		{
 			// issue fix: disable Black Box
 			Util::Hook::Nop(0x8242C930, 2); // BB_Init
@@ -228,16 +219,9 @@ namespace Patches
 			Util::Hook::Set(0x821BB0F8, 0x38800000); // cg_drawFPS
 		}
 
-		void ClearHooks()
-		{
-			Com_ExecStartupConfigs_Hook.Clear();
-			getBuildNumber_Hook.Clear();
-			Sys_GetThreadName_Hook.Clear();
-		}
-
 		void Load()
 		{
-			Hooks();
+			Patches();
 			AssertRemovals();
 			StringEdits();
 			DVarEdits();
@@ -245,7 +229,9 @@ namespace Patches
 
 		void Unload()
 		{
-			ClearHooks();
+			Com_ExecStartupConfigs_Hook.Clear();
+			getBuildNumber_Hook.Clear();
+			Sys_GetThreadName_Hook.Clear();
 		}
 	}
 #endif

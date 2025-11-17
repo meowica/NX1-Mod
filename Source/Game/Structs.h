@@ -239,4 +239,121 @@ namespace Structs
 		unsigned int textureMinVRamTier1;
 		unsigned int textureMinVRamTier2;
 	};
+
+	struct IXHV2Engine
+	{
+	   // TODO: add the vtable
+	};
+
+	struct SessionStaticData
+	{
+		char* sessionName;
+		bool registerUsersWithVoice;
+
+		IXHV2Engine* voiceEngine;
+	};
+
+	enum IWNetServerSessionStatus
+	{
+		SESSION_ONCLIENTONLY,
+		SESSION_BEINGCREATED,
+		SESSION_CREATED,
+		SESSION_BEINGDELETED,
+	};
+
+	struct IWNetServerInfoAboutPlayer
+	{
+		bool active;
+		long long uid;
+		unsigned char skill;
+		unsigned char teamIndex;
+		int mapPackFlags;
+	};
+
+	struct IWNetSessionStatus
+	{
+		IWNetServerSessionStatus status;
+		int sessionId;
+		int lastHeartbeatSent;
+		bool needsUpdate;
+		bool updatingPlayers;
+		int newPlayerCount;
+		IWNetServerInfoAboutPlayer pendingServerInfoForPlayers[18];
+	};
+
+	enum netadrtype_t
+	{
+		NA_BOT = 0,
+		NA_BAD,
+		NA_LOOPBACK,
+		NA_BROADCAST,
+		NA_IP,
+	};
+
+	struct netadr_t
+	{
+		netadrtype_t type;
+		unsigned char ip[4];
+		unsigned short port;
+	};
+
+	struct ClientInfo
+	{
+		bool registered;
+		bool voiceRegistered;
+		unsigned long long xuid;
+		int natType;
+		netadr_t addr;
+		int voiceConnectivityBits;
+		int lastConnectivityTestTime;
+		bool friends;
+		bool muted;
+		bool privateSlot;
+	};
+
+	struct LocalTalkerInfo
+	{
+		bool enabled;
+	};
+
+	struct RegisteredUser
+	{
+		bool active;
+		unsigned long long xuid;
+	};
+
+	struct SessionDynamicData
+	{
+		HANDLE sessionHandle;
+		int actualPublicSlots;
+
+		IWNetSessionStatus iwnetServerSessionStatus;
+		XSESSION_INFO sessionInfo;
+
+		bool keysGenerated;
+		bool sessionStartCalled;
+		unsigned long long sessionNonce;
+
+		int privateSlots;
+		int publicSlots;
+		int flags;
+		bool qosListenEnabled;
+
+		ClientInfo users[18];
+		LocalTalkerInfo localTalkers[4];
+		int voiceConnectivityBits;
+
+		int sessionCreateController;
+		int sessionDeleteTime;
+
+		bool allowJoining;
+
+		RegisteredUser internalRegisteredUsers[18];
+	};
+
+	struct SessionData
+	{
+		SessionStaticData staticData;
+		SessionDynamicData dyn;
+	};
 }

@@ -1,7 +1,7 @@
 namespace Maps
 {
-#ifdef IS_MULTIPLAYER
-	namespace Multiplayer
+#ifdef IS_MP
+	namespace MP
 	{
 		Util::Hook::Detour Com_GetBspFilename_Hook;
 		void Com_GetBspFilename(char* filename, int size, const char* mapname)
@@ -20,28 +20,18 @@ namespace Maps
 			}
 		}
 
-		void Hooks()
+		void Load()
 		{
 			Com_GetBspFilename_Hook.Create(0x82530268, Com_GetBspFilename);
 		}
 
-		void ClearHooks()
+		void Unload()
 		{
 			Com_GetBspFilename_Hook.Clear();
 		}
-
-		void Load()
-		{
-			Hooks();
-		}
-
-		void Unload()
-		{
-			ClearHooks();
-		}
 	}
-#elif IS_SINGLEPLAYER
-	namespace Singleplayer
+#elif IS_SP
+	namespace SP
 	{
 		Util::Hook::Detour Com_GetBspFilename_Hook;
 		void Com_GetBspFilename(char* filename, int size, const char* mapname)
@@ -60,24 +50,14 @@ namespace Maps
 			}
 		}
 
-		void Hooks()
+		void Load()
 		{
 			Com_GetBspFilename_Hook.Create(0x824C3FC0, Com_GetBspFilename);
 		}
 
-		void ClearHooks()
-		{
-			Com_GetBspFilename_Hook.Clear();
-		}
-
-		void Load()
-		{
-			Hooks();
-		}
-
 		void Unload()
 		{
-			ClearHooks();
+			Com_GetBspFilename_Hook.Clear();
 		}
 	}
 #endif

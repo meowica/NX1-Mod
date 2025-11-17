@@ -56,8 +56,8 @@ namespace IMapEnts
 		unsigned char stageCount;
 	};
 
-#ifdef IS_MULTIPLAYER
-	namespace Multiplayer
+#ifdef IS_MP
+	namespace MP
 	{
 		Util::Hook::Detour Load_MapEntsPtr_Hook;
 		void Load_MapEntsPtr(bool atStreamStart)
@@ -99,7 +99,7 @@ namespace IMapEnts
 				memcpy(newMemory, newEntityString.c_str(), newSize); // includes null terminator
 				mapEnts->entityString = newMemory;
 
-				Symbols::Multiplayer::Com_Printf(0, "map ents '%s' has been overriden with '%s'.\n", mapEnts->name, rawFilePath.c_str());
+				Symbols::MP::Com_Printf(0, "map ents '%s' has been overriden with '%s'.\n", mapEnts->name, rawFilePath.c_str());
 			}
 			else
 			{
@@ -108,28 +108,18 @@ namespace IMapEnts
 			}
 		}
 
-		void Hooks()
+		void Load()
 		{
 			Load_MapEntsPtr_Hook.Create(0x823102C8, Load_MapEntsPtr);
 		}
 
-		void ClearHooks()
+		void Unload()
 		{
 			Load_MapEntsPtr_Hook.Clear();
 		}
-
-		void Load()
-		{
-			Hooks();
-		}
-
-		void Unload()
-		{
-			ClearHooks();
-		}
 	}
-#elif IS_SINGLEPLAYER
-	namespace Singleplayer
+#elif IS_SP
+	namespace SP
 	{
 		Util::Hook::Detour Load_MapEntsPtr_Hook;
 		void Load_MapEntsPtr(bool atStreamStart)
@@ -171,7 +161,7 @@ namespace IMapEnts
 				memcpy(newMemory, newEntityString.c_str(), newSize); // includes null terminator
 				mapEnts->entityString = newMemory;
 
-				Symbols::Singleplayer::Com_Printf(0, "map ents '%s' has been overriden with '%s'.\n", mapEnts->name, rawFilePath.c_str());
+				Symbols::SP::Com_Printf(0, "map ents '%s' has been overriden with '%s'.\n", mapEnts->name, rawFilePath.c_str());
 			}
 			else
 			{
@@ -180,24 +170,14 @@ namespace IMapEnts
 			}
 		}
 
-		void Hooks()
+		void Load()
 		{
 			Load_MapEntsPtr_Hook.Create(0x82259EF0, Load_MapEntsPtr);
 		}
 
-		void ClearHooks()
-		{
-			Load_MapEntsPtr_Hook.Clear();
-		}
-
-		void Load()
-		{
-			Hooks();
-		}
-
 		void Unload()
 		{
-			ClearHooks();
+			Load_MapEntsPtr_Hook.Clear();
 		}
 	}
 #endif

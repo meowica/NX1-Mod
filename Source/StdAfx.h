@@ -1,17 +1,5 @@
 #pragma once
 
-#define TITLE_ID				0x4156089E // nx1
-
-#define BASE_FOLDER				"NX1-Mod"
-
-#ifdef IS_MULTIPLAYER
-	#define BRANDING_STR		"NX1-Mod MP"
-#elif IS_SINGLEPLAYER
-	#define BRANDING_STR		"NX1-Mod SP"
-#else
-	#define BRANDING_STR		"NX1-Mod"
-#endif
-
 #define NOMINMAX
 #define MAX_CHARS				std::numeric_limits<int>::max()
 
@@ -19,9 +7,24 @@
 	#define snprintf			_snprintf
 #endif
 
+#define TITLE_ID				0x4156089E // nx1
+
+#define BASE_FOLDER				"NX1-Mod"
+
+#ifdef IS_MP
+	#define BRANDING_STR		"NX1-Mod MP"
+#elif IS_SP
+	#define BRANDING_STR		"NX1-Mod SP"
+#else // fallback
+	#define BRANDING_STR		"NX1-Mod"
+#endif
+
 // quake define
 #define KEYCATCH_CONSOLE		0x0001
 
+// the order of everything below matters
+
+// base includes
 #include <cstdint>
 #include <cstring>
 #include <string>
@@ -32,6 +35,7 @@
 #include <map>
 #include <algorithm>
 
+// xbox stuff
 #include <xtl.h>
 #include <xbox.h>
 #include <xgraphics.h>
@@ -42,9 +46,7 @@
 // external libs
 #include <xkelib.h>
 
-#include "Game\Structs.h"
-#include "Game\Symbols.h"
-
+// utils
 #include "Util\Command.h"
 #include "Util\FileSystem.h"
 #include "Util\FPS.h"
@@ -53,7 +55,12 @@
 #include "Util\String.h"
 #include "Util\XBox.h"
 
-// client config
-#include "Components\Modules\IniConfig.h"
+// game symbols/structs
+#include "Game\Structs.h"
+#include "Game\Symbols.h"
 
-#include "Components\Loader.h"
+// client config
+#include "Components\IniConfig.h"
+
+// client components loader
+#include "Loader.h"

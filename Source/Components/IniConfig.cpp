@@ -65,8 +65,8 @@ namespace IniConfig
 		return EnableMapEntsLoader;
 	}
 
-#ifdef IS_MULTIPLAYER
-	namespace Multiplayer
+#ifdef IS_MP
+	namespace MP
 	{
 		void Load()
 		{
@@ -78,8 +78,8 @@ namespace IniConfig
 			// nothing
 		}
 	}
-#elif IS_SINGLEPLAYER
-	namespace Singleplayer
+#elif IS_SP
+	namespace SP
 	{
 		void Load()
 		{

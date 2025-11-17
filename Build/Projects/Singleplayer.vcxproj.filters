@@ -13,55 +13,53 @@
     <ClCompile Include="..\..\Source\Game\Symbols.cpp">
       <Filter>Game</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Components\Loader.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Components\Modules\Patches.cpp">
-      <Filter>Components\Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Components\Modules\Drawing.cpp">
-      <Filter>Components\Modules</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\Util\XBox.cpp">
       <Filter>Util</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Components\Modules\InternalConsole.cpp">
-      <Filter>Components\Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Components\Modules\DevGui.cpp">
-      <Filter>Components\Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Components\Modules\CustomCommands.cpp">
-      <Filter>Components\Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Components\Modules\Assertion.cpp">
-      <Filter>Components\Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Components\Modules\Network.cpp">
-      <Filter>Components\Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Components\Modules\Maps.cpp">
-      <Filter>Components\Modules</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\DllMain.cpp" />
-    <ClCompile Include="..\..\Source\Components\Modules\Log.cpp">
-      <Filter>Components\Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Components\Modules\IntroMovie.cpp">
-      <Filter>Components\Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Components\Modules\IniConfig.cpp">
-      <Filter>Components\Modules</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\Util\FileSystem.cpp">
       <Filter>Util</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Components\Modules\Assets\AssetHandler.cpp">
-      <Filter>Components\Modules\Assets</Filter>
+    <ClCompile Include="..\..\Source\Components\Assertion.cpp">
+      <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Components\Modules\Assets\Interfaces\IMapEnts.cpp">
-      <Filter>Components\Modules\Assets\Interfaces</Filter>
+    <ClCompile Include="..\..\Source\Components\CustomCommands.cpp">
+      <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Components\DevGui.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Components\Drawing.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Components\IniConfig.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Components\InternalConsole.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Components\IntroMovie.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Components\Log.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Components\Maps.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Components\Network.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Components\Patches.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Components\Assets\AssetHandler.cpp">
+      <Filter>Components\Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IMapEnts.cpp">
+      <Filter>Components\Assets\Interfaces</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Loader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\Util\Command.h">
@@ -79,49 +77,13 @@
     <ClInclude Include="..\..\Source\Game\Symbols.h">
       <Filter>Game</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Components\Loader.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Components\Modules\Patches.h">
-      <Filter>Components\Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Components\Modules\Drawing.h">
-      <Filter>Components\Modules</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Source\Util\XBox.h">
       <Filter>Util</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Components\Modules\InternalConsole.h">
-      <Filter>Components\Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Components\Modules\DevGui.h">
-      <Filter>Components\Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Components\Modules\CustomCommands.h">
-      <Filter>Components\Modules</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Util\PPC.h">
       <Filter>Util</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Components\Modules\Assertion.h">
-      <Filter>Components\Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Components\Modules\Network.h">
-      <Filter>Components\Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Components\Modules\Maps.h">
-      <Filter>Components\Modules</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Source\StdAfx.h" />
-    <ClInclude Include="..\..\Source\Components\Modules\Log.h">
-      <Filter>Components\Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Components\Modules\IntroMovie.h">
-      <Filter>Components\Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Components\Modules\IniConfig.h">
-      <Filter>Components\Modules</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Source\Util\Ini.h">
       <Filter>Util</Filter>
     </ClInclude>
@@ -131,12 +93,46 @@
     <ClInclude Include="..\..\Source\Util\FileSystem.h">
       <Filter>Util</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Components\Modules\Assets\AssetHandler.h">
-      <Filter>Components\Modules\Assets</Filter>
+    <ClInclude Include="..\..\Source\Components\Assertion.h">
+      <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Components\Modules\Assets\Interfaces\IMapEnts.h">
-      <Filter>Components\Modules\Assets\Interfaces</Filter>
+    <ClInclude Include="..\..\Source\Components\CustomCommands.h">
+      <Filter>Components</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Components\DevGui.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Components\Drawing.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Components\IniConfig.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Components\InternalConsole.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Components\IntroMovie.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Components\Log.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Components\Maps.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Components\Network.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Components\Patches.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Components\Assets\AssetHandler.h">
+      <Filter>Components\Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IMapEnts.h">
+      <Filter>Components\Assets\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Loader.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Game">
@@ -148,14 +144,11 @@
     <Filter Include="Components">
       <UniqueIdentifier>{f87f4585-d1f3-4ea6-8800-fed8ed46570a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Components\Modules">
-      <UniqueIdentifier>{426541c6-6b9d-456a-b45b-37a68853105a}</UniqueIdentifier>
+    <Filter Include="Components\Assets">
+      <UniqueIdentifier>{01110bd3-6ccb-4b35-8807-b11566b28b56}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Components\Modules\Assets">
-      <UniqueIdentifier>{cd5b1d25-eaaa-4c3f-a264-3cecb8380407}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Components\Modules\Assets\Interfaces">
-      <UniqueIdentifier>{54bde677-d5d0-40dd-aebc-f005be69528d}</UniqueIdentifier>
+    <Filter Include="Components\Assets\Interfaces">
+      <UniqueIdentifier>{c222f122-f4a0-465d-81bc-2fc550292867}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

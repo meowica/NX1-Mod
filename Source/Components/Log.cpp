@@ -1,24 +1,26 @@
 namespace Log
 {
-#ifdef IS_MULTIPLAYER
-	namespace Multiplayer
+#ifdef IS_MP
+	namespace MP
 	{
 		Util::Hook::Detour SetupGfxConfig_Hook;
 		void SetupGfxConfig(Structs::GfxConfiguration* config)
 		{
-			Symbols::Multiplayer::Com_Printf(Structs::CON_CHANNEL_SYSTEM, "");
-			Symbols::Multiplayer::Com_Printf(Structs::CON_CHANNEL_SYSTEM, "----- Initializing Modules ----\n");
+			Symbols::MP::Com_Printf(Structs::CON_CHANNEL_SYSTEM, ""); // ghost print
+			Symbols::MP::Com_Printf(Structs::CON_CHANNEL_SYSTEM, "Loading NX1-Mod...\n");
+			Symbols::MP::Com_Printf(Structs::CON_CHANNEL_SYSTEM, "\n");
+			Symbols::MP::Com_Printf(Structs::CON_CHANNEL_SYSTEM, "----- Initializing Components ----\n");
 
 			auto Invoke = SetupGfxConfig_Hook.Invoke<void(*)(Structs::GfxConfiguration*)>();
 			Invoke(config);
 
-			for (int i = 0; i < Loader::g_moduleCount; ++i)
+			for (int i = 0; i < Loader::g_componentCount; ++i)
 			{
-				Symbols::Multiplayer::Com_Printf(Structs::CON_CHANNEL_SYSTEM, "> %s\n", Loader::g_modules[i].name);
+				Symbols::MP::Com_Printf(Structs::CON_CHANNEL_SYSTEM, "> %s\n", Loader::g_components[i].name);
 			}
 
-			Symbols::Multiplayer::Com_Printf(Structs::CON_CHANNEL_SYSTEM, "----- Initialized All Modules ----\n\n");
-			Symbols::Multiplayer::Com_Printf(Structs::CON_CHANNEL_CLIENT, "----- Initializing Renderer ----\n");
+			Symbols::MP::Com_Printf(Structs::CON_CHANNEL_SYSTEM, "----- Initialized All Components ----\n\n");
+			Symbols::MP::Com_Printf(Structs::CON_CHANNEL_CLIENT, "----- Initializing Renderer ----\n");
 		}
 
 		// Borrowed from Rattpak S2MP-Mod: https://github.com/Rattpak/S2MP-Mod/blob/71ebb9646b7fcbbd90292b5dd87599390f9b2742/src/PrintPatches.cpp#L61
@@ -27,11 +29,11 @@ namespace Log
 		{
 			if (name)
 			{
-				Symbols::Multiplayer::Com_Printf(0, "Loading Map: %s\n", name);
+				Symbols::MP::Com_Printf(0, "Loading Map: %s\n", name);
 			}
 			else
 			{
-				Symbols::Multiplayer::Com_Printf(0, "Invalid name passed into CM_LoadMap\n");
+				Symbols::MP::Com_Printf(0, "Invalid name passed into CM_LoadMap!\n");
 			}
 
 			auto Invoke = CM_LoadMap_Hook.Invoke<void(*)(const char*, int*)>();
@@ -49,10 +51,10 @@ namespace Log
 			vsnprintf(buf, sizeof(buf), fmt, args);
 			va_end(args);
 
-			Symbols::Multiplayer::Com_Printf(0, "printf: %s", buf);
+			Symbols::MP::Com_Printf(0, "printf: %s", buf);
 		}
 
-		void Hooks()
+		void Load()
 		{
 			// print all our loaded modules
 			SetupGfxConfig_Hook.Create(0x822AFB20, SetupGfxConfig);
@@ -62,10 +64,7 @@ namespace Log
 			// detour printf output to Com_Printf instead
 			printf_Hook.Create(printf, _printf);
 			_printf_Hook.Create(0x82898D70, _printf); // make sure we grab the games version too
-		}
 
-		void PrintRemovals()
-		{
 			Util::Hook::Nop(0x8255628C, 2); // dvar set
 			Util::Hook::Nop(0x8253C1B8, 2); // missing soundalias
 			Util::Hook::Nop(0x82457F60, 2); // cmd line
@@ -81,52 +80,43 @@ namespace Log
 			Util::Hook::Nop(0x82455788, 2); // logfile opened on <date>
 		}
 
-		void ClearHooks()
+		void Unload()
 		{
 			SetupGfxConfig_Hook.Clear();
 			printf_Hook.Clear();
 			_printf_Hook.Clear();
 		}
-
-		void Load()
-		{
-			Hooks();
-			PrintRemovals();
-		}
-
-		void Unload()
-		{
-			ClearHooks();
-		}
 	}
-#elif IS_SINGLEPLAYER
-	namespace Singleplayer
+#elif IS_SP
+	namespace SP
 	{
 		Util::Hook::Detour R_ConfigureRenderer_Hook;
 		void R_ConfigureRenderer(Structs::GfxConfiguration* config)
 		{
-			Symbols::Singleplayer::Com_Printf(Structs::CON_CHANNEL_SYSTEM, "");
-			Symbols::Singleplayer::Com_Printf(Structs::CON_CHANNEL_SYSTEM, "----- Initializing Modules ----\n");
+			Symbols::SP::Com_Printf(Structs::CON_CHANNEL_SYSTEM, ""); // ghost print
+			Symbols::SP::Com_Printf(Structs::CON_CHANNEL_SYSTEM, "Loading NX1-Mod...\n");
+			Symbols::SP::Com_Printf(Structs::CON_CHANNEL_SYSTEM, "\n");
+			Symbols::SP::Com_Printf(Structs::CON_CHANNEL_SYSTEM, "----- Initializing Components ----\n");
 
 			auto Invoke = R_ConfigureRenderer_Hook.Invoke<void(*)(Structs::GfxConfiguration*)>();
 			Invoke(config);
 
-			for (int i = 0; i < Loader::g_moduleCount; ++i)
+			for (int i = 0; i < Loader::g_componentCount; ++i)
 			{
-				Symbols::Singleplayer::Com_Printf(Structs::CON_CHANNEL_SYSTEM, "> %s\n", Loader::g_modules[i].name);
+				Symbols::SP::Com_Printf(Structs::CON_CHANNEL_SYSTEM, "> %s\n", Loader::g_components[i].name);
 			}
 
-			Symbols::Singleplayer::Com_Printf(Structs::CON_CHANNEL_SYSTEM, "----- Initialized All Modules ----\n\n");
-			Symbols::Singleplayer::Com_Printf(Structs::CON_CHANNEL_CLIENT, "----- Initializing Renderer ----\n");
+			Symbols::SP::Com_Printf(Structs::CON_CHANNEL_SYSTEM, "----- Initialized All Modules ----\n\n");
+			Symbols::SP::Com_Printf(Structs::CON_CHANNEL_CLIENT, "----- Initializing Renderer ----\n");
 		}
 
 		Util::Hook::Detour Vehicle_ClearServerDefs_Hook;
 		void Vehicle_ClearServerDefs()
 		{
-			Symbols::Singleplayer::Com_Printf(15, "------- Game Initialization -------\n");
-			Symbols::Singleplayer::Com_Printf(15, "NX1-Mod\n");
-			Symbols::Singleplayer::Com_Printf(15, "Time: %s\n", Util::String::GetCurrentTime());
-			Symbols::Singleplayer::Com_Printf(15, "-----------------------------------\n");
+			Symbols::SP::Com_Printf(15, "------- Game Initialization -------\n");
+			Symbols::SP::Com_Printf(15, "NX1-Mod\n");
+			Symbols::SP::Com_Printf(15, "Time: %s\n", Util::String::GetCurrentTime());
+			Symbols::SP::Com_Printf(15, "-----------------------------------\n");
 
 			auto Invoke = Vehicle_ClearServerDefs_Hook.Invoke<void(*)()>();
 			Invoke();
@@ -143,10 +133,10 @@ namespace Log
 			vsnprintf(buf, sizeof(buf), fmt, args);
 			va_end(args);
 
-			Symbols::Singleplayer::Com_Printf(0, "printf: %s", buf);
+			Symbols::SP::Com_Printf(0, "printf: %s", buf);
 		}
 
-		void Hooks()
+		void Load()
 		{
 			// print all our loaded modules
 			R_ConfigureRenderer_Hook.Create(0x82704860, R_ConfigureRenderer);
@@ -157,10 +147,7 @@ namespace Log
 			// detour printf output to Com_Printf instead
 			printf_Hook.Create(printf, _printf);
 			_printf_Hook.Create(0x8277B188, _printf); // make sure we grab the games version too
-		}
 
-		void PrintRemovals()
-		{
 			Util::Hook::Nop(0x824D920C, 2); // dvar set
 			Util::Hook::Nop(0x824CF6C0, 2); // missing soundalias
 			Util::Hook::Nop(0x8242DBB8, 2); // cmd line
@@ -172,23 +159,12 @@ namespace Log
 			Util::Hook::Nop(0x8221B6F8, 2); // renderer init (i reprint it in R_ConfigureRenderer hook)
 		}
 
-		void ClearHooks()
+		void Unload()
 		{
 			R_ConfigureRenderer_Hook.Clear();
 			Vehicle_ClearServerDefs_Hook.Clear();
 			_printf_Hook.Clear();
 			printf_Hook.Clear();
-		}
-
-		void Load()
-		{
-			Hooks();
-			PrintRemovals();
-		}
-
-		void Unload()
-		{
-			ClearHooks();
 		}
 	}
 #endif

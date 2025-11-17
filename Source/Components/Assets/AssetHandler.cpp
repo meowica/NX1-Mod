@@ -3,29 +3,28 @@
 
 namespace AssetHandler
 {
-#ifdef IS_MULTIPLAYER
-	namespace Multiplayer
+#ifdef IS_MP
+	namespace MP
 	{
 		void RegisterDumpers()
 		{
-			// maybe..
 		}
 
 		void RegisterLoaders()
 		{
 			if (IniConfig::ShouldEnableMapEntsLoader())
 			{
-				IMapEnts::Multiplayer::Load();
+				IMapEnts::MP::Load();
 			}
 		}
 
 		void* ReallocateAssetPool(uint32_t type, unsigned int newSize)
 		{
-			int oldSize = Symbols::Multiplayer::DB_GetXAssetSizeHandlers[type]();
+			int oldSize = Symbols::MP::DB_GetXAssetSizeHandlers[type]();
 
 			void* poolEntry = malloc(newSize * oldSize);
-			Symbols::Multiplayer::DB_XAssetPool[type] = poolEntry;
-			Symbols::Multiplayer::g_poolSize[type] = newSize;
+			Symbols::MP::DB_XAssetPool[type] = poolEntry;
+			Symbols::MP::g_poolSize[type] = newSize;
 			return poolEntry;
 		}
 
@@ -53,33 +52,32 @@ namespace AssetHandler
 
 		void Unload()
 		{
-			// nothing
 		}
 	}
-#elif IS_SINGLEPLAYER
-	namespace Singleplayer
+#elif IS_SP
+	namespace SP
 	{
 		void RegisterDumpers()
 		{
-			// maybe..
 		}
 
 		void RegisterLoaders()
 		{
 			if (IniConfig::ShouldEnableMapEntsLoader())
 			{
-				IMapEnts::Singleplayer::Load();
+				IMapEnts::SP::Load();
 			}
 		}
 
 		void Load()
 		{
 			RegisterLoaders();
+
+			// TODO: do asset allocations
 		}
 
 		void Unload()
 		{
-			// nothing
 		}
 	}
 #endif

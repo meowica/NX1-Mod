@@ -2,14 +2,14 @@
 
 namespace AssetHandler
 {
-#ifdef IS_MULTIPLAYER
-	namespace Multiplayer
+#ifdef IS_MP
+	namespace MP
 	{
 		void Load();
 		void Unload();
 	}
-#elif IS_SINGLEPLAYER
-	namespace Singleplayer
+#elif IS_SP
+	namespace SP
 	{
 		void Load();
 		void Unload();

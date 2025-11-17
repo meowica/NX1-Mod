@@ -1,24 +1,24 @@
 namespace Drawing
 {
-#ifdef IS_MULTIPLAYER
-	namespace Multiplayer
+#ifdef IS_MP
+	namespace MP
 	{
 		void DrawWatermark()
 		{
 			if (!IniConfig::ShouldShowWatermark() ||
-				!*Symbols::Multiplayer::fwSmallFont ||
-				Symbols::Multiplayer::Con_IsActive(0) ||
-				Symbols::Multiplayer::DevGui_IsActive())
+				!*Symbols::MP::fwSmallFont ||
+				Symbols::MP::Con_IsActive(0) ||
+				Symbols::MP::DevGui_IsActive())
 			{
 				return;
 			}
 
 			float colour[4] = { 1.0f, 1.0f, 1.0f, 0.25f };
 
-			Symbols::Multiplayer::R_AddCmdDrawText(
+			Symbols::MP::R_AddCmdDrawText(
 				BRANDING_STR,
 				MAX_CHARS,
-				*Symbols::Multiplayer::fwSmallFont,
+				*Symbols::MP::fwSmallFont,
 				2.0f,
 				20.0f,
 				0.8f,
@@ -32,8 +32,8 @@ namespace Drawing
 		void DrawFPSCounter()
 		{
 			if (!IniConfig::ShouldShowFPSCounter() ||
-				!*Symbols::Multiplayer::fwSmallFont ||
-				Symbols::Multiplayer::Con_IsActive(0))
+				!*Symbols::MP::fwSmallFont ||
+				Symbols::MP::Con_IsActive(0))
 			{
 				return;
 			}
@@ -57,10 +57,10 @@ namespace Drawing
 
 			float x = (count <= 99) ? 1255.0f : 1243.0f;
 
-			Symbols::Multiplayer::R_AddCmdDrawText(
+			Symbols::MP::R_AddCmdDrawText(
 				text,
 				MAX_CHARS,
-				*Symbols::Multiplayer::fwSmallFont,
+				*Symbols::MP::fwSmallFont,
 				x,
 				20.0f,
 				1.0f,
@@ -81,7 +81,7 @@ namespace Drawing
 			Invoke();
 		}
 
-		void Hooks()
+		void Load()
 		{
 			// draw our watermark and fps counter
 			CL_DrawScreen_Hook.Create(0x822BD290, CL_DrawScreen);
@@ -91,40 +91,30 @@ namespace Drawing
 			Util::Hook::Nop(0x82510438, 2); // UI_DrawBuildNumber
 		}
 
-		void ClearHooks()
+		void Unload()
 		{
 			CL_DrawScreen_Hook.Clear();
 		}
-
-		void Load()
-		{
-			Hooks();
-		}
-
-		void Unload()
-		{
-			ClearHooks();
-		}
 	}
-#elif IS_SINGLEPLAYER
-	namespace Singleplayer
+#elif IS_SP
+	namespace SP
 	{
 		void DrawWatermark()
 		{
 			if (!IniConfig::ShouldShowWatermark() ||
-				!*Symbols::Singleplayer::fwSmallFont ||
-				Symbols::Singleplayer::Con_IsActive(0) ||
-				Symbols::Singleplayer::DevGui_IsActive())
+				!*Symbols::SP::fwSmallFont ||
+				Symbols::SP::Con_IsActive(0) ||
+				Symbols::SP::DevGui_IsActive())
 			{
 				return;
 			}
 
 			float colour[4] = { 1.0f, 1.0f, 1.0f, 0.25f };
 
-			Symbols::Singleplayer::R_AddCmdDrawText(
+			Symbols::SP::R_AddCmdDrawText(
 				BRANDING_STR,
 				MAX_CHARS,
-				*Symbols::Singleplayer::fwSmallFont,
+				*Symbols::SP::fwSmallFont,
 				2.0f,
 				20.0f,
 				0.8f,
@@ -138,8 +128,8 @@ namespace Drawing
 		void DrawFPSCounter()
 		{
 			if (!IniConfig::ShouldShowFPSCounter() ||
-				!*Symbols::Singleplayer::fwSmallFont ||
-				Symbols::Singleplayer::Con_IsActive(0))
+				!*Symbols::SP::fwSmallFont ||
+				Symbols::SP::Con_IsActive(0))
 			{
 				return;
 			}
@@ -163,10 +153,10 @@ namespace Drawing
 
 			float x = (count <= 99) ? 1255.0f : 1243.0f;
 
-			Symbols::Singleplayer::R_AddCmdDrawText(
+			Symbols::SP::R_AddCmdDrawText(
 				text,
 				MAX_CHARS,
-				*Symbols::Singleplayer::fwSmallFont,
+				*Symbols::SP::fwSmallFont,
 				x,
 				20.0f,
 				1.0f,
@@ -187,7 +177,7 @@ namespace Drawing
 			Invoke();
 		}
 
-		void Hooks()
+		void Load()
 		{
 			// draw our watermark and fps counter
 			CL_DrawScreen_Hook.Create(0x8221F858, CL_DrawScreen);
@@ -197,19 +187,9 @@ namespace Drawing
 			Util::Hook::Nop(0x824A6F3C, 2); // UI_DrawBuildNumber
 		}
 
-		void ClearHooks()
-		{
-			CL_DrawScreen_Hook.Clear();
-		}
-
-		void Load()
-		{
-			Hooks();
-		}
-
 		void Unload()
 		{
-			ClearHooks();
+			CL_DrawScreen_Hook.Clear();
 		}
 	}
 #endif
