@@ -7,9 +7,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "xkelib", "Dependencies\xkel
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NX1-Mod", "NX1-Mod", "{0E036C5C-AA41-4AC0-BAFE-F94455E59CCD}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Multiplayer", "Projects\Multiplayer.vcxproj", "{590B22B0-B65E-4E94-8035-693C29BAD0D2}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MP", "Projects\MP.vcxproj", "{590B22B0-B65E-4E94-8035-693C29BAD0D2}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Singleplayer", "Projects\Singleplayer.vcxproj", "{97114FA4-AB73-444A-AB82-6066E25C1E1D}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SP", "Projects\SP.vcxproj", "{97114FA4-AB73-444A-AB82-6066E25C1E1D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
