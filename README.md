@@ -63,6 +63,20 @@
   - String Table: 800
   - Impact FX: 8
 - Added a print that tells you what .d3dbsp has loaded (MP)
+- Added game init print (SP)
 - Added asset loaders (SP/MP):
   - Map Ents - Load any entity files from NX1-Mod/raw/maps
 - replaced IW4 references with NX1 (MP)
+- Removed some prints (MP/SP):
+  - dvar set
+  - cmd line
+  - unknown map add to xlast
+  - start $init
+  - end $init
+  - looking for alias
+  - com_init_tbf build version
+  - loading from disc, not update drive
+  - missing soundalias
+  - adding/hiding channel
+  - no channels added/hidden
+  - log file opened
