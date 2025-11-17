@@ -50,7 +50,7 @@ namespace
 
 		Sleep(200);
 	}
-} // namespace
+}
 
 BOOL WINAPI DllMain(HANDLE hInstance, DWORD dwReason, LPVOID)
 {
