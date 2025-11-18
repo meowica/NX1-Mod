@@ -65,6 +65,10 @@ namespace AssetHandler
 	{
 		void RegisterDumpers()
 		{
+			if (IniConfig::ShouldEnablePhysPresetDumper())
+			{
+				IPhysPreset::SP::Dump();
+			}
 		}
 
 		void RegisterLoaders()

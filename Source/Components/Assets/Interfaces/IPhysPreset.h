@@ -12,6 +12,7 @@ namespace IPhysPreset
 #elif IS_SP
 	namespace SP
 	{
+		void Dump();
 		void Load();
 		void Unload();
 	}
