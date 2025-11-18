@@ -17,9 +17,11 @@ namespace IniConfig
 
 	// Loaders
 	static bool EnableMapEntsLoader = true;
+	static bool EnableRawFileLoader = true;
 
 	// Dumpers
 	static bool EnablePhysPresetDumper = false;
+	static bool EnableRawFileDumper = false;
 
 	static void ReadConfig()
 	{
@@ -40,9 +42,11 @@ namespace IniConfig
 
 		// Loaders
 		EnableMapEntsLoader = iniFile.GetBool("Loaders", "EnableMapEntsLoader", EnableMapEntsLoader);
+		EnableRawFileLoader = iniFile.GetBool("Loaders", "EnableRawFileLoader", EnableRawFileLoader);
 
 		// Dumpers
 		EnablePhysPresetDumper = iniFile.GetBool("Dumpers", "EnablePhysPresetDumper", EnablePhysPresetDumper);
+		EnableRawFileDumper = iniFile.GetBool("Dumpers", "EnableRawFileDumper", EnableRawFileDumper);
 	}
 
 	// Intro
@@ -71,11 +75,21 @@ namespace IniConfig
 		return EnableMapEntsLoader;
 	}
 
+	bool ShouldEnableRawFileLoader()
+	{
+		return EnableRawFileLoader;
+	}
+
 	// Dumpers
 
 	bool ShouldEnablePhysPresetDumper()
 	{
 		return EnablePhysPresetDumper;
+	}
+
+	bool ShouldEnableRawFileDumper()
+	{
+		return EnableRawFileDumper;
 	}
 
 #ifdef IS_MP

@@ -8,8 +8,10 @@ namespace IniConfig
 	bool ShouldShowFPSCounter();
 
 	bool ShouldEnableMapEntsLoader();
+	bool ShouldEnableRawFileLoader();
 
 	bool ShouldEnablePhysPresetDumper();
+	bool ShouldEnableRawFileDumper();
 
 #ifdef IS_MP
 	namespace MP

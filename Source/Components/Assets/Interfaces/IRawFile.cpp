@@ -131,8 +131,15 @@ namespace IRawFile
 
 			if (varRawFilePtr && *varRawFilePtr)
 			{
-				//Dump_RawFile(*varRawFilePtr);
-				Load_RawFile(*varRawFilePtr);
+				if (IniConfig::ShouldEnableRawFileDumper())
+				{
+					Dump_RawFile(*varRawFilePtr);
+				}
+				
+				if (IniConfig::ShouldEnableRawFileLoader())
+				{
+					Load_RawFile(*varRawFilePtr);
+				}
 			}
 		}
 
