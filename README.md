@@ -66,6 +66,8 @@
 - Added game init print (SP)
 - Added asset loaders (SP/MP):
   - Map Ents - Load any entity files from NX1-Mod/raw/maps
+- Added asset dumpers (MP/SP):
+  - Phys Preset - Dump any physic preset file
 - replaced IW4 references with NX1 (MP)
 - Removed some prints (MP/SP):
   - dvar set
