@@ -1,75 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="zlib">
-      <UniqueIdentifier>{721adf7c-3869-4972-9f5d-22dea7a2c30d}</UniqueIdentifier>
-    </Filter>
+    <ClCompile Include="..\..\Dependencies\zlib\adler32.c" />
+    <ClCompile Include="..\..\Dependencies\zlib\compress.c" />
+    <ClCompile Include="..\..\Dependencies\zlib\crc32.c" />
+    <ClCompile Include="..\..\Dependencies\zlib\deflate.c" />
+    <ClCompile Include="..\..\Dependencies\zlib\infback.c" />
+    <ClCompile Include="..\..\Dependencies\zlib\inffast.c" />
+    <ClCompile Include="..\..\Dependencies\zlib\inflate.c" />
+    <ClCompile Include="..\..\Dependencies\zlib\inftrees.c" />
+    <ClCompile Include="..\..\Dependencies\zlib\trees.c" />
+    <ClCompile Include="..\..\Dependencies\zlib\uncompr.c" />
+    <ClCompile Include="..\..\Dependencies\zlib\zutil.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Dependencies\zlib\adler32.c">
-      <Filter>zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Dependencies\zlib\compress.c">
-      <Filter>zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Dependencies\zlib\crc32.c">
-      <Filter>zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Dependencies\zlib\deflate.c">
-      <Filter>zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Dependencies\zlib\infback.c">
-      <Filter>zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Dependencies\zlib\inffast.c">
-      <Filter>zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Dependencies\zlib\inflate.c">
-      <Filter>zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Dependencies\zlib\inftrees.c">
-      <Filter>zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Dependencies\zlib\trees.c">
-      <Filter>zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Dependencies\zlib\uncompr.c">
-      <Filter>zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Dependencies\zlib\zutil.c">
-      <Filter>zlib</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\Dependencies\zlib\crc32.h">
-      <Filter>zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Dependencies\zlib\deflate.h">
-      <Filter>zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Dependencies\zlib\inffast.h">
-      <Filter>zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Dependencies\zlib\inffixed.h">
-      <Filter>zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Dependencies\zlib\inflate.h">
-      <Filter>zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Dependencies\zlib\inftrees.h">
-      <Filter>zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Dependencies\zlib\trees.h">
-      <Filter>zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Dependencies\zlib\zconf.h">
-      <Filter>zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Dependencies\zlib\zlib.h">
-      <Filter>zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Dependencies\zlib\zutil.h">
-      <Filter>zlib</Filter>
-    </ClInclude>
+    <ClInclude Include="..\..\Dependencies\zlib\zutil.h" />
+    <ClInclude Include="..\..\Dependencies\zlib\crc32.h" />
+    <ClInclude Include="..\..\Dependencies\zlib\deflate.h" />
+    <ClInclude Include="..\..\Dependencies\zlib\inffast.h" />
+    <ClInclude Include="..\..\Dependencies\zlib\inffixed.h" />
+    <ClInclude Include="..\..\Dependencies\zlib\inflate.h" />
+    <ClInclude Include="..\..\Dependencies\zlib\inftrees.h" />
+    <ClInclude Include="..\..\Dependencies\zlib\trees.h" />
+    <ClInclude Include="..\..\Dependencies\zlib\zconf.h" />
+    <ClInclude Include="..\..\Dependencies\zlib\zlib.h" />
   </ItemGroup>
 </Project>
