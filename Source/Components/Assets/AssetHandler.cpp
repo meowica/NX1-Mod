@@ -1,6 +1,7 @@
 // interfaces
 #include "Interfaces\IPhysPreset.h"
 #include "Interfaces\IMapEnts.h"
+#include "Interfaces\IRawFile.h"
 
 namespace AssetHandler
 {
@@ -13,6 +14,11 @@ namespace AssetHandler
 			{
 				IPhysPreset::MP::Dump();
 			}
+
+			//if (IniConfig::ShouldEnableRawFileDumper())
+			//{
+				IRawFile::MP::Dump();
+			//}
 		}
 
 		void RegisterLoaders()
