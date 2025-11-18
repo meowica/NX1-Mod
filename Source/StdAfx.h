@@ -34,6 +34,7 @@
 #include <cctype>
 #include <map>
 #include <algorithm>
+#include <vector>
 
 // xbox stuff
 #include <xtl.h>
@@ -45,6 +46,7 @@
 
 // external libs
 #include <xkelib.h>
+#include <zlib.h>
 
 // utils
 #include "Util\Command.h"

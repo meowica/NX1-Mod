@@ -1,6 +1,3 @@
-#include <vector>
-#include <zlib.h>
-
 namespace IRawFile
 {
 	struct RawFile
