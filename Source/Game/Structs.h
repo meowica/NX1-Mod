@@ -7,7 +7,6 @@ namespace Structs
 		int nesting;
 		int localClientNum[8];
 		int controllerIndex[8];
-
 		int argc[8];
 		const char** argv[8];
 	};
@@ -15,7 +14,6 @@ namespace Structs
 	struct cmd_function_s
 	{
 		cmd_function_s* next;
-
 		const char* name;
 		const char* autoCompleteDir;
 		const char* autoCompleteExt;
@@ -73,12 +71,10 @@ namespace Structs
 		unsigned int flags;
 		char type;
 		bool modified;
-
 		DvarValue current;
 		DvarValue latched;
 		DvarValue reset;
 		DvarLimits domain;
-
 		dvar_s* hashNext;
 	} dvar_t;
 
@@ -87,22 +83,16 @@ namespace Structs
 		float scaleVirtualToReal[2];
 		float scaleVirtualToFull[2];
 		float scaleRealToVirtual[2];
-
 		float realViewportPosition[2];
 		float realViewportSize[2];
-
 		float virtualViewableMin[2];
 		float virtualViewableMax[2];
-
 		float realViewableMin[2];
 		float realViewableMax[2];
-
 		float virtualAdjustableMin[2];
 		float virtualAdjustableMax[2];
-
 		float realAdjustableMin[2];
 		float realAdjustableMax[2];
-
 		float subScreenLeft;
 	};
 
@@ -111,7 +101,6 @@ namespace Structs
 		SL_SYSTEM = 0,
 		SL_HUD_BOB_NO_DISTORT,
 		SL_HUD_DISTORT,
-
 		SL_NUM_LAYERS,
 	};
 
@@ -145,7 +134,6 @@ namespace Structs
 		CON_CHANNEL_NETWORK,
 		CON_CHANNEL_VERBOSE,
 		CON_CHANNEL_DEMO,
-
 		CON_BUILTIN_CHANNEL_COUNT,
 	};
 
@@ -199,7 +187,6 @@ namespace Structs
 		ASSET_TYPE_VOLUMESETTING,
 		ASSET_TYPE_REVERBPRESET,
 		ASSET_TYPE_FOG,
-
 		ASSET_TYPE_COUNT,
 		ASSET_TYPE_STRING,
 		ASSET_TYPE_ASSETLIST,
@@ -221,21 +208,16 @@ namespace Structs
 	struct GfxConfiguration
 	{
 		bool inited;
-
 		unsigned int maxClientViews;
 		unsigned int maxClientRenderViews;
-
 		unsigned int entCount;
 		unsigned int entnumNone;
 		unsigned int entnumOrdinaryEnd;
-
 		int threadContextCount;
 		int critSectCount;
-
 		bool defaultFullscreen;
 		unsigned short defaultFullscreenFlags;
 		int defaultMode;
-
 		unsigned int textureMinVRamTier1;
 		unsigned int textureMinVRamTier2;
 	};
@@ -249,7 +231,6 @@ namespace Structs
 	{
 		char* sessionName;
 		bool registerUsersWithVoice;
-
 		IXHV2Engine* voiceEngine;
 	};
 
@@ -326,28 +307,21 @@ namespace Structs
 	{
 		HANDLE sessionHandle;
 		int actualPublicSlots;
-
 		IWNetSessionStatus iwnetServerSessionStatus;
 		XSESSION_INFO sessionInfo;
-
 		bool keysGenerated;
 		bool sessionStartCalled;
 		unsigned long long sessionNonce;
-
 		int privateSlots;
 		int publicSlots;
 		int flags;
 		bool qosListenEnabled;
-
 		ClientInfo users[18];
 		LocalTalkerInfo localTalkers[4];
 		int voiceConnectivityBits;
-
 		int sessionCreateController;
 		int sessionDeleteTime;
-
 		bool allowJoining;
-
 		RegisteredUser internalRegisteredUsers[18];
 	};
 

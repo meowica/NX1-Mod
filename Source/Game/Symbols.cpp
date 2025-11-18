@@ -7,6 +7,8 @@ namespace Symbols
 		Cbuf_AddText_t Cbuf_AddText = Cbuf_AddText_t(0x82436918);
 
 		Com_Printf_t Com_Printf = Com_Printf_t(0x82451A80);
+		Com_sprintf_t Com_sprintf = Com_sprintf_t(0x8256BA80);
+		Com_GetBaseMapName_t Com_GetBaseMapName = Com_GetBaseMapName_t(0x8252F990);
 
 		CL_ConsolePrint_t CL_ConsolePrint = CL_ConsolePrint_t(0x8229A338);
 		Con_IsActive_t Con_IsActive = Con_IsActive_t(0x8229D670);
@@ -26,6 +28,8 @@ namespace Symbols
 		Key_IsCatcherActive_t Key_IsCatcherActive = Key_IsCatcherActive_t(0x822A87C0);
 
 		R_AddCmdDrawText_t R_AddCmdDrawText = R_AddCmdDrawText_t(0x82803710);
+
+		I_strnicmp_t I_strnicmp = I_strnicmp_t(0x8256B110);
 
 		Structs::CmdArgs* cmd_args = (Structs::CmdArgs*)0x83A0C448;
 

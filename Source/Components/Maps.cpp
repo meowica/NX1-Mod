@@ -4,19 +4,34 @@ namespace Maps
 	namespace MP
 	{
 		Util::Hook::Detour Com_GetBspFilename_Hook;
-		void Com_GetBspFilename(char* filename, int size, const char* mapname)
+		void Com_GetBspFilename(char* filename, unsigned int size, const char* p_mapname)
 		{
-			// TODO: add addon_map shit
+			const char* baseName = p_mapname;
 
-			bool isMP = (strncmp(mapname, "mp_", 3) == 0);
+			bool isAddonMap = false;
+
+			if (Symbols::MP::I_strnicmp(p_mapname, "so_", 3) == 0)
+			{
+				if (strchr(p_mapname + 3, '_'))
+				{
+					isAddonMap = true;
+				}
+			}
+
+			if (isAddonMap)
+			{
+				baseName = Symbols::MP::Com_GetBaseMapName(p_mapname);
+			}
+
+			bool isMP = (strncmp(p_mapname, "mp_", 3) == 0);
 
 			if (isMP)
 			{
-				sprintf_s(filename, size, "maps/mp/%s.d3dbsp", mapname);
+				Symbols::MP::Com_sprintf(filename, size, "maps/mp/%s.d3dbsp", p_mapname);
 			}
 			else
 			{
-				sprintf_s(filename, size, "maps/%s.d3dbsp", mapname);
+				Symbols::MP::Com_sprintf(filename, size, "maps/%s.d3dbsp", p_mapname);
 			}
 		}
 

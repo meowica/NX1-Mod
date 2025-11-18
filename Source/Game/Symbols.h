@@ -15,6 +15,12 @@ namespace Symbols
 		typedef void (*Com_Printf_t)(int channel, const char* fmt, ...);
 		extern Com_Printf_t Com_Printf;
 
+		typedef int (*Com_sprintf_t)(char *dest, unsigned int size, const char *fmt, ...);
+		extern Com_sprintf_t Com_sprintf;
+
+		typedef char* (*Com_GetBaseMapName_t)(const char* p_mapName);
+		extern Com_GetBaseMapName_t Com_GetBaseMapName;
+
 		typedef void (*CL_ConsolePrint_t)(int localClientNum, int channel, const char* txt,
 			int duration, int pixelWidth, int flags);
 		extern CL_ConsolePrint_t CL_ConsolePrint;
@@ -51,13 +57,16 @@ namespace Symbols
 		typedef const Structs::dvar_t* (*Dvar_FindVar_t)(const char* dvarName);
 		extern Dvar_FindVar_t Dvar_FindVar;
 
-		typedef BOOL (*Key_IsCatcherActive_t)(int localClientNum, int mask);
+		typedef int (*Key_IsCatcherActive_t)(int localClientNum, int mask);
 		extern Key_IsCatcherActive_t Key_IsCatcherActive;
 
 		typedef void (*R_AddCmdDrawText_t)(const char* text, int maxChars,
 			Structs::Font_s* font, float x, float y, float xScale, float yScale,
 			float rotation, const float* colour, int style, Structs::EScreenLayer layer);
 		extern R_AddCmdDrawText_t R_AddCmdDrawText;
+
+		typedef int (*I_strnicmp_t)(const char* s0, const char* s1, unsigned int n);
+		extern I_strnicmp_t I_strnicmp;
 
 		extern Structs::CmdArgs* cmd_args;
 
