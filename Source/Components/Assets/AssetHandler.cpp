@@ -8,25 +8,11 @@ namespace AssetHandler
 #ifdef IS_MP
 	namespace MP
 	{
-		void RegisterDumpers()
+		void RegisterLoadersAndDumpers()
 		{
-			if (IniConfig::ShouldEnablePhysPresetDumper())
-			{
-				IPhysPreset::MP::Dump();
-			}
-
-			//if (IniConfig::ShouldEnableRawFileDumper())
-			//{
-				IRawFile::MP::Dump();
-			//}
-		}
-
-		void RegisterLoaders()
-		{
-			if (IniConfig::ShouldEnableMapEntsLoader())
-			{
-				IMapEnts::MP::Load();
-			}
+			IPhysPreset::MP::Load();
+			IMapEnts::MP::Load();
+			IRawFile::MP::Load();
 		}
 
 		void* ReallocateAssetPool(uint32_t type, unsigned int newSize)
@@ -41,6 +27,8 @@ namespace AssetHandler
 
 		void Load()
 		{
+			RegisterLoadersAndDumpers();
+
 			// IW4x limits
 
 			ReallocateAssetPool(Structs::ASSET_TYPE_GAMEWORLD_SP, 1);
@@ -56,10 +44,6 @@ namespace AssetHandler
 			ReallocateAssetPool(Structs::ASSET_TYPE_WEAPON, 2400);
 			ReallocateAssetPool(Structs::ASSET_TYPE_STRINGTABLE, 800);
 			ReallocateAssetPool(Structs::ASSET_TYPE_IMPACT_FX, 8);
-
-			// Register our asset loaders
-			RegisterLoaders();
-			RegisterDumpers();
 		}
 
 		void Unload()
@@ -69,27 +53,18 @@ namespace AssetHandler
 #elif IS_SP
 	namespace SP
 	{
-		void RegisterDumpers()
+		void RegisterLoadersAndDumpers()
 		{
-			if (IniConfig::ShouldEnablePhysPresetDumper())
-			{
-				IPhysPreset::SP::Dump();
-			}
-		}
-
-		void RegisterLoaders()
-		{
-			if (IniConfig::ShouldEnableMapEntsLoader())
-			{
-				IMapEnts::SP::Load();
-			}
+			IPhysPreset::SP::Load();
+			IMapEnts::SP::Load();
+			IRawFile::SP::Load();
 		}
 
 		void Load()
 		{
-			RegisterLoaders();
+			RegisterLoadersAndDumpers();
 
-			// TODO: do asset allocations
+			// TODO: Add asset allocations
 		}
 
 		void Unload()

@@ -71,7 +71,7 @@
       <PrecompiledHeaderFile>StdAfx.h</PrecompiledHeaderFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <ForcedIncludeFiles>$(ProjectDir)..\..\Source\StdAfx.h</ForcedIncludeFiles>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\Dependencies\xkelib</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\Dependencies\xkelib;$(ProjectDir)..\..\Dependencies\zlib</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>false</GenerateDebugInformation>
@@ -79,9 +79,9 @@
       <OptimizeReferences>true</OptimizeReferences>
       <ProgramDatabaseFile>$(ProjectDir)..\Output\Bin\Release\SP\NX1-Mod.pdb</ProgramDatabaseFile>
       <SetChecksum>true</SetChecksum>
-      <AdditionalDependencies>xapilib.lib;d3d9ltcg.lib;d3dx9.lib;xgraphics.lib;xboxkrnl.lib;xnet.lib;xaudio2.lib;xact3ltcg.lib;x3daudioltcg.lib;xmcoreltcg.lib;vcomp.lib</AdditionalDependencies>
+      <AdditionalDependencies>D:\Projects\CoD\Games\NX1\NX1-Mod\Dependencies\zlib\libs\zlib.lib;xapilib.lib;d3d9ltcg.lib;d3dx9.lib;xgraphics.lib;xboxkrnl.lib;xnet.lib;xaudio2.lib;xact3ltcg.lib;x3daudioltcg.lib;xmcoreltcg.lib;vcomp.lib</AdditionalDependencies>
       <AdditionalOptions>/dll /ALIGN:128,4096 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalLibraryDirectories>$(ProjectDir)..\..\Dependencies\xkelib\libs\</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\..\Dependencies\xkelib\libs\;$(ProjectDir)..\..\Dependencies\zlib\libs\</AdditionalLibraryDirectories>
     </Link>
     <ImageXex>
       <ConfigurationFile>..\build-xex.xml</ConfigurationFile>
@@ -133,6 +133,7 @@
     <ClCompile Include="..\..\Source\Components\Assets\AssetHandler.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IMapEnts.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IPhysPreset.cpp" />
+    <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IRawFile.cpp" />
     <ClCompile Include="..\..\Source\Components\CustomCommands.cpp" />
     <ClCompile Include="..\..\Source\Components\DevGui.cpp" />
     <ClCompile Include="..\..\Source\Components\Drawing.cpp" />
@@ -157,6 +158,7 @@
     <ClInclude Include="..\..\Source\Components\Assets\AssetHandler.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IMapEnts.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IPhysPreset.h" />
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IRawFile.h" />
     <ClInclude Include="..\..\Source\Components\CustomCommands.h" />
     <ClInclude Include="..\..\Source\Components\DevGui.h" />
     <ClInclude Include="..\..\Source\Components\Drawing.h" />

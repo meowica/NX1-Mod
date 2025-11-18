@@ -143,13 +143,9 @@ namespace IRawFile
 			}
 		}
 
-		void Dump()
-		{
-			Load_RawFilePtr_Hook.Create(0x823190A0, Load_RawFilePtr);
-		}
-
 		void Load()
 		{
+			Load_RawFilePtr_Hook.Create(0x823190A0, Load_RawFilePtr);
 		}
 
 		void Unload()
@@ -160,10 +156,6 @@ namespace IRawFile
 #elif IS_SP
 	namespace SP
 	{
-		void Dump()
-		{
-		}
-
 		void Load()
 		{
 		}

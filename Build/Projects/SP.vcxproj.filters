@@ -63,6 +63,9 @@
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IPhysPreset.cpp">
       <Filter>Components\Assets\Interfaces</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IRawFile.cpp">
+      <Filter>Components\Assets\Interfaces</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\Util\Command.h">
@@ -137,6 +140,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\Loader.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IPhysPreset.h">
+      <Filter>Components\Assets\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IRawFile.h">
       <Filter>Components\Assets\Interfaces</Filter>
     </ClInclude>
   </ItemGroup>

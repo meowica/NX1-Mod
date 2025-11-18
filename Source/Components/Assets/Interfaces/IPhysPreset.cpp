@@ -80,17 +80,21 @@ namespace IPhysPreset
 
 			if (varPhysPresetPtr && *varPhysPresetPtr)
 			{
-				Dump_PhysPreset(*varPhysPresetPtr);
+				if (IniConfig::ShouldEnablePhysPresetDumper())
+				{
+					Dump_PhysPreset(*varPhysPresetPtr);
+				}
+				
+				//if (IniConfig::ShouldEnablePhysPresetLoader())
+				//{
+				//	Load_PhysPreset(*varPhysPresetPtr);
+				//}
 			}
-		}
-
-		void Dump()
-		{
-			Load_PhysPresetPtr_Hook.Create(0x82306FD8, Load_PhysPresetPtr);
 		}
 
 		void Load()
 		{
+			Load_PhysPresetPtr_Hook.Create(0x82306FD8, Load_PhysPresetPtr);
 		}
 
 		void Unload()
@@ -151,17 +155,21 @@ namespace IPhysPreset
 
 			if (varPhysPresetPtr && *varPhysPresetPtr)
 			{
-				Dump_PhysPreset(*varPhysPresetPtr);
+				if (IniConfig::ShouldEnablePhysPresetDumper())
+				{
+					Dump_PhysPreset(*varPhysPresetPtr);
+				}
+				
+				//if (IniConfig::ShouldEnablePhysPresetLoader())
+				//{
+				//	Load_PhysPreset(*varPhysPresetPtr);
+				//}
 			}
-		}
-
-		void Dump()
-		{
-			Load_PhysPresetPtr_Hook.Create(0x82250C00, Load_PhysPresetPtr);
 		}
 
 		void Load()
 		{
+			Load_PhysPresetPtr_Hook.Create(0x82250C00, Load_PhysPresetPtr);
 		}
 
 		void Unload()
