@@ -64,6 +64,7 @@
     <OutDir>$(SolutionDir)Output\Bin\Release\zlib\</OutDir>
     <IntDir>$(SolutionDir)Output\Obj\Release\zlib\</IntDir>
     <OutputFile>$(SolutionDir)Output\Bin\Release\zlib\zlib.lib</OutputFile>
+    <PreBuildEventUseInBuild>true</PreBuildEventUseInBuild>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Xbox 360'">
     <CustomBuildAfterTargets />
@@ -93,12 +94,12 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PreBuildEvent>
-      <Command>del "$(TargetDir)$(TargetName)$(TargetExt)" "$(TargetDir)$(TargetName).exp"
-lib /def:$(SolutionDir)..\Dependencies\xkelib\kernel\kernelext.def /def:$(SolutionDir)..\Dependencies\xkelib\xam\xamext.def /MACHINE:PPCBE /OUT:"$(TargetDir)$(TargetName)$(TargetExt)"
-</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
     <PreBuildEvent>
-      <Message>creating import libs</Message>
+      <Message>
+      </Message>
     </PreBuildEvent>
     <Lib>
       <AdditionalLibraryDirectories>
