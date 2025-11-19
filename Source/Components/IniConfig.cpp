@@ -27,26 +27,26 @@ namespace IniConfig
 	{
 		const char* g_configPath = Util::String::VA("game:\\" BASE_FOLDER "\\NX1-Mod.ini");
 
-		Util::Ini iniFile;
-		if (!iniFile.Load(g_configPath))
+		Util::INI iFile;
+		if (!iFile.Load(g_configPath))
 			return;
 
 		// read the keys
 
 		// Intro
-		ShowIntroMovie = iniFile.GetBool("Intro", "ShowIntroMovie", ShowIntroMovie);
+		ShowIntroMovie = iFile.GetBool("Intro", "ShowIntroMovie", ShowIntroMovie);
 
 		// Drawing
-		ShowWatermark  = iniFile.GetBool("Drawing", "ShowWatermark",  ShowWatermark);
-		ShowFPSCounter = iniFile.GetBool("Drawing", "ShowFPSCounter", ShowFPSCounter);
+		ShowWatermark  = iFile.GetBool("Drawing", "ShowWatermark",  ShowWatermark);
+		ShowFPSCounter = iFile.GetBool("Drawing", "ShowFPSCounter", ShowFPSCounter);
 
 		// Loaders
-		EnableMapEntsLoader = iniFile.GetBool("Loaders", "EnableMapEntsLoader", EnableMapEntsLoader);
-		EnableRawFileLoader = iniFile.GetBool("Loaders", "EnableRawFileLoader", EnableRawFileLoader);
+		EnableMapEntsLoader = iFile.GetBool("Loaders", "EnableMapEntsLoader", EnableMapEntsLoader);
+		EnableRawFileLoader = iFile.GetBool("Loaders", "EnableRawFileLoader", EnableRawFileLoader);
 
 		// Dumpers
-		EnablePhysPresetDumper = iniFile.GetBool("Dumpers", "EnablePhysPresetDumper", EnablePhysPresetDumper);
-		EnableRawFileDumper = iniFile.GetBool("Dumpers", "EnableRawFileDumper", EnableRawFileDumper);
+		EnablePhysPresetDumper = iFile.GetBool("Dumpers", "EnablePhysPresetDumper", EnablePhysPresetDumper);
+		EnableRawFileDumper = iFile.GetBool("Dumpers", "EnableRawFileDumper", EnableRawFileDumper);
 	}
 
 	// Intro

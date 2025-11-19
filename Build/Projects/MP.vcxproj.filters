@@ -87,9 +87,6 @@
       <Filter>Util</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\StdAfx.h" />
-    <ClInclude Include="..\..\Source\Util\Ini.h">
-      <Filter>Util</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Source\Util\FPS.h">
       <Filter>Util</Filter>
     </ClInclude>
@@ -143,6 +140,9 @@
       <Filter>Components\Assets\Interfaces</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Util\PPC.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Util\INI.h">
       <Filter>Util</Filter>
     </ClInclude>
   </ItemGroup>
