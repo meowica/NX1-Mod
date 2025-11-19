@@ -177,7 +177,7 @@
     <ClInclude Include="..\..\Source\Util\FileSystem.h" />
     <ClInclude Include="..\..\Source\Util\FPS.h" />
     <ClInclude Include="..\..\Source\Util\Hook.h" />
-    <ClInclude Include="..\..\Source\Util\Ini.h" />
+    <ClInclude Include="..\..\Source\Util\INI.h" />
     <ClInclude Include="..\..\Source\Util\PPC.h" />
     <ClInclude Include="..\..\Source\Util\String.h" />
     <ClInclude Include="..\..\Source\Util\XBox.h" />

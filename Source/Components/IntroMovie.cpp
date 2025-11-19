@@ -10,7 +10,7 @@ namespace IntroMovie
 			Invoke();
 
 			auto playIntro = Symbols::MP::Dvar_FindVar("intro");
-			if (!IniConfig::ShouldShowIntroMovie() || !playIntro->current.enabled)
+			if (!IniConfig::ShowIntroMovie || !playIntro->current.enabled)
 				return;
 
 			Symbols::MP::Cbuf_AddText(0, "autocinematic title\n");
@@ -33,7 +33,7 @@ namespace IntroMovie
 		void COM_PlayIntroMovies()
 		{
 			auto playIntro = Symbols::SP::Dvar_FindVar("intro");
-			if (!IniConfig::ShouldShowIntroMovie() || !playIntro->current.enabled)
+			if (!IniConfig::ShowIntroMovie || !playIntro->current.enabled)
 				return;
 
 			Symbols::SP::Cbuf_AddText(0, "autocinematic title\n");

@@ -80,12 +80,12 @@ namespace IPhysPreset
 
 			if (varPhysPresetPtr && *varPhysPresetPtr)
 			{
-				if (IniConfig::ShouldEnablePhysPresetDumper())
+				if (IniConfig::EnablePhysPresetDumper)
 				{
 					Dump_PhysPreset(*varPhysPresetPtr);
 				}
 				
-				//if (IniConfig::ShouldEnablePhysPresetLoader())
+				//if (IniConfig::EnablePhysPresetLoader)
 				//{
 				//	Load_PhysPreset(*varPhysPresetPtr);
 				//}
@@ -155,12 +155,12 @@ namespace IPhysPreset
 
 			if (varPhysPresetPtr && *varPhysPresetPtr)
 			{
-				if (IniConfig::ShouldEnablePhysPresetDumper())
+				if (IniConfig::EnablePhysPresetDumper)
 				{
 					Dump_PhysPreset(*varPhysPresetPtr);
 				}
 				
-				//if (IniConfig::ShouldEnablePhysPresetLoader())
+				//if (IniConfig::EnablePhysPresetLoader)
 				//{
 				//	Load_PhysPreset(*varPhysPresetPtr);
 				//}

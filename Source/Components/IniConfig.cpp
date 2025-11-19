@@ -1,95 +1,41 @@
-// We could use an external lib for this, but I think this is better... for now atleast
-// We're also pretty limited as this is in C++03-11
-//
-// Credits:
-// - Lil Poop - Idea + inital work
+// Thanks to Lil Poop for originally working on this and for the idea.
 
 namespace IniConfig
 {
-	// Variables
+	bool ShowIntroMovie = true;
 
-	// Intro
-	static bool ShowIntroMovie = true;
+	bool ShowWatermark = true;
+	bool ShowFPSCounter = false;
 
-	// Drawing
-	static bool ShowWatermark = true;
-	static bool ShowFPSCounter = false;
+	bool EnableMapEntLoader = true;
+	bool EnableRawFileLoader = true;
 
-	// Loaders
-	static bool EnableMapEntsLoader = true;
-	static bool EnableRawFileLoader = true;
+	bool EnablePhysPresetDumper = false;
+	bool EnableRawFileDumper = false;
 
-	// Dumpers
-	static bool EnablePhysPresetDumper = false;
-	static bool EnableRawFileDumper = false;
+	Util::INI g_Config;
 
-	static void ReadConfig()
+	void LoadAndReadConfig()
 	{
-		const char* g_configPath = Util::String::VA("game:\\" BASE_FOLDER "\\NX1-Mod.ini");
-
-		Util::INI iFile;
-		if (!iFile.Load(g_configPath))
+		std::string filePath = Util::String::VA("game:\\" BASE_FOLDER "\\" INI_CONFIG);
+		if (!g_Config.Load(filePath))
 			return;
 
-		// read the keys
+		ShowIntroMovie = g_Config.GetBoolean("Intro", "ShowIntroMovie", ShowIntroMovie);
 
-		// Intro
-		ShowIntroMovie = iFile.GetBool("Intro", "ShowIntroMovie", ShowIntroMovie);
+		ShowWatermark  = g_Config.GetBoolean("Drawing", "ShowWatermark",  ShowWatermark);
+		ShowFPSCounter = g_Config.GetBoolean("Drawing", "ShowFPSCounter", ShowFPSCounter);
 
-		// Drawing
-		ShowWatermark  = iFile.GetBool("Drawing", "ShowWatermark",  ShowWatermark);
-		ShowFPSCounter = iFile.GetBool("Drawing", "ShowFPSCounter", ShowFPSCounter);
+		EnableMapEntLoader = g_Config.GetBoolean("Asset Loaders", "EnableMapEntLoader", EnableMapEntLoader);
+		EnableRawFileLoader = g_Config.GetBoolean("Asset Loaders", "EnableRawFileLoader", EnableRawFileLoader);
 
-		// Loaders
-		EnableMapEntsLoader = iFile.GetBool("Loaders", "EnableMapEntsLoader", EnableMapEntsLoader);
-		EnableRawFileLoader = iFile.GetBool("Loaders", "EnableRawFileLoader", EnableRawFileLoader);
-
-		// Dumpers
-		EnablePhysPresetDumper = iFile.GetBool("Dumpers", "EnablePhysPresetDumper", EnablePhysPresetDumper);
-		EnableRawFileDumper = iFile.GetBool("Dumpers", "EnableRawFileDumper", EnableRawFileDumper);
+		EnablePhysPresetDumper = g_Config.GetBoolean("Asset Dumpers", "EnablePhysPresetDumper", EnablePhysPresetDumper);
+		EnableRawFileDumper = g_Config.GetBoolean("Asset Dumpers", "EnableRawFileDumper", EnableRawFileDumper);
 	}
 
-	// Intro
-
-	bool ShouldShowIntroMovie()
+	void UnloadConfig()
 	{
-		return ShowIntroMovie;
-	}
-
-	// Drawing
-
-	bool ShouldShowWatermark()
-	{
-		return ShowWatermark;
-	}
-
-	bool ShouldShowFPSCounter()
-	{
-		return ShowFPSCounter;
-	}
-
-	// Loaders
-
-	bool ShouldEnableMapEntsLoader()
-	{
-		return EnableMapEntsLoader;
-	}
-
-	bool ShouldEnableRawFileLoader()
-	{
-		return EnableRawFileLoader;
-	}
-
-	// Dumpers
-
-	bool ShouldEnablePhysPresetDumper()
-	{
-		return EnablePhysPresetDumper;
-	}
-
-	bool ShouldEnableRawFileDumper()
-	{
-		return EnableRawFileDumper;
+		g_Config.Unload();
 	}
 
 #ifdef IS_MP
@@ -97,12 +43,12 @@ namespace IniConfig
 	{
 		void Load()
 		{
-			ReadConfig();
+			LoadAndReadConfig();
 		}
 
 		void Unload()
 		{
-			// nothing
+			UnloadConfig();
 		}
 	}
 #elif IS_SP
@@ -110,12 +56,12 @@ namespace IniConfig
 	{
 		void Load()
 		{
-			ReadConfig();
+			LoadAndReadConfig();
 		}
 
 		void Unload()
 		{
-			// nothing
+			UnloadConfig();
 		}
 	}
 #endif

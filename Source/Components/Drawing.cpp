@@ -5,13 +5,8 @@ namespace Drawing
 	{
 		void DrawWatermark()
 		{
-			if (!IniConfig::ShouldShowWatermark() ||
-				!*Symbols::MP::fwSmallFont ||
-				Symbols::MP::Con_IsActive(0) ||
-				Symbols::MP::DevGui_IsActive())
-			{
+			if (!*Symbols::MP::fwSmallFont || Symbols::MP::Con_IsActive(0) || Symbols::MP::DevGui_IsActive())
 				return;
-			}
 
 			float colour[4] = { 1.0f, 1.0f, 1.0f, 0.25f };
 
@@ -31,12 +26,8 @@ namespace Drawing
 
 		void DrawFPSCounter()
 		{
-			if (!IniConfig::ShouldShowFPSCounter() ||
-				!*Symbols::MP::fwSmallFont ||
-				Symbols::MP::Con_IsActive(0))
-			{
+			if (!*Symbols::MP::fwSmallFont || Symbols::MP::Con_IsActive(0))
 				return;
-			}
 
 			float colourGood[4] = { 0.6f, 1.0f, 0.0f, 1.0f };
 			float colourOkay[4] = { 1.0f, 0.7f, 0.3f, 1.0f };
@@ -74,8 +65,11 @@ namespace Drawing
 		Util::Hook::Detour CL_DrawScreen_Hook;
 		void CL_DrawScreen()
 		{
-			DrawWatermark();
-			DrawFPSCounter();
+			if (IniConfig::ShowWatermark)
+				DrawWatermark();
+
+			if (IniConfig::ShowFPSCounter)
+				DrawFPSCounter();
 
 			auto Invoke = CL_DrawScreen_Hook.Invoke<void(*)()>();
 			Invoke();
@@ -101,13 +95,8 @@ namespace Drawing
 	{
 		void DrawWatermark()
 		{
-			if (!IniConfig::ShouldShowWatermark() ||
-				!*Symbols::SP::fwSmallFont ||
-				Symbols::SP::Con_IsActive(0) ||
-				Symbols::SP::DevGui_IsActive())
-			{
+			if (!*Symbols::SP::fwSmallFont || Symbols::SP::Con_IsActive(0) || Symbols::SP::DevGui_IsActive())
 				return;
-			}
 
 			float colour[4] = { 1.0f, 1.0f, 1.0f, 0.25f };
 
@@ -127,12 +116,8 @@ namespace Drawing
 
 		void DrawFPSCounter()
 		{
-			if (!IniConfig::ShouldShowFPSCounter() ||
-				!*Symbols::SP::fwSmallFont ||
-				Symbols::SP::Con_IsActive(0))
-			{
+			if (!*Symbols::SP::fwSmallFont || Symbols::SP::Con_IsActive(0))
 				return;
-			}
 
 			float colourGood[4] = { 0.6f, 1.0f, 0.0f, 1.0f };
 			float colourOkay[4] = { 1.0f, 0.7f, 0.3f, 1.0f };
@@ -170,8 +155,11 @@ namespace Drawing
 		Util::Hook::Detour CL_DrawScreen_Hook;
 		void CL_DrawScreen()
 		{
-			DrawWatermark();
-			DrawFPSCounter();
+			if (IniConfig::ShowWatermark)
+				DrawWatermark();
+
+			if (IniConfig::ShowFPSCounter)
+				DrawFPSCounter();
 
 			auto Invoke = CL_DrawScreen_Hook.Invoke<void(*)()>();
 			Invoke();

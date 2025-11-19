@@ -2,16 +2,22 @@
 
 namespace IniConfig
 {
-	bool ShouldShowIntroMovie();
+	// Variables
 
-	bool ShouldShowWatermark();
-	bool ShouldShowFPSCounter();
+	// Intro
+	extern bool ShowIntroMovie;
 
-	bool ShouldEnableMapEntsLoader();
-	bool ShouldEnableRawFileLoader();
+	// Drawing
+	extern bool ShowWatermark;
+	extern bool ShowFPSCounter;
 
-	bool ShouldEnablePhysPresetDumper();
-	bool ShouldEnableRawFileDumper();
+	// Loaders
+	extern bool EnableMapEntLoader;
+	extern bool EnableRawFileLoader;
+
+	// Dumpers
+	extern bool EnablePhysPresetDumper;
+	extern bool EnableRawFileDumper;
 
 #ifdef IS_MP
 	namespace MP

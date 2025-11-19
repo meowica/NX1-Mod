@@ -46,6 +46,12 @@ namespace Util
 			return true;
 		}
 
+		bool Unload()
+		{
+			data_.clear();
+			return true;
+		}
+
 		std::string GetString(
 			const std::string& section,
 			const std::string& key,
@@ -61,18 +67,7 @@ namespace Util
 			return itK->second;
 		}
 
-		int GetInt(
-			const std::string& section,
-			const std::string& key,
-			int def = 0) const
-		{
-			const std::string value = GetString(section, key);
-			if (value.empty())
-				return def;
-			return std::atoi(value.c_str());
-		}
-
-		bool GetBool(
+		bool GetBoolean(
 			const std::string& section,
 			const std::string& key,
 			bool def = false) const
