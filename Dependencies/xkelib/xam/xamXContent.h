@@ -23,7 +23,7 @@
 														XCONTENT_PKGFLAG_KEEP_OPEN_ON_TITLE_TERMINATE)
 
 #pragma warning(push)
-#pragma warning(disable:4005) // Get rid of the redefinition warning
+#pragma warning(disable: 4005) // Get rid of the redefinition warning
 #define XCONTENTTYPE_SAVEDGAME					0x00000001
 #define XCONTENTTYPE_MARKETPLACE				0x00000002
 #define XCONTENTTYPE_PUBLISHER					0x00000003
