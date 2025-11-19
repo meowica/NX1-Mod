@@ -24,6 +24,8 @@ namespace Loader
 	#define COMPONENT_NAME(name) name::MP
 #elif IS_SP
 	#define COMPONENT_NAME(name) name::SP
+#else
+	#error "Either IS_MP or IS_SP must be defined for COMPONENT_NAME"
 #endif
 
 struct ComponentRegistrator
