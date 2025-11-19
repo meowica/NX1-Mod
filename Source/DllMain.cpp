@@ -5,12 +5,14 @@ namespace
 	void StartupThread()
 	{
 		DWORD expectedTitleId = Util::XBox::XGetCurrentTitleId();
-
 		while (expectedTitleId != TITLE_ID)
-			Sleep(50); // avoid CPU load
+		{
+			if (isUnloading)
+				return;
+			Sleep(75); // avoid CPU load
+		}
 
-		if (!Util::XBox::IsInXenia())
-			Sleep(200);
+		Sleep(100);
 
 		Loader::LoadComponents();
 	}
@@ -44,11 +46,8 @@ namespace
 		isUnloading = true;
 
 		DWORD expectedTitleId = Util::XBox::XGetCurrentTitleId();
-
 		if (expectedTitleId == TITLE_ID)
 			Loader::UnloadComponents();
-
-		Sleep(200);
 	}
 }
 

@@ -16,12 +16,6 @@ namespace Patches
 			Invoke(localClientNum, configFile);
 		}
 
-		Util::Hook::Detour getBuildNumber_Hook;
-		const char* getBuildNumber()
-		{
-			return Util::String::VA(BRANDING_STR);
-		}
-
 		Util::Hook::Detour Sys_GetThreadName_Hook;
 		void Sys_GetThreadName(DWORD threadId, char* p_destBuffer, unsigned int destBufferSize)
 		{
@@ -34,7 +28,7 @@ namespace Patches
 			snprintf(p_destBuffer, destBufferSize, "\"%s\", 0x%08x, HW Thread %d", name, threadId, info.CurrentProcessor);
 		}
 
-		void Patches()
+		void Load()
 		{
 			// issue fix: disable Black Box
 			Util::Hook::Nop(0x82456AC0, 2); // BB_Init
@@ -57,29 +51,28 @@ namespace Patches
 			// bug fix: remove xray material from the scoreboard
 			Util::Hook::Nop(0x82263204, 2);
 
-			// set build version to mine!
-			getBuildNumber_Hook.Create(0x82425110, getBuildNumber);
-
 			// fix thread names appearing as gibberish
 			Sys_GetThreadName_Hook.Create(0x82572A88, Sys_GetThreadName);
 
 			// remove autoexec dev
 			Util::Hook::Nop(0x822C8A74, 2);
 			Util::Hook::Nop(0x82453898, 2);
-		}
 
-		void StringEdits()
-		{
+			//
+			// strings
+			//
+
 			Util::Hook::Set<const char*>(0x8202F8D4, "%s MP > "); // make NX1-Mod look nicer
 			Util::Hook::Set<const char*>(0x8202F8E0, "NX1-Mod"); // console string
 			Util::Hook::Set<const char*>(0x8202F740, "Build 1866586"); // shorten that string! 
 			Util::Hook::Set<const char*>(0x8207FDB4, ""); // timestamp in console log
 			Util::Hook::Set<const char*>(0x820A0EC0, "NX1-Host"); // default host name
 			Util::Hook::Set<const char*>(0x82067238, "NX1"); // game name
-		}
 
-		void DVarEdits()
-		{
+			//
+			// dvars
+			//
+
 			// allow unsigned fast files to load
 			Util::Hook::Set(0x82453098, 0x38800001); // fastfile_allowNoAuth
 
@@ -101,17 +94,9 @@ namespace Patches
 			Util::Hook::Set(0x822412F0, 0x38800000); // cg_drawFPS
 		}
 
-		void Load()
-		{
-			Patches();
-			StringEdits();
-			DVarEdits();
-		}
-
 		void Unload()
 		{
 			Com_ExecStartupConfigs_Hook.Clear();
-			getBuildNumber_Hook.Clear();
 			Sys_GetThreadName_Hook.Clear();
 		}
 	}

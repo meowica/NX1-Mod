@@ -142,6 +142,9 @@
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IRawFile.h">
       <Filter>Components\Assets\Interfaces</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Util\PPC.h">
+      <Filter>Util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Game">
