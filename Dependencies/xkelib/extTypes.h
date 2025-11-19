@@ -14,7 +14,7 @@ typedef signed __int64					s64;
 typedef QWORD near						*PQWORD;
 typedef QWORD far						*LPQWORD;
 
-#define CONSTANT_OBJECT_STRING(s)		{ strlen( s ) / sizeof(OCHAR), (strlen(s) / sizeof(OCHAR)) + 1, s }
+#define CONSTANT_OBJECT_STRING(s)		{ strlen(s) / sizeof(OCHAR), (strlen(s) / sizeof(OCHAR)) + 1, s }
 #define MAKE_STRING(s)					{ (USHORT)(strlen(s)), (USHORT)((strlen(s)) + 1), (PCHAR)s }
 #define EXPORTNUM(x) // Just for documentation, thx XBMC!
 
@@ -102,7 +102,7 @@ typedef struct _OBJECT_ATTRIBUTES
 //     IN STRING n,
 //     IN ULONG a,
 //     IN HANDLE r)
-#define InitializeObjectAttributes( p, name, attrib, root)		\
+#define InitializeObjectAttributes(p, name, attrib, root)		\
 {																\
 	(p)->RootDirectory = root;									\
 	(p)->Attributes = attrib;									\
