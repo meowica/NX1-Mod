@@ -14,15 +14,6 @@
     <ClCompile Include="..\..\Dependencies\zlib\zutil.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Dependencies\zlib\zutil.h" />
-    <ClInclude Include="..\..\Dependencies\zlib\crc32.h" />
-    <ClInclude Include="..\..\Dependencies\zlib\deflate.h" />
-    <ClInclude Include="..\..\Dependencies\zlib\inffast.h" />
-    <ClInclude Include="..\..\Dependencies\zlib\inffixed.h" />
-    <ClInclude Include="..\..\Dependencies\zlib\inflate.h" />
-    <ClInclude Include="..\..\Dependencies\zlib\inftrees.h" />
-    <ClInclude Include="..\..\Dependencies\zlib\trees.h" />
-    <ClInclude Include="..\..\Dependencies\zlib\zconf.h" />
     <ClInclude Include="..\..\Dependencies\zlib\zlib.h" />
   </ItemGroup>
 </Project>
