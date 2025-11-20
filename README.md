@@ -31,7 +31,7 @@
 - Uhhh...
 
 ## Changes
-- Removed Black Box (MP/SP)
+- Black Box will no longer start (MP/SP)
 - Unlocked FPS (MP/SP)
 - Custom FPS counter (MP/SP)
 - Console + DevGui font is now fwsmallfont instead of consolefont (MP/SP)
