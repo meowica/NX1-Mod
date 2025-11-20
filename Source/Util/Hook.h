@@ -105,6 +105,9 @@ namespace Util
 		static void Set(void* place, const T& value)
 		{
 			memcpy(place, &value, sizeof(T));
+
+			// TODO: This needs major fixing, this doesn't work as intended
+			// The CPU still uses the old instructions for some reasons, which makes some patches not get set sometimes. FIX SOON
 			
 			DCBF(place);
 			DCBST(place);
