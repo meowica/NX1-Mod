@@ -19,7 +19,13 @@ namespace IniConfig
 	{
 		std::string filePath = Util::String::VA("game:\\" BASE_FOLDER "\\" INI_CONFIG);
 		if (!g_Config.Load(filePath))
+		{
+			auto win = Util::XBox::XShowMessageBox(
+				0,
+				L"Error - Missing Config",
+				Util::String::VAW("Failed to load '%s'.\nNX1-Mod needs this config file to run.\n\nPlease add it to the NX1-Mod folder and try again.\n", INI_CONFIG));
 			return;
+		}
 
 		ShowIntroMovie = g_Config.GetBoolean("Intro", "ShowIntroMovie", ShowIntroMovie);
 

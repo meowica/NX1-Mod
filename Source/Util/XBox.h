@@ -31,5 +31,13 @@ namespace Util
 		} DM_THREADINFOEX, *PDM_THREADINFOEX;
 
 		HRESULT DmGetThreadInfoEx(DWORD dwThreadId, PDM_THREADINFOEX pdmti);
+
+		int XShowMessageBox(
+			DWORD dwUserIndex,
+			const std::wstring& title,
+			const std::wstring& text,
+			const std::vector<std::wstring>* buttons = nullptr,
+			DWORD focusButton = 0,
+			DWORD flags = 0);
 	}
 }

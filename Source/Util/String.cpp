@@ -1,10 +1,10 @@
+#define VA_BUFFER_COUNT 4
+#define VA_BUFFER_SIZE 32768
+
 namespace Util
 {
 	namespace String
 	{
-#define VA_BUFFER_COUNT 4
-#define VA_BUFFER_SIZE 32768
-
 		const char* VA(const char* fmt, ...)
 		{
 			static char buffers[VA_BUFFER_COUNT][VA_BUFFER_SIZE];
@@ -21,23 +21,33 @@ namespace Util
 			dest[VA_BUFFER_SIZE - 1] = '\0'; // ensure null-termination
 
 			if (len < 0 || len >= VA_BUFFER_SIZE)
-			{
 				printf("Attempted to overrun string in call to VA()\n");
-			}
 			return dest;
 		}
 
-		const char* GetCurrentTime()
+		PWCHAR VAW(const char* fmt, ...)
 		{
-			static char buf[16];
+			static wchar_t buffers[VA_BUFFER_COUNT][VA_BUFFER_SIZE];
+			static int currentBuffer = 0;
 
-			time_t now = time(NULL);
-			now += 8 * 3600; // adjust to UTC+8 if needed
+			wchar_t* dest = buffers[currentBuffer];
+			currentBuffer = (currentBuffer + 1) % VA_BUFFER_COUNT;
 
-			struct tm* timeinfo = localtime(&now);
+			char tempDest[VA_BUFFER_SIZE];
 
-			strftime(buf, sizeof(buf), "%I:%M:%S %p", timeinfo);
-			return buf;
+			va_list args;
+			va_start(args, fmt);
+			int len = vsnprintf(tempDest, VA_BUFFER_SIZE, fmt, args);
+			va_end(args);
+
+			tempDest[VA_BUFFER_SIZE - 1] = '\0'; // ensure null-termination
+
+			if (len < 0 || len >= VA_BUFFER_SIZE)
+				printf("Attempted to overrun string in call to VAW()\n");
+
+			mbstowcs(dest, tempDest, VA_BUFFER_SIZE);
+			dest[VA_BUFFER_SIZE - 1] = L'\0';
+			return dest;
 		}
 	}
 }

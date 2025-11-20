@@ -67,7 +67,7 @@ namespace Util
 			std::memset(pdmti, 0, sizeof(PDM_THREADINFOEX));
 			pdmti->Size = sizeof(PDM_THREADINFOEX);
 
-			pdmti->Priority = 12 + (dwThreadId % 4);  
+			pdmti->Priority = 12 + (dwThreadId % 4);
 			pdmti->SuspendCount = 0;
 
 			pdmti->TlsBase = reinterpret_cast<void*>(0x83000000 + (dwThreadId * 0x100));
@@ -79,15 +79,70 @@ namespace Util
 
 			const char* name = GetFakeThreadName(dwThreadId);
 			pdmti->ThreadNameAddress = const_cast<char*>(name);
-			pdmti->ThreadNameLength  = std::strlen(name);
+			pdmti->ThreadNameLength = std::strlen(name);
 
 			pdmti->CurrentProcessor = static_cast<unsigned char>(dwThreadId % 6);
 
-			pdmti->CreateTime.dwLowDateTime  = 0xA1B2C3D4;
+			pdmti->CreateTime.dwLowDateTime = 0xA1B2C3D4;
 			pdmti->CreateTime.dwHighDateTime = 0x01234567;
 
 			pdmti->LastError = 0;
 			return S_OK;
+		}
+
+		int XShowMessageBox(
+			DWORD dwUserIndex,
+			const std::wstring& title,
+			const std::wstring& text,
+			const std::vector<std::wstring>* buttons,
+			DWORD focusButton,
+			DWORD flags)
+		{
+			MESSAGEBOX_RESULT result = {};
+			XOVERLAPPED overlapped = {};
+			overlapped.hEvent = CreateEvent(NULL, TRUE, FALSE, NULL);
+			if (!overlapped.hEvent)
+				return 0;
+
+			LPCWSTR* pButtonArray = nullptr;
+			DWORD cButtons = 0;
+
+			if (buttons && !buttons->empty())
+			{
+				cButtons = static_cast<DWORD>(buttons->size());
+				pButtonArray = new LPCWSTR[cButtons];
+
+				for (DWORD i = 0; i < cButtons; ++i)
+					pButtonArray[i] = (*buttons)[i].c_str();
+			}
+
+			HRESULT hr = XShowMessageBoxUI(
+				dwUserIndex,
+				title.c_str(),
+				text.c_str(),
+				cButtons,
+				pButtonArray,
+				focusButton,
+				flags,
+				&result,
+				&overlapped);
+
+			if (FAILED(hr))
+			{
+				if (pButtonArray)
+					delete[] pButtonArray;
+
+				CloseHandle(overlapped.hEvent);
+				return 0;
+			}
+
+			WaitForSingleObject(overlapped.hEvent, INFINITE);
+
+			if (pButtonArray)
+				delete[] pButtonArray;
+
+			CloseHandle(overlapped.hEvent);
+			return static_cast<int>(result.dwButtonPressed);
 		}
 	}
 }
