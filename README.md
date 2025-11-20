@@ -69,6 +69,7 @@
   - Phys Preset - Dump any physic preset file
   - Raw File - Dump any raw file
   - String Table - Dump any string table
+  - Leaderboard - Dump any leaderboards file
 - replaced IW4 references with NX1 (MP)
 - Removed some prints (MP/SP):
   - dvar set
