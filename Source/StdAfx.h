@@ -61,7 +61,6 @@
 #include "Util\FPS.h"
 #include "Util\Hook.h"
 #include "Util\INI.h"
-#include "Util\PPC.h"
 #include "Util\String.h"
 #include "Util\XBox.h"
 

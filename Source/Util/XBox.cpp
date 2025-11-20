@@ -56,8 +56,10 @@ namespace Util
 
 		HRESULT DmGetThreadInfoEx(DWORD dwThreadId, PDM_THREADINFOEX pdmti)
 		{
-			// Warning: This will 101% fail on Xbox, but not much I can do
+			// Warning: This will 101% fail on Xbox I think, but not much I can do
 			// I guess maybe I could just remove this code on Xbox, but then the thread names will be gibberish...
+
+			// This code won't fail on XDK's atleast, so maybe I do some env checks?...
 
 			if (!pdmti)
 				return -1;

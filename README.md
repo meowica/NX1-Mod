@@ -31,28 +31,26 @@
 - Uhhh...
 
 ## Changes
-- Removed Black Box (SP/MP)
-- Removed Anti Cheat (SP/MP)
-- Unlocked FPS (SP/MP)
-- Custom FPS counter (SP/MP)
-- Console + DevGui font changed (SP/MP)
-- Start-up configs no longer execute multiple times (SP/MP)
-- Custom intro movie (SP/MP)
+- Removed Black Box (MP/SP)
+- Unlocked FPS (MP/SP)
+- Custom FPS counter (MP/SP)
+- Console + DevGui font is now fwsmallfont instead of consolefont (MP/SP)
+- Console + DevGui safe area fits the full screen, like it does on PC (MP/SP)
+- Start-up configs no longer execute multiple times (MP/SP)
+- Custom intro movie (MP/SP)
 - Removed XRay material from scoreboard (MP)
-- Fixed thread names showing as gibberish (SP/MP)
-- Removed dev autoexec for a cleaner screen (SP/MP)
-- Removed some prints for a cleaner log (SP/MP)
+- Fixed thread names showing as gibberish (MP/SP)
+- Removed dev autoexec for a cleaner screen (MP/SP)
 - Enabled unsecure Fast File loading (MP)
 - Inital menu is now main_selection instead of main_lockout (SP)
-- Console + DevGui safe area fits the full screen, like it does on PC (SP/MP)
-- Missing localization strings no longer error by default (SP/MP)
-- Added listassetpool command for modders (SP/MP)
-- printf outputs to the console log file (SP/MP)
-- Removed un-needed build version from the external console window (SP/MP)
+- Missing localization strings no longer error by default (MP/SP)
+- Added listassetpool command for modders (MP/SP)
+- printf outputs to the console log file (MP/SP)
+- Removed un-needed build version from the external console window (MP/SP)
 - NX1-Host is the default host name, used to be CoD4Host (MP)
-- Game no longer performs a session sanity check on Xenia (SP/MP)
-- SP BSP resolving works in MP (and vice versa) (SP/MP)
-- Reallocated some asset sizes (MP):
+- Game no longer performs a session sanity check (MP/SP)
+- SP BSP resolving works in MP (and vice versa) (MP/SP)
+- Reallocated some asset sizes (MP/SP):
   - Loaded Sound: 5400
   - FX: 2400
   - Localize Entry: 14000
@@ -62,9 +60,9 @@
   - Weapon: 2400
   - String Table: 800
   - Impact FX: 8
-- Added a print that tells you what .d3dbsp has loaded (MP)
+- Added a print that tells you what .d3dbsp has loaded (MP/SP)
 - Added game init print (SP)
-- Added asset loaders (SP/MP):
+- Added asset loaders (MP/SP):
   - Map Ents - Load any entity files from NX1-Mod/raw/maps
   - Raw File - Load any raw file from NX1-Mod/raw
 - Added asset dumpers (MP/SP):

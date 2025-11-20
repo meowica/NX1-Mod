@@ -5,6 +5,8 @@ namespace Symbols
 #ifdef IS_MP
 	namespace MP
 	{
+		// functions
+
 		typedef void (*Cmd_AddCommand_t)(const char* cmdName, void (__cdecl* function)(),
 			Structs::cmd_function_s* allocedCmd);
 		extern Cmd_AddCommand_t Cmd_AddCommand;
@@ -68,6 +70,8 @@ namespace Symbols
 		typedef int (*I_strnicmp_t)(const char* s0, const char* s1, unsigned int n);
 		extern I_strnicmp_t I_strnicmp;
 
+		// variables
+
 		extern Structs::CmdArgs* cmd_args;
 
 		extern const char** g_assetNames;
@@ -80,6 +84,8 @@ namespace Symbols
 #elif IS_SP
 	namespace SP
 	{
+		// functions
+
 		typedef void (*Cmd_AddCommand_t)(const char* cmdName, void (__cdecl* function)(),
 			Structs::cmd_function_s* allocedCmd);
 		extern Cmd_AddCommand_t Cmd_AddCommand;
@@ -89,6 +95,12 @@ namespace Symbols
 
 		typedef void (*Com_Printf_t)(int channel, const char* fmt, ...);
 		extern Com_Printf_t Com_Printf;
+
+		typedef int(*Com_sprintf_t)(char *dest, unsigned int size, const char *fmt, ...);
+		extern Com_sprintf_t Com_sprintf;
+
+		typedef char* (*Com_GetBaseMapName_t)(const char* p_mapName);
+		extern Com_GetBaseMapName_t Com_GetBaseMapName;
 
 		typedef void (*CL_ConsolePrint_t)(int localClientNum, int channel, const char* txt,
 			int duration, int pixelWidth, int flags);
@@ -117,6 +129,9 @@ namespace Symbols
 		typedef int (*DB_GetXAssetTypeSize_t)(int type);
 		extern DB_GetXAssetTypeSize_t DB_GetXAssetTypeSize;
 
+		typedef int(*DB_GetXAssetSizeHandler_t)();
+		extern DB_GetXAssetSizeHandler_t* DB_GetXAssetSizeHandlers;
+
 		typedef BOOL (*DevGui_IsActive_t)();
 		extern DevGui_IsActive_t DevGui_IsActive;
 
@@ -131,10 +146,16 @@ namespace Symbols
 			float rotation, const float* colour, int style, Structs::EScreenLayer layer);
 		extern R_AddCmdDrawText_t R_AddCmdDrawText;
 
+		typedef int(*I_strnicmp_t)(const char* s0, const char* s1, unsigned int n);
+		extern I_strnicmp_t I_strnicmp;
+
+		// variables
+
 		extern Structs::CmdArgs* cmd_args;
 
 		extern const char** g_assetNames;
 		extern int* g_poolSize;
+		extern void** DB_XAssetPool;
 
 		extern Structs::ScreenPlacement* scrPlaceFull;
 

@@ -75,20 +75,15 @@ namespace IPhysPreset
 		{
 			auto varPhysPresetPtr = *reinterpret_cast<PhysPreset***>(0x82CE6DE0);
 
-			auto Invoke = Load_PhysPresetPtr_Hook.Invoke<void(*)(bool)>();
-			Invoke(atStreamStart);
+			Load_PhysPresetPtr_Hook.Invoke<void>(atStreamStart);
 
 			if (varPhysPresetPtr && *varPhysPresetPtr)
 			{
 				if (IniConfig::EnablePhysPresetDumper)
-				{
 					Dump_PhysPreset(*varPhysPresetPtr);
-				}
 				
 				//if (IniConfig::EnablePhysPresetLoader)
-				//{
 				//	Load_PhysPreset(*varPhysPresetPtr);
-				//}
 			}
 		}
 
@@ -156,14 +151,10 @@ namespace IPhysPreset
 			if (varPhysPresetPtr && *varPhysPresetPtr)
 			{
 				if (IniConfig::EnablePhysPresetDumper)
-				{
 					Dump_PhysPreset(*varPhysPresetPtr);
-				}
 				
 				//if (IniConfig::EnablePhysPresetLoader)
-				//{
 				//	Load_PhysPreset(*varPhysPresetPtr);
-				//}
 			}
 		}
 

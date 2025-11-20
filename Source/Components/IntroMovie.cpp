@@ -6,8 +6,7 @@ namespace IntroMovie
 		Util::Hook::Detour SV_InitServerThread_Hook;
 		void SV_InitServerThread()
 		{
-			auto Invoke = SV_InitServerThread_Hook.Invoke<void(*)()>();
-			Invoke();
+			SV_InitServerThread_Hook.Invoke<void>();
 
 			auto playIntro = Symbols::MP::Dvar_FindVar("intro");
 			if (!IniConfig::ShowIntroMovie || !playIntro->current.enabled)

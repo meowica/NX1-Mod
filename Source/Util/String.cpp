@@ -22,7 +22,7 @@ namespace Util
 
 			if (len < 0 || len >= VA_BUFFER_SIZE)
 			{
-				printf("Attempted to overrun string in call to va()\n");
+				printf("Attempted to overrun string in call to VA()\n");
 			}
 			return dest;
 		}

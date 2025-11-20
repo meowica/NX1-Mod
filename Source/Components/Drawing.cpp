@@ -71,8 +71,7 @@ namespace Drawing
 			if (IniConfig::ShowFPSCounter)
 				DrawFPSCounter();
 
-			auto Invoke = CL_DrawScreen_Hook.Invoke<void(*)()>();
-			Invoke();
+			CL_DrawScreen_Hook.Invoke<void>();
 		}
 
 		void Load()
@@ -161,8 +160,7 @@ namespace Drawing
 			if (IniConfig::ShowFPSCounter)
 				DrawFPSCounter();
 
-			auto Invoke = CL_DrawScreen_Hook.Invoke<void(*)()>();
-			Invoke();
+			CL_DrawScreen_Hook.Invoke<void>();
 		}
 
 		void Load()

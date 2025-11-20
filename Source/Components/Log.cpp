@@ -11,8 +11,7 @@ namespace Log
 			Symbols::MP::Com_Printf(Structs::CON_CHANNEL_SYSTEM, "\n");
 			Symbols::MP::Com_Printf(Structs::CON_CHANNEL_SYSTEM, "----- Initializing Components ----\n");
 
-			auto Invoke = SetupGfxConfig_Hook.Invoke<void(*)(Structs::GfxConfiguration*)>();
-			Invoke(config);
+			SetupGfxConfig_Hook.Invoke<void>(config);
 
 			for (int i = 0; i < Loader::g_componentCount; ++i)
 			{
@@ -27,17 +26,8 @@ namespace Log
 		Util::Hook::Detour CM_LoadMap_Hook;
 		void CM_LoadMap(const char* name, int* checksum)
 		{
-			if (name)
-			{
-				Symbols::MP::Com_Printf(0, "Loading Map: %s\n", name);
-			}
-			else
-			{
-				Symbols::MP::Com_Printf(0, "Invalid name passed into CM_LoadMap!\n");
-			}
-
-			auto Invoke = CM_LoadMap_Hook.Invoke<void(*)(const char*, int*)>();
-			Invoke(name, checksum);
+			Symbols::MP::Com_Printf(Structs::CON_CHANNEL_SYSTEM, "Loading Map: %s\n", name);
+			CM_LoadMap_Hook.Invoke<void>(name, checksum);
 		}
 
 		Util::Hook::Detour printf_Hook;
@@ -51,7 +41,7 @@ namespace Log
 			vsnprintf(buf, sizeof(buf), fmt, args);
 			va_end(args);
 
-			Symbols::MP::Com_Printf(0, "printf: %s", buf);
+			Symbols::MP::Com_Printf(Structs::CON_CHANNEL_SYSTEM, "printf: %s", buf);
 		}
 
 		void Load()
@@ -59,12 +49,14 @@ namespace Log
 			// print all our loaded modules
 			SetupGfxConfig_Hook.Create(0x822AFB20, SetupGfxConfig);
 
+			// print the loaded d3dbsp
 			CM_LoadMap_Hook.Create(0x82425428, CM_LoadMap);
 
 			// detour printf output to Com_Printf instead
 			printf_Hook.Create(printf, _printf);
 			_printf_Hook.Create(0x82898D70, _printf); // make sure we grab the games version too
 
+			// remove prints
 			Util::Hook::Nop(0x8255628C, 2); // dvar set
 			Util::Hook::Nop(0x8253C1B8, 2); // missing soundalias
 			Util::Hook::Nop(0x82457F60, 2); // cmd line
@@ -83,6 +75,7 @@ namespace Log
 		void Unload()
 		{
 			SetupGfxConfig_Hook.Clear();
+			CM_LoadMap_Hook.Clear();
 			printf_Hook.Clear();
 			_printf_Hook.Clear();
 		}
@@ -98,8 +91,7 @@ namespace Log
 			Symbols::SP::Com_Printf(Structs::CON_CHANNEL_SYSTEM, "\n");
 			Symbols::SP::Com_Printf(Structs::CON_CHANNEL_SYSTEM, "----- Initializing Components ----\n");
 
-			auto Invoke = R_ConfigureRenderer_Hook.Invoke<void(*)(Structs::GfxConfiguration*)>();
-			Invoke(config);
+			R_ConfigureRenderer_Hook.Invoke<void>(config);
 
 			for (int i = 0; i < Loader::g_componentCount; ++i)
 			{
@@ -110,16 +102,22 @@ namespace Log
 			Symbols::SP::Com_Printf(Structs::CON_CHANNEL_CLIENT, "----- Initializing Renderer ----\n");
 		}
 
+		// Borrowed from Rattpak's S2MP-Mod
+		// https://github.com/Rattpak/S2MP-Mod/blob/71ebb9646b7fcbbd90292b5dd87599390f9b2742/src/PrintPatches.cpp#L61
+		Util::Hook::Detour CM_LoadMap_Hook;
+		void CM_LoadMap(const char* name, int* checksum)
+		{
+			Symbols::SP::Com_Printf(Structs::CON_CHANNEL_SYSTEM, "Loading Map: %s\n", name);
+			CM_LoadMap_Hook.Invoke<void>(name, checksum);
+		}
+
 		Util::Hook::Detour Vehicle_ClearServerDefs_Hook;
 		void Vehicle_ClearServerDefs()
 		{
-			Symbols::SP::Com_Printf(15, "------- Game Initialization -------\n");
-			Symbols::SP::Com_Printf(15, "NX1-Mod\n");
-			Symbols::SP::Com_Printf(15, "Time: %s\n", Util::String::GetCurrentTime());
-			Symbols::SP::Com_Printf(15, "-----------------------------------\n");
-
-			auto Invoke = Vehicle_ClearServerDefs_Hook.Invoke<void(*)()>();
-			Invoke();
+			Symbols::SP::Com_Printf(Structs::CON_CHANNEL_SERVER, "------- Game Initialization -------\n");
+			Symbols::SP::Com_Printf(Structs::CON_CHANNEL_SERVER, "NX1-Mod\n");
+			Symbols::SP::Com_Printf(Structs::CON_CHANNEL_SERVER, "-----------------------------------\n");
+			Vehicle_ClearServerDefs_Hook.Invoke<void>();
 		}
 
 		Util::Hook::Detour printf_Hook;
@@ -133,7 +131,7 @@ namespace Log
 			vsnprintf(buf, sizeof(buf), fmt, args);
 			va_end(args);
 
-			Symbols::SP::Com_Printf(0, "printf: %s", buf);
+			Symbols::SP::Com_Printf(Structs::CON_CHANNEL_SYSTEM, "printf: %s", buf);
 		}
 
 		void Load()
@@ -141,13 +139,17 @@ namespace Log
 			// print all our loaded modules
 			R_ConfigureRenderer_Hook.Create(0x82704860, R_ConfigureRenderer);
 
-			// print game init + current time
+			// print the loaded d3dbsp
+			CM_LoadMap_Hook.Create(0x824104A0, CM_LoadMap);
+
+			// print game name
 			Vehicle_ClearServerDefs_Hook.Create(0x8256F0F8, Vehicle_ClearServerDefs);
 
 			// detour printf output to Com_Printf instead
 			printf_Hook.Create(printf, _printf);
 			_printf_Hook.Create(0x8277B188, _printf); // make sure we grab the games version too
 
+			// remove prints
 			Util::Hook::Nop(0x824D920C, 2); // dvar set
 			Util::Hook::Nop(0x824CF6C0, 2); // missing soundalias
 			Util::Hook::Nop(0x8242DBB8, 2); // cmd line
@@ -157,11 +159,15 @@ namespace Log
 			Util::Hook::Nop(0x821E32EC, 2); // looking for alias
 			Util::Hook::Nop(0x8242C908, 2); // com_init_tbf build version
 			Util::Hook::Nop(0x8221B6F8, 2); // renderer init (i reprint it in R_ConfigureRenderer hook)
+			Util::Hook::Nop(0x82223A64, 2); // adding/hiding channel
+			Util::Hook::Nop(0x82223A94, 2); // no channels added/hidden
+			Util::Hook::Nop(0x8242B590, 2); // logfile opened on <date>
 		}
 
 		void Unload()
 		{
 			R_ConfigureRenderer_Hook.Clear();
+			CM_LoadMap_Hook.Clear();
 			Vehicle_ClearServerDefs_Hook.Clear();
 			_printf_Hook.Clear();
 			printf_Hook.Clear();

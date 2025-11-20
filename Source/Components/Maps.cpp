@@ -6,6 +6,8 @@ namespace Maps
 		Util::Hook::Detour Com_GetBspFilename_Hook;
 		void Com_GetBspFilename(char* filename, unsigned int size, const char* p_mapname)
 		{
+			// TODO: Maybe let's just intercept the Com_sprintf so we don't have to reimplement this all?
+
 			const char* baseName = p_mapname;
 
 			bool isAddonMap = false;
@@ -49,21 +51,34 @@ namespace Maps
 	namespace SP
 	{
 		Util::Hook::Detour Com_GetBspFilename_Hook;
-		void Com_GetBspFilename(char* filename, int size, const char* mapname)
+		void Com_GetBspFilename(char* filename, unsigned int size, const char* p_mapname)
 		{
-			// TODO: add addon_map shit
+			// TODO: Maybe let's just intercept the Com_sprintf so we don't have to reimplement this all?
 
-			bool isMP = (strncmp(mapname, "mp_", 3) == 0);
+			const char* baseName = p_mapname;
+
+			bool isAddonMap = false;
+
+			if (Symbols::SP::I_strnicmp(p_mapname, "so_", 3) == 0)
+			{
+				if (strchr(p_mapname + 3, '_'))
+					isAddonMap = true;
+			}
+
+			if (isAddonMap)
+				baseName = Symbols::SP::Com_GetBaseMapName(p_mapname);
+
+			bool isMP = (strncmp(p_mapname, "mp_", 3) == 0);
 
 			if (isMP)
 			{
-				sprintf_s(filename, size, "maps/mp/%s.d3dbsp", mapname);
+				Symbols::SP::Com_sprintf(filename, size, "maps/mp/%s.d3dbsp", p_mapname);
 			}
 			else
 			{
-				sprintf_s(filename, size, "maps/%s.d3dbsp", mapname);
+				Symbols::SP::Com_sprintf(filename, size, "maps/%s.d3dbsp", p_mapname);
 			}
-		}
+}
 
 		void Load()
 		{

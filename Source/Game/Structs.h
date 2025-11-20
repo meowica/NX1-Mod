@@ -96,9 +96,9 @@ namespace Structs
 		float subScreenLeft;
 	};
 
-	enum EScreenLayer : int
+	enum EScreenLayer
 	{
-		SL_SYSTEM = 0,
+		SL_SYSTEM,
 		SL_HUD_BOB_NO_DISTORT,
 		SL_HUD_DISTORT,
 		SL_NUM_LAYERS,
@@ -222,16 +222,11 @@ namespace Structs
 		unsigned int textureMinVRamTier2;
 	};
 
-	struct IXHV2Engine
-	{
-	   // TODO: add the vtable
-	};
-
 	struct SessionStaticData
 	{
 		char* sessionName;
 		bool registerUsersWithVoice;
-		IXHV2Engine* voiceEngine;
+		/*IXHV2Engine* voiceEngine;*/
 	};
 
 	enum IWNetServerSessionStatus
@@ -264,7 +259,7 @@ namespace Structs
 
 	enum netadrtype_t
 	{
-		NA_BOT = 0,
+		NA_BOT,
 		NA_BAD,
 		NA_LOOPBACK,
 		NA_BROADCAST,

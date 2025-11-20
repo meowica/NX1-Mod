@@ -66,8 +66,7 @@ namespace IMapEnts
 
 			auto varMapEntsPtr = *reinterpret_cast<MapEnts***>(0x82CE6DF8);
 
-			auto Invoke = Load_MapEntsPtr_Hook.Invoke<void(*)(bool)>();
-			Invoke(atStreamStart);
+			Load_MapEntsPtr_Hook.Invoke<void>(atStreamStart);
 
 			// Validate pointer before dereferencing
 			if (!varMapEntsPtr || !*varMapEntsPtr)

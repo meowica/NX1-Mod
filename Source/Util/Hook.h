@@ -26,11 +26,63 @@ namespace Util
 			static BYTE trampolineBuffer[200 * 20];
 			static SIZE_T trampolineSize;
 
-			template<typename T>
-			T Invoke() const
+#pragma region Invoke Variadic Hack
+			template <typename Ret>
+			Ret Invoke() const
 			{
-				return T(this->trampolineAddress_);
+				return reinterpret_cast<Ret(*)()>(GetTrampolineAddress())();
 			}
+
+			template <typename Ret, typename A1>
+			Ret Invoke(A1 a1) const
+			{
+				return reinterpret_cast<Ret(*)(A1)>(GetTrampolineAddress())(a1);
+			}
+
+			template <typename Ret, typename A1, typename A2>
+			Ret Invoke(A1 a1, A2 a2) const
+			{
+				return reinterpret_cast<Ret(*)(A1, A2)>(GetTrampolineAddress())(a1, a2);
+			}
+
+			template <typename Ret, typename A1, typename A2, typename A3>
+			Ret Invoke(A1 a1, A2 a2, A3 a3) const
+			{
+				return reinterpret_cast<Ret(*)(A1, A2, A3)>(GetTrampolineAddress())(a1, a2, a3);
+			}
+
+			template <typename Ret, typename A1, typename A2, typename A3, typename A4>
+			Ret Invoke(A1 a1, A2 a2, A3 a3, A4 a4) const
+			{
+				return reinterpret_cast<Ret(*)(A1, A2, A3, A4)>(GetTrampolineAddress())(a1, a2, a3, a4);
+			}
+
+			template <typename Ret, typename A1, typename A2, typename A3, typename A4, typename A5>
+			Ret Invoke(A1 a1, A2 a2, A3 a3, A4 a4, A5 a5) const
+			{
+				return reinterpret_cast<Ret(*)(A1, A2, A3, A4, A5)>(GetTrampolineAddress())(a1, a2, a3, a4, a5);
+			}
+
+			template <typename Ret, typename A1, typename A2, typename A3, typename A4, typename A5, typename A6>
+			Ret Invoke(A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6) const
+			{
+				return reinterpret_cast<Ret(*)(A1, A2, A3, A4, A5, A6)>(GetTrampolineAddress())(a1, a2, a3, a4, a5, a6);
+			}
+
+			template <typename Ret, typename A1, typename A2, typename A3, typename A4, typename A5, typename A6, typename A7>
+			Ret Invoke(A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7) const
+			{
+				return reinterpret_cast<Ret(*)(A1, A2, A3, A4, A5, A6, A7)>(GetTrampolineAddress())(a1, a2, a3, a4, a5, a6, a7);
+			}
+
+			template <typename Ret, typename A1, typename A2, typename A3, typename A4, typename A5, typename A6, typename A7, typename A8>
+			Ret Invoke(A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8) const
+			{
+				return reinterpret_cast<Ret(*)(A1, A2, A3, A4, A5, A6, A7, A8)>(GetTrampolineAddress())(a1, a2, a3, a4, a5, a6, a7, a8);
+			}
+
+			// add more if you have more then 8 types
+#pragma endregion
 
 		private:
 			void* place_;

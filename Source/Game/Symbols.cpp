@@ -3,6 +3,8 @@ namespace Symbols
 #ifdef IS_MP
 	namespace MP
 	{
+		// functions
+
 		Cmd_AddCommand_t Cmd_AddCommand = Cmd_AddCommand_t(0x82437980);
 		Cbuf_AddText_t Cbuf_AddText = Cbuf_AddText_t(0x82436918);
 
@@ -31,6 +33,8 @@ namespace Symbols
 
 		I_strnicmp_t I_strnicmp = I_strnicmp_t(0x8256B110);
 
+		// variables
+
 		Structs::CmdArgs* cmd_args = (Structs::CmdArgs*)0x83A0C448;
 
 		const char** g_assetNames = (const char**)0x8297CB38;
@@ -44,10 +48,14 @@ namespace Symbols
 #elif IS_SP
 	namespace SP
 	{
+		// functions
+
 		Cmd_AddCommand_t Cmd_AddCommand = Cmd_AddCommand_t(0x824221C8);
 		Cbuf_AddText_t Cbuf_AddText = Cbuf_AddText_t(0x82421160);
 
 		Com_Printf_t Com_Printf = Com_Printf_t(0x82427A50);
+		Com_sprintf_t Com_sprintf = Com_sprintf_t(0x824ED370);
+		Com_GetBaseMapName_t Com_GetBaseMapName = Com_GetBaseMapName_t(0x824C36E8);
 
 		CL_ConsolePrint_t CL_ConsolePrint = CL_ConsolePrint_t(0x82209DB0);
 		Con_IsActive_t Con_IsActive = Con_IsActive_t(0x8220CDB8);
@@ -58,6 +66,7 @@ namespace Symbols
 		DB_GetXAssetName_t DB_GetXAssetName = DB_GetXAssetName_t(0x82236B30);
 		DB_GetXAssetTypeName_t DB_GetXAssetTypeName = DB_GetXAssetTypeName_t(0x82236C68);
 		DB_GetXAssetTypeSize_t DB_GetXAssetTypeSize = DB_GetXAssetTypeSize_t(0x82236BF8);
+		DB_GetXAssetSizeHandler_t* DB_GetXAssetSizeHandlers = (DB_GetXAssetSizeHandler_t*)0x8280B0A0;
 
 		DevGui_IsActive_t DevGui_IsActive = DevGui_IsActive_t(0x8229CB50);
 
@@ -67,10 +76,15 @@ namespace Symbols
 
 		R_AddCmdDrawText_t R_AddCmdDrawText = R_AddCmdDrawText_t(0x826FCB00);
 
+		I_strnicmp_t I_strnicmp = I_strnicmp_t(0x8256B110);
+
+		// variables
+
 		Structs::CmdArgs* cmd_args = (Structs::CmdArgs*)0x83A76D48;
 
 		const char** g_assetNames = (const char**)0x8280AE60;
 		int* g_poolSize = (int*)0x8280B230;
+		void** DB_XAssetPool = (void**)0x8280B530;
 
 		Structs::ScreenPlacement* scrPlaceFull = (Structs::ScreenPlacement*)0x82B15C08;
 
