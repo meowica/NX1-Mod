@@ -3,6 +3,7 @@
 #include "Interfaces\IMapEnts.h"
 #include "Interfaces\IRawFile.h"
 #include "Interfaces\IStringTable.h"
+#include "Interfaces\ILeaderboardDef.h"
 
 namespace AssetHandler
 {
@@ -15,6 +16,7 @@ namespace AssetHandler
 			IMapEnts::MP::Load();
 			IRawFile::MP::Load();
 			IStringTable::MP::Load();
+			ILeaderboardDef::MP::Load();
 		}
 
 		void* ReallocateAssetPool(unsigned int type, unsigned int newSize)
@@ -61,6 +63,7 @@ namespace AssetHandler
 			IMapEnts::SP::Load();
 			IRawFile::SP::Load();
 			IStringTable::SP::Load();
+			ILeaderboardDef::SP::Load();
 		}
 
 		void* ReallocateAssetPool(unsigned int type, unsigned int newSize)

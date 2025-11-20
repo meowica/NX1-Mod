@@ -134,6 +134,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\Source\Components\Assertion.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\AssetHandler.cpp" />
+    <ClCompile Include="..\..\Source\Components\Assets\Interfaces\ILeaderboardDef.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IStringTable.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IMapEnts.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IPhysPreset.cpp" />
@@ -164,6 +165,7 @@
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IMapEnts.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IPhysPreset.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IRawFile.h" />
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\ILeaderboardDef.h" />
     <ClInclude Include="..\..\Source\Components\CustomCommands.h" />
     <ClInclude Include="..\..\Source\Components\DevGui.h" />
     <ClInclude Include="..\..\Source\Components\Drawing.h" />

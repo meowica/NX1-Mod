@@ -67,6 +67,7 @@
       <Filter>Components\Assets\Interfaces</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IStringTable.cpp" />
+    <ClCompile Include="..\..\Source\Components\Assets\Interfaces\ILeaderboardDef.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\Util\Command.h">
@@ -145,6 +146,7 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\Util\INI.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IStringTable.h" />
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\ILeaderboardDef.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Game">

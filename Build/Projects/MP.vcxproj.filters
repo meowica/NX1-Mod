@@ -69,6 +69,9 @@
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IStringTable.cpp">
       <Filter>Components\Assets\Interfaces</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Components\Assets\Interfaces\ILeaderboardDef.cpp">
+      <Filter>Components\Assets\Interfaces</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\Game\Symbols.h">
@@ -149,6 +152,9 @@
       <Filter>Util</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IStringTable.h">
+      <Filter>Components\Assets\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\ILeaderboardDef.h">
       <Filter>Components\Assets\Interfaces</Filter>
     </ClInclude>
   </ItemGroup>
