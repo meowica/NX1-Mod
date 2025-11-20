@@ -55,7 +55,7 @@ namespace IRawFile
 				finalLen = rawFile->len;
 			}
 
-			Util::FileSystem::WriteFileToDisk(outPath.c_str(), finalData, finalLen);
+			Util::FileSystem::WriteFile(outPath.c_str(), finalData, finalLen);
 		}
 
 		bool Load_RawFile(RawFile* rawFile)
@@ -133,14 +133,9 @@ namespace IRawFile
 			if (varRawFilePtr && *varRawFilePtr)
 			{
 				if (IniConfig::EnableRawFileDumper)
-				{
-					Dump_RawFile(*varRawFilePtr);
-				}
-				
+					Dump_RawFile(*varRawFilePtr);	
 				if (IniConfig::EnableRawFileLoader)
-				{
 					Load_RawFile(*varRawFilePtr);
-				}
 			}
 		}
 
@@ -201,7 +196,7 @@ namespace IRawFile
 				finalLen = rawFile->len;
 			}
 
-			Util::FileSystem::WriteFileToDisk(outPath.c_str(), finalData, finalLen);
+			Util::FileSystem::WriteFile(outPath.c_str(), finalData, finalLen);
 		}
 
 		bool Load_RawFile(RawFile* rawFile)
@@ -280,7 +275,6 @@ namespace IRawFile
 			{
 				if (IniConfig::EnableRawFileDumper)
 					Dump_RawFile(*varRawFilePtr);
-
 				if (IniConfig::EnableRawFileLoader)
 					Load_RawFile(*varRawFilePtr);
 			}

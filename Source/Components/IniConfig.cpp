@@ -12,6 +12,7 @@ namespace IniConfig
 
 	bool EnablePhysPresetDumper = false;
 	bool EnableRawFileDumper = false;
+	bool EnableStringTableDumper = false;
 
 	Util::INI g_Config;
 
@@ -37,6 +38,7 @@ namespace IniConfig
 
 		EnablePhysPresetDumper = g_Config.GetBoolean("Asset Dumpers", "EnablePhysPresetDumper", EnablePhysPresetDumper);
 		EnableRawFileDumper = g_Config.GetBoolean("Asset Dumpers", "EnableRawFileDumper", EnableRawFileDumper);
+		EnableStringTableDumper = g_Config.GetBoolean("Asset Dumpers", "EnableStringTableDumper", EnableStringTableDumper);
 	}
 
 	void UnloadConfig()

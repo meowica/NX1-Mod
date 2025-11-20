@@ -67,7 +67,7 @@ namespace IPhysPreset
 				<< "\n";
 
 			std::string data = oss.str();
-			Util::FileSystem::WriteFileToDisk(outPath.c_str(), data.c_str(), data.size());
+			Util::FileSystem::WriteFile(outPath.c_str(), data.c_str(), data.size());
 		}
 
 		Util::Hook::Detour Load_PhysPresetPtr_Hook;
@@ -80,8 +80,7 @@ namespace IPhysPreset
 			if (varPhysPresetPtr && *varPhysPresetPtr)
 			{
 				if (IniConfig::EnablePhysPresetDumper)
-					Dump_PhysPreset(*varPhysPresetPtr);
-				
+					Dump_PhysPreset(*varPhysPresetPtr);	
 				//if (IniConfig::EnablePhysPresetLoader)
 				//	Load_PhysPreset(*varPhysPresetPtr);
 			}
@@ -137,7 +136,7 @@ namespace IPhysPreset
 				<< "\n";
 
 			std::string data = oss.str();
-			Util::FileSystem::WriteFileToDisk(outPath.c_str(), data.c_str(), data.size());
+			Util::FileSystem::WriteFile(outPath.c_str(), data.c_str(), data.size());
 		}
 
 		Util::Hook::Detour Load_PhysPresetPtr_Hook;
@@ -152,7 +151,6 @@ namespace IPhysPreset
 			{
 				if (IniConfig::EnablePhysPresetDumper)
 					Dump_PhysPreset(*varPhysPresetPtr);
-				
 				//if (IniConfig::EnablePhysPresetLoader)
 				//	Load_PhysPreset(*varPhysPresetPtr);
 			}

@@ -134,6 +134,7 @@
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IMapEnts.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IPhysPreset.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IRawFile.cpp" />
+    <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IStringTable.cpp" />
     <ClCompile Include="..\..\Source\Components\CustomCommands.cpp" />
     <ClCompile Include="..\..\Source\Components\DevGui.cpp" />
     <ClCompile Include="..\..\Source\Components\Drawing.cpp" />
@@ -159,6 +160,7 @@
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IMapEnts.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IPhysPreset.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IRawFile.h" />
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IStringTable.h" />
     <ClInclude Include="..\..\Source\Components\CustomCommands.h" />
     <ClInclude Include="..\..\Source\Components\DevGui.h" />
     <ClInclude Include="..\..\Source\Components\Drawing.h" />

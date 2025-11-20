@@ -66,6 +66,9 @@
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IRawFile.cpp">
       <Filter>Components\Assets\Interfaces</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IStringTable.cpp">
+      <Filter>Components\Assets\Interfaces</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\Game\Symbols.h">
@@ -144,6 +147,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\Util\INI.h">
       <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IStringTable.h">
+      <Filter>Components\Assets\Interfaces</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

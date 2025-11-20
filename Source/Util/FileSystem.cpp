@@ -61,7 +61,7 @@ namespace Util
 			mkdir(tempPath); // final directory
 		}
 
-		bool WriteFileToDisk(const char* filePath, const char* data, size_t dataSize)
+		bool WriteFile(const char* filePath, const char* data, size_t dataSize)
 		{
 			char dirPath[256];
 			strncpy(dirPath, filePath, sizeof(dirPath) - 1);

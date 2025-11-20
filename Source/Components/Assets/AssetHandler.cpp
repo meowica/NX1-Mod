@@ -2,6 +2,7 @@
 #include "Interfaces\IPhysPreset.h"
 #include "Interfaces\IMapEnts.h"
 #include "Interfaces\IRawFile.h"
+#include "Interfaces\IStringTable.h"
 
 namespace AssetHandler
 {
@@ -13,6 +14,7 @@ namespace AssetHandler
 			IPhysPreset::MP::Load();
 			IMapEnts::MP::Load();
 			IRawFile::MP::Load();
+			IStringTable::MP::Load();
 		}
 
 		void* ReallocateAssetPool(unsigned int type, unsigned int newSize)
@@ -58,6 +60,7 @@ namespace AssetHandler
 			IPhysPreset::SP::Load();
 			IMapEnts::SP::Load();
 			IRawFile::SP::Load();
+			IStringTable::SP::Load();
 		}
 
 		void* ReallocateAssetPool(unsigned int type, unsigned int newSize)

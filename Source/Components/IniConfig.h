@@ -18,6 +18,7 @@ namespace IniConfig
 	// Dumpers
 	extern bool EnablePhysPresetDumper;
 	extern bool EnableRawFileDumper;
+	extern bool EnableStringTableDumper;
 
 #ifdef IS_MP
 	namespace MP
