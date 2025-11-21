@@ -1,5 +1,3 @@
-#include <iomanip>
-
 namespace ILeaderboardDef
 {
 	const char* ColTypeNames[7] =
@@ -11,39 +9,6 @@ namespace ILeaderboardDef
 		"BIGNUMBER",
 		"PERCENT",
 		"TIME_FULL"
-	};
-
-	const char* AggTypeNames[4] =
-	{
-		"MIN",
-		"MAX",
-		"ADD",
-		"REPLACE"
-	};
-
-	const char* UpdateTypesNames[3] =
-	{
-		"NORMAL_UPDATE",
-		"RANK_UPDATE",
-		"COMBINE_UPDATE"
-	};
-
-	struct TrackType
-	{
-		char* trackType;
-		bool prestige;
-	};
-
-	TrackType lbTrackTypes[8] =
-	{
-		{ "TRK_ALLTIME", 0 },
-		{ "TRK_WEEKLY", 0 },
-		{ "TRK_MONTHLY", 0 },
-		{ "TRK_PRESTIGE_ALLTIME", 1 },
-		{ "TRK_PRESTIGE_WEEKLY", 1 },
-		{ "TRK_PRESTIGE_MONTHLY", 1 },
-		{ "TRK_DAILY", 0 },
-		{ "TRK_PRESTIGE_DAILY", 1 }
 	};
 
 	enum LbAggType

@@ -42,14 +42,16 @@
 #include <map>
 #include <algorithm>
 #include <vector>
+#include <iomanip>
+
+#include <direct.h>
+#include <io.h>
+#include <time.h>
 
 // xbox stuff
 #include <xtl.h>
 #include <xbox.h>
 #include <xgraphics.h>
-#include <direct.h>
-#include <io.h>
-#include <time.h>
 
 // external libs
 #include <xkelib.h>
