@@ -11,6 +11,7 @@ namespace IniConfig
 	bool EnableRawFileLoader = true;
 
 	bool EnablePhysPresetDumper = false;
+	bool EnableLocalizeEntryDumper = false;
 	bool EnableRawFileDumper = false;
 	bool EnableStringTableDumper = false;
 	bool EnableLeaderboardDefDumper = false;
@@ -38,6 +39,7 @@ namespace IniConfig
 		EnableRawFileLoader = g_Config.GetBoolean("Asset Loaders", "EnableRawFileLoader", EnableRawFileLoader);
 
 		EnablePhysPresetDumper = g_Config.GetBoolean("Asset Dumpers", "EnablePhysPresetDumper", EnablePhysPresetDumper);
+		EnableLocalizeEntryDumper = g_Config.GetBoolean("Asset Dumpers", "EnableLocalizeEntryDumper", EnableLocalizeEntryDumper);
 		EnableRawFileDumper = g_Config.GetBoolean("Asset Dumpers", "EnableRawFileDumper", EnableRawFileDumper);
 		EnableStringTableDumper = g_Config.GetBoolean("Asset Dumpers", "EnableStringTableDumper", EnableStringTableDumper);
 		EnableLeaderboardDefDumper = g_Config.GetBoolean("Asset Dumpers", "EnableLeaderboardDefDumper", EnableLeaderboardDefDumper);

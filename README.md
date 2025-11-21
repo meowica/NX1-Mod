@@ -67,6 +67,7 @@
   - Raw File - Load any raw file from NX1-Mod/raw
 - Added asset dumpers (MP/SP):
   - Phys Preset - Dump any physic preset file
+  - Localize Entry - Dump any localize entry file
   - Raw File - Dump any raw file
   - String Table - Dump any string table
   - Leaderboard - Dump any leaderboards file

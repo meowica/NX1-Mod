@@ -68,6 +68,7 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IStringTable.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\ILeaderboardDef.cpp" />
+    <ClCompile Include="..\..\Source\Components\Assets\Interfaces\ILocalizeEntry.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\Util\Command.h">
@@ -147,6 +148,7 @@
     <ClInclude Include="..\..\Source\Util\INI.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IStringTable.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\ILeaderboardDef.h" />
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\ILocalizeEntry.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Game">

@@ -72,6 +72,9 @@
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\ILeaderboardDef.cpp">
       <Filter>Components\Assets\Interfaces</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Components\Assets\Interfaces\ILocalizeEntry.cpp">
+      <Filter>Components\Assets\Interfaces</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\Game\Symbols.h">
@@ -155,6 +158,9 @@
       <Filter>Components\Assets\Interfaces</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\ILeaderboardDef.h">
+      <Filter>Components\Assets\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\ILocalizeEntry.h">
       <Filter>Components\Assets\Interfaces</Filter>
     </ClInclude>
   </ItemGroup>
