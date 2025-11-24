@@ -38,7 +38,7 @@ namespace IFont_s
 			std::replace(assetName.begin(), assetName.end(), '/', '\\');
 			std::transform(assetName.begin(), assetName.end(), assetName.begin(), ::tolower);
 
-			std::string outPath = "game:\\" BASE_FOLDER "\\dump\\fonts\\" + assetName + ".json";
+			std::string outPath = "game:\\" BASE_FOLDER "\\dump\\" + assetName + ".json";
 
 			std::ostringstream json;
 			json << "{\n";
