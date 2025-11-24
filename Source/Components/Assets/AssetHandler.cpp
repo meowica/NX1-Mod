@@ -96,7 +96,7 @@ namespace AssetHandler
 			RegisterLoadersAndDumpers();
 
 			// IW4x limits
-/*
+
 			ReallocateAssetPool(Structs::ASSET_TYPE_GAMEWORLD_MP, 1);
 			// ReallocateAssetPool(Structs::ASSET_TYPE_IMAGE, 7168); // Causes the game to crash somewhere else, if the default limit is exceeded
 			ReallocateAssetPool(Structs::ASSET_TYPE_LOADED_SOUND, 5400);
@@ -109,7 +109,7 @@ namespace AssetHandler
 			// ReallocateAssetPool(Structs::ASSET_TYPE_MATERIAL, 16384); // Causes the game to crash somewhere else, if the default limit is exceeded
 			ReallocateAssetPool(Structs::ASSET_TYPE_WEAPON, 2400);
 			ReallocateAssetPool(Structs::ASSET_TYPE_STRINGTABLE, 800);
-			ReallocateAssetPool(Structs::ASSET_TYPE_IMPACT_FX, 8);*/
+			ReallocateAssetPool(Structs::ASSET_TYPE_IMPACT_FX, 8);
 		}
 
 		void Unload()

@@ -78,7 +78,7 @@ namespace Maps
 			{
 				Symbols::SP::Com_sprintf(filename, size, "maps/%s.d3dbsp", p_mapname);
 			}
-}
+		}
 
 		void Load()
 		{
