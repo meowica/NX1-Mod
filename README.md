@@ -63,20 +63,6 @@
   - String Table: 800
   - Impact FX: 8
 - Added a print that tells you what .d3dbsp has loaded (MP/SP)
-- Added asset loaders (MP/SP):
-  - Map Ents - Load any map entity files from NX1-Mod/raw (must follow BSP name, so maps/mp/nx_mp_pitstop.d3dbsp.ents for example)
-  - Raw File - Load any raw file from NX1-Mod/raw
-- Added asset dumpers (MP/SP):
-  - Phys Preset - Dump any physic preset files
-  - Map Ents - Dump any map entity files
-  - Font - Dump any font files into a .json format
-  - Menu List - Dump any menu list files
-  - Localize Entry - Dump any localize entry files
-  - Raw File - Dump any raw files
-  - String Table - Dump any string table files
-  - Leaderboard - Dump any leaderboards files
-  - Audio Volume - Dump any audio volume files
-  - Fog Def - Dump any fog files
 - Removed some prints (MP/SP):
   - dvar set
   - cmd line
@@ -90,3 +76,22 @@
   - adding/hiding channel
   - no channels added/hidden
   - log file opened
+- Added asset loaders (MP/SP):
+  - Map Ents - Load any map entity files from NX1-Mod/raw
+  - Raw File - Load any raw file from NX1-Mod/raw
+  - Addon Map Ents - Load any addon map entity files from NX1-Mod/raw
+- Added asset dumpers (MP/SP):
+  - Phys Preset - Dump any physic preset files
+  - Map Ents - Dump any map entity files
+  - Light Def - Dump any light files
+  - Font - Dump any font files
+  - Menu List - Dump any menu list files
+  - Localize Entry - Dump any localize entry files
+  - Raw File - Dump any raw files
+  - String Table - Dump any string table files
+  - Leaderboard - Dump any leaderboards files
+  - Tracer Def - Dump any tracer files
+  - Laser Def - Dump any laser files
+  - Addon Map Ents - Dump any addon map entity files
+  - Audio Volume - Dump any audio volume files
+  - Fog Def - Dump any fog files
