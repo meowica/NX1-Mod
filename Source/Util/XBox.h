@@ -4,25 +4,16 @@ namespace Util
 {
 	namespace XBox
 	{
-		bool IsInXenia();
-
-		void* ResolveFunction(const char* moduleName, unsigned int ordinal);
-
-		DWORD XGetCurrentTitleId();
-
 		typedef struct _DM_THREADINFOEX
 		{
 			unsigned int Size;
 			unsigned int SuspendCount;
 			unsigned int Priority;
-
 			void* TlsBase;
 			void* StartAddress;
 			void* StackBase;
 			void* StackLimit;
-
 			FILETIME CreateTime;
-
 			unsigned int StackSlackSpace;
 			char* ThreadNameAddress;
 			unsigned int ThreadNameLength;
@@ -32,6 +23,8 @@ namespace Util
 
 		HRESULT DmGetThreadInfoEx(DWORD dwThreadId, PDM_THREADINFOEX pdmti);
 
+		DWORD XGetCurrentTitleId();
+
 		int XShowMessageBox(
 			DWORD dwUserIndex,
 			const std::wstring& title,
@@ -39,5 +32,9 @@ namespace Util
 			const std::vector<std::wstring>* buttons = nullptr,
 			DWORD focusButton = 0,
 			DWORD flags = 0);
+
+		bool IsInXenia();
+
+		void* ResolveFunction(const char* moduleName, unsigned int ordinal);
 	}
 }

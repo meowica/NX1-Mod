@@ -42,8 +42,9 @@ namespace Patches
 			// prevent dupe config executions
 			Com_ExecStartupConfigs_Hook.Create(0x82453810, Com_ExecStartupConfigs);
 
-			// fix thread names appearing as gibberish
-			Sys_GetThreadName_Hook.Create(0x82572A88, Sys_GetThreadName);
+			if (Util::XBox::IsInXenia())
+				// fix thread names appearing as gibberish
+				Sys_GetThreadName_Hook.Create(0x82572A88, Sys_GetThreadName);
 
 			// remove autoexec dev
 			Util::Hook::Nop(0x822C8A74, 2);
@@ -123,8 +124,9 @@ namespace Patches
 			// prevent dupe config executions
 			Com_ExecStartupConfigs_Hook.Create(0x824296C0, Com_ExecStartupConfigs);
 
-			// fix thread names appearing as gibberish
-			Sys_GetThreadName_Hook.Create(0x824F41B8, Sys_GetThreadName);
+			if (Util::XBox::IsInXenia())
+				// fix thread names appearing as gibberish
+				Sys_GetThreadName_Hook.Create(0x824F41B8, Sys_GetThreadName);
 
 			// remove autoexec dev
 			Util::Hook::Nop(0x8222CC84, 2);

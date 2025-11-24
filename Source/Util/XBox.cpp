@@ -2,33 +2,6 @@ namespace Util
 {
 	namespace XBox
 	{
-		// Borrowed and slightly modified from https://github.com/michaeloliverx/codxe/blob/cbe7ea24ea1ff0378b327bb1a2dada2ba2831216/src/xboxkrnl.cpp#L7
-		bool IsInXenia()
-		{
-			// https://github.com/ClementDreptin/XexUtils/blob/ae8a8b832315678255c00d6a9b967a9136155503/src/Xam_.cpp#L168
-			// https://github.com/RBEnhanced/RB3Enhanced/blob/106c4290ee4fc2a91da65f4092a2b881971dc59c/source/xbox360.c#L16
-
-			void* xamFirstExport = ResolveFunction("xam.xex", 1);
-			// if Xam is not in the typical memory address space, we're in Xenia
-			return (unsigned long)xamFirstExport >> 24 != 0x81;
-		}
-
-		// Borrowed and slightly modified from https://github.com/michaeloliverx/codxe/blob/cbe7ea24ea1ff0378b327bb1a2dada2ba2831216/src/xboxkrnl.cpp#L17
-		void* ResolveFunction(const char* moduleName, unsigned int ordinal)
-		{
-			HMODULE moduleHandle = GetModuleHandle(moduleName);
-			if (moduleHandle == NULL)
-			{
-				return NULL;
-			}
-			return GetProcAddress(moduleHandle, (const char*)ordinal);
-		}
-
-		DWORD XGetCurrentTitleId()
-		{
-			return XamGetCurrentTitleId();
-		}
-
 		static const char* GetFakeThreadName(DWORD dwThreadId)
 		{
 			switch (dwThreadId % 8)
@@ -56,11 +29,6 @@ namespace Util
 
 		HRESULT DmGetThreadInfoEx(DWORD dwThreadId, PDM_THREADINFOEX pdmti)
 		{
-			// Warning: This will 101% fail on Xbox I think, but not much I can do
-			// I guess maybe I could just remove this code on Xbox, but then the thread names will be gibberish...
-
-			// This code won't fail on XDK's atleast, so maybe I do some env checks?...
-
 			if (!pdmti)
 				return -1;
 
@@ -88,6 +56,11 @@ namespace Util
 
 			pdmti->LastError = 0;
 			return S_OK;
+		}
+
+		DWORD XGetCurrentTitleId()
+		{
+			return XamGetCurrentTitleId();
 		}
 
 		int XShowMessageBox(
@@ -143,6 +116,26 @@ namespace Util
 
 			CloseHandle(overlapped.hEvent);
 			return static_cast<int>(result.dwButtonPressed);
+		}
+
+		// Borrowed and slightly modified from https://github.com/michaeloliverx/codxe/blob/cbe7ea24ea1ff0378b327bb1a2dada2ba2831216/src/xboxkrnl.cpp#L7
+		bool IsInXenia()
+		{
+			// https://github.com/ClementDreptin/XexUtils/blob/ae8a8b832315678255c00d6a9b967a9136155503/src/Xam_.cpp#L168
+			// https://github.com/RBEnhanced/RB3Enhanced/blob/106c4290ee4fc2a91da65f4092a2b881971dc59c/source/xbox360.c#L16
+
+			void* xamFirstExport = ResolveFunction("xam.xex", 1);
+			// if Xam is not in the typical memory address space, we're in Xenia
+			return (unsigned long)xamFirstExport >> 24 != 0x81;
+		}
+
+		// Borrowed and slightly modified from https://github.com/michaeloliverx/codxe/blob/cbe7ea24ea1ff0378b327bb1a2dada2ba2831216/src/xboxkrnl.cpp#L17
+		void* ResolveFunction(const char* moduleName, unsigned int ordinal)
+		{
+			HMODULE moduleHandle = GetModuleHandle(moduleName);
+			if (moduleHandle == NULL)
+				return NULL;
+			return GetProcAddress(moduleHandle, (const char*)ordinal);
 		}
 	}
 }

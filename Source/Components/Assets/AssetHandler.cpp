@@ -1,4 +1,4 @@
-// interfaces
+// Interfaces
 #include "Interfaces\IPhysPreset.h"
 #include "Interfaces\IMapEnts.h"
 #include "Interfaces\ILocalizeEntry.h"
