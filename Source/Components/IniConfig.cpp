@@ -20,6 +20,7 @@ namespace IniConfig
 	bool EnableStringTableDumper = false;
 	bool EnableLeaderboardDefDumper = false;
 	bool EnableAudioVolumeSettingDumper = false;
+	bool EnableFogDefDumper = false;
 
 	Util::INI g_Config;
 
@@ -53,6 +54,7 @@ namespace IniConfig
 		EnableStringTableDumper = g_Config.GetBoolean("Asset Dumpers", "EnableStringTableDumper", EnableStringTableDumper);
 		EnableLeaderboardDefDumper = g_Config.GetBoolean("Asset Dumpers", "EnableLeaderboardDefDumper", EnableLeaderboardDefDumper);
 		EnableAudioVolumeSettingDumper = g_Config.GetBoolean("Asset Dumpers", "EnableAudioVolumeSettingDumper", EnableAudioVolumeSettingDumper);
+		EnableFogDefDumper = g_Config.GetBoolean("Asset Dumpers", "EnableFogDefDumper", EnableFogDefDumper);
 	}
 
 	void UnloadConfig()

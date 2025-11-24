@@ -9,6 +9,7 @@
 #include "Interfaces\IStringTable.h"
 #include "Interfaces\ILeaderboardDef.h"
 #include "Interfaces\IAudioVolumeSetting.h"
+#include "Interfaces\IFogDef.h"
 
 namespace AssetHandler
 {
@@ -27,6 +28,7 @@ namespace AssetHandler
 			IStringTable::MP::Load();
 			ILeaderboardDef::MP::Load();
 			IAudioVolumeSetting::MP::Load();
+			IFogDef::MP::Load();
 		}
 
 		void* ReallocateAssetPool(unsigned int type, unsigned int newSize)
@@ -79,6 +81,7 @@ namespace AssetHandler
 			IStringTable::SP::Load();
 			ILeaderboardDef::SP::Load();
 			IAudioVolumeSetting::SP::Load();
+			IFogDef::SP::Load();
 		}
 
 		void* ReallocateAssetPool(unsigned int type, unsigned int newSize)

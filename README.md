@@ -76,6 +76,7 @@
   - String Table - Dump any string table files
   - Leaderboard - Dump any leaderboards files
   - Audio Volume - Dump any audio volume files
+  - Fog Def - Dump any fog files
 - Removed some prints (MP/SP):
   - dvar set
   - cmd line

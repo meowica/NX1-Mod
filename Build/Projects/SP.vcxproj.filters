@@ -73,6 +73,7 @@
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IFont_s.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IAudioVolumeSetting.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IGfxLightDef.cpp" />
+    <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IFogDef.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\Util\Command.h">
@@ -158,6 +159,7 @@
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IMaterial.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IAudioVolumeSetting.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IGfxLightDef.h" />
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IFogDef.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Game">
