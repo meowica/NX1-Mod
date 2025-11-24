@@ -38,8 +38,6 @@ namespace IPhysPreset
 			std::string assetName = physPreset->name;
 			std::replace(assetName.begin(), assetName.end(), '/', '\\');
 
-			Symbols::MP::Com_Printf(0, "Dumping '%s' of type '%s'...\n", assetName, "PhysPreset");
-
 			std::string outPath = "game:\\" BASE_FOLDER "\\dump\\physic\\" + assetName;
 			std::ostringstream oss;
 
@@ -107,8 +105,6 @@ namespace IPhysPreset
 			std::string assetName = physPreset->name;
 			std::replace(assetName.begin(), assetName.end(), '/', '\\');
 
-			Symbols::SP::Com_Printf(0, "Dumping '%s' of type '%s'...\n", assetName, "PhysPreset");
-
 			std::string outPath = "game:\\" BASE_FOLDER "\\dump\\physic\\" + assetName;
 			std::ostringstream oss;
 
@@ -144,8 +140,7 @@ namespace IPhysPreset
 		{
 			auto varPhysPresetPtr = *reinterpret_cast<PhysPreset***>(0x82C6E7E0);
 
-			auto Invoke = Load_PhysPresetPtr_Hook.Invoke<void(*)(bool)>();
-			Invoke(atStreamStart);
+			Load_PhysPresetPtr_Hook.Invoke<void>(atStreamStart);
 
 			if (varPhysPresetPtr && *varPhysPresetPtr)
 			{

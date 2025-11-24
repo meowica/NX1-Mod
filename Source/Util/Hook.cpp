@@ -19,7 +19,7 @@ namespace Util
 		, originalLength_(0)
 		, trampolineAddress_(NULL)
 	{
-		Create(place, target);
+		this->Create(place, target);
 	}
 
 	Hook::Detour::Detour(size_t place, void* target)
@@ -28,7 +28,7 @@ namespace Util
 		, originalLength_(0)
 		, trampolineAddress_(NULL)
 	{
-		Create(reinterpret_cast<void*>(place), target);
+		this->Create(reinterpret_cast<void*>(place), target);
 	}
 
 	Hook::Detour::~Detour()
@@ -63,7 +63,7 @@ namespace Util
 		return true;
 	}
 
-	bool Hook::Detour::Create(size_t place, void* target)
+	bool Hook::Detour::Create(const size_t place, void* target)
 	{
 		return Create(reinterpret_cast<void*>(place), target);
 	}

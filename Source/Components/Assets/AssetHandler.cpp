@@ -1,6 +1,7 @@
 // Interfaces
 #include "Interfaces\IPhysPreset.h"
 #include "Interfaces\IMapEnts.h"
+#include "Interfaces\IMenuList.h"
 #include "Interfaces\ILocalizeEntry.h"
 #include "Interfaces\IRawFile.h"
 #include "Interfaces\IStringTable.h"
@@ -15,6 +16,7 @@ namespace AssetHandler
 		{
 			IPhysPreset::MP::Load();
 			IMapEnts::MP::Load();
+			IMenuList::MP::Load();
 			ILocalizeEntry::MP::Load();
 			IRawFile::MP::Load();
 			IStringTable::MP::Load();
@@ -63,6 +65,7 @@ namespace AssetHandler
 		{
 			IPhysPreset::SP::Load();
 			IMapEnts::SP::Load();
+			IMenuList::SP::Load();
 			ILocalizeEntry::SP::Load();
 			IRawFile::SP::Load();
 			IStringTable::SP::Load();
@@ -84,7 +87,7 @@ namespace AssetHandler
 			RegisterLoadersAndDumpers();
 
 			// IW4x limits
-
+/*
 			ReallocateAssetPool(Structs::ASSET_TYPE_GAMEWORLD_MP, 1);
 			// ReallocateAssetPool(Structs::ASSET_TYPE_IMAGE, 7168); // Causes the game to crash somewhere else, if the default limit is exceeded
 			ReallocateAssetPool(Structs::ASSET_TYPE_LOADED_SOUND, 5400);
@@ -97,7 +100,7 @@ namespace AssetHandler
 			// ReallocateAssetPool(Structs::ASSET_TYPE_MATERIAL, 16384); // Causes the game to crash somewhere else, if the default limit is exceeded
 			ReallocateAssetPool(Structs::ASSET_TYPE_WEAPON, 2400);
 			ReallocateAssetPool(Structs::ASSET_TYPE_STRINGTABLE, 800);
-			ReallocateAssetPool(Structs::ASSET_TYPE_IMPACT_FX, 8);
+			ReallocateAssetPool(Structs::ASSET_TYPE_IMPACT_FX, 8);*/
 		}
 
 		void Unload()

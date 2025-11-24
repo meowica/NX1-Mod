@@ -68,7 +68,8 @@
   - Raw File - Load any raw file from NX1-Mod/raw
 - Added asset dumpers (MP/SP):
   - Phys Preset - Dump any physic preset files
-  - Map Ents - Dumpe any map entity files
+  - Map Ents - Dump any map entity files
+  - Menu List - Dump any menu list files
   - Localize Entry - Dump any localize entry files
   - Raw File - Dump any raw files
   - String Table - Dump any string table files

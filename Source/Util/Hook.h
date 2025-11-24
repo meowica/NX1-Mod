@@ -18,7 +18,7 @@ namespace Util
 			~Detour();
 
 			bool Create(void* place, void* target);
-			bool Create(size_t place, void* target);
+			bool Create(const size_t place, void* target);
 			bool Clear();
 
 			void* GetTrampolineAddress() const { return trampolineAddress_; }

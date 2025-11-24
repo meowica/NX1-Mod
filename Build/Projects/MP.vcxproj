@@ -136,6 +136,7 @@
     <ClCompile Include="..\..\Source\Components\Assets\AssetHandler.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\ILeaderboardDef.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\ILocalizeEntry.cpp" />
+    <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IMenuList.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IStringTable.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IMapEnts.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IPhysPreset.cpp" />
@@ -163,6 +164,7 @@
     <ClInclude Include="..\..\Source\Components\Assertion.h" />
     <ClInclude Include="..\..\Source\Components\Assets\AssetHandler.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\ILocalizeEntry.h" />
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IMenuList.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IStringTable.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IMapEnts.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IPhysPreset.h" />
