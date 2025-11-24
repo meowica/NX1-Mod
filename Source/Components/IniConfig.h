@@ -25,6 +25,7 @@ namespace IniConfig
 	extern bool EnableRawFileDumper;
 	extern bool EnableStringTableDumper;
 	extern bool EnableLeaderboardDefDumper;
+	extern bool EnableTracerDefDumper;
 	extern bool EnableAudioVolumeSettingDumper;
 	extern bool EnableFogDefDumper;
 

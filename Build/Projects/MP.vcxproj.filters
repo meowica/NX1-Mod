@@ -90,6 +90,9 @@
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IFogDef.cpp">
       <Filter>Components\Assets\Interfaces</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Components\Assets\Interfaces\ITracerDef.cpp">
+      <Filter>Components\Assets\Interfaces</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\Game\Symbols.h">
@@ -197,6 +200,9 @@
       <Filter>Components\Assets\Interfaces</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IFogDef.h">
+      <Filter>Components\Assets\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\ITracerDef.h">
       <Filter>Components\Assets\Interfaces</Filter>
     </ClInclude>
   </ItemGroup>

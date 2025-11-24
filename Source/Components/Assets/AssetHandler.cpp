@@ -8,6 +8,7 @@
 #include "Interfaces\IRawFile.h"
 #include "Interfaces\IStringTable.h"
 #include "Interfaces\ILeaderboardDef.h"
+#include "Interfaces\ITracerDef.h"
 #include "Interfaces\IAudioVolumeSetting.h"
 #include "Interfaces\IFogDef.h"
 
@@ -27,6 +28,7 @@ namespace AssetHandler
 			IRawFile::MP::Load();
 			IStringTable::MP::Load();
 			ILeaderboardDef::MP::Load();
+			ITracerDef::MP::Load();
 			IAudioVolumeSetting::MP::Load();
 			IFogDef::MP::Load();
 		}
@@ -80,6 +82,7 @@ namespace AssetHandler
 			IRawFile::SP::Load();
 			IStringTable::SP::Load();
 			ILeaderboardDef::SP::Load();
+			ITracerDef::SP::Load();
 			IAudioVolumeSetting::SP::Load();
 			IFogDef::SP::Load();
 		}

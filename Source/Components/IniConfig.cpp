@@ -19,6 +19,7 @@ namespace IniConfig
 	bool EnableRawFileDumper = false;
 	bool EnableStringTableDumper = false;
 	bool EnableLeaderboardDefDumper = false;
+	bool EnableTracerDefDumper = false;
 	bool EnableAudioVolumeSettingDumper = false;
 	bool EnableFogDefDumper = false;
 
@@ -53,6 +54,7 @@ namespace IniConfig
 		EnableRawFileDumper = g_Config.GetBoolean("Asset Dumpers", "EnableRawFileDumper", EnableRawFileDumper);
 		EnableStringTableDumper = g_Config.GetBoolean("Asset Dumpers", "EnableStringTableDumper", EnableStringTableDumper);
 		EnableLeaderboardDefDumper = g_Config.GetBoolean("Asset Dumpers", "EnableLeaderboardDefDumper", EnableLeaderboardDefDumper);
+		EnableTracerDefDumper = g_Config.GetBoolean("Asset Dumpers", "EnableTracerDefDumper", EnableTracerDefDumper);
 		EnableAudioVolumeSettingDumper = g_Config.GetBoolean("Asset Dumpers", "EnableAudioVolumeSettingDumper", EnableAudioVolumeSettingDumper);
 		EnableFogDefDumper = g_Config.GetBoolean("Asset Dumpers", "EnableFogDefDumper", EnableFogDefDumper);
 	}
