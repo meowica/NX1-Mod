@@ -131,6 +131,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\Source\Components\Assertion.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\AssetHandler.cpp" />
+    <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IAudioVolumeSetting.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IFont_s.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\ILeaderboardDef.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\ILocalizeEntry.cpp" />
@@ -161,6 +162,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\Source\Components\Assertion.h" />
     <ClInclude Include="..\..\Source\Components\Assets\AssetHandler.h" />
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IAudioVolumeSetting.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IFont_s.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\ILeaderboardDef.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\ILocalizeEntry.h" />

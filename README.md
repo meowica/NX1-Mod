@@ -75,6 +75,7 @@
   - Raw File - Dump any raw files
   - String Table - Dump any string table files
   - Leaderboard - Dump any leaderboards files
+  - Audio Volume - Dump any audio volume files
 - Removed some prints (MP/SP):
   - dvar set
   - cmd line

@@ -7,6 +7,7 @@
 #include "Interfaces\IRawFile.h"
 #include "Interfaces\IStringTable.h"
 #include "Interfaces\ILeaderboardDef.h"
+#include "Interfaces\IAudioVolumeSetting.h"
 
 namespace AssetHandler
 {
@@ -23,6 +24,7 @@ namespace AssetHandler
 			IRawFile::MP::Load();
 			IStringTable::MP::Load();
 			ILeaderboardDef::MP::Load();
+			IAudioVolumeSetting::MP::Load();
 		}
 
 		void* ReallocateAssetPool(unsigned int type, unsigned int newSize)
@@ -73,6 +75,7 @@ namespace AssetHandler
 			IRawFile::SP::Load();
 			IStringTable::SP::Load();
 			ILeaderboardDef::SP::Load();
+			IAudioVolumeSetting::SP::Load();
 		}
 
 		void* ReallocateAssetPool(unsigned int type, unsigned int newSize)

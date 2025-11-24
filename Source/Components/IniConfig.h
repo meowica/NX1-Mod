@@ -24,6 +24,7 @@ namespace IniConfig
 	extern bool EnableRawFileDumper;
 	extern bool EnableStringTableDumper;
 	extern bool EnableLeaderboardDefDumper;
+	extern bool EnableAudioVolumeSettingDumper;
 
 #ifdef IS_MP
 	namespace MP
