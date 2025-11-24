@@ -96,6 +96,9 @@
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\ILaserDef.cpp">
       <Filter>Components\Assets\Interfaces</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IAddonMapEnts.cpp">
+      <Filter>Components\Assets\Interfaces</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\Game\Symbols.h">
@@ -209,6 +212,9 @@
       <Filter>Components\Assets\Interfaces</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\ILaserDef.h">
+      <Filter>Components\Assets\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IAddonMapEnts.h">
       <Filter>Components\Assets\Interfaces</Filter>
     </ClInclude>
   </ItemGroup>

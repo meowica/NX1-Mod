@@ -14,6 +14,7 @@ namespace IniConfig
 	// Loaders
 	extern bool EnableMapEntsLoader;
 	extern bool EnableRawFileLoader;
+	extern bool EnableAddonMapEntsLoader;
 
 	// Dumpers
 	extern bool EnablePhysPresetDumper;
@@ -27,6 +28,7 @@ namespace IniConfig
 	extern bool EnableLeaderboardDefDumper;
 	extern bool EnableTracerDefDumper;
 	extern bool EnableLaserDefDumper;
+	extern bool EnableAddonMapEntsDumper;
 	extern bool EnableAudioVolumeSettingDumper;
 	extern bool EnableFogDefDumper;
 

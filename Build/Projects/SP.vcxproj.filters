@@ -76,6 +76,7 @@
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IFogDef.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\ITracerDef.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\ILaserDef.cpp" />
+    <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IAddonMapEnts.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\Util\Command.h">
@@ -164,6 +165,7 @@
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IFogDef.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\ITracerDef.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\ILaserDef.h" />
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IAddonMapEnts.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Game">

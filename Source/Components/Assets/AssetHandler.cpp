@@ -10,6 +10,7 @@
 #include "Interfaces\ILeaderboardDef.h"
 #include "Interfaces\ITracerDef.h"
 #include "Interfaces\ILaserDef.h"
+#include "Interfaces\IAddonMapEnts.h"
 #include "Interfaces\IAudioVolumeSetting.h"
 #include "Interfaces\IFogDef.h"
 
@@ -31,6 +32,7 @@ namespace AssetHandler
 			ILeaderboardDef::MP::Load();
 			ITracerDef::MP::Load();
 			ILaserDef::MP::Load();
+			IAddonMapEnts::MP::Load();
 			IAudioVolumeSetting::MP::Load();
 			IFogDef::MP::Load();
 		}
@@ -86,6 +88,7 @@ namespace AssetHandler
 			ILeaderboardDef::SP::Load();
 			ITracerDef::SP::Load();
 			ILaserDef::SP::Load();
+			IAddonMapEnts::SP::Load();
 			IAudioVolumeSetting::SP::Load();
 			IFogDef::SP::Load();
 		}

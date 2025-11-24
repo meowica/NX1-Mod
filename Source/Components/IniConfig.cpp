@@ -9,6 +9,7 @@ namespace IniConfig
 
 	bool EnableMapEntsLoader = true;
 	bool EnableRawFileLoader = true;
+	bool EnableAddonMapEntsLoader = true;
 
 	bool EnablePhysPresetDumper = false;
 	bool EnableMapEntsDumper = false;
@@ -21,6 +22,7 @@ namespace IniConfig
 	bool EnableLeaderboardDefDumper = false;
 	bool EnableTracerDefDumper = false;
 	bool EnableLaserDefDumper = false;
+	bool EnableAddonMapEntsDumper = false;
 	bool EnableAudioVolumeSettingDumper = false;
 	bool EnableFogDefDumper = false;
 
@@ -45,6 +47,7 @@ namespace IniConfig
 
 		EnableMapEntsLoader = g_Config.GetBoolean("Asset Loaders", "EnableMapEntsLoader", EnableMapEntsLoader);
 		EnableRawFileLoader = g_Config.GetBoolean("Asset Loaders", "EnableRawFileLoader", EnableRawFileLoader);
+		EnableAddonMapEntsLoader = g_Config.GetBoolean("Asset Loaders", "EnableAddonMapEntsLoader", EnableAddonMapEntsLoader);
 
 		EnablePhysPresetDumper = g_Config.GetBoolean("Asset Dumpers", "EnablePhysPresetDumper", EnablePhysPresetDumper);
 		EnableMapEntsDumper = g_Config.GetBoolean("Asset Dumpers", "EnableMapEntsDumper", EnableMapEntsDumper);
@@ -57,6 +60,7 @@ namespace IniConfig
 		EnableLeaderboardDefDumper = g_Config.GetBoolean("Asset Dumpers", "EnableLeaderboardDefDumper", EnableLeaderboardDefDumper);
 		EnableTracerDefDumper = g_Config.GetBoolean("Asset Dumpers", "EnableTracerDefDumper", EnableTracerDefDumper);
 		EnableLaserDefDumper = g_Config.GetBoolean("Asset Dumpers", "EnableLaserDefDumper", EnableLaserDefDumper);
+		EnableAddonMapEntsDumper = g_Config.GetBoolean("Asset Dumpers", "EnableAddonMapEntsDumper", EnableAddonMapEntsDumper);
 		EnableAudioVolumeSettingDumper = g_Config.GetBoolean("Asset Dumpers", "EnableAudioVolumeSettingDumper", EnableAudioVolumeSettingDumper);
 		EnableFogDefDumper = g_Config.GetBoolean("Asset Dumpers", "EnableFogDefDumper", EnableFogDefDumper);
 	}
