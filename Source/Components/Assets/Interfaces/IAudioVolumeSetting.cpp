@@ -89,7 +89,7 @@ namespace IAudioVolumeSetting
 
 			if (varAudioVolumeSettingPtr && *varAudioVolumeSettingPtr)
 			{
-				//if (IniConfig::EnableAudioVolumeSettingDumper)
+				if (IniConfig::EnableAudioVolumeSettingDumper)
 					Dump_AudioVolumeSetting(*varAudioVolumeSettingPtr);
 				//if (IniConfig::EnableAudioVolumeSettingLoader)
 				//	Load_AudioVolumeSetting(*varAudioVolumeSettingPtr);

@@ -28,14 +28,14 @@ namespace IStringTable
 			std::string outPath = "game:\\" BASE_FOLDER "\\dump\\" + assetName;
 
 			std::string csvTable;
-			csvTable.reserve(stringTable->rowCount * stringTable->columnCount * 32); // rough preallocation
+			csvTable.reserve(stringTable->rowCount * stringTable->columnCount * 32);
 
 			for (int row = 0; row < stringTable->rowCount; ++row)
 			{
 				for (int col = 0; col < stringTable->columnCount; ++col)
 				{
 					const char* str = stringTable->values[row * stringTable->columnCount + col].string;
-					csvTable += str ? str : "";
+					csvTable += str;
 
 					if (col < stringTable->columnCount - 1)
 						csvTable += ',';
@@ -93,7 +93,7 @@ namespace IStringTable
 				for (int col = 0; col < stringTable->columnCount; ++col)
 				{
 					const char* str = stringTable->values[row * stringTable->columnCount + col].string;
-					csvTable += str ? str : "";
+					csvTable += str;
 
 					if (col < stringTable->columnCount - 1)
 						csvTable += ',';
@@ -102,7 +102,7 @@ namespace IStringTable
 			}
 
 			Util::FileSystem::WriteFile(outPath.c_str(), csvTable.c_str(), csvTable.size());
-}
+		}
 
 		Util::Hook::Detour Load_StringTablePtr_Hook;
 		void Load_StringTablePtr(bool atStreamStart)

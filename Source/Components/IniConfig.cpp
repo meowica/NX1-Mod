@@ -12,6 +12,7 @@ namespace IniConfig
 
 	bool EnablePhysPresetDumper = false;
 	bool EnableMapEntsDumper = false;
+	bool EnableGfxLightDefDumper = false;
 	bool EnableFontHandleDumper = false;
 	bool EnableMenuListDumper = false;
 	bool EnableLocalizeEntryDumper = false;
@@ -44,6 +45,7 @@ namespace IniConfig
 
 		EnablePhysPresetDumper = g_Config.GetBoolean("Asset Dumpers", "EnablePhysPresetDumper", EnablePhysPresetDumper);
 		EnableMapEntsDumper = g_Config.GetBoolean("Asset Dumpers", "EnableMapEntsDumper", EnableMapEntsDumper);
+		EnableGfxLightDefDumper = g_Config.GetBoolean("Asset Dumpers", "EnableGfxLightDefDumper", EnableGfxLightDefDumper);
 		EnableFontHandleDumper = g_Config.GetBoolean("Asset Dumpers", "EnableFontHandleDumper", EnableFontHandleDumper);
 		EnableMenuListDumper = g_Config.GetBoolean("Asset Dumpers", "EnableMenuListDumper", EnableMenuListDumper);
 		EnableLocalizeEntryDumper = g_Config.GetBoolean("Asset Dumpers", "EnableLocalizeEntryDumper", EnableLocalizeEntryDumper);
