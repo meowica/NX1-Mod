@@ -12,11 +12,12 @@ namespace IniConfig
 	extern bool ShowFPSCounter;
 
 	// Loaders
-	extern bool EnableMapEntLoader;
+	extern bool EnableMapEntsLoader;
 	extern bool EnableRawFileLoader;
 
 	// Dumpers
 	extern bool EnablePhysPresetDumper;
+	extern bool EnableMapEntsDumper;
 	extern bool EnableLocalizeEntryDumper;
 	extern bool EnableRawFileDumper;
 	extern bool EnableStringTableDumper;

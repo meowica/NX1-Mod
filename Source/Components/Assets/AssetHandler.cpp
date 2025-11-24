@@ -1,6 +1,5 @@
 // interfaces
 #include "Interfaces\IPhysPreset.h"
-#include "Interfaces\IMaterialPixelShader.h"
 #include "Interfaces\IMapEnts.h"
 #include "Interfaces\ILocalizeEntry.h"
 #include "Interfaces\IRawFile.h"

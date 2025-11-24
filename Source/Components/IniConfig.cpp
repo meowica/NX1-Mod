@@ -7,10 +7,11 @@ namespace IniConfig
 	bool ShowWatermark = true;
 	bool ShowFPSCounter = false;
 
-	bool EnableMapEntLoader = true;
+	bool EnableMapEntsLoader = true;
 	bool EnableRawFileLoader = true;
 
 	bool EnablePhysPresetDumper = false;
+	bool EnableMapEntsDumper = false;
 	bool EnableLocalizeEntryDumper = false;
 	bool EnableRawFileDumper = false;
 	bool EnableStringTableDumper = false;
@@ -35,10 +36,11 @@ namespace IniConfig
 		ShowWatermark  = g_Config.GetBoolean("Drawing", "ShowWatermark",  ShowWatermark);
 		ShowFPSCounter = g_Config.GetBoolean("Drawing", "ShowFPSCounter", ShowFPSCounter);
 
-		EnableMapEntLoader = g_Config.GetBoolean("Asset Loaders", "EnableMapEntLoader", EnableMapEntLoader);
+		EnableMapEntsLoader = g_Config.GetBoolean("Asset Loaders", "EnableMapEntsLoader", EnableMapEntsLoader);
 		EnableRawFileLoader = g_Config.GetBoolean("Asset Loaders", "EnableRawFileLoader", EnableRawFileLoader);
 
 		EnablePhysPresetDumper = g_Config.GetBoolean("Asset Dumpers", "EnablePhysPresetDumper", EnablePhysPresetDumper);
+		EnableMapEntsDumper = g_Config.GetBoolean("Asset Dumpers", "EnableMapEntsDumper", EnableMapEntsDumper);
 		EnableLocalizeEntryDumper = g_Config.GetBoolean("Asset Dumpers", "EnableLocalizeEntryDumper", EnableLocalizeEntryDumper);
 		EnableRawFileDumper = g_Config.GetBoolean("Asset Dumpers", "EnableRawFileDumper", EnableRawFileDumper);
 		EnableStringTableDumper = g_Config.GetBoolean("Asset Dumpers", "EnableStringTableDumper", EnableStringTableDumper);

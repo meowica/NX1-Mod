@@ -59,51 +59,77 @@ namespace IMapEnts
 #ifdef IS_MP
 	namespace MP
 	{
-		Util::Hook::Detour Load_MapEntsPtr_Hook;
-		void Load_MapEntsPtr(bool atStreamStart)
+		void Dump_MapEnts(const MapEnts* mapEnts)
 		{
-			// based off this: https://github.com/michaeloliverx/codxe/blob/cbe7ea24ea1ff0378b327bb1a2dada2ba2831216/src/game/iw3/sp/main.cpp#L63
-
-			auto varMapEntsPtr = *reinterpret_cast<MapEnts***>(0x82CE6DF8);
-
-			Load_MapEntsPtr_Hook.Invoke<void>(atStreamStart);
-
-			// Validate pointer before dereferencing
-			if (!varMapEntsPtr || !*varMapEntsPtr)
-			{
-				// TODO: change this to be Com_PrintError
-				printf("Load_MapEntsPtr: varMapEntsPtr is NULL!\n");
+			if (!mapEnts)
 				return;
+
+			std::string assetName = mapEnts->name;
+			std::replace(assetName.begin(), assetName.end(), '/', '\\');
+
+			std::string outPath = "game:\\" BASE_FOLDER "\\dump\\";
+			outPath += assetName;
+			outPath += ".ents";
+
+			std::string cleaned;
+			cleaned.reserve(mapEnts->numEntityChars);
+
+			const char* src = mapEnts->entityString;
+			for (int i = 0; i < mapEnts->numEntityChars; ++i)
+			{
+				if (src[i] != '\0')
+					cleaned.push_back(src[i]);
 			}
 
-			MapEnts* mapEnts = *varMapEntsPtr;
+			Util::FileSystem::WriteFile(outPath.c_str(), cleaned.data(), cleaned.size());
+		}
 
-			std::string rawFilePath = "game:\\" BASE_FOLDER "\\raw"; // example: game:/NX1-Mod/raw/maps/mp/mp_nx_pitstop.d3dbsp.ents
-
-			rawFilePath += std::string("\\") + mapEnts->name;
-			rawFilePath += ".ents";
-			std::replace(rawFilePath.begin(), rawFilePath.end(), '/', '\\');
-
-			if (!Util::FileSystem::FileExists(rawFilePath))
+		void Load_MapEnts(MapEnts* mapEnts)
+		{
+			if (!mapEnts)
 				return;
 
-			std::string newEntityString = Util::FileSystem::ReadFileIntoString(rawFilePath);
+			std::string assetName = mapEnts->name;
+			std::replace(assetName.begin(), assetName.end(), '/', '\\');
+
+			std::string inPath = "game:\\" BASE_FOLDER "\\raw\\";
+			inPath += assetName;
+			inPath += ".ents";
+
+			if (!Util::FileSystem::FileExists(inPath))
+				return;
+
+			std::string newEntityString = Util::FileSystem::ReadFileIntoString(inPath);
 			if (newEntityString.empty())
 				return;
 
-			// Allocate new memory and copy entity data (+1 for null terminator)
 			const size_t newSize = newEntityString.size() + 1;
 			if (char* newMemory = static_cast<char*>(malloc(newSize)))
 			{
 				memcpy(newMemory, newEntityString.c_str(), newSize); // includes null terminator
 				mapEnts->entityString = newMemory;
 
-				Symbols::MP::Com_Printf(0, "map ents '%s' has been overriden with '%s'.\n", mapEnts->name, rawFilePath.c_str());
+				Symbols::MP::Com_Printf(0, "map ents '%s' has been overriden with '%s'.\n", mapEnts->name, inPath.c_str());
 			}
 			else
 			{
-				// TODO: change this to be Com_PrintError
-				printf("Failed to allocate memory for entityString replacement!\n");
+				Symbols::MP::Com_Printf(0, "Failed to allocate memory for entityString replacement!\n");
+			}
+		}
+
+		Util::Hook::Detour Load_MapEntsPtr_Hook;
+		void Load_MapEntsPtr(bool atStreamStart)
+		{
+			auto varMapEntsPtr = *reinterpret_cast<MapEnts***>(0x82CE6DF8);
+
+			Load_MapEntsPtr_Hook.Invoke<void>(atStreamStart);
+
+			if (varMapEntsPtr && *varMapEntsPtr)
+			{
+				if (IniConfig::EnableMapEntsDumper)
+					Dump_MapEnts(*varMapEntsPtr);
+				if (IniConfig::EnableMapEntsLoader)
+					Load_MapEnts(*varMapEntsPtr);
 			}
 		}
 
@@ -120,52 +146,77 @@ namespace IMapEnts
 #elif IS_SP
 	namespace SP
 	{
-		Util::Hook::Detour Load_MapEntsPtr_Hook;
-		void Load_MapEntsPtr(bool atStreamStart)
+		void Dump_MapEnts(const MapEnts* mapEnts)
 		{
-			// based off this: https://github.com/michaeloliverx/codxe/blob/cbe7ea24ea1ff0378b327bb1a2dada2ba2831216/src/game/iw3/sp/main.cpp#L63
-
-			auto varMapEntsPtr = *reinterpret_cast<MapEnts***>(0x82C6E7F8);
-
-			auto Invoke = Load_MapEntsPtr_Hook.Invoke<void(*)(bool)>();
-			Invoke(atStreamStart);
-
-			// Validate pointer before dereferencing
-			if (!varMapEntsPtr || !*varMapEntsPtr)
-			{
-				// TODO: change this to be Com_PrintError
-				printf("Load_MapEntsPtr: varMapEntsPtr is NULL!\n");
+			if (!mapEnts)
 				return;
+
+			std::string assetName = mapEnts->name;
+			std::replace(assetName.begin(), assetName.end(), '/', '\\');
+
+			std::string outPath = "game:\\" BASE_FOLDER "\\dump\\";
+			outPath += assetName;
+			outPath += ".ents";
+
+			std::string cleaned;
+			cleaned.reserve(mapEnts->numEntityChars);
+
+			const char* src = mapEnts->entityString;
+			for (int i = 0; i < mapEnts->numEntityChars; ++i)
+			{
+				if (src[i] != '\0')
+					cleaned.push_back(src[i]);
 			}
 
-			MapEnts* mapEnts = *varMapEntsPtr;
+			Util::FileSystem::WriteFile(outPath.c_str(), cleaned.data(), cleaned.size());
+		}
 
-			std::string rawFilePath = "game:\\" BASE_FOLDER "\\raw"; // example: game:/NX1-Mod/raw/maps/nx_border.d3dbsp.ents
-
-			rawFilePath += std::string("\\") + mapEnts->name;
-			rawFilePath += ".ents";
-			std::replace(rawFilePath.begin(), rawFilePath.end(), '/', '\\');
-
-			if (!Util::FileSystem::FileExists(rawFilePath))
+		void Load_MapEnts(MapEnts* mapEnts)
+		{
+			if (!mapEnts)
 				return;
 
-			std::string newEntityString = Util::FileSystem::ReadFileIntoString(rawFilePath);
+			std::string assetName = mapEnts->name;
+			std::replace(assetName.begin(), assetName.end(), '/', '\\');
+
+			std::string inPath = "game:\\" BASE_FOLDER "\\raw\\";
+			inPath += assetName;
+			inPath += ".ents";
+
+			if (!Util::FileSystem::FileExists(inPath))
+				return;
+
+			std::string newEntityString = Util::FileSystem::ReadFileIntoString(inPath);
 			if (newEntityString.empty())
 				return;
 
-			// Allocate new memory and copy entity data (+1 for null terminator)
 			const size_t newSize = newEntityString.size() + 1;
 			if (char* newMemory = static_cast<char*>(malloc(newSize)))
 			{
 				memcpy(newMemory, newEntityString.c_str(), newSize); // includes null terminator
 				mapEnts->entityString = newMemory;
 
-				Symbols::SP::Com_Printf(0, "map ents '%s' has been overriden with '%s'.\n", mapEnts->name, rawFilePath.c_str());
+				Symbols::SP::Com_Printf(0, "map ents '%s' has been overriden with '%s'.\n", mapEnts->name, inPath.c_str());
 			}
 			else
 			{
-				// TODO: change this to be Com_PrintError
-				printf("Failed to allocate memory for entityString replacement!\n");
+				Symbols::SP::Com_Printf(0, "Failed to allocate memory for entityString replacement!\n");
+			}
+		}
+
+		Util::Hook::Detour Load_MapEntsPtr_Hook;
+		void Load_MapEntsPtr(bool atStreamStart)
+		{
+			auto varMapEntsPtr = *reinterpret_cast<MapEnts***>(0x82C6E7F8);
+
+			Load_MapEntsPtr_Hook.Invoke<void>(atStreamStart);
+
+			if (varMapEntsPtr && *varMapEntsPtr)
+			{
+				if (IniConfig::EnableMapEntsDumper)
+					Dump_MapEnts(*varMapEntsPtr);
+				if (IniConfig::EnableMapEntsLoader)
+					Load_MapEnts(*varMapEntsPtr);
 			}
 		}
 

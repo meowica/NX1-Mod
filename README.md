@@ -63,14 +63,15 @@
 - Added a print that tells you what .d3dbsp has loaded (MP/SP)
 - Added game init print (SP)
 - Added asset loaders (MP/SP):
-  - Map Ents - Load any entity files from NX1-Mod/raw/maps
+  - Map Ents - Load any map entity files from NX1-Mod/raw (must follow BSP name, so maps/mp/nx_mp_pitstop.d3dbsp.ents for example)
   - Raw File - Load any raw file from NX1-Mod/raw
 - Added asset dumpers (MP/SP):
-  - Phys Preset - Dump any physic preset file
-  - Localize Entry - Dump any localize entry file
-  - Raw File - Dump any raw file
-  - String Table - Dump any string table
-  - Leaderboard - Dump any leaderboards file
+  - Phys Preset - Dump any physic preset files
+  - Map Ents - Dumpe any map entity files
+  - Localize Entry - Dump any localize entry files
+  - Raw File - Dump any raw files
+  - String Table - Dump any string table files
+  - Leaderboard - Dump any leaderboards files
 - replaced IW4 references with NX1 (MP)
 - Removed some prints (MP/SP):
   - dvar set
