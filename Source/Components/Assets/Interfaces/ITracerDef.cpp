@@ -4,14 +4,22 @@ namespace ITracerDef
 {
 	struct TracerDef
 	{
-		const char* name;
-		IMaterial::Material* material;
+		const char *name;
+		IMaterial::Material *material;
 		unsigned int drawInterval;
 		float speed;
 		float beamLength;
 		float beamWidth;
 		float screwRadius;
 		float screwDist;
+		unsigned int m_screwRadius_top_begin_expanding_overtime;
+		unsigned int m_screwRadius_bottom_begin_expanding_overtime;
+		float m_screwRadius_top_expanding_overtime;
+		float m_screwRadius_bottom_expanding_overtime;
+		unsigned int m_fadeout_top_begin;
+		unsigned int m_fadeout_top_duration;
+		unsigned int m_fadeout_bottom_begin;
+		unsigned int m_fadeout_bottom_duration;
 		float colors[5][4];
 	};
 
@@ -36,7 +44,15 @@ namespace ITracerDef
 				<< "\\beamLength\\" << tracerDef->beamLength
 				<< "\\beamWidth\\" << tracerDef->beamWidth
 				<< "\\screwRadius\\" << tracerDef->screwRadius
-				<< "\\screwDist\\" << tracerDef->screwDist;
+				<< "\\screwDist\\" << tracerDef->screwDist
+				<< "\\screwRadius_top_begin_expanding_overtime\\" << tracerDef->m_screwRadius_top_begin_expanding_overtime
+				<< "\\screwRadius_bottom_begin_expanding_overtime\\" << tracerDef->m_screwRadius_bottom_begin_expanding_overtime
+				<< "\\screwRadius_top_expanding_overtime\\" << tracerDef->m_screwRadius_top_expanding_overtime
+				<< "\\screwRadius_bottom_expanding_overtime\\" << tracerDef->m_screwRadius_bottom_expanding_overtime
+				<< "\\fadeout_top_begin\\" << tracerDef->m_fadeout_top_begin
+				<< "\\fadeout_top_duration\\" << tracerDef->m_fadeout_top_duration
+				<< "\\fadeout_bottom_begin\\" << tracerDef->m_fadeout_bottom_begin
+				<< "\\fadeout_bottom_duration\\" << tracerDef->m_fadeout_bottom_duration;
 
 			for (int i = 0; i < 5; ++i)
 			{
@@ -99,7 +115,15 @@ namespace ITracerDef
 				<< "\\beamLength\\" << tracerDef->beamLength
 				<< "\\beamWidth\\" << tracerDef->beamWidth
 				<< "\\screwRadius\\" << tracerDef->screwRadius
-				<< "\\screwDist\\" << tracerDef->screwDist;
+				<< "\\screwDist\\" << tracerDef->screwDist
+				<< "\\screwRadius_top_begin_expanding_overtime\\" << tracerDef->m_screwRadius_top_begin_expanding_overtime
+				<< "\\screwRadius_bottom_begin_expanding_overtime\\" << tracerDef->m_screwRadius_bottom_begin_expanding_overtime
+				<< "\\screwRadius_top_expanding_overtime\\" << tracerDef->m_screwRadius_top_expanding_overtime
+				<< "\\screwRadius_bottom_expanding_overtime\\" << tracerDef->m_screwRadius_bottom_expanding_overtime
+				<< "\\fadeout_top_begin\\" << tracerDef->m_fadeout_top_begin
+				<< "\\fadeout_top_duration\\" << tracerDef->m_fadeout_top_duration
+				<< "\\fadeout_bottom_begin\\" << tracerDef->m_fadeout_bottom_begin
+				<< "\\fadeout_bottom_duration\\" << tracerDef->m_fadeout_bottom_duration;
 
 			for (int i = 0; i < 5; ++i)
 			{

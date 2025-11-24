@@ -135,6 +135,7 @@
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IFogDef.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IFont_s.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IGfxLightDef.cpp" />
+    <ClCompile Include="..\..\Source\Components\Assets\Interfaces\ILaserDef.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\ILeaderboardDef.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\ILocalizeEntry.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IMapEnts.cpp" />
@@ -169,6 +170,7 @@
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IFogDef.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IFont_s.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IGfxLightDef.h" />
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\ILaserDef.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\ILeaderboardDef.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\ILocalizeEntry.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IMapEnts.h" />
