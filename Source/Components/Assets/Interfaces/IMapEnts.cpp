@@ -61,6 +61,8 @@ namespace IMapEnts
 	{
 		void Dump_MapEnts(const MapEnts* mapEnts)
 		{
+			// TODO: maybe dump triggers and stages too?
+
 			if (!mapEnts)
 				return;
 
@@ -86,6 +88,8 @@ namespace IMapEnts
 
 		void Load_MapEnts(MapEnts* mapEnts)
 		{
+			// TODO: maybe load triggers and stages too?
+
 			if (!mapEnts)
 				return;
 
@@ -148,6 +152,8 @@ namespace IMapEnts
 	{
 		void Dump_MapEnts(const MapEnts* mapEnts)
 		{
+			// TODO: maybe dump triggers and stages too?
+
 			if (!mapEnts)
 				return;
 
@@ -173,6 +179,8 @@ namespace IMapEnts
 
 		void Load_MapEnts(MapEnts* mapEnts)
 		{
+			// TODO: maybe load triggers and stages too?
+
 			if (!mapEnts)
 				return;
 
