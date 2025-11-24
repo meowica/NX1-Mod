@@ -18,6 +18,7 @@ namespace IniConfig
 	// Dumpers
 	extern bool EnablePhysPresetDumper;
 	extern bool EnableMapEntsDumper;
+	extern bool EnableFontHandleDumper;
 	extern bool EnableMenuListDumper;
 	extern bool EnableLocalizeEntryDumper;
 	extern bool EnableRawFileDumper;

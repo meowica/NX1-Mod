@@ -70,6 +70,7 @@
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\ILeaderboardDef.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\ILocalizeEntry.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IMenuList.cpp" />
+    <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IFont_s.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\Util\Command.h">
@@ -151,6 +152,8 @@
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\ILeaderboardDef.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\ILocalizeEntry.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IMenuList.h" />
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IFont_s.h" />
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IMaterial.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Game">

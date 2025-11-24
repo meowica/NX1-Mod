@@ -69,6 +69,7 @@
 - Added asset dumpers (MP/SP):
   - Phys Preset - Dump any physic preset files
   - Map Ents - Dump any map entity files
+  - Font - Dump any font files into a .json format
   - Menu List - Dump any menu list files
   - Localize Entry - Dump any localize entry files
   - Raw File - Dump any raw files

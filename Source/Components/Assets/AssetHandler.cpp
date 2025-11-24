@@ -1,6 +1,7 @@
 // Interfaces
 #include "Interfaces\IPhysPreset.h"
 #include "Interfaces\IMapEnts.h"
+#include "Interfaces\IFont_s.h"
 #include "Interfaces\IMenuList.h"
 #include "Interfaces\ILocalizeEntry.h"
 #include "Interfaces\IRawFile.h"
@@ -16,6 +17,7 @@ namespace AssetHandler
 		{
 			IPhysPreset::MP::Load();
 			IMapEnts::MP::Load();
+			IFont_s::MP::Load();
 			IMenuList::MP::Load();
 			ILocalizeEntry::MP::Load();
 			IRawFile::MP::Load();
@@ -65,6 +67,7 @@ namespace AssetHandler
 		{
 			IPhysPreset::SP::Load();
 			IMapEnts::SP::Load();
+			IFont_s::SP::Load();
 			IMenuList::SP::Load();
 			ILocalizeEntry::SP::Load();
 			IRawFile::SP::Load();
