@@ -48,6 +48,8 @@
 - printf outputs to the console log file (MP/SP)
 - Removed un-needed build version from the external console window (MP/SP)
 - NX1-Host is the default host name, used to be CoD4Host (MP)
+- NX1 is now the game name, instead of NX1 (MP)
+- Added game init print (SP)
 - Game no longer performs a session sanity check (MP/SP)
 - SP BSP resolving works in MP (and vice versa) (MP/SP)
 - Reallocated some asset sizes (MP/SP):
@@ -61,7 +63,6 @@
   - String Table: 800
   - Impact FX: 8
 - Added a print that tells you what .d3dbsp has loaded (MP/SP)
-- Added game init print (SP)
 - Added asset loaders (MP/SP):
   - Map Ents - Load any map entity files from NX1-Mod/raw (must follow BSP name, so maps/mp/nx_mp_pitstop.d3dbsp.ents for example)
   - Raw File - Load any raw file from NX1-Mod/raw
@@ -72,7 +73,6 @@
   - Raw File - Dump any raw files
   - String Table - Dump any string table files
   - Leaderboard - Dump any leaderboards files
-- replaced IW4 references with NX1 (MP)
 - Removed some prints (MP/SP):
   - dvar set
   - cmd line
