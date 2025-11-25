@@ -180,6 +180,10 @@
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\ILaserDef.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\ILocalizeEntry.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IMaterial.h" />
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IMaterialPixelShader.h" />
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IMaterialTechniqueSet.h" />
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IMaterialVertexDeclaration.h" />
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IMaterialVertexShader.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IMenuDef.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IMenuList.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IShellShockParams.h" />

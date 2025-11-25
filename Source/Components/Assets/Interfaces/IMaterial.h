@@ -1,5 +1,8 @@
 #pragma once
 
+#include "IGfxImage.h"
+#include "IMaterialTechniqueSet.h"
+
 namespace IMaterial
 {
 	struct GfxDrawSurfFields
@@ -35,10 +38,33 @@ namespace IMaterial
 		unsigned int surfaceTypeBits;
 	};
 
+	struct WaterWritable
+	{
+		float floatTime;
+	};
+
+	struct water_t
+	{
+		WaterWritable writable;
+		float* H0X;
+		float* H0Y;
+		float* wTerm;
+		int M;
+		int N;
+		float Lx;
+		float Lz;
+		float gravity;
+		float windvel;
+		float winddir[2];
+		float amplitude;
+		float codeConstant[4];
+		IGfxImage::GfxImage* image;
+	};
+
 	union MaterialTextureDefInfo
 	{
-		/*GfxImage* image;*/
-		/*water_t* water;*/
+		IGfxImage::GfxImage* image;
+		water_t* water;
 	};
 
 	struct MaterialTextureDef
@@ -49,7 +75,7 @@ namespace IMaterial
 		unsigned char samplerState;
 		unsigned char m_semantic;
 		MaterialTextureDefInfo u;
-		/*GfxImage* mp_override_image;*/
+		IGfxImage::GfxImage* mp_override_image;
 		unsigned int m_override_image;
 	};
 
@@ -75,7 +101,7 @@ namespace IMaterial
 		unsigned char stateFlags;
 		unsigned char cameraRegion;
 		unsigned char layerCount;
-		/*MaterialTechniqueSet* techniqueSet;*/
+		IMaterialTechniqueSet::MaterialTechniqueSet* techniqueSet;
 		MaterialTextureDef* textureTable;
 		MaterialConstantDef* constantTable;
 		GfxStateBits* stateBitsTable;
