@@ -2,51 +2,6 @@
 
 namespace IMaterial
 {
-	static std::string JsonEscape(const char* string)
-	{
-		if (!string)
-			return "";
-
-		std::string input = string;
-		std::string out;
-		out.reserve(input.size() + 8);
-
-		for (size_t i = 0; i < input.size(); i++)
-		{
-			char c = input[i];
-			switch (c)
-			{
-			case '\\':
-				out += "\\\\";
-				break;
-			case '"':
-				out += "\\\"";
-				break;
-			case '\n':
-				out += "\\n";
-				break;
-			case '\r':
-				out += "\\r";
-				break;
-			case '\t':
-				out += "\\t";
-				break;
-			default:
-				if ((unsigned char)c < 0x20)
-				{
-					char buf[8];
-					sprintf(buf, "\\u%04x", c);
-					out += buf;
-				}
-				else
-				{
-					out += c;
-				}
-			}
-		}
-		return out;
-	}
-
 #ifdef IS_MP
 	namespace MP
 	{
@@ -62,14 +17,14 @@ namespace IMaterial
 
 			std::ostringstream oss;
 			oss << "{\n";
-			oss << "  \"name\": \"" << JsonEscape(asset->info.name) << "\",\n";
+			oss << "  \"name\": \"" << Util::JSON::JsonEscape(asset->info.name) << "\",\n";
 			oss << "  \"gameFlags\": " << asset->info.gameFlags << ",\n";
 			oss << "  \"sortKey\": " << (int)asset->info.sortKey << ",\n";
 			oss << "  \"surfaceTypeBits\": " << asset->info.surfaceTypeBits << ",\n";
 			oss << "  \"stateFlags\": " << (int)asset->stateFlags << ",\n";
 			oss << "  \"cameraRegion\": " << (int)asset->cameraRegion << ",\n";
 			if (asset->techniqueSet)
-				oss << "  \"techniqueSet\": \"" << JsonEscape(asset->techniqueSet->name) << "\",\n";
+				oss << "  \"techniqueSet\": \"" << Util::JSON::JsonEscape(asset->techniqueSet->name) << "\",\n";
 			else
 				oss << "  \"techniqueSet\": null,\n";
 			oss << "  \"constants\": [\n";
@@ -78,7 +33,7 @@ namespace IMaterial
 				const MaterialConstantDef& con = asset->constantTable[i];
 				oss << "    {\n";
 				oss << "      \"nameHash\": " << con.nameHash << ",\n";
-				oss << "      \"name\": \"" << JsonEscape(con.name) << "\",\n";
+				oss << "      \"name\": \"" << Util::JSON::JsonEscape(con.name) << "\",\n";
 				oss << "      \"literal\": ["
 					<< con.literal[0] << ", " << con.literal[1] << ", "
 					<< con.literal[2] << ", " << con.literal[3] << "]\n";
@@ -109,7 +64,7 @@ namespace IMaterial
 					water_t* waterData = tex.u.water;
 
 					oss << "      \"image\": \""
-						<< (waterData->image ? JsonEscape(waterData->image->name) : "null") << "\",\n";
+						<< (waterData->image ? Util::JSON::JsonEscape(waterData->image->name) : "null") << "\",\n";
 
 					oss << "      \"waterinfo\": {\n";
 					oss << "        \"floatTime\": " << waterData->writable.floatTime << ",\n";
@@ -144,7 +99,7 @@ namespace IMaterial
 				}
 				else
 				{
-					oss << "      \"image\": \"" << (tex.u.image ? JsonEscape(tex.u.image->name) : "null") << "\"\n";
+					oss << "      \"image\": \"" << (tex.u.image ? Util::JSON::JsonEscape(tex.u.image->name) : "null") << "\"\n";
 				}
 				oss << "    }";
 				if (i + 1 != asset->textureCount)
@@ -160,7 +115,7 @@ namespace IMaterial
 					if (!asset->subMaterials[i])
 						oss << "null";
 					else
-						oss << "\"" << JsonEscape(asset->subMaterials[i]) << "\"";
+						oss << "\"" << Util::JSON::JsonEscape(asset->subMaterials[i]) << "\"";
 					if (i + 1 != asset->layerCount)
 						oss << ", ";
 				}

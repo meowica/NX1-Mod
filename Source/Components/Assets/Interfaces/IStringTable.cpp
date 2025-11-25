@@ -1,19 +1,7 @@
+#include "IStringTable.h"
+
 namespace IStringTable
 {
-	struct StringTableCell
-	{
-		const char* string;
-		int hash;
-	};
-
-	struct StringTable
-	{
-		const char* name;
-		int columnCount;
-		int rowCount;
-		StringTableCell* values;
-	};
-
 #ifdef IS_MP
 	namespace MP
 	{

@@ -1,20 +1,7 @@
-#include "IGfxImage.h"
+#include "IGfxLightDef.h"
 
 namespace IGfxLightDef
 {
-	struct GfxLightImage
-	{
-		IGfxImage::GfxImage* image;
-		unsigned char samplerState;
-	};
-
-	struct GfxLightDef
-	{
-		const char* name;
-		GfxLightImage attenuation;
-		int lmapLookupStart;
-	};
-
 #ifdef IS_MP
 	namespace MP
 	{
@@ -28,19 +15,19 @@ namespace IGfxLightDef
 
 			std::string outPath = "game:\\" BASE_FOLDER "\\dump\\lights\\" + assetName + ".json";
 
-			std::ostringstream json;
-			json << "{\n";
-			json << "  \"name\": \"" << assetName << "\",\n";
-			json << "  \"attenuation\": {\n";
-			json << "    \"image\": ";
-			json << "\"" << gfxLightDef->attenuation.image->name << "\"";
-			json << ",\n";
-			json << "    \"samplerState\": " << (unsigned int)gfxLightDef->attenuation.samplerState << "\n";
-			json << "  },\n";
-			json << "  \"lmapLookupStart\": " << gfxLightDef->lmapLookupStart << "\n";
-			json << "}\n";
+			std::ostringstream oss;
+			oss << "{\n";
+			oss << "  \"name\": \"" << assetName << "\",\n";
+			oss << "  \"attenuation\": {\n";
+			oss << "    \"image\": ";
+			oss << "\"" << gfxLightDef->attenuation.image->name << "\"";
+			oss << ",\n";
+			oss << "    \"samplerState\": " << (unsigned int)gfxLightDef->attenuation.samplerState << "\n";
+			oss << "  },\n";
+			oss << "  \"lmapLookupStart\": " << gfxLightDef->lmapLookupStart << "\n";
+			oss << "}\n";
 
-			const std::string out = json.str();
+			const std::string out = oss.str();
 			Util::FileSystem::WriteFile(outPath.c_str(), out.c_str(), out.size());
 		}
 
@@ -83,19 +70,19 @@ namespace IGfxLightDef
 
 			std::string outPath = "game:\\" BASE_FOLDER "\\dump\\lights\\" + assetName + ".json";
 
-			std::ostringstream json;
-			json << "{\n";
-			json << "  \"name\": \"" << assetName << "\",\n";
-			json << "  \"attenuation\": {\n";
-			json << "    \"image\": ";
-			json << "\"" << gfxLightDef->attenuation.image->name << "\"";
-			json << ",\n";
-			json << "    \"samplerState\": " << (unsigned int)gfxLightDef->attenuation.samplerState << "\n";
-			json << "  },\n";
-			json << "  \"lmapLookupStart\": " << gfxLightDef->lmapLookupStart << "\n";
-			json << "}\n";
+			std::ostringstream oss;
+			oss << "{\n";
+			oss << "  \"name\": \"" << assetName << "\",\n";
+			oss << "  \"attenuation\": {\n";
+			oss << "    \"image\": ";
+			oss << "\"" << gfxLightDef->attenuation.image->name << "\"";
+			oss << ",\n";
+			oss << "    \"samplerState\": " << (unsigned int)gfxLightDef->attenuation.samplerState << "\n";
+			oss << "  },\n";
+			oss << "  \"lmapLookupStart\": " << gfxLightDef->lmapLookupStart << "\n";
+			oss << "}\n";
 
-			const std::string out = json.str();
+			const std::string out = oss.str();
 			Util::FileSystem::WriteFile(outPath.c_str(), out.c_str(), out.size());
 		}
 

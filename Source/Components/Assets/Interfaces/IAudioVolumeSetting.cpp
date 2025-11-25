@@ -1,11 +1,7 @@
+#include "IAudioVolumeSetting.h"
+
 namespace IAudioVolumeSetting
 {
-	struct AudioVolumeSetting
-	{
-		const char *p_name;
-		float soundChannelVolumes[64];
-	};
-
 #ifdef IS_MP
 	namespace MP
 	{
@@ -23,7 +19,12 @@ namespace IAudioVolumeSetting
 			oss << "Channel,Volume\n";
 			for (int i = 0; i < 64; ++i)
 			{
-				oss << i << "," << std::fixed << std::setprecision(6) << audioVolumeSetting->soundChannelVolumes[i] << "\n";
+				oss << i
+					<< ","
+					<< std::fixed
+					<< std::setprecision(6)
+					<< audioVolumeSetting->soundChannelVolumes[i]
+					<< "\n";
 			}
 
 			std::string content = oss.str();
@@ -73,7 +74,12 @@ namespace IAudioVolumeSetting
 			oss << "Channel,Volume\n";
 			for (int i = 0; i < 64; ++i)
 			{
-				oss << i << "," << std::fixed << std::setprecision(6) << audioVolumeSetting->soundChannelVolumes[i] << "\n";
+				oss << i
+					<< ","
+					<< std::fixed
+					<< std::setprecision(6)
+					<< audioVolumeSetting->soundChannelVolumes[i]
+					<< "\n";
 			}
 
 			std::string content = oss.str();

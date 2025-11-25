@@ -1,51 +1,7 @@
+#include "IAddonMapEnts.h"
+
 namespace IAddonMapEnts
 {
-	struct Bounds
-	{
-		float midPoint[3];
-		float halfSize[3];
-	};
-
-	struct TriggerModel
-	{
-		int contents;
-		unsigned short hullCount;
-		unsigned short firstHull;
-	};
-
-	struct TriggerHull
-	{
-		Bounds bounds;
-		int contents;
-		unsigned short slabCount;
-		unsigned short firstSlab;
-	};
-
-	struct TriggerSlab
-	{
-		float dir[3];
-		float midPoint;
-		float halfSize;
-	};
-
-	struct MapTriggers
-	{
-		unsigned int count;
-		TriggerModel* models;
-		unsigned int hullCount;
-		TriggerHull* hulls;
-		unsigned int slabCount;
-		TriggerSlab* slabs;
-	};
-
-	struct AddonMapEnts
-	{
-		const char* name;
-		char* entityString;
-		int numEntityChars;
-		MapTriggers trigger;
-	};
-
 #ifdef IS_MP
 	namespace MP
 	{

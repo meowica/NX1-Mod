@@ -3,7 +3,7 @@
 #include "Interfaces\IMaterial.h"
 #include "Interfaces\IMapEnts.h"
 #include "Interfaces\IGfxLightDef.h"
-#include "Interfaces\IFont_s.h"
+#include "Interfaces\IFont.h"
 #include "Interfaces\IMenuList.h"
 #include "Interfaces\ILocalizeEntry.h"
 #include "Interfaces\IRawFile.h"
@@ -27,7 +27,7 @@ namespace AssetHandler
 			IMaterial::MP::Load();
 			IMapEnts::MP::Load();
 			IGfxLightDef::MP::Load();
-			IFont_s::MP::Load();
+			IFont::MP::Load();
 			IMenuList::MP::Load();
 			ILocalizeEntry::MP::Load();
 			IRawFile::MP::Load();
@@ -84,7 +84,7 @@ namespace AssetHandler
 			IPhysPreset::SP::Load();
 			IMapEnts::SP::Load();
 			IGfxLightDef::SP::Load();
-			IFont_s::SP::Load();
+			IFont::SP::Load();
 			IMenuList::SP::Load();
 			ILocalizeEntry::SP::Load();
 			IRawFile::SP::Load();

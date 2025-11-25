@@ -2,6 +2,14 @@
 
 namespace IRawFile
 {
+	struct RawFile
+	{
+		const char* name;
+		int compressedLen;
+		int len;
+		const char* buffer;
+	};
+
 #ifdef IS_MP
 	namespace MP
 	{

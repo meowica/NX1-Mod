@@ -78,9 +78,6 @@
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IMenuList.cpp">
       <Filter>Components\Assets\Interfaces</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IFont_s.cpp">
-      <Filter>Components\Assets\Interfaces</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IAudioVolumeSetting.cpp">
       <Filter>Components\Assets\Interfaces</Filter>
     </ClCompile>
@@ -104,6 +101,12 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IMaterial.cpp">
       <Filter>Components\Assets\Interfaces</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IFont.cpp">
+      <Filter>Components\Assets\Interfaces</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Util\JSON.cpp">
+      <Filter>Util</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -199,9 +202,6 @@
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IMaterial.h">
       <Filter>Components\Assets\Interfaces</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IFont_s.h">
-      <Filter>Components\Assets\Interfaces</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IAudioVolumeSetting.h">
       <Filter>Components\Assets\Interfaces</Filter>
     </ClInclude>
@@ -255,6 +255,12 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IFxWorld.h">
       <Filter>Components\Assets\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IFont.h">
+      <Filter>Components\Assets\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Util\JSON.h">
+      <Filter>Util</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,11 +1,7 @@
+#include "ILocalizeEntry.h"
+
 namespace ILocalizeEntry
 {
-	struct LocalizeEntry
-	{
-		const char* value;
-		const char* name;
-	};
-
 #ifdef IS_MP
 	namespace MP
 	{
