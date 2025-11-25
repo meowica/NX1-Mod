@@ -4,8 +4,8 @@ namespace Util
 	{
 		bool FileExists(const std::string& filePath)
 		{
-			std::ifstream f(filePath.c_str());
-			return f.good();
+			std::ifstream fs(filePath.c_str());
+			return fs.good();
 		}
 
 		std::string ReadFileIntoString(const std::string& filePath)
