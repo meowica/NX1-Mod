@@ -166,6 +166,8 @@
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\ITracerDef.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\ILaserDef.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IAddonMapEnts.h" />
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IMenuDef.h" />
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\ISndAliasList.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Game">

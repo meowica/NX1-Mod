@@ -179,7 +179,9 @@
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\ILaserDef.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\ILocalizeEntry.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IMaterial.h" />
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IMenuDef.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IMenuList.h" />
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\ISndAliasList.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IStringTable.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IMapEnts.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IPhysPreset.h" />
