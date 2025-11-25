@@ -11,6 +11,7 @@
 #include "Interfaces\ITracerDef.h"
 #include "Interfaces\ILaserDef.h"
 #include "Interfaces\IAddonMapEnts.h"
+#include "Interfaces\IShellShockParams.h"
 #include "Interfaces\IAudioVolumeSetting.h"
 #include "Interfaces\IFogDef.h"
 
@@ -33,6 +34,7 @@ namespace AssetHandler
 			ITracerDef::MP::Load();
 			ILaserDef::MP::Load();
 			IAddonMapEnts::MP::Load();
+			IShellShockParams::MP::Load();
 			IAudioVolumeSetting::MP::Load();
 			IFogDef::MP::Load();
 		}
@@ -89,6 +91,7 @@ namespace AssetHandler
 			ITracerDef::SP::Load();
 			ILaserDef::SP::Load();
 			IAddonMapEnts::SP::Load();
+			IShellShockParams::SP::Load();
 			IAudioVolumeSetting::SP::Load();
 			IFogDef::SP::Load();
 		}

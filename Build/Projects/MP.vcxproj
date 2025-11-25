@@ -143,6 +143,7 @@
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\ILeaderboardDef.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\ILocalizeEntry.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IMenuList.cpp" />
+    <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IShellShockParams.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IStringTable.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IMapEnts.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IPhysPreset.cpp" />
@@ -181,6 +182,7 @@
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IMaterial.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IMenuDef.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IMenuList.h" />
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IShellShockParams.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\ISndAliasList.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IStringTable.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IMapEnts.h" />
