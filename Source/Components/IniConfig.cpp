@@ -23,6 +23,7 @@ namespace IniConfig
 	bool EnableTracerDefDumper = false;
 	bool EnableLaserDefDumper = false;
 	bool EnableAddonMapEntsDumper = false;
+	bool EnableShellShockParamDumper = false;
 	bool EnableAudioVolumeSettingDumper = false;
 	bool EnableFogDefDumper = false;
 
@@ -61,6 +62,7 @@ namespace IniConfig
 		EnableTracerDefDumper = g_Config.GetBoolean("Asset Dumpers", "EnableTracerDefDumper", EnableTracerDefDumper);
 		EnableLaserDefDumper = g_Config.GetBoolean("Asset Dumpers", "EnableLaserDefDumper", EnableLaserDefDumper);
 		EnableAddonMapEntsDumper = g_Config.GetBoolean("Asset Dumpers", "EnableAddonMapEntsDumper", EnableAddonMapEntsDumper);
+		EnableShellShockParamDumper = g_Config.GetBoolean("Asset Dumpers", "EnableShellShockParamDumper", EnableShellShockParamDumper);
 		EnableAudioVolumeSettingDumper = g_Config.GetBoolean("Asset Dumpers", "EnableAudioVolumeSettingDumper", EnableAudioVolumeSettingDumper);
 		EnableFogDefDumper = g_Config.GetBoolean("Asset Dumpers", "EnableFogDefDumper", EnableFogDefDumper);
 	}

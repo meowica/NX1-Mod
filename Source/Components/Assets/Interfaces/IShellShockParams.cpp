@@ -161,10 +161,10 @@ namespace IShellShockParams
 
 			if (varShellShockParamsPtr && *varShellShockParamsPtr)
 			{
-				//if (IniConfig::EnableFogDefDumper)
+				if (IniConfig::EnableShellShockParamDumper)
 					Dump_ShellShockParams(*varShellShockParamsPtr);
-				//if (IniConfig::EnableFogDefLoader)
-				//	Load_FogDef(*varFogDefPtr);
+				//if (IniConfig::EnableShellShockParamLoader)
+				//	Load_ShellShockParam(*varShellShockParamPtr);
 			}
 		}
 
@@ -253,10 +253,10 @@ namespace IShellShockParams
 
 			if (varShellShockParamsPtr && *varShellShockParamsPtr)
 			{
-				//if (IniConfig::EnableFogDefDumper)
+				if (IniConfig::EnableShellShockParamDumper)
 					Dump_ShellShockParams(*varShellShockParamsPtr);
-				//if (IniConfig::EnableFogDefLoader)
-				//	Load_FogDef(*varFogDefPtr);
+				//if (IniConfig::EnableShellShockParamLoader)
+				//	Load_ShellShockParam(*varShellShockParamPtr);
 			}
 		}
 

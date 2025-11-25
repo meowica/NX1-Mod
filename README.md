@@ -93,5 +93,6 @@
   - Tracer Def - Dump any tracer files
   - Laser Def - Dump any laser files
   - Addon Map Ents - Dump any addon map entity files
+  - Shell Shock Param - Dump any shock files
   - Audio Volume - Dump any audio volume files
   - Fog Def - Dump any fog files

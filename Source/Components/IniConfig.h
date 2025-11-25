@@ -29,6 +29,7 @@ namespace IniConfig
 	extern bool EnableTracerDefDumper;
 	extern bool EnableLaserDefDumper;
 	extern bool EnableAddonMapEntsDumper;
+	extern bool EnableShellShockParamDumper;
 	extern bool EnableAudioVolumeSettingDumper;
 	extern bool EnableFogDefDumper;
 
