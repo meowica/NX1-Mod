@@ -262,6 +262,9 @@
     <ClInclude Include="..\..\Source\Util\JSON.h">
       <Filter>Util</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IFxEffectDef.h">
+      <Filter>Components\Assets\Interfaces</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Game">

@@ -178,6 +178,7 @@
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IComWorld.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IFogDef.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IFont.h" />
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IFxEffectDef.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IFxWorld.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IGameWorldMp.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IGameWorldSp.h" />
