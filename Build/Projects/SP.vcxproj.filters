@@ -78,6 +78,7 @@
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\ILaserDef.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IAddonMapEnts.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IShellShockParams.cpp" />
+    <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IMaterial.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\Util\Command.h">

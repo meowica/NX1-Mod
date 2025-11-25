@@ -1,5 +1,6 @@
 // Interfaces
 #include "Interfaces\IPhysPreset.h"
+#include "Interfaces\IMaterial.h"
 #include "Interfaces\IMapEnts.h"
 #include "Interfaces\IGfxLightDef.h"
 #include "Interfaces\IFont_s.h"
@@ -23,6 +24,7 @@ namespace AssetHandler
 		void RegisterLoadersAndDumpers()
 		{
 			IPhysPreset::MP::Load();
+			IMaterial::MP::Load();
 			IMapEnts::MP::Load();
 			IGfxLightDef::MP::Load();
 			IFont_s::MP::Load();

@@ -142,6 +142,7 @@
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\ILaserDef.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\ILeaderboardDef.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\ILocalizeEntry.cpp" />
+    <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IMaterial.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IMenuList.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IShellShockParams.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IStringTable.cpp" />

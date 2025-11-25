@@ -102,6 +102,9 @@
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IShellShockParams.cpp">
       <Filter>Components\Assets\Interfaces</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IMaterial.cpp">
+      <Filter>Components\Assets\Interfaces</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\Game\Symbols.h">
