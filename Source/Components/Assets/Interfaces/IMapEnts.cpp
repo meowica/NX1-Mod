@@ -5,10 +5,8 @@ namespace IMapEnts
 #ifdef IS_MP
 	namespace MP
 	{
-		void Dump_MapEnts(const MapEnts* mapEnts)
+		void Dump_Ents(const MapEnts* mapEnts)
 		{
-			// TODO: maybe dump triggers and stages too?
-
 			if (!mapEnts)
 				return;
 
@@ -30,6 +28,91 @@ namespace IMapEnts
 			}
 
 			Util::FileSystem::WriteFile(outPath.c_str(), cleaned.data(), cleaned.size());
+		}
+
+		void Dump_Triggers(const MapEnts* mapEnts)
+		{
+			if (!mapEnts)
+				return;
+
+			std::string assetName = mapEnts->name;
+			std::replace(assetName.begin(), assetName.end(), '/', '\\');
+
+			std::string outPath = "game:\\" BASE_FOLDER "\\dump\\";
+			outPath += assetName;
+			outPath += ".triggers";
+
+			const MapTriggers& trig = mapEnts->trigger;
+
+			std::ostringstream oss;
+			oss << "# TRIGGER MODELS (count = " << trig.count << ")\n";
+			for (unsigned i = 0; i < trig.count; ++i)
+			{
+				const TriggerModel& m = trig.models[i];
+				oss << "model[" << i << "]\n";
+				oss << "  contents: " << m.contents << "\n";
+				oss << "  hullCount: " << m.hullCount << "\n";
+				oss << "  firstHull: " << m.firstHull << "\n\n";
+			}
+			oss << "# TRIGGER HULLS (count = " << trig.hullCount << ")\n";
+			for (unsigned i = 0; i < trig.hullCount; ++i)
+			{
+				const TriggerHull& h = trig.hulls[i];
+				oss << "hull[" << i << "]\n";
+				oss << "  bounds.midPoint: " << h.bounds.midPoint[0] << " " << h.bounds.midPoint[1] << " " << h.bounds.midPoint[2] << "\n";
+				oss << "  bounds.halfSize: " << h.bounds.halfSize[0] << " " << h.bounds.halfSize[1] << " " << h.bounds.halfSize[2] << "\n";
+				oss << "  contents: " << h.contents << "\n";
+				oss << "  slabCount: " << h.slabCount << "\n";
+				oss << "  firstSlab: " << h.firstSlab << "\n\n";
+			}
+			oss << "# TRIGGER SLABS (count = " << trig.slabCount << ")\n";
+			for (unsigned i = 0; i < trig.slabCount; ++i)
+			{
+				const TriggerSlab& s = trig.slabs[i];
+				oss << "slab[" << i << "]\n";
+				oss << "  dir: " << s.dir[0] << " " << s.dir[1] << " " << s.dir[2] << "\n";
+				oss << "  midPoint: " << s.midPoint << "\n";
+				oss << "  halfSize: " << s.halfSize << "\n\n";
+			}
+
+			const std::string out = oss.str();
+			Util::FileSystem::WriteFile(outPath.c_str(), out.data(), out.size());
+		}
+
+		void Dump_Stages(const MapEnts* mapEnts)
+		{
+			if (!mapEnts)
+				return;
+
+			std::string assetName = mapEnts->name;
+			std::replace(assetName.begin(), assetName.end(), '/', '\\');
+
+			std::string outPath = "game:\\" BASE_FOLDER "\\dump\\";
+			outPath += assetName;
+			outPath += ".stages";
+
+			std::ostringstream oss;
+			oss << "# STAGES (count = " << (int)mapEnts->stageCount << ")\n\n";
+			for (unsigned i = 0; i < mapEnts->stageCount; ++i)
+			{
+				const Stage& s = mapEnts->stages[i];
+
+				oss << "stage[" << i << "]\n";
+				oss << "  name: " << s.name << "\n";
+				oss << "  origin: " << s.origin[0] << " " << s.origin[1] << " " << s.origin[2] << "\n";
+				oss << "  triggerIndex: " << s.triggerIndex << "\n";
+				oss << "  sunPrimaryLightIndex: " << (int)s.sunPrimaryLightIndex << "\n\n";
+			}
+
+			const std::string out = oss.str();
+			Util::FileSystem::WriteFile(outPath.c_str(), out.data(), out.size());
+		}
+
+		void Dump_MapEnts(const MapEnts* mapEnts)
+		{
+			Dump_Ents(mapEnts);
+			Dump_Triggers(mapEnts);
+			Dump_Stages(mapEnts);
 		}
 
 		void Load_MapEnts(MapEnts* mapEnts)
@@ -96,10 +179,8 @@ namespace IMapEnts
 #elif IS_SP
 	namespace SP
 	{
-		void Dump_MapEnts(const MapEnts* mapEnts)
+		void Dump_Ents(const MapEnts* mapEnts)
 		{
-			// TODO: maybe dump triggers and stages too?
-
 			if (!mapEnts)
 				return;
 
@@ -121,6 +202,91 @@ namespace IMapEnts
 			}
 
 			Util::FileSystem::WriteFile(outPath.c_str(), cleaned.data(), cleaned.size());
+		}
+
+		void Dump_Triggers(const MapEnts* mapEnts)
+		{
+			if (!mapEnts)
+				return;
+
+			std::string assetName = mapEnts->name;
+			std::replace(assetName.begin(), assetName.end(), '/', '\\');
+
+			std::string outPath = "game:\\" BASE_FOLDER "\\dump\\";
+			outPath += assetName;
+			outPath += ".triggers";
+
+			const MapTriggers& trig = mapEnts->trigger;
+
+			std::ostringstream oss;
+			oss << "# TRIGGER MODELS (count = " << trig.count << ")\n";
+			for (unsigned i = 0; i < trig.count; ++i)
+			{
+				const TriggerModel& m = trig.models[i];
+				oss << "model[" << i << "]\n";
+				oss << "  contents: " << m.contents << "\n";
+				oss << "  hullCount: " << m.hullCount << "\n";
+				oss << "  firstHull: " << m.firstHull << "\n\n";
+			}
+			oss << "# TRIGGER HULLS (count = " << trig.hullCount << ")\n";
+			for (unsigned i = 0; i < trig.hullCount; ++i)
+			{
+				const TriggerHull& h = trig.hulls[i];
+				oss << "hull[" << i << "]\n";
+				oss << "  bounds.midPoint: " << h.bounds.midPoint[0] << " " << h.bounds.midPoint[1] << " " << h.bounds.midPoint[2] << "\n";
+				oss << "  bounds.halfSize: " << h.bounds.halfSize[0] << " " << h.bounds.halfSize[1] << " " << h.bounds.halfSize[2] << "\n";
+				oss << "  contents: " << h.contents << "\n";
+				oss << "  slabCount: " << h.slabCount << "\n";
+				oss << "  firstSlab: " << h.firstSlab << "\n\n";
+			}
+			oss << "# TRIGGER SLABS (count = " << trig.slabCount << ")\n";
+			for (unsigned i = 0; i < trig.slabCount; ++i)
+			{
+				const TriggerSlab& s = trig.slabs[i];
+				oss << "slab[" << i << "]\n";
+				oss << "  dir: " << s.dir[0] << " " << s.dir[1] << " " << s.dir[2] << "\n";
+				oss << "  midPoint: " << s.midPoint << "\n";
+				oss << "  halfSize: " << s.halfSize << "\n\n";
+			}
+
+			const std::string out = oss.str();
+			Util::FileSystem::WriteFile(outPath.c_str(), out.data(), out.size());
+		}
+
+		void Dump_Stages(const MapEnts* mapEnts)
+		{
+			if (!mapEnts)
+				return;
+
+			std::string assetName = mapEnts->name;
+			std::replace(assetName.begin(), assetName.end(), '/', '\\');
+
+			std::string outPath = "game:\\" BASE_FOLDER "\\dump\\";
+			outPath += assetName;
+			outPath += ".stages";
+
+			std::ostringstream oss;
+			oss << "# STAGES (count = " << (int)mapEnts->stageCount << ")\n\n";
+			for (unsigned i = 0; i < mapEnts->stageCount; ++i)
+			{
+				const Stage& s = mapEnts->stages[i];
+
+				oss << "stage[" << i << "]\n";
+				oss << "  name: " << s.name << "\n";
+				oss << "  origin: " << s.origin[0] << " " << s.origin[1] << " " << s.origin[2] << "\n";
+				oss << "  triggerIndex: " << s.triggerIndex << "\n";
+				oss << "  sunPrimaryLightIndex: " << (int)s.sunPrimaryLightIndex << "\n\n";
+			}
+
+			const std::string out = oss.str();
+			Util::FileSystem::WriteFile(outPath.c_str(), out.data(), out.size());
+		}
+
+		void Dump_MapEnts(const MapEnts* mapEnts)
+		{
+			Dump_Ents(mapEnts);
+			Dump_Triggers(mapEnts);
+			Dump_Stages(mapEnts);
 		}
 
 		void Load_MapEnts(MapEnts* mapEnts)
