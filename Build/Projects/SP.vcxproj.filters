@@ -175,6 +175,10 @@
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IMaterialTechniqueSet.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IMaterialVertexDeclaration.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IMaterialVertexShader.h" />
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IComWorld.h" />
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IFxWorld.h" />
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IGameWorldMp.h" />
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IGameWorldSp.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Game">

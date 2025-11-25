@@ -171,8 +171,12 @@
     <ClInclude Include="..\..\Source\Components\Assets\AssetHandler.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IAddonMapEnts.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IAudioVolumeSetting.h" />
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IComWorld.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IFogDef.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IFont_s.h" />
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IFxWorld.h" />
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IGameWorldMp.h" />
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IGameWorldSp.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IGfxLightDef.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\ILaserDef.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\ILeaderboardDef.h" />
