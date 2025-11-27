@@ -207,6 +207,8 @@
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\ILeaderboardDef.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IStructuredDataDefSet.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\ITracerDef.h" />
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IVehicleDef.h" />
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IWeaponCompleteDef.h" />
     <ClInclude Include="..\..\Source\Components\CustomCommands.h" />
     <ClInclude Include="..\..\Source\Components\DevGui.h" />
     <ClInclude Include="..\..\Source\Components\Drawing.h" />
