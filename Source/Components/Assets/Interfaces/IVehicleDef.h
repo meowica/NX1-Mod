@@ -3,6 +3,7 @@
 #include "IPhysPreset.h"
 #include "IMaterial.h"
 #include "ISndAliasList.h"
+#include "IWeaponCompleteDef.h"
 
 namespace IVehicleDef
 {
@@ -141,7 +142,7 @@ namespace IVehicleDef
 		float camFovOffset;
 		float camFovSpeed;
 		const char* turretWeaponName;
-		/*WeaponCompleteDef* turretWeapon;*/
+		IWeaponCompleteDef::WeaponCompleteDef* turretWeapon;
 		float turretHorizSpanLeft;
 		float turretHorizSpanRight;
 		float turretVertSpanUp;
