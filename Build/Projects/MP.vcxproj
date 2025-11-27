@@ -195,9 +195,11 @@
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IMaterialVertexShader.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IMenuDef.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IMenuList.h" />
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IPhysCollmap.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IRadVerbPreset.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IShellShockParams.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\ISndAliasList.h" />
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\ISndDriverGlobals.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IStringTable.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IMapEnts.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IPhysPreset.h" />

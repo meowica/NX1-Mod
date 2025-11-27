@@ -1,5 +1,6 @@
 #pragma once
 
+#include "IPhysCollmap.h"
 #include "IMaterial.h"
 
 namespace IFxEffectDef
@@ -100,12 +101,6 @@ namespace IFxEffectDef
 		FxElemVisuals instance;
 	};
 
-	struct Bounds
-	{
-		float midPoint[3];
-		float halfSize[3];
-	};
-
 	struct FxFloatRange
 	{
 		float base;
@@ -184,7 +179,7 @@ namespace IFxEffectDef
 		FxElemVelStateSample* velSamples;
 		FxElemVisStateSample* visSamples;
 		FxElemDefVisuals visuals;
-		Bounds collBounds;
+		IPhysCollmap::Bounds collBounds;
 		FxEffectDefRef effectOnImpact;
 		FxEffectDefRef effectOnDeath;
 		FxEffectDefRef effectEmitted;

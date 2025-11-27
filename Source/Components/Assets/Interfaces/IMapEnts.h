@@ -1,13 +1,9 @@
 #pragma once
 
+#include "IPhysCollmap.h"
+
 namespace IMapEnts
 {
-	struct Bounds
-	{
-		float midPoint[3];
-		float halfSize[3];
-	};
-
 	struct TriggerModel
 	{
 		int contents;
@@ -17,7 +13,7 @@ namespace IMapEnts
 
 	struct TriggerHull
 	{
-		Bounds bounds;
+		IPhysCollmap::Bounds bounds;
 		int contents;
 		unsigned short slabCount;
 		unsigned short firstSlab;
