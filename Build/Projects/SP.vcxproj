@@ -143,6 +143,7 @@
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IMaterial.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IMenuList.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IPhysPreset.cpp" />
+    <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IRadVerbPreset.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IRawFile.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IShellShockParams.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IStringTable.cpp" />
@@ -191,6 +192,7 @@
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IMenuDef.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IMenuList.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IPhysPreset.h" />
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IRadVerbPreset.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IRawFile.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IShellShockParams.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\ISndAliasList.h" />

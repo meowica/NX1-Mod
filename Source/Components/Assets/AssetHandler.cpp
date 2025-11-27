@@ -9,11 +9,14 @@
 #include "Interfaces\IRawFile.h"
 #include "Interfaces\IStringTable.h"
 #include "Interfaces\ILeaderboardDef.h"
+//StructuredDataDefSet
 #include "Interfaces\ITracerDef.h"
 #include "Interfaces\ILaserDef.h"
+//VehicleDef
 #include "Interfaces\IAddonMapEnts.h"
 #include "Interfaces\IShellShockParams.h"
 #include "Interfaces\IAudioVolumeSetting.h"
+#include "Interfaces\IRadVerbPreset.h"
 #include "Interfaces\IFogDef.h"
 
 namespace AssetHandler
@@ -38,6 +41,7 @@ namespace AssetHandler
 			IAddonMapEnts::MP::Load();
 			IShellShockParams::MP::Load();
 			IAudioVolumeSetting::MP::Load();
+			IRadVerbPreset::MP::Load();
 			IFogDef::MP::Load();
 		}
 
@@ -95,6 +99,7 @@ namespace AssetHandler
 			IAddonMapEnts::SP::Load();
 			IShellShockParams::SP::Load();
 			IAudioVolumeSetting::SP::Load();
+			IRadVerbPreset::SP::Load();
 			IFogDef::SP::Load();
 		}
 

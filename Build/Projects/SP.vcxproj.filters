@@ -80,6 +80,7 @@
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IMaterial.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IFont.cpp" />
     <ClCompile Include="..\..\Source\Util\JSON.cpp" />
+    <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IRadVerbPreset.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\Util\Command.h">
@@ -181,6 +182,7 @@
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IGameWorldSp.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IFont.h" />
     <ClInclude Include="..\..\Source\Util\JSON.h" />
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IRadVerbPreset.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Game">
