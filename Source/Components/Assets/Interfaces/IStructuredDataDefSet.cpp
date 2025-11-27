@@ -156,7 +156,7 @@ namespace IStructuredDataDefSet
 
 			if (varStructuredDataDefSetPtr && *varStructuredDataDefSetPtr)
 			{
-				//if (IniConfig::EnableStructuredDataDefSetDumper)
+				if (IniConfig::EnableStructuredDataDefSetDumper)
 					Dump_StructuredDataDefSet(*varStructuredDataDefSetPtr);
 				//if (IniConfig::EnableStructuredDataDefSetLoader)
 				//	Load_StructuredDataDefSet(*varStructuredDataDefSetPtr);
@@ -272,7 +272,7 @@ namespace IStructuredDataDefSet
 
 			if (varStructuredDataDefSetPtr && *varStructuredDataDefSetPtr)
 			{
-				//if (IniConfig::EnableStructuredDataDefSetDumper)
+				if (IniConfig::EnableStructuredDataDefSetDumper)
 					Dump_StructuredDataDefSet(*varStructuredDataDefSetPtr);
 				//if (IniConfig::EnableStructuredDataDefSetLoader)
 				//	Load_StructuredDataDefSet(*varStructuredDataDefSetPtr);

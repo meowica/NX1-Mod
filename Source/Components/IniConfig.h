@@ -26,11 +26,13 @@ namespace IniConfig
 	extern bool EnableRawFileDumper;
 	extern bool EnableStringTableDumper;
 	extern bool EnableLeaderboardDefDumper;
+	extern bool EnableStructuredDataDefSetDumper;
 	extern bool EnableTracerDefDumper;
 	extern bool EnableLaserDefDumper;
 	extern bool EnableAddonMapEntsDumper;
 	extern bool EnableShellShockParamDumper;
 	extern bool EnableAudioVolumeSettingDumper;
+	extern bool EnableRadVerbPresetDumper;
 	extern bool EnableFogDefDumper;
 
 #ifdef IS_MP

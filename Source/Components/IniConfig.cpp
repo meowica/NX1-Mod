@@ -20,11 +20,13 @@ namespace IniConfig
 	bool EnableRawFileDumper = false;
 	bool EnableStringTableDumper = false;
 	bool EnableLeaderboardDefDumper = false;
+	bool EnableStructuredDataDefSetDumper = false;
 	bool EnableTracerDefDumper = false;
 	bool EnableLaserDefDumper = false;
 	bool EnableAddonMapEntsDumper = false;
 	bool EnableShellShockParamDumper = false;
 	bool EnableAudioVolumeSettingDumper = false;
+	bool EnableRadVerbPresetDumper = false;
 	bool EnableFogDefDumper = false;
 
 	Util::INI g_Config;
@@ -59,11 +61,13 @@ namespace IniConfig
 		EnableRawFileDumper = g_Config.GetBoolean("Asset Dumpers", "EnableRawFileDumper", EnableRawFileDumper);
 		EnableStringTableDumper = g_Config.GetBoolean("Asset Dumpers", "EnableStringTableDumper", EnableStringTableDumper);
 		EnableLeaderboardDefDumper = g_Config.GetBoolean("Asset Dumpers", "EnableLeaderboardDefDumper", EnableLeaderboardDefDumper);
+		EnableStructuredDataDefSetDumper = g_Config.GetBoolean("Asset Dumpers", "EnableStructuredDataDefSetDumper", EnableStructuredDataDefSetDumper);
 		EnableTracerDefDumper = g_Config.GetBoolean("Asset Dumpers", "EnableTracerDefDumper", EnableTracerDefDumper);
 		EnableLaserDefDumper = g_Config.GetBoolean("Asset Dumpers", "EnableLaserDefDumper", EnableLaserDefDumper);
 		EnableAddonMapEntsDumper = g_Config.GetBoolean("Asset Dumpers", "EnableAddonMapEntsDumper", EnableAddonMapEntsDumper);
 		EnableShellShockParamDumper = g_Config.GetBoolean("Asset Dumpers", "EnableShellShockParamDumper", EnableShellShockParamDumper);
 		EnableAudioVolumeSettingDumper = g_Config.GetBoolean("Asset Dumpers", "EnableAudioVolumeSettingDumper", EnableAudioVolumeSettingDumper);
+		EnableRadVerbPresetDumper = g_Config.GetBoolean("Asset Dumpers", "EnableRadVerbPresetDumper", EnableRadVerbPresetDumper);
 		EnableFogDefDumper = g_Config.GetBoolean("Asset Dumpers", "EnableFogDefDumper", EnableFogDefDumper);
 	}
 
