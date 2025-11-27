@@ -35,7 +35,7 @@ namespace Util
 					if ((unsigned char)c < 0x20)
 					{
 						char buf[8];
-						sprintf(buf, "\\u%04x", c);
+						snprintf(buf, sizeof(buf), "\\u%04x", c);
 						out += buf;
 					}
 					else
