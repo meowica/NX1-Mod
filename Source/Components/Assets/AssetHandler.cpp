@@ -9,7 +9,7 @@
 #include "Interfaces\IRawFile.h"
 #include "Interfaces\IStringTable.h"
 #include "Interfaces\ILeaderboardDef.h"
-//StructuredDataDefSet
+#include "Interfaces\IStructuredDataDefSet.h"
 #include "Interfaces\ITracerDef.h"
 #include "Interfaces\ILaserDef.h"
 //VehicleDef
@@ -36,6 +36,7 @@ namespace AssetHandler
 			IRawFile::MP::Load();
 			IStringTable::MP::Load();
 			ILeaderboardDef::MP::Load();
+			IStructuredDataDefSet::MP::Load();
 			ITracerDef::MP::Load();
 			ILaserDef::MP::Load();
 			IAddonMapEnts::MP::Load();
@@ -94,6 +95,7 @@ namespace AssetHandler
 			IRawFile::SP::Load();
 			IStringTable::SP::Load();
 			ILeaderboardDef::SP::Load();
+			IStructuredDataDefSet::SP::Load();
 			ITracerDef::SP::Load();
 			ILaserDef::SP::Load();
 			IAddonMapEnts::SP::Load();

@@ -150,6 +150,7 @@
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IMapEnts.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IPhysPreset.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IRawFile.cpp" />
+    <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IStructuredDataDefSet.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\ITracerDef.cpp" />
     <ClCompile Include="..\..\Source\Components\CustomCommands.cpp" />
     <ClCompile Include="..\..\Source\Components\DevGui.cpp" />
@@ -202,6 +203,7 @@
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IPhysPreset.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IRawFile.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\ILeaderboardDef.h" />
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IStructuredDataDefSet.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\ITracerDef.h" />
     <ClInclude Include="..\..\Source\Components\CustomCommands.h" />
     <ClInclude Include="..\..\Source\Components\DevGui.h" />

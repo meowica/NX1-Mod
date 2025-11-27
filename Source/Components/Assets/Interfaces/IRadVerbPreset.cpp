@@ -67,7 +67,7 @@ namespace IRadVerbPreset
 			if (varRadVerbPresetPtr && *varRadVerbPresetPtr)
 			{
 				//if (IniConfig::EnableRadVerbPresetDumper)
-					Dump_RadVerbPreset(*varRadVerbPresetPtr);
+				//	Dump_RadVerbPreset(*varRadVerbPresetPtr);
 				//if (IniConfig::EnableRadVerbPresetLoader)
 				//	Load_RadVerbPreset(*varRadVerbPresetPtr);
 			}
