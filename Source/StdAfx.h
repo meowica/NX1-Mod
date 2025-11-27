@@ -1,13 +1,7 @@
 #pragma once
 
-#ifdef _XBOX
-	#define XBOX // just make it a lil bit nicer to look at
-#endif
-
-#ifdef XBOX
-	#ifndef snprintf
-		#define snprintf		_snprintf
-	#endif
+#ifndef snprintf
+	#define snprintf		_snprintf
 #endif
 
 #define TITLE_ID				0x4156089E // nx1
