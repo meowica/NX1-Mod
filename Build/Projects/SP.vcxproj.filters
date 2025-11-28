@@ -185,6 +185,16 @@
     <ClInclude Include="..\..\Source\Util\JSON.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IRadVerbPreset.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IStructuredDataDefSet.h" />
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IFxEffectDef.h" />
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IFxImpactTable.h" />
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IGfxImage.h" />
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IPhysCollmap.h" />
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\ISndDriverGlobals.h" />
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\ISurfaceFxTable.h" />
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IVehicleDef.h" />
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IWeaponCompleteDef.h" />
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IXModel.h" />
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IXModelSurfs.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Game">

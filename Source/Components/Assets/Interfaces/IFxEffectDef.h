@@ -2,6 +2,7 @@
 
 #include "IPhysCollmap.h"
 #include "IMaterial.h"
+#include "IXModel.h"
 
 namespace IFxEffectDef
 {
@@ -89,7 +90,7 @@ namespace IFxEffectDef
 	{
 		const void* anonymous;
 		IMaterial::Material* material;
-		/*XModel* model;*/
+		IXModel::XModel* model;
 		FxEffectDefRef effectDef;
 		const char* soundName;
 	};

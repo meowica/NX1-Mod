@@ -6,6 +6,7 @@
 #include "IPhysCollmap.h"
 #include "ITracerDef.h"
 #include "ILaserDef.h"
+#include "IXModel.h"
 
 namespace IWeaponCompleteDef
 {
@@ -223,8 +224,8 @@ namespace IWeaponCompleteDef
 	struct WeaponDef
 	{
 		const char* szOverlayName;
-		/*XModel** gunXModel;*/
-		/*XModel* handXModel;*/
+		IXModel::XModel** gunXModel;
+		IXModel::XModel* handXModel;
 		const char** szXAnimsRightHanded;
 		const char** szXAnimsLeftHanded;
 		const char* szModeName;
@@ -356,11 +357,11 @@ namespace IWeaponCompleteDef
 		float vDtpRot[3];
 		float vDtpBob[2];
 		float fDtpCycleScale;
-		/*XModel** worldModel;*/
-		/*XModel* worldClipModel;*/
-		/*XModel* rocketModel;*/
-		/*XModel* knifeModel;*/
-		/*XModel* worldKnifeModel;*/
+		IXModel::XModel** worldModel;
+		IXModel::XModel* worldClipModel;
+		IXModel::XModel* rocketModel;
+		IXModel::XModel* knifeModel;
+		IXModel::XModel* worldKnifeModel;
 		IMaterial::Material* hudIcon;
 		weaponIconRatioType_t hudIconRatio;
 		IMaterial::Material* pickupIcon;
@@ -510,7 +511,7 @@ namespace IWeaponCompleteDef
 		float projLifetime;
 		float timeToAccelerate;
 		float projectileCurvature;
-		/*XModel* projectileModel;*/
+		IXModel::XModel* projectileModel;
 		weapProjExposion_t projExplosion;
 		const IFxEffectDef::FxEffectDef* projExplosionEffect;
 		const IFxEffectDef::FxEffectDef* projDudEffect;
