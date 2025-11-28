@@ -17,14 +17,12 @@ namespace IAudioVolumeSetting
 
 			std::ostringstream oss;
 			oss << "Channel,Volume\n";
+
 			for (int i = 0; i < 64; ++i)
 			{
-				oss << i
-					<< ","
-					<< std::fixed
-					<< std::setprecision(6)
-					<< audioVolumeSetting->soundChannelVolumes[i]
-					<< "\n";
+				oss << i << ","
+					<< std::fixed << std::setprecision(6)
+					<< audioVolumeSetting->soundChannelVolumes[i] << "\n";
 			}
 
 			std::string content = oss.str();
@@ -72,14 +70,12 @@ namespace IAudioVolumeSetting
 
 			std::ostringstream oss;
 			oss << "Channel,Volume\n";
+
 			for (int i = 0; i < 64; ++i)
 			{
-				oss << i
-					<< ","
-					<< std::fixed
-					<< std::setprecision(6)
-					<< audioVolumeSetting->soundChannelVolumes[i]
-					<< "\n";
+				oss << i << ","
+					<< std::fixed << std::setprecision(6)
+					<< audioVolumeSetting->soundChannelVolumes[i] << "\n";
 			}
 
 			std::string content = oss.str();

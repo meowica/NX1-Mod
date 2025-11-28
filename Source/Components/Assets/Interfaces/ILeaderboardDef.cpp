@@ -2,7 +2,7 @@
 
 namespace ILeaderboardDef
 {
-	const char* ColTypeNames[7] =
+	const char* LbColTypeNames[7] =
 	{
 		"NUMBER",
 		"TIME",
@@ -26,31 +26,31 @@ namespace ILeaderboardDef
 			std::transform(assetName.begin(), assetName.end(), assetName.begin(), ::tolower);
 
 			std::string outPath = "game:\\" BASE_FOLDER "\\dump\\leaderboards\\" + assetName + ".csv";
-			std::ostringstream ss;
 
-			ss << "name,type,default,min,max\n";
+			std::ostringstream oss;
+			oss << "name,type,default,min,max\n";
 
 			for (int i = 0; i < leaderboardDef->columnCount; ++i)
 			{
-				const LbColumnDef& col = leaderboardDef->columns[i];
+				const LbColumnDef& lbCol = leaderboardDef->columns[i];
 
-				const char* colType = "UNKNOWN";
-				if (col.type >= 0 && col.type < 7)
-					colType = ColTypeNames[col.type];
+				const char* lbColType = "UNKNOWN";
+				if (lbCol.type >= 0 && lbCol.type < 7)
+					lbColType = LbColTypeNames[lbCol.type];
 
 				float defaultVal = 0.0f;
 				float minVal = 0.0f;
 				float maxVal = 2.0f;
 
-				switch (col.type)
+				switch (lbCol.type)
 				{
 				case LBCOL_TYPE_NUMBER:
 				case LBCOL_TYPE_PERCENT:
-					defaultVal = static_cast<float>(col.precision) / 10.0f;
+					defaultVal = static_cast<float>(lbCol.precision) / 10.0f;
 					break;
 				case LBCOL_TYPE_BIGNUMBER:
 				case LBCOL_TYPE_LEVELXP:
-					defaultVal = static_cast<float>(col.precision);
+					defaultVal = static_cast<float>(lbCol.precision);
 					break;
 				case LBCOL_TYPE_PRESTIGE:
 					defaultVal = 1.0f;
@@ -60,14 +60,16 @@ namespace ILeaderboardDef
 					break;
 				}
 
-				ss << (col.name) << ","
-					<< colType << ","
-					<< std::fixed << std::setprecision(7) << defaultVal << ","
-					<< std::setprecision(1) << minVal << ","
+				oss << (lbCol.name) << ","
+					<< lbColType << ","
+					<< std::fixed << std::setprecision(7)
+					<< defaultVal << ","
+					<< std::setprecision(1)
+					<< minVal << ","
 					<< maxVal << "\n";
 			}
 
-			std::string outStr = ss.str();
+			std::string outStr = oss.str();
 			Util::FileSystem::WriteFile(outPath.c_str(), outStr.c_str(), outStr.size());
 		}
 
@@ -110,31 +112,31 @@ namespace ILeaderboardDef
 			std::transform(assetName.begin(), assetName.end(), assetName.begin(), ::tolower);
 
 			std::string outPath = "game:\\" BASE_FOLDER "\\dump\\leaderboards\\" + assetName + ".csv";
-			std::ostringstream ss;
 
-			ss << "name,type,default,min,max\n";
+			std::ostringstream oss;
+			oss << "name,type,default,min,max\n";
 
 			for (int i = 0; i < leaderboardDef->columnCount; ++i)
 			{
-				const LbColumnDef& col = leaderboardDef->columns[i];
+				const LbColumnDef& lbCol = leaderboardDef->columns[i];
 
-				const char* colType = "UNKNOWN";
-				if (col.type >= 0 && col.type < 7)
-					colType = ColTypeNames[col.type];
+				const char* lbColType = "UNKNOWN";
+				if (lbCol.type >= 0 && lbCol.type < 7)
+					lbColType = LbColTypeNames[lbCol.type];
 
 				float defaultVal = 0.0f;
 				float minVal = 0.0f;
 				float maxVal = 2.0f;
 
-				switch (col.type)
+				switch (lbCol.type)
 				{
 				case LBCOL_TYPE_NUMBER:
 				case LBCOL_TYPE_PERCENT:
-					defaultVal = static_cast<float>(col.precision) / 10.0f;
+					defaultVal = static_cast<float>(lbCol.precision) / 10.0f;
 					break;
 				case LBCOL_TYPE_BIGNUMBER:
 				case LBCOL_TYPE_LEVELXP:
-					defaultVal = static_cast<float>(col.precision);
+					defaultVal = static_cast<float>(lbCol.precision);
 					break;
 				case LBCOL_TYPE_PRESTIGE:
 					defaultVal = 1.0f;
@@ -144,14 +146,16 @@ namespace ILeaderboardDef
 					break;
 				}
 
-				ss << (col.name) << ","
-					<< colType << ","
-					<< std::fixed << std::setprecision(7) << defaultVal << ","
-					<< std::setprecision(1) << minVal << ","
+				oss << (lbCol.name) << ","
+					<< lbColType << ","
+					<< std::fixed << std::setprecision(7)
+					<< defaultVal << ","
+					<< std::setprecision(1)
+					<< minVal << ","
 					<< maxVal << "\n";
 			}
 
-			std::string outStr = ss.str();
+			std::string outStr = oss.str();
 			Util::FileSystem::WriteFile(outPath.c_str(), outStr.c_str(), outStr.size());
 		}
 
