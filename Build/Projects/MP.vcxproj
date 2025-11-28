@@ -209,6 +209,7 @@
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\ITracerDef.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IVehicleDef.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IWeaponCompleteDef.h" />
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IXAnimParts.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IXModel.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IXModelSurfs.h" />
     <ClInclude Include="..\..\Source\Components\CustomCommands.h" />
