@@ -43,8 +43,8 @@ namespace ITracerDef
 
 			oss << "\n";
 
-			std::string data = oss.str();
-			Util::FileSystem::WriteFile(outPath.c_str(), data.c_str(), data.size());
+			std::string outStr = oss.str();
+			Util::FileSystem::WriteFile(outPath.c_str(), outStr.c_str(), outStr.size());
 		}
 
 		Util::Hook::Detour Load_TracerDefPtr_Hook;
@@ -114,8 +114,8 @@ namespace ITracerDef
 
 			oss << "\n";
 
-			std::string data = oss.str();
-			Util::FileSystem::WriteFile(outPath.c_str(), data.c_str(), data.size());
+			std::string outStr = oss.str();
+			Util::FileSystem::WriteFile(outPath.c_str(), outStr.c_str(), outStr.size());
 		}
 
 		Util::Hook::Detour Load_TracerDefPtr_Hook;

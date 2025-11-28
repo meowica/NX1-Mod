@@ -64,8 +64,8 @@ namespace IShellShockParams
 			oss << "  }\n";
 			oss << "}\n";
 
-			std::string json = oss.str();
-			Util::FileSystem::WriteFile(outPath.c_str(), json.c_str(), json.size());
+			std::string outStr = oss.str();
+			Util::FileSystem::WriteFile(outPath.c_str(), outStr.c_str(), outStr.size());
 		}
 
 		Util::Hook::Detour Load_ShellShockParamsPtr_Hook;
@@ -156,8 +156,8 @@ namespace IShellShockParams
 			oss << "  }\n";
 			oss << "}\n";
 
-			std::string json = oss.str();
-			Util::FileSystem::WriteFile(outPath.c_str(), json.c_str(), json.size());
+			std::string outStr = oss.str();
+			Util::FileSystem::WriteFile(outPath.c_str(), outStr.c_str(), outStr.size());
 		}
 
 		Util::Hook::Detour Load_ShellShockParamsPtr_Hook;

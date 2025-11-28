@@ -29,7 +29,6 @@ namespace IPhysPreset
 				<< "\\tempDefaultToCylinder\\" << ((physPreset->tempDefaultToCylinder) ? 1 : 0)
 				<< "\\perSurfaceSndAlias\\" << ((physPreset->perSurfaceSndAlias) ? 1 : 0)
 				<< "\n";
-
 			oss << "SND_PARAMS"
 				<< "\\soundPitchLow\\" << physPreset->sndParams.soundPitchLow
 				<< "\\soundPitchHigh\\" << physPreset->sndParams.soundPitchHigh
@@ -39,8 +38,8 @@ namespace IPhysPreset
 				<< "\\soundImpactRangeHigh\\" << physPreset->sndParams.soundImpactRangeHigh
 				<< "\n";
 
-			std::string data = oss.str();
-			Util::FileSystem::WriteFile(outPath.c_str(), data.c_str(), data.size());
+			std::string outStr = oss.str();
+			Util::FileSystem::WriteFile(outPath.c_str(), outStr.c_str(), outStr.size());
 		}
 
 		Util::Hook::Detour Load_PhysPresetPtr_Hook;
@@ -96,7 +95,6 @@ namespace IPhysPreset
 				<< "\\tempDefaultToCylinder\\" << ((physPreset->tempDefaultToCylinder) ? 1 : 0)
 				<< "\\perSurfaceSndAlias\\" << ((physPreset->perSurfaceSndAlias) ? 1 : 0)
 				<< "\n";
-
 			oss << "SND_PARAMS"
 				<< "\\soundPitchLow\\" << physPreset->sndParams.soundPitchLow
 				<< "\\soundPitchHigh\\" << physPreset->sndParams.soundPitchHigh
@@ -106,8 +104,8 @@ namespace IPhysPreset
 				<< "\\soundImpactRangeHigh\\" << physPreset->sndParams.soundImpactRangeHigh
 				<< "\n";
 
-			std::string data = oss.str();
-			Util::FileSystem::WriteFile(outPath.c_str(), data.c_str(), data.size());
+			std::string outStr = oss.str();
+			Util::FileSystem::WriteFile(outPath.c_str(), outStr.c_str(), outStr.size());
 		}
 
 		Util::Hook::Detour Load_PhysPresetPtr_Hook;
