@@ -307,6 +307,12 @@
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\ISndLpfCurve.h">
       <Filter>Components\Assets\Interfaces</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IClipMap.h">
+      <Filter>Components\Assets\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IGfxWorld.h">
+      <Filter>Components\Assets\Interfaces</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Game">

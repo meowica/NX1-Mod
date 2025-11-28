@@ -2,6 +2,11 @@
 
 namespace Structs
 {
+	union PackedUnitVec
+	{
+		unsigned int packed;
+	};
+
 	struct CmdArgs
 	{
 		int nesting;

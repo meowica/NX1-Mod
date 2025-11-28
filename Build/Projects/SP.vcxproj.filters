@@ -199,6 +199,8 @@
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\ILoadedSound.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\ISndLpfCurve.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\ISndVfCurve.h" />
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IClipMap.h" />
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IGfxWorld.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Game">
