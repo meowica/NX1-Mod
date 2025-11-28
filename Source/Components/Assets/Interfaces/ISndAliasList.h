@@ -1,11 +1,26 @@
 #pragma once
 
+#include "ILoadedSound.h"
+
 namespace ISndAliasList
 {
+	struct SndCurve
+	{
+		unsigned short knotCount;
+		float knots[16][2];
+	};
+
+	struct StreamedSound
+	{
+		ILoadedSound::StreamFileName filename;
+		unsigned int totalMsec;
+		unsigned char compressed;
+	};
+
 	union SoundFileRef
 	{
-		/*LoadedSound* loadSnd;*/
-		/*StreamedSound streamSnd;*/
+		ILoadedSound::LoadedSound* loadSnd;
+		StreamedSound streamSnd;
 	};
 
 	struct SoundFile

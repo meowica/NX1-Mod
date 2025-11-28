@@ -187,6 +187,7 @@
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IGfxImage.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IGfxLightDef.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\ILaserDef.h" />
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\ILoadedSound.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\ILocalizeEntry.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IMaterial.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IMaterialPixelShader.h" />
@@ -200,6 +201,8 @@
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IShellShockParams.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\ISndAliasList.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\ISndDriverGlobals.h" />
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\ISndLpfCurve.h" />
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\ISndVfCurve.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IStringTable.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IMapEnts.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IPhysPreset.h" />

@@ -298,6 +298,15 @@
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IXAnimParts.h">
       <Filter>Components\Assets\Interfaces</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\ILoadedSound.h">
+      <Filter>Components\Assets\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\ISndVfCurve.h">
+      <Filter>Components\Assets\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\ISndLpfCurve.h">
+      <Filter>Components\Assets\Interfaces</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Game">
