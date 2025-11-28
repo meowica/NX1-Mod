@@ -7,6 +7,8 @@ namespace IMenuList
 	{
 		void Dump_MenuList(const MenuList* menuList)
 		{
+			// TODO: This needs a clean up to match the other dumpers style
+
 			if (!menuList)
 				return;
 
@@ -88,6 +90,8 @@ namespace IMenuList
 	{
 		void Dump_MenuList(const MenuList* menuList)
 		{
+			// TODO: This needs a clean up to match the other dumpers style
+
 			if (!menuList)
 				return;
 

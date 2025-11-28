@@ -7,6 +7,8 @@ namespace ILocalizeEntry
 	{
 		void Dump_LocalizeEntry(const LocalizeEntry* localizeEntry)
 		{
+			// TODO: This needs a clean up to match the other dumpers style
+
 			if (!localizeEntry)
 				return;
 
@@ -123,6 +125,8 @@ namespace ILocalizeEntry
 	{
 		void Dump_LocalizeEntry(const LocalizeEntry* localizeEntry)
 		{
+			// TODO: This needs a clean up to match the other dumpers style
+
 			if (!localizeEntry)
 				return;
 

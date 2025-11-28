@@ -27,8 +27,8 @@ namespace IGfxLightDef
 			oss << "  \"lmapLookupStart\": " << gfxLightDef->lmapLookupStart << "\n";
 			oss << "}\n";
 
-			const std::string out = oss.str();
-			Util::FileSystem::WriteFile(outPath.c_str(), out.c_str(), out.size());
+			std::string outStr = oss.str();
+			Util::FileSystem::WriteFile(outPath.c_str(), outStr.c_str(), outStr.size());
 		}
 
 		Util::Hook::Detour Load_GfxLightDefPtr_Hook;
@@ -82,8 +82,8 @@ namespace IGfxLightDef
 			oss << "  \"lmapLookupStart\": " << gfxLightDef->lmapLookupStart << "\n";
 			oss << "}\n";
 
-			const std::string out = oss.str();
-			Util::FileSystem::WriteFile(outPath.c_str(), out.c_str(), out.size());
+			std::string outStr = oss.str();
+			Util::FileSystem::WriteFile(outPath.c_str(), outStr.c_str(), outStr.size());
 		}
 
 		Util::Hook::Detour Load_GfxLightDefPtr_Hook;

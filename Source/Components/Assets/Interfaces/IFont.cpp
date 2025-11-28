@@ -12,7 +12,6 @@ namespace IFont
 
 			std::string assetName = font->fontName;
 			std::replace(assetName.begin(), assetName.end(), '/', '\\');
-			std::transform(assetName.begin(), assetName.end(), assetName.begin(), ::tolower);
 
 			std::string outPath = "game:\\" BASE_FOLDER "\\dump\\" + assetName + ".json";
 
@@ -27,21 +26,21 @@ namespace IFont
 
 			for (int i = 0; i < font->glyphCount; ++i)
 			{
-				const Glyph& g = font->glyphs[i];
-				oss << "    {\n";
-				oss << "      \"letter\": " << g.letter << ",\n";
-				oss << "      \"x0\": " << static_cast<int>(g.x0) << ",\n";
-				oss << "      \"y0\": " << static_cast<int>(g.y0) << ",\n";
-				oss << "      \"dx\": " << static_cast<int>(g.dx) << ",\n";
-				oss << "      \"pixelWidth\": " << static_cast<int>(g.pixelWidth) << ",\n";
-				oss << "      \"pixelHeight\": " << static_cast<int>(g.pixelHeight) << ",\n";
-				oss << std::fixed << std::setprecision(6);
-				oss << "      \"s0\": " << g.s0 << ",\n";
-				oss << "      \"t0\": " << g.t0 << ",\n";
-				oss << "      \"s1\": " << g.s1 << ",\n";
-				oss << "      \"t1\": " << g.t1 << "\n";
-				oss << "    }";
+				const Glyph& glyph = font->glyphs[i];
 
+				oss << "    {\n";
+				oss << "      \"letter\": " << glyph.letter << ",\n";
+				oss << "      \"x0\": " << static_cast<int>(glyph.x0) << ",\n";
+				oss << "      \"y0\": " << static_cast<int>(glyph.y0) << ",\n";
+				oss << "      \"dx\": " << static_cast<int>(glyph.dx) << ",\n";
+				oss << "      \"pixelWidth\": " << static_cast<int>(glyph.pixelWidth) << ",\n";
+				oss << "      \"pixelHeight\": " << static_cast<int>(glyph.pixelHeight) << ",\n";
+				oss << std::fixed << std::setprecision(6);
+				oss << "      \"s0\": " << glyph.s0 << ",\n";
+				oss << "      \"t0\": " << glyph.t0 << ",\n";
+				oss << "      \"s1\": " << glyph.s1 << ",\n";
+				oss << "      \"t1\": " << glyph.t1 << "\n";
+				oss << "    }";
 				if (i < font->glyphCount - 1)
 					oss << ",";
 				oss << "\n";
@@ -50,7 +49,8 @@ namespace IFont
 			oss << "  ]\n";
 			oss << "}\n";
 
-			Util::FileSystem::WriteFile(outPath.c_str(), oss.str().c_str(), oss.str().size());
+			std::string outStr = oss.str();
+			Util::FileSystem::WriteFile(outPath.c_str(), outStr.c_str(), outStr.size());
 		}
 
 		Util::Hook::Detour Load_FontHandle_Hook;
@@ -89,7 +89,6 @@ namespace IFont
 
 			std::string assetName = font->fontName;
 			std::replace(assetName.begin(), assetName.end(), '/', '\\');
-			std::transform(assetName.begin(), assetName.end(), assetName.begin(), ::tolower);
 
 			std::string outPath = "game:\\" BASE_FOLDER "\\dump\\" + assetName + ".json";
 
@@ -104,21 +103,21 @@ namespace IFont
 
 			for (int i = 0; i < font->glyphCount; ++i)
 			{
-				const Glyph& g = font->glyphs[i];
-				oss << "    {\n";
-				oss << "      \"letter\": " << g.letter << ",\n";
-				oss << "      \"x0\": " << static_cast<int>(g.x0) << ",\n";
-				oss << "      \"y0\": " << static_cast<int>(g.y0) << ",\n";
-				oss << "      \"dx\": " << static_cast<int>(g.dx) << ",\n";
-				oss << "      \"pixelWidth\": " << static_cast<int>(g.pixelWidth) << ",\n";
-				oss << "      \"pixelHeight\": " << static_cast<int>(g.pixelHeight) << ",\n";
-				oss << std::fixed << std::setprecision(6);
-				oss << "      \"s0\": " << g.s0 << ",\n";
-				oss << "      \"t0\": " << g.t0 << ",\n";
-				oss << "      \"s1\": " << g.s1 << ",\n";
-				oss << "      \"t1\": " << g.t1 << "\n";
-				oss << "    }";
+				const Glyph& glyph = font->glyphs[i];
 
+				oss << "    {\n";
+				oss << "      \"letter\": " << glyph.letter << ",\n";
+				oss << "      \"x0\": " << static_cast<int>(glyph.x0) << ",\n";
+				oss << "      \"y0\": " << static_cast<int>(glyph.y0) << ",\n";
+				oss << "      \"dx\": " << static_cast<int>(glyph.dx) << ",\n";
+				oss << "      \"pixelWidth\": " << static_cast<int>(glyph.pixelWidth) << ",\n";
+				oss << "      \"pixelHeight\": " << static_cast<int>(glyph.pixelHeight) << ",\n";
+				oss << std::fixed << std::setprecision(6);
+				oss << "      \"s0\": " << glyph.s0 << ",\n";
+				oss << "      \"t0\": " << glyph.t0 << ",\n";
+				oss << "      \"s1\": " << glyph.s1 << ",\n";
+				oss << "      \"t1\": " << glyph.t1 << "\n";
+				oss << "    }";
 				if (i < font->glyphCount - 1)
 					oss << ",";
 				oss << "\n";
@@ -127,7 +126,8 @@ namespace IFont
 			oss << "  ]\n";
 			oss << "}\n";
 
-			Util::FileSystem::WriteFile(outPath.c_str(), oss.str().c_str(), oss.str().size());
+			std::string outStr = oss.str();
+			Util::FileSystem::WriteFile(outPath.c_str(), outStr.c_str(), outStr.size());
 		}
 
 		Util::Hook::Detour Load_FontHandle_Hook;

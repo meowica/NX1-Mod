@@ -33,8 +33,8 @@ namespace ILaserDef
 				<< "\\shape\\" << laserDef->m_shape
 				<< "\n";
 
-			std::string data = oss.str();
-			Util::FileSystem::WriteFile(outPath.c_str(), data.c_str(), data.size());
+			std::string outStr = oss.str();
+			Util::FileSystem::WriteFile(outPath.c_str(), outStr.c_str(), outStr.size());
 		}
 
 		Util::Hook::Detour Load_LaserDefPtr_Hook;
@@ -94,8 +94,8 @@ namespace ILaserDef
 				<< "\\shape\\" << laserDef->m_shape
 				<< "\n";
 
-			std::string data = oss.str();
-			Util::FileSystem::WriteFile(outPath.c_str(), data.c_str(), data.size());
+			std::string outStr = oss.str();
+			Util::FileSystem::WriteFile(outPath.c_str(), outStr.c_str(), outStr.size());
 		}
 
 		Util::Hook::Detour Load_LaserDefPtr_Hook;
