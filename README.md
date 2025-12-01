@@ -76,23 +76,32 @@
   - adding/hiding channel
   - no channels added/hidden
   - log file opened
-- Added asset loaders (MP/SP):
+
+## Asset Loaders
   - Map Ents - Load any map entity files from NX1-Mod/raw
   - Raw File - Load any raw file from NX1-Mod/raw
   - Addon Map Ents - Load any addon map entity files from NX1-Mod/raw
-- Added asset dumpers (MP/SP):
+
+## Asset Dumpers
   - Phys Preset - Dump any physic preset files
+  - Clip Map - Dump any clip map files
+  - Com World - Dump any com world files
+  - Game World SP - Dump any SP game world files
+  - Game World MP - Dump any MP game world files
   - Map Ents - Dump any map entity files
-  - Light Def - Dump any light files
+  - Gfx World - Dump any GFX world files
+  - Gfx Light Def - Dump any GFX light files
   - Font - Dump any font files
   - Menu List - Dump any menu list files
   - Localize Entry - Dump any localize entry files
   - Raw File - Dump any raw files
   - String Table - Dump any string table files
   - Leaderboard - Dump any leaderboards files
+  - Structured Data - Dump structured data files
   - Tracer Def - Dump any tracer files
   - Laser Def - Dump any laser files
   - Addon Map Ents - Dump any addon map entity files
-  - Shell Shock Param - Dump any shock files
+  - Shell Shock - Dump any shock files
   - Audio Volume - Dump any audio volume files
+  - Rad Verb - Dump any rad verb files
   - Fog Def - Dump any fog files

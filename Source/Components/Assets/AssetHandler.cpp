@@ -1,7 +1,12 @@
 // Interfaces
 #include "Interfaces\IPhysPreset.h"
 #include "Interfaces\IMaterial.h"
+#include "Interfaces\IClipMap.h"
+#include "Interfaces\IComWorld.h"
+#include "Interfaces\IGameWorldSp.h"
+#include "Interfaces\IGameWorldMp.h"
 #include "Interfaces\IMapEnts.h"
+#include "Interfaces\IGfxWorld.h"
 #include "Interfaces\IGfxLightDef.h"
 #include "Interfaces\IFont.h"
 #include "Interfaces\IMenuList.h"
@@ -28,7 +33,11 @@ namespace AssetHandler
 		{
 			IPhysPreset::MP::Load();
 			IMaterial::MP::Load();
+			IClipMap::MP::Load();
+			IComWorld::MP::Load();
+			IGameWorldMp::MP::Load();
 			IMapEnts::MP::Load();
+			IGfxWorld::MP::Load();
 			IGfxLightDef::MP::Load();
 			IFont::MP::Load();
 			IMenuList::MP::Load();
@@ -87,6 +96,8 @@ namespace AssetHandler
 		void RegisterLoadersAndDumpers()
 		{
 			IPhysPreset::SP::Load();
+			IComWorld::SP::Load();
+			IGameWorldSp::SP::Load();
 			IMapEnts::SP::Load();
 			IGfxLightDef::SP::Load();
 			IFont::SP::Load();

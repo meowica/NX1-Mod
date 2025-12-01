@@ -18,7 +18,12 @@ namespace IniConfig
 
 	// Dumpers
 	extern bool EnablePhysPresetDumper;
+	extern bool EnableClipMapDumper;
+	extern bool EnableComWorldDumper;
+	extern bool EnableGameWorldSpDumper;
+	extern bool EnableGameWorldMpDumper;
 	extern bool EnableMapEntsDumper;
+	extern bool EnableGfxWorldDumper;
 	extern bool EnableGfxLightDefDumper;
 	extern bool EnableFontHandleDumper;
 	extern bool EnableMenuListDumper;

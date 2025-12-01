@@ -42,11 +42,5 @@ namespace IGameWorldMp
 		void Load();
 		void Unload();
 	}
-#elif IS_SP
-	namespace SP
-	{
-		void Load();
-		void Unload();
-	}
 #endif
 }

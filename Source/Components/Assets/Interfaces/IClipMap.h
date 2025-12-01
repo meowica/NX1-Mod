@@ -3,7 +3,6 @@
 #include "IMapEnts.h"
 #include "IXModel.h"
 #include "IPhysPreset.h"
-#include "IGfxWorld.h"
 #include "IFxEffectDef.h"
 
 namespace IClipMap
@@ -167,7 +166,7 @@ namespace IClipMap
 	struct DynEntityDef
 	{
 		DynEntityType type;
-		IGfxWorld::GfxPlacement pose;
+		//IGfxWorld::GfxPlacement pose;
 		IXModel::XModel* xModel;
 		unsigned short brushModel;
 		unsigned short physicsBrushModel;
@@ -181,7 +180,7 @@ namespace IClipMap
 
 	struct DynEntityPose
 	{
-		IGfxWorld::GfxPlacement pose;
+		//IGfxWorld::GfxPlacement pose;
 		float radius;
 	};
 

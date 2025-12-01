@@ -114,6 +114,18 @@
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IStructuredDataDefSet.cpp">
       <Filter>Components\Assets\Interfaces</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IGfxWorld.cpp">
+      <Filter>Components\Assets\Interfaces</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IClipMap.cpp">
+      <Filter>Components\Assets\Interfaces</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IComWorld.cpp">
+      <Filter>Components\Assets\Interfaces</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IGameWorldMp.cpp">
+      <Filter>Components\Assets\Interfaces</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\Game\Symbols.h">
@@ -254,9 +266,6 @@
       <Filter>Components\Assets\Interfaces</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IGameWorldMp.h">
-      <Filter>Components\Assets\Interfaces</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IGameWorldSp.h">
       <Filter>Components\Assets\Interfaces</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IFxWorld.h">

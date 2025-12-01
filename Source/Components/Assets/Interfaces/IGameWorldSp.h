@@ -229,13 +229,7 @@ namespace IGameWorldSp
 		G_GlassData* g_glassData;
 	};
 
-#ifdef IS_MP
-	namespace MP
-	{
-		void Load();
-		void Unload();
-	}
-#elif IS_SP
+#ifdef IS_SP
 	namespace SP
 	{
 		void Load();
