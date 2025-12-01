@@ -77,31 +77,54 @@
   - no channels added/hidden
   - log file opened
 
-## Asset Loaders
-  - Map Ents - Load any map entity files from NX1-Mod/raw
-  - Raw File - Load any raw file from NX1-Mod/raw
-  - Addon Map Ents - Load any addon map entity files from NX1-Mod/raw
+## Asset Types
+- ✅ = Supported
+- ❌ = Unsupported
+- ⁉️ = Partially support
 
-## Asset Dumpers
-  - Phys Preset - Dump any physic preset files
-  - Clip Map - Dump any clip map files
-  - Com World - Dump any com world files
-  - Game World SP - Dump any SP game world files
-  - Game World MP - Dump any MP game world files
-  - Map Ents - Dump any map entity files
-  - Gfx World - Dump any GFX world files
-  - Gfx Light Def - Dump any GFX light files
-  - Font - Dump any font files
-  - Menu List - Dump any menu list files
-  - Localize Entry - Dump any localize entry files
-  - Raw File - Dump any raw files
-  - String Table - Dump any string table files
-  - Leaderboard - Dump any leaderboards files
-  - Structured Data - Dump structured data files
-  - Tracer Def - Dump any tracer files
-  - Laser Def - Dump any laser files
-  - Addon Map Ents - Dump any addon map entity files
-  - Shell Shock - Dump any shock files
-  - Audio Volume - Dump any audio volume files
-  - Rad Verb - Dump any rad verb files
-  - Fog Def - Dump any fog files
+| Asset Type  | Dumping | Loading |
+|-------------|---------|---------|
+| PhysPreset  | ✔️     | ❌      |
+| PhysCollmap  | ❌     | ❌      |
+| XAnimParts  | ❌     | ❌      |
+| XModelSurfs  | ❌     | ❌      |
+| XModel  | ❌     | ❌      |
+| Material  | ⁉️     | ❌      |
+| MaterialPixelShader  | ❌     | ❌      |
+| MaterialVertexShader  | ❌     | ❌      |
+| MaterialVertexDeclaration  | ❌     | ❌      |
+| MaterialTechniqueSet  | ❌     | ❌      |
+| GfxImage  | ❌     | ❌      |
+| SndAliasList  | ❌     | ❌      |
+| SndVfCurve  | ❌     | ❌      |
+| SndLpfCurve  | ❌     | ❌      |
+| LoadedSound  | ❌     | ❌      |
+| clipMap_t  | ⁉️     | ❌      |
+| ComWorld  | ✔️     | ❌      |
+| GameWorldSp  | ⁉️     | ❌      |
+| GameWorldMp  | ✔️     | ❌      |
+| MapEnts  | ✔️     | ✔️      |
+| FxWorld  | ❌     | ❌      |
+| GfxWorld  | ⁉️     | ❌      |
+| GfxLightDef  | ✔️     | ❌      |
+| Font_s  | ✔️     | ❌      |
+| MenuList  | ✔️     | ❌      |
+| menuDef_t  | ❌     | ❌      |
+| LocalizeEntry  | ✔️     | ❌      |
+| WeaponCompleteDef  | ❌     | ❌      |
+| SndDriverGlobals  | ❌     | ❌      |
+| FxEffectDef  | ❌     | ❌      |
+| FxImpactTable  | ❌     | ❌      |
+| SurfaceFxTable  | ❌     | ❌      |
+| RawFile  | ✔️     | ✔️      |
+| StringTable  | ✔️     | ❌      |
+| LeaderboardDef  | ✔️     | ❌      |
+| StructuredDataDefSet  | ✔️     | ❌      |
+| TracerDef  | ✔️     | ❌      |
+| LaserDef  | ✔️     | ❌      |
+| VehicleDef  | ❌     | ❌      |
+| AddonMapEnts  | ✔️     | ✔️      |
+| ShellShockParams  | ✔️     | ❌      |
+| AudioVolumeSetting  | ✔️     | ❌      |
+| RadVerbPreset  | ✔️     | ❌      |
+| FogDef  | ✔️     | ❌      |
