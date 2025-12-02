@@ -115,7 +115,7 @@ namespace ILeaderboardDef
 
 			if (varLeaderboardDefPtr && *varLeaderboardDefPtr)
 			{
-				//if (IniConfig::EnableLeaderboardDefDumper)
+				if (IniConfig::EnableLeaderboardDefDumper)
 					Dump_LeaderboardDef(*varLeaderboardDefPtr);
 				//if (IniConfig::EnableLeaderboardDefLoader)
 				//	Load_LeaderboardDef(*varLeaderboardDefPtr);
@@ -225,7 +225,7 @@ namespace ILeaderboardDef
 
 			if (varLeaderboardDefPtr && *varLeaderboardDefPtr)
 			{
-				//if (IniConfig::EnableLeaderboardDefDumper)
+				if (IniConfig::EnableLeaderboardDefDumper)
 					Dump_LeaderboardDef(*varLeaderboardDefPtr);
 				//if (IniConfig::EnableLeaderboardDefLoader)
 				//	Load_LeaderboardDef(*varLeaderboardDefPtr);
