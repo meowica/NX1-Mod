@@ -7,56 +7,53 @@ namespace IMenuList
 	{
 		void Dump_MenuList(const MenuList* menuList)
 		{
-			// TODO: This needs a clean up to match the other dumpers style
-
 			if (!menuList)
 				return;
 
 			std::string assetName = menuList->name;
 			std::replace(assetName.begin(), assetName.end(), '/', '\\');
 
-			std::string outPath = "game:\\" BASE_FOLDER "\\dump\\menus\\" + assetName;
+			std::string outPath = "game:\\" BASE_FOLDER "\\dump\\" + assetName;
 
-			std::string buffer;
+			std::ostringstream oss;
+			oss << "{\n";
 
-			buffer += "{\n";
+			if (!menuList->menus && menuList->menuCount < 0)
+				return;
 
-			if (menuList->menus)
+			std::string prefix = menuList->name;
+			const size_t p = prefix.find_first_of("/\\");
+			if (p != std::string::npos)
+				prefix = prefix.substr(0, p + 1);  // keep the slash
+			else
+				prefix.clear();
+
+			for (int i = 0; i < menuList->menuCount; i++)
 			{
-				std::string path = menuList->name;
+				const auto* menu = menuList->menus[i];
+				if (!menu)
+					continue;
 
-				if (path.find_first_of("/\\") != std::string::npos)
-				{
-					path = path.substr(0, path.find_first_of("/\\") + 1);
-				}
-				else
-				{
-					path = "";
-				}
+				const char* rawName = menu->window.name;
+				if (!rawName || !rawName[0])
+					continue;
 
-				for (int i = 0; i < menuList->menuCount; i++)
-				{
-					if (menuList->menus[i])
-					{
-						// start bad
-						const char* rawName = menuList->menus[i]->window.name;
-						if (!rawName || !rawName[0])
-							continue;
+				std::string cleanName(rawName);
 
-						std::string cleanName(rawName);
-						size_t nullpos = cleanName.find('\0');
-						if (nullpos != std::string::npos)
-							cleanName.resize(nullpos);
-						//end bad
+				const size_t dot = cleanName.rfind('.');
+				if (dot != std::string::npos && cleanName.compare(dot, 5, ".menu") == 0)
+					cleanName = cleanName.substr(0, dot);
 
-						buffer += Util::String::VA("\tloadMenu { \"%s%s.menu\" }\n", path.c_str(), cleanName.c_str());
-					}
-				}
+				oss << "\tloadMenu { \""
+					<< prefix
+					<< cleanName
+					<< ".menu\" }\n";
 			}
 
-			buffer += "}\n";
+			oss << "}\n";
 
-			Util::FileSystem::WriteFile(outPath.c_str(), buffer.c_str(), buffer.size());
+			std::string outStr = oss.str();
+			Util::FileSystem::WriteFile(outPath.c_str(), outStr.c_str(), outStr.size());
 		}
 
 		Util::Hook::Detour Load_MenuListPtr_Hook;
@@ -90,52 +87,53 @@ namespace IMenuList
 	{
 		void Dump_MenuList(const MenuList* menuList)
 		{
-			// TODO: This needs a clean up to match the other dumpers style
-
 			if (!menuList)
 				return;
 
 			std::string assetName = menuList->name;
 			std::replace(assetName.begin(), assetName.end(), '/', '\\');
 
-			std::string outPath = "game:\\" BASE_FOLDER "\\dump\\menus\\" + assetName;
+			std::string outPath = "game:\\" BASE_FOLDER "\\dump\\" + assetName;
 
-			std::string buffer;
+			std::ostringstream oss;
+			oss << "{\n";
 
-			buffer += "{\n";
+			if (!menuList->menus && menuList->menuCount < 0)
+				return;
 
-			if (menuList->menus)
+			std::string prefix = menuList->name;
+			const size_t p = prefix.find_first_of("/\\");
+			if (p != std::string::npos)
+				prefix = prefix.substr(0, p + 1);  // keep the slash
+			else
+				prefix.clear();
+
+			for (int i = 0; i < menuList->menuCount; i++)
 			{
-				std::string path = menuList->name;
+				const auto* menu = menuList->menus[i];
+				if (!menu)
+					continue;
 
-				if (path.find_first_of("/\\") != std::string::npos)
-				{
-					path = path.substr(0, path.find_first_of("/\\") + 1);
-				}
-				else
-				{
-					path = "";
-				}
+				const char* rawName = menu->window.name;
+				if (!rawName || !rawName[0])
+					continue;
 
-				for (int i = 0; i < menuList->menuCount; i++)
-				{
-					if (menuList->menus[i])
-					{
-						const char* rawName = menuList->menus[i]->window.name;
-						if (!rawName || !rawName[0])
-							continue;
-						std::string cleanName(rawName);
-						size_t nullpos = cleanName.find('\0');
-						if (nullpos != std::string::npos)
-							cleanName.resize(nullpos);
-						buffer += Util::String::VA("\tloadMenu { \"%s%s.menu\" }\n", path.c_str(), cleanName.c_str());
-					}
-				}
+				std::string cleanName(rawName);
+
+				const size_t dot = cleanName.rfind('.');
+				if (dot != std::string::npos && cleanName.compare(dot, 5, ".menu") == 0)
+					cleanName = cleanName.substr(0, dot);
+
+				oss << "\tloadMenu { \""
+					<< prefix
+					<< cleanName
+					<< ".menu\" }\n";
 			}
 
-			buffer += "}\n";
+			oss << "}\n";
 
-			Util::FileSystem::WriteFile(outPath.c_str(), buffer.c_str(), buffer.size());
+			std::string outStr = oss.str();
+			Util::FileSystem::WriteFile(outPath.c_str(), outStr.c_str(), outStr.size());
 		}
 
 		Util::Hook::Detour Load_MenuListPtr_Hook;
