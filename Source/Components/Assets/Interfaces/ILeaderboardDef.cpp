@@ -2,7 +2,7 @@
 
 namespace ILeaderboardDef
 {
-	const char* LbColTypeNames[7] =
+	const char* LbColTypeNames[] =
 	{
 		"NUMBER",
 		"TIME",
@@ -10,7 +10,16 @@ namespace ILeaderboardDef
 		"PRESTIGE",
 		"BIGNUMBER",
 		"PERCENT",
-		"TIME_FULL"
+		"COUNT"
+	};
+
+	const char* LbAggTypeNames[] =
+	{
+		"MIN",
+		"MAX",
+		"SUM",
+		"LAST",
+		"COUNT"
 	};
 
 #ifdef IS_MP
@@ -25,18 +34,28 @@ namespace ILeaderboardDef
 			std::replace(assetName.begin(), assetName.end(), '/', '\\');
 			std::transform(assetName.begin(), assetName.end(), assetName.begin(), ::tolower);
 
-			std::string outPath = "game:\\" BASE_FOLDER "\\dump\\leaderboards\\" + assetName + ".csv";
+			std::string outPath = "game:\\" BASE_FOLDER "\\dump\\leaderboards\\" + assetName + ".json";
 
 			std::ostringstream oss;
-			oss << "name,type,default,min,max\n";
+			oss << "{\n";
+			oss << "  \"name\": \"" << leaderboardDef->name << "\",\n";
+			oss << "  \"id\": " << leaderboardDef->id << ",\n";
+			oss << "  \"columnCount\": " << leaderboardDef->columnCount << ",\n";
+			oss << "  \"xpColId\": " << leaderboardDef->xpColId << ",\n";
+			oss << "  \"prestigeColId\": " << leaderboardDef->prestigeColId << ",\n";
+			oss << "  \"columns\": [\n";
 
 			for (int i = 0; i < leaderboardDef->columnCount; ++i)
 			{
 				const LbColumnDef& lbCol = leaderboardDef->columns[i];
 
 				const char* lbColType = "UNKNOWN";
-				if (lbCol.type >= 0 && lbCol.type < 7)
+				if (lbCol.type >= 0 && lbCol.type < LBCOL_TYPE_COUNT)
 					lbColType = LbColTypeNames[lbCol.type];
+
+				const char* lbAggType = "UNKNOWN";
+				if (lbCol.agg >= 0 && lbCol.agg < LBAGG_TYPE_COUNT)
+					lbAggType = LbAggTypeNames[lbCol.agg];
 
 				float defaultVal = 0.0f;
 				float minVal = 0.0f;
@@ -60,14 +79,28 @@ namespace ILeaderboardDef
 					break;
 				}
 
-				oss << (lbCol.name) << ","
-					<< lbColType << ","
-					<< std::fixed << std::setprecision(7)
-					<< defaultVal << ","
-					<< std::setprecision(1)
-					<< minVal << ","
-					<< maxVal << "\n";
+				oss << "    {\n";
+				oss << "      \"name\": \"" << lbCol.name << "\",\n";
+				oss << "      \"id\": " << lbCol.id << ",\n";
+				oss << "      \"propertyId\": " << lbCol.propertyId << ",\n";
+				oss << "      \"hidden\": " << (lbCol.hidden ? "true" : "false") << ",\n";
+				oss << "      \"statName\": \"" << (lbCol.statName ? lbCol.statName : "") << "\",\n";
+				oss << "      \"type\": \"" << lbColType << "\",\n";
+				oss << "      \"precision\": " << lbCol.precision << ",\n";
+				oss << "      \"agg\": \"" << lbAggType << "\",\n";
+				oss << "      \"default\": " << std::fixed << std::setprecision(7) << defaultVal << ",\n";
+				oss << "      \"min\": " << std::setprecision(1) << minVal << ",\n";
+				oss << "      \"max\": " << maxVal << "\n";
+				oss << "    }";
+
+				if (i < leaderboardDef->columnCount - 1)
+					oss << ",";
+
+				oss << "\n";
 			}
+
+			oss << "  ]\n";
+			oss << "}\n";
 
 			std::string outStr = oss.str();
 			Util::FileSystem::WriteFile(outPath.c_str(), outStr.c_str(), outStr.size());
@@ -82,7 +115,7 @@ namespace ILeaderboardDef
 
 			if (varLeaderboardDefPtr && *varLeaderboardDefPtr)
 			{
-				if (IniConfig::EnableLeaderboardDefDumper)
+				//if (IniConfig::EnableLeaderboardDefDumper)
 					Dump_LeaderboardDef(*varLeaderboardDefPtr);
 				//if (IniConfig::EnableLeaderboardDefLoader)
 				//	Load_LeaderboardDef(*varLeaderboardDefPtr);
@@ -111,18 +144,28 @@ namespace ILeaderboardDef
 			std::replace(assetName.begin(), assetName.end(), '/', '\\');
 			std::transform(assetName.begin(), assetName.end(), assetName.begin(), ::tolower);
 
-			std::string outPath = "game:\\" BASE_FOLDER "\\dump\\leaderboards\\" + assetName + ".csv";
+			std::string outPath = "game:\\" BASE_FOLDER "\\dump\\leaderboards\\" + assetName + ".json";
 
 			std::ostringstream oss;
-			oss << "name,type,default,min,max\n";
+			oss << "{\n";
+			oss << "  \"name\": \"" << leaderboardDef->name << "\",\n";
+			oss << "  \"id\": " << leaderboardDef->id << ",\n";
+			oss << "  \"columnCount\": " << leaderboardDef->columnCount << ",\n";
+			oss << "  \"xpColId\": " << leaderboardDef->xpColId << ",\n";
+			oss << "  \"prestigeColId\": " << leaderboardDef->prestigeColId << ",\n";
+			oss << "  \"columns\": [\n";
 
 			for (int i = 0; i < leaderboardDef->columnCount; ++i)
 			{
 				const LbColumnDef& lbCol = leaderboardDef->columns[i];
 
 				const char* lbColType = "UNKNOWN";
-				if (lbCol.type >= 0 && lbCol.type < 7)
+				if (lbCol.type >= 0 && lbCol.type < LBCOL_TYPE_COUNT)
 					lbColType = LbColTypeNames[lbCol.type];
+
+				const char* lbAggType = "UNKNOWN";
+				if (lbCol.agg >= 0 && lbCol.agg < LBAGG_TYPE_COUNT)
+					lbAggType = LbAggTypeNames[lbCol.agg];
 
 				float defaultVal = 0.0f;
 				float minVal = 0.0f;
@@ -146,14 +189,28 @@ namespace ILeaderboardDef
 					break;
 				}
 
-				oss << (lbCol.name) << ","
-					<< lbColType << ","
-					<< std::fixed << std::setprecision(7)
-					<< defaultVal << ","
-					<< std::setprecision(1)
-					<< minVal << ","
-					<< maxVal << "\n";
+				oss << "    {\n";
+				oss << "      \"name\": \"" << lbCol.name << "\",\n";
+				oss << "      \"id\": " << lbCol.id << ",\n";
+				oss << "      \"propertyId\": " << lbCol.propertyId << ",\n";
+				oss << "      \"hidden\": " << (lbCol.hidden ? "true" : "false") << ",\n";
+				oss << "      \"statName\": \"" << (lbCol.statName ? lbCol.statName : "") << "\",\n";
+				oss << "      \"type\": \"" << lbColType << "\",\n";
+				oss << "      \"precision\": " << lbCol.precision << ",\n";
+				oss << "      \"agg\": \"" << lbAggType << "\",\n";
+				oss << "      \"default\": " << std::fixed << std::setprecision(7) << defaultVal << ",\n";
+				oss << "      \"min\": " << std::setprecision(1) << minVal << ",\n";
+				oss << "      \"max\": " << maxVal << "\n";
+				oss << "    }";
+
+				if (i < leaderboardDef->columnCount - 1)
+					oss << ",";
+
+				oss << "\n";
 			}
+
+			oss << "  ]\n";
+			oss << "}\n";
 
 			std::string outStr = oss.str();
 			Util::FileSystem::WriteFile(outPath.c_str(), outStr.c_str(), outStr.size());
@@ -168,7 +225,7 @@ namespace ILeaderboardDef
 
 			if (varLeaderboardDefPtr && *varLeaderboardDefPtr)
 			{
-				if (IniConfig::EnableLeaderboardDefDumper)
+				//if (IniConfig::EnableLeaderboardDefDumper)
 					Dump_LeaderboardDef(*varLeaderboardDefPtr);
 				//if (IniConfig::EnableLeaderboardDefLoader)
 				//	Load_LeaderboardDef(*varLeaderboardDefPtr);

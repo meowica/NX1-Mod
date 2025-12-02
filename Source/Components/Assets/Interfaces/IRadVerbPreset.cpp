@@ -16,10 +16,7 @@ namespace IRadVerbPreset
 			std::string outPath = "game:\\" BASE_FOLDER "\\dump\\rad_verb\\" + assetName + ".csv";
 
 			std::ostringstream oss;
-			oss <<
-				"name,"
-				"earlyTime,"
-				"lateTime,"
+			oss << "name," "earlyTime," "lateTime,"
 				"earlyGain,"
 				"lateGain,"
 				"lateGainProx,"
@@ -53,8 +50,8 @@ namespace IRadVerbPreset
 				radVerbPreset->diffusion << "," <<
 				radVerbPreset->rearLevel << "\n";
 
-			std::string data = oss.str();
-			Util::FileSystem::WriteFile(outPath.c_str(), data.c_str(), data.size());
+			std::string outStr = oss.str();
+			Util::FileSystem::WriteFile(outPath.c_str(), outStr.c_str(), outStr.size());
 		}
 
 		Util::Hook::Detour Load_RadVerbPresetPtr_Hook;
@@ -97,10 +94,7 @@ namespace IRadVerbPreset
 			std::string outPath = "game:\\" BASE_FOLDER "\\dump\\rad_verb\\" + assetName + ".csv";
 
 			std::ostringstream oss;
-			oss <<
-				"name,"
-				"earlyTime,"
-				"lateTime,"
+			oss << "name," "earlyTime," "lateTime,"
 				"earlyGain,"
 				"lateGain,"
 				"lateGainProx,"
@@ -134,8 +128,8 @@ namespace IRadVerbPreset
 				radVerbPreset->diffusion << "," <<
 				radVerbPreset->rearLevel << "\n";
 
-			std::string data = oss.str();
-			Util::FileSystem::WriteFile(outPath.c_str(), data.c_str(), data.size());
+			std::string outStr = oss.str();
+			Util::FileSystem::WriteFile(outPath.c_str(), outStr.c_str(), outStr.size());
 		}
 
 		Util::Hook::Detour Load_RadVerbPresetPtr_Hook;
