@@ -148,6 +148,7 @@
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IRadVerbPreset.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IRawFile.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IShellShockParams.cpp" />
+    <ClCompile Include="..\..\Source\Components\Assets\Interfaces\ISndVfCurve.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IStringTable.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IStructuredDataDefSet.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\ITracerDef.cpp" />

@@ -12,6 +12,7 @@ namespace IniConfig
 	bool EnableAddonMapEntsLoader = true;
 
 	bool EnablePhysPresetDumper = false;
+	bool EnableSndVfCurveDumper = false;
 	bool EnableClipMapDumper = false;
 	bool EnableComWorldDumper = false;
 	bool EnableGameWorldSpDumper = false;
@@ -58,6 +59,7 @@ namespace IniConfig
 		EnableAddonMapEntsLoader = g_Config.GetBoolean("Asset Loaders", "EnableAddonMapEntsLoader", EnableAddonMapEntsLoader);
 
 		EnablePhysPresetDumper = g_Config.GetBoolean("Asset Dumpers", "EnablePhysPresetDumper", EnablePhysPresetDumper);
+		EnableSndVfCurveDumper = g_Config.GetBoolean("Asset Dumpers", "EnableSndVfCurveDumper", EnableSndVfCurveDumper);
 		EnableClipMapDumper = g_Config.GetBoolean("Asset Dumpers", "EnableClipMapDumper", EnableClipMapDumper);
 		EnableComWorldDumper = g_Config.GetBoolean("Asset Dumpers", "EnableComWorldDumper", EnableComWorldDumper);
 		EnableGameWorldSpDumper = g_Config.GetBoolean("Asset Dumpers", "EnableGameWorldSpDumper", EnableGameWorldSpDumper);

@@ -96,8 +96,7 @@
 | MaterialTechniqueSet  | ❌     | ❌      |
 | GfxImage  | ❌     | ❌      |
 | SndAliasList  | ❌     | ❌      |
-| SndVfCurve  | ❌     | ❌      |
-| SndLpfCurve  | ❌     | ❌      |
+| SndVfCurve  | ✔️     | ❌      |
 | LoadedSound  | ❌     | ❌      |
 | clipMap_t  | ⁉️     | ❌      |
 | ComWorld  | ✔️     | ❌      |

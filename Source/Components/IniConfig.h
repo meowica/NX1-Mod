@@ -18,6 +18,7 @@ namespace IniConfig
 
 	// Dumpers
 	extern bool EnablePhysPresetDumper;
+	extern bool EnableSndVfCurveDumper;
 	extern bool EnableClipMapDumper;
 	extern bool EnableComWorldDumper;
 	extern bool EnableGameWorldSpDumper;

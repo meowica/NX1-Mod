@@ -84,6 +84,7 @@
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IStructuredDataDefSet.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IComWorld.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IGameWorldSp.cpp" />
+    <ClCompile Include="..\..\Source\Components\Assets\Interfaces\ISndVfCurve.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\Util\Command.h">
