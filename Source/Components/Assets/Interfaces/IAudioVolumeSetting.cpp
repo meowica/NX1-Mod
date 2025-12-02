@@ -25,8 +25,8 @@ namespace IAudioVolumeSetting
 					<< audioVolumeSetting->soundChannelVolumes[i] << "\n";
 			}
 
-			std::string content = oss.str();
-			Util::FileSystem::WriteFile(outPath.c_str(), content.c_str(), content.size());
+			std::string outStr = oss.str();
+			Util::FileSystem::WriteFile(outPath.c_str(), outStr.c_str(), outStr.size());
 		}
 
 		Util::Hook::Detour Load_AudioVolumeSettingPtr_Hook;

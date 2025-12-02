@@ -2,47 +2,6 @@
 
 namespace IComWorld
 {
-	// TODO: Move this into Util::JSON
-	static void JsonEscape(const char* in, std::string& out)
-	{
-		if (!in)
-		{
-			out += "";
-			return;
-		}
-
-		for (const char* p = in; *p; ++p)
-		{
-			switch (*p)
-			{
-			case '\"':
-				out += "\\\"";
-				break;
-			case '\\':
-				out += "\\\\";
-				break;
-			case '\b':
-				out += "\\b";
-				break;
-			case '\f':
-				out += "\\f";
-				break;
-			case '\n':
-				out += "\\n";
-				break;
-			case '\r':
-				out += "\\r";
-				break;
-			case '\t':
-				out += "\\t";
-				break;
-			default:
-				out += *p;
-				break;
-			}
-		}
-	}
-
 #ifdef IS_MP
 	namespace MP
 	{
@@ -58,13 +17,7 @@ namespace IComWorld
 
 			std::ostringstream oss;
 			oss << "{\n";
-			oss << "  \"name\": \"";
-			{
-				std::string esc;
-				JsonEscape(comWorld->name, esc);
-				oss << esc;
-			}
-			oss << "\",\n";
+			oss << "  \"name\": \"" << Util::JSON::JsonEscape(comWorld->name) << "\",\n";
 			oss << "  \"isInUse\": " << comWorld->isInUse << ",\n";
 			oss << "  \"primaryLightCount\": " << comWorld->primaryLightCount << ",\n";
 			oss << "  \"primaryLights\": [\n";
@@ -94,13 +47,7 @@ namespace IComWorld
 				oss << "      \"cosHalfFovExpanded\": " << L.cosHalfFovExpanded << ",\n";
 				oss << "      \"rotationLimit\": " << L.rotationLimit << ",\n";
 				oss << "      \"translationLimit\": " << L.translationLimit << ",\n";
-				oss << "      \"defName\": \"";
-				{
-					std::string esc;
-					JsonEscape(L.defName, esc);
-					oss << esc;
-				}
-				oss << "\"\n";
+				oss << "      \"defName\": \"" << Util::JSON::JsonEscape(L.defName) << "\"\n";
 				oss << "    }";
 				if (i + 1 < comWorld->primaryLightCount)
 					oss << ",";
@@ -154,13 +101,7 @@ namespace IComWorld
 
 			std::ostringstream oss;
 			oss << "{\n";
-			oss << "  \"name\": \"";
-			{
-				std::string esc;
-				JsonEscape(comWorld->name, esc);
-				oss << esc;
-			}
-			oss << "\",\n";
+			oss << "  \"name\": \"" << Util::JSON::JsonEscape(comWorld->name) << "\",\n";
 			oss << "  \"isInUse\": " << comWorld->isInUse << ",\n";
 			oss << "  \"primaryLightCount\": " << comWorld->primaryLightCount << ",\n";
 			oss << "  \"primaryLights\": [\n";
@@ -190,13 +131,7 @@ namespace IComWorld
 				oss << "      \"cosHalfFovExpanded\": " << L.cosHalfFovExpanded << ",\n";
 				oss << "      \"rotationLimit\": " << L.rotationLimit << ",\n";
 				oss << "      \"translationLimit\": " << L.translationLimit << ",\n";
-				oss << "      \"defName\": \"";
-				{
-					std::string esc;
-					JsonEscape(L.defName, esc);
-					oss << esc;
-				}
-				oss << "\"\n";
+				oss << "      \"defName\": \"" << Util::JSON::JsonEscape(L.defName) << "\"\n";
 				oss << "    }";
 				if (i + 1 < comWorld->primaryLightCount)
 					oss << ",";

@@ -2,43 +2,6 @@
 
 namespace IGameWorldMp
 {
-	static void JsonEscape(const char* in, std::string& out)
-	{
-		if (!in)
-			return;
-
-		for (const char* p = in; *p; ++p)
-		{
-			switch (*p)
-			{
-			case '\"':
-				out += "\\\"";
-				break;
-			case '\\':
-				out += "\\\\";
-				break;
-			case '\b':
-				out += "\\b";
-				break;
-			case '\f':
-				out += "\\f";
-				break;
-			case '\n':
-				out += "\\n";
-				break;
-			case '\r':
-				out += "\\r";
-				break;
-			case '\t':
-				out += "\\t";
-				break;
-			default:
-				out += *p;
-				break;
-			}
-		}
-	}
-
 #ifdef IS_MP
 	namespace MP
 	{
@@ -54,13 +17,7 @@ namespace IGameWorldMp
 
 			std::ostringstream oss;
 			oss << "{\n";
-			oss << "  \"name\": \"";
-			{
-				std::string esc;
-				JsonEscape(gameWorldMp->name, esc);
-				oss << esc;
-			}
-			oss << "\",\n";
+			oss << "  \"name\": \"" << Util::JSON::JsonEscape(assetName.c_str()) << "\",\n";
 			G_GlassData* gd = gameWorldMp->g_glassData;
 			if (!gd)
 			{
@@ -101,12 +58,7 @@ namespace IGameWorldMp
 
 				oss << "      {\n";
 				oss << "        \"nameStr\": \"";
-				{
-					std::string esc;
-					JsonEscape(gn.nameStr, esc);
-					oss << esc;
-				}
-				oss << "\",\n";
+				oss << "        \"nameStr\": \"" << Util::JSON::JsonEscape(gn.nameStr) << "\",\n";
 				oss << "        \"name\": " << gn.name << ",\n";
 				oss << "        \"pieceCount\": " << gn.pieceCount << ",\n";
 				oss << "        \"pieceIndices\": [";
