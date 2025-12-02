@@ -2,43 +2,6 @@
 
 namespace IGameWorldSp
 {
-	static void JsonEscape(const char* in, std::string& out)
-	{
-		if (!in)
-			return;
-
-		for (const char* p = in; *p; ++p)
-		{
-			switch (*p)
-			{
-			case '\"':
-				out += "\\\"";
-				break;
-			case '\\':
-				out += "\\\\";
-				break;
-			case '\b':
-				out += "\\b";
-				break;
-			case '\f':
-				out += "\\f";
-				break;
-			case '\n':
-				out += "\\n";
-				break;
-			case '\r':
-				out += "\\r";
-				break;
-			case '\t':
-				out += "\\t";
-				break;
-			default:
-				out += *p;
-				break;
-			}
-		}
-	}
-
 #ifdef IS_SP
 	namespace SP
 	{

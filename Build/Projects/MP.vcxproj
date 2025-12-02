@@ -141,6 +141,7 @@
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IFogDef.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IFont.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IGameWorldMp.cpp" />
+    <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IGameWorldSp.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IGfxLightDef.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IGfxWorld.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\ILaserDef.cpp" />
@@ -187,8 +188,10 @@
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IFogDef.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IFont.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IFxEffectDef.h" />
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IFxImpactTable.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IFxWorld.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IGameWorldMp.h" />
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IGameWorldSp.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IGfxImage.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IGfxLightDef.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IGfxWorld.h" />
@@ -215,6 +218,7 @@
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IRawFile.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\ILeaderboardDef.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IStructuredDataDefSet.h" />
+    <ClInclude Include="..\..\Source\Components\Assets\Interfaces\ISurfaceFxTable.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\ITracerDef.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IVehicleDef.h" />
     <ClInclude Include="..\..\Source\Components\Assets\Interfaces\IWeaponCompleteDef.h" />

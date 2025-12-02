@@ -20,9 +20,11 @@ namespace IAudioVolumeSetting
 
 			for (int i = 0; i < 64; ++i)
 			{
-				oss << i << ","
+				oss << i
+					<< ","
 					<< std::fixed << std::setprecision(6)
-					<< audioVolumeSetting->soundChannelVolumes[i] << "\n";
+					<< audioVolumeSetting->soundChannelVolumes[i]
+					<< "\n";
 			}
 
 			std::string outStr = oss.str();
@@ -66,20 +68,22 @@ namespace IAudioVolumeSetting
 			std::string assetName = audioVolumeSetting->p_name;
 			std::replace(assetName.begin(), assetName.end(), '/', '\\');
 
-			std::string outPath = "game:\\" BASE_FOLDER "\\dump\\audio\\" + assetName + ".csv";
+			std::string outPath = "game:\\" BASE_FOLDER "\\dump\\audio_volume\\" + assetName + ".csv";
 
 			std::ostringstream oss;
 			oss << "Channel,Volume\n";
 
 			for (int i = 0; i < 64; ++i)
 			{
-				oss << i << ","
+				oss << i
+					<< ","
 					<< std::fixed << std::setprecision(6)
-					<< audioVolumeSetting->soundChannelVolumes[i] << "\n";
+					<< audioVolumeSetting->soundChannelVolumes[i]
+					<< "\n";
 			}
 
-			std::string content = oss.str();
-			Util::FileSystem::WriteFile(outPath.c_str(), content.c_str(), content.size());
+			std::string outStr = oss.str();
+			Util::FileSystem::WriteFile(outPath.c_str(), outStr.c_str(), outStr.size());
 		}
 
 		Util::Hook::Detour Load_AudioVolumeSettingPtr_Hook;
