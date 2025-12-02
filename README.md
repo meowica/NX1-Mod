@@ -91,8 +91,6 @@
 | XModel  | ❌     | ❌      |
 | Material  | ⁉️     | ❌      |
 | MaterialPixelShader  | ❌     | ❌      |
-| MaterialVertexShader  | ❌     | ❌      |
-| MaterialVertexDeclaration  | ❌     | ❌      |
 | MaterialTechniqueSet  | ❌     | ❌      |
 | GfxImage  | ❌     | ❌      |
 | SndAliasList  | ❌     | ❌      |
