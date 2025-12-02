@@ -7,6 +7,7 @@
 #include "Interfaces\IGameWorldSp.h"
 #include "Interfaces\IGameWorldMp.h"
 #include "Interfaces\IMapEnts.h"
+#include "Interfaces\IFxWorld.h"
 #include "Interfaces\IGfxWorld.h"
 #include "Interfaces\IGfxLightDef.h"
 #include "Interfaces\IFont.h"
@@ -39,6 +40,7 @@ namespace AssetHandler
 			IComWorld::MP::Load();
 			IGameWorldMp::MP::Load();
 			IMapEnts::MP::Load();
+			IFxWorld::MP::Load();
 			IGfxWorld::MP::Load();
 			IGfxLightDef::MP::Load();
 			IFont::MP::Load();
@@ -102,6 +104,7 @@ namespace AssetHandler
 			IComWorld::SP::Load();
 			IGameWorldSp::SP::Load();
 			IMapEnts::SP::Load();
+			IFxWorld::SP::Load();
 			IGfxLightDef::SP::Load();
 			IFont::SP::Load();
 			IMenuList::SP::Load();

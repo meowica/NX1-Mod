@@ -18,6 +18,7 @@ namespace IniConfig
 	bool EnableGameWorldSpDumper = false;
 	bool EnableGameWorldMpDumper = false;
 	bool EnableMapEntsDumper = false;
+	bool EnableFxWorldDumper = false;
 	bool EnableGfxWorldDumper = false;
 	bool EnableGfxLightDefDumper = false;
 	bool EnableFontHandleDumper = false;
@@ -65,6 +66,7 @@ namespace IniConfig
 		EnableGameWorldSpDumper = g_Config.GetBoolean("Asset Dumpers", "EnableGameWorldSpDumper", EnableGameWorldSpDumper);
 		EnableGameWorldMpDumper = g_Config.GetBoolean("Asset Dumpers", "EnableGameWorldMpDumper", EnableGameWorldMpDumper);
 		EnableMapEntsDumper = g_Config.GetBoolean("Asset Dumpers", "EnableMapEntsDumper", EnableMapEntsDumper);
+		EnableFxWorldDumper = g_Config.GetBoolean("Asset Dumpers", "EnableFxWorldDumper", EnableFxWorldDumper);
 		EnableGfxWorldDumper = g_Config.GetBoolean("Asset Dumpers", "EnableGfxWorldDumper", EnableGfxWorldDumper);
 		EnableGfxLightDefDumper = g_Config.GetBoolean("Asset Dumpers", "EnableGfxLightDefDumper", EnableGfxLightDefDumper);
 		EnableFontHandleDumper = g_Config.GetBoolean("Asset Dumpers", "EnableFontHandleDumper", EnableFontHandleDumper);

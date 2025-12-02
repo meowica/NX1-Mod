@@ -24,6 +24,7 @@ namespace IniConfig
 	extern bool EnableGameWorldSpDumper;
 	extern bool EnableGameWorldMpDumper;
 	extern bool EnableMapEntsDumper;
+	extern bool EnableFxWorldDumper;
 	extern bool EnableGfxWorldDumper;
 	extern bool EnableGfxLightDefDumper;
 	extern bool EnableFontHandleDumper;

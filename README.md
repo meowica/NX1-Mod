@@ -103,7 +103,7 @@
 | GameWorldSp  | ⁉️     | ❌      |
 | GameWorldMp  | ✔️     | ❌      |
 | MapEnts  | ✔️     | ✔️      |
-| FxWorld  | ❌     | ❌      |
+| FxWorld  | ✔️     | ❌      |
 | GfxWorld  | ⁉️     | ❌      |
 | GfxLightDef  | ✔️     | ❌      |
 | Font_s  | ✔️     | ❌      |

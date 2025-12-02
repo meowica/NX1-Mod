@@ -136,6 +136,7 @@
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IComWorld.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IFogDef.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IFont.cpp" />
+    <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IFxWorld.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IGameWorldSp.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IGfxLightDef.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\ILaserDef.cpp" />
