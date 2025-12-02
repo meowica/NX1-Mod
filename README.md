@@ -109,7 +109,7 @@
 | menuDef_t  | ❌     | ❌      |
 | LocalizeEntry  | ✔️     | ❌      |
 | WeaponCompleteDef  | ❌     | ❌      |
-| SndDriverGlobals  | ❌     | ❌      |
+| SndDriverGlobals  | ✔️     | ❌      |
 | FxEffectDef  | ❌     | ❌      |
 | FxImpactTable  | ❌     | ❌      |
 | SurfaceFxTable  | ❌     | ❌      |
