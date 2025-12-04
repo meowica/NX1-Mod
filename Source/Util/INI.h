@@ -16,11 +16,11 @@ namespace Util
 
 			while (std::getline(f, line))
 			{
-				Trim(line);
+				TrimStr(line);
 
 				if (line.empty())
 					continue;
-				if (line[0] == ';') // comment
+				if (line[0] == ';')
 					continue;
 
 				if (line[0] == '[')
@@ -38,11 +38,12 @@ namespace Util
 				std::string key = line.substr(0, eq);
 				std::string value = line.substr(eq + 1);
 
-				Trim(key);
-				Trim(value);
+				TrimStr(key);
+				TrimStr(value);
 
 				data_[currentSection][key] = value;
 			}
+
 			return true;
 		}
 
@@ -78,7 +79,7 @@ namespace Util
 
 			std::string string = value;
 			for (size_t i = 0; i < string.size(); ++i)
-				string[i] = static_cast<char>(std::tolower(static_cast<unsigned char>(string[i])));
+				string[i] = (char)std::tolower((unsigned char)string[i]);
 			return (string == "1" || string == "true");
 		}
 
@@ -88,7 +89,7 @@ namespace Util
 
 		SectionMap data_;
 
-		static void Trim(std::string& string)
+		static void TrimStr(std::string& string)
 		{
 			while (!string.empty() && (string[0] == ' ' || string[0] == '\t'))
 				string.erase(0, 1);

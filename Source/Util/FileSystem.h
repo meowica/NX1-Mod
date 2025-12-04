@@ -7,6 +7,6 @@ namespace Util
 		bool FileExists(const std::string& filePath);
 		std::string ReadFileIntoString(const std::string& filePath);
 
-		bool WriteFile(const char* filePath, const char* data, size_t dataSize);
+		bool WriteFile(const char* filePath, const char* data, std::size_t dataSize);
 	}
 }

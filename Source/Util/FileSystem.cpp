@@ -12,79 +12,60 @@ namespace Util
 		{
 			std::ifstream f(filePath, std::ios::binary);
 			if (!f)
-			{
-				printf("ReadFileIntoToString: Failed to open file: %s\n", filePath.c_str());
 				return "";
-			}
-
 			std::string content((std::istreambuf_iterator<char>(f)), std::istreambuf_iterator<char>());
 			f.close();
 			return content;
 		}
 
-
-		void CreateNestedDirectories(const char* path)
+		void CreateNestedDirectories(const std::string& path)
 		{
-			if (!path || !path[0])
+			if (path.empty())
 				return;
 
-			char tempPath[256];
-			size_t len = strlen(path);
-			if (len >= sizeof(tempPath))
-				return;
+			std::string temp(path);
 
-			strcpy(tempPath, path);
-
-			char* p = tempPath;
-
-			// skip drive letter or known prefix's like "game:\"
-			if ((p[0] && p[1] == ':' && (p[2] == '\\' || p[2] == '/')))
+			std::size_t pos = 0;
+			if (temp.size() >= 3 &&
+				std::isalpha(temp[0]) &&
+				temp[1] == ':' &&
+				(temp[2] == '\\' || temp[2] == '/'))
 			{
-				p += 3;
+				pos = 3;
 			}
-			else if (strncmp(p, "game:\\", 6) == 0)
+			else if (temp.rfind("game:\\", 0) == 0)
 			{
-				p += 6;
+				pos = 6;
 			}
 
-			for (; p[0]; ++p)
+			for (; pos < temp.size(); ++pos)
 			{
-				if (p[0] == '\\' || p[0] == '/')
+				if (temp[pos] == '\\' || temp[pos] == '/')
 				{
-					char saved = p[0];
-					p[0] = '\0';
-					mkdir(tempPath);
-					p[0] = saved;
+					std::string sub = temp.substr(0, pos);
+
+					if (!sub.empty())
+						mkdir(sub.c_str());
 				}
 			}
 
-			mkdir(tempPath); // final directory
+			mkdir(temp.c_str());
 		}
 
-		bool WriteFile(const char* filePath, const char* data, size_t dataSize)
+		bool WriteFile(const char* filePath, const char* data, std::size_t dataSize)
 		{
-			char dirPath[256];
-			strncpy(dirPath, filePath, sizeof(dirPath) - 1);
-			dirPath[sizeof(dirPath) - 1] = '\0';
+			std::string path(filePath);
 
-			char* lastSlash = strrchr(dirPath, '\\');
-			if (lastSlash)
-			{
-				lastSlash[0] = '\0';
-				CreateNestedDirectories(dirPath);
-			}
+			std::size_t pos = path.find_last_of("\\/");
+			if (pos != std::string::npos)
+				CreateNestedDirectories(path.substr(0, pos));
 
-			FILE* file = fopen(filePath, "wb");
-			if (file)
-			{
-				fwrite(data, 1, dataSize, file);
-				fclose(file);
-				return TRUE;
-			}
-			else
-			{
-				return FALSE;
-			}
+			std::ofstream file(path, std::ios::binary);
+			if (!file)
+				return false;
+
+			file.write(data, dataSize);
+			return file.good();
 		}
 	}
 }
