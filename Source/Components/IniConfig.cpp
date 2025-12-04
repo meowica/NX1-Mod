@@ -37,59 +37,61 @@ namespace IniConfig
 	bool EnableRadVerbPresetDumper = false;
 	bool EnableFogDefDumper = false;
 
-	Util::INI g_Config;
+	Util::INI g_config;
 
-	void LoadAndReadConfig()
+	void LoadConfig()
 	{
-		std::string filePath = Util::String::VA("game:\\" BASE_FOLDER "\\" INI_CONFIG);
-		if (!g_Config.Load(filePath))
+		std::string filePath = Util::String::VA("game:\\" BASE_FOLDER "\\" PLUGIN_CONFIG);
+		if (!g_config.Load(filePath))
 		{
 			auto win = Util::XBox::XShowMessageBox(
 				0,
-				L"Error - Missing Config",
-				Util::String::VAW("Failed to load '%s'.\nNX1-Mod needs this config file to run.\n\nPlease add it to the NX1-Mod folder and try again.\n", INI_CONFIG));
+				L"Error - Missing Plugin Config",
+				Util::String::VAW(
+					"Failed to load '%s'.\nNX1-Mod needs this config file to run.\n"
+					"\nPlease add it to the NX1-Mod folder and try again.\n", PLUGIN_CONFIG));
 			return;
 		}
 
-		ShowIntroMovie = g_Config.GetBoolean("Intro", "ShowIntroMovie", ShowIntroMovie);
+		ShowIntroMovie = g_config.GetBoolean("Intro", "ShowIntroMovie", ShowIntroMovie);
 
-		ShowWatermark  = g_Config.GetBoolean("Drawing", "ShowWatermark",  ShowWatermark);
-		ShowFPSCounter = g_Config.GetBoolean("Drawing", "ShowFPSCounter", ShowFPSCounter);
+		ShowWatermark  = g_config.GetBoolean("Drawing", "ShowWatermark",  ShowWatermark);
+		ShowFPSCounter = g_config.GetBoolean("Drawing", "ShowFPSCounter", ShowFPSCounter);
 
-		EnableMapEntsLoader = g_Config.GetBoolean("Asset Loaders", "EnableMapEntsLoader", EnableMapEntsLoader);
-		EnableRawFileLoader = g_Config.GetBoolean("Asset Loaders", "EnableRawFileLoader", EnableRawFileLoader);
-		EnableAddonMapEntsLoader = g_Config.GetBoolean("Asset Loaders", "EnableAddonMapEntsLoader", EnableAddonMapEntsLoader);
+		EnableMapEntsLoader = g_config.GetBoolean("Asset Loaders", "EnableMapEntsLoader", EnableMapEntsLoader);
+		EnableRawFileLoader = g_config.GetBoolean("Asset Loaders", "EnableRawFileLoader", EnableRawFileLoader);
+		EnableAddonMapEntsLoader = g_config.GetBoolean("Asset Loaders", "EnableAddonMapEntsLoader", EnableAddonMapEntsLoader);
 
-		EnablePhysPresetDumper = g_Config.GetBoolean("Asset Dumpers", "EnablePhysPresetDumper", EnablePhysPresetDumper);
-		EnableSndVfCurveDumper = g_Config.GetBoolean("Asset Dumpers", "EnableSndVfCurveDumper", EnableSndVfCurveDumper);
-		EnableClipMapDumper = g_Config.GetBoolean("Asset Dumpers", "EnableClipMapDumper", EnableClipMapDumper);
-		EnableComWorldDumper = g_Config.GetBoolean("Asset Dumpers", "EnableComWorldDumper", EnableComWorldDumper);
-		EnableGameWorldSpDumper = g_Config.GetBoolean("Asset Dumpers", "EnableGameWorldSpDumper", EnableGameWorldSpDumper);
-		EnableGameWorldMpDumper = g_Config.GetBoolean("Asset Dumpers", "EnableGameWorldMpDumper", EnableGameWorldMpDumper);
-		EnableMapEntsDumper = g_Config.GetBoolean("Asset Dumpers", "EnableMapEntsDumper", EnableMapEntsDumper);
-		EnableFxWorldDumper = g_Config.GetBoolean("Asset Dumpers", "EnableFxWorldDumper", EnableFxWorldDumper);
-		EnableGfxWorldDumper = g_Config.GetBoolean("Asset Dumpers", "EnableGfxWorldDumper", EnableGfxWorldDumper);
-		EnableGfxLightDefDumper = g_Config.GetBoolean("Asset Dumpers", "EnableGfxLightDefDumper", EnableGfxLightDefDumper);
-		EnableFontHandleDumper = g_Config.GetBoolean("Asset Dumpers", "EnableFontHandleDumper", EnableFontHandleDumper);
-		EnableMenuListDumper = g_Config.GetBoolean("Asset Dumpers", "EnableMenuListDumper", EnableMenuListDumper);
-		EnableLocalizeEntryDumper = g_Config.GetBoolean("Asset Dumpers", "EnableLocalizeEntryDumper", EnableLocalizeEntryDumper);
-		EnableSndDriverGlobalsDumper = g_Config.GetBoolean("Asset Dumpers", "EnableSndDriverGlobalsDumper", EnableSndDriverGlobalsDumper);
-		EnableRawFileDumper = g_Config.GetBoolean("Asset Dumpers", "EnableRawFileDumper", EnableRawFileDumper);
-		EnableStringTableDumper = g_Config.GetBoolean("Asset Dumpers", "EnableStringTableDumper", EnableStringTableDumper);
-		EnableLeaderboardDefDumper = g_Config.GetBoolean("Asset Dumpers", "EnableLeaderboardDefDumper", EnableLeaderboardDefDumper);
-		EnableStructuredDataDefSetDumper = g_Config.GetBoolean("Asset Dumpers", "EnableStructuredDataDefSetDumper", EnableStructuredDataDefSetDumper);
-		EnableTracerDefDumper = g_Config.GetBoolean("Asset Dumpers", "EnableTracerDefDumper", EnableTracerDefDumper);
-		EnableLaserDefDumper = g_Config.GetBoolean("Asset Dumpers", "EnableLaserDefDumper", EnableLaserDefDumper);
-		EnableAddonMapEntsDumper = g_Config.GetBoolean("Asset Dumpers", "EnableAddonMapEntsDumper", EnableAddonMapEntsDumper);
-		EnableShellShockParamDumper = g_Config.GetBoolean("Asset Dumpers", "EnableShellShockParamDumper", EnableShellShockParamDumper);
-		EnableAudioVolumeSettingDumper = g_Config.GetBoolean("Asset Dumpers", "EnableAudioVolumeSettingDumper", EnableAudioVolumeSettingDumper);
-		EnableRadVerbPresetDumper = g_Config.GetBoolean("Asset Dumpers", "EnableRadVerbPresetDumper", EnableRadVerbPresetDumper);
-		EnableFogDefDumper = g_Config.GetBoolean("Asset Dumpers", "EnableFogDefDumper", EnableFogDefDumper);
+		EnablePhysPresetDumper = g_config.GetBoolean("Asset Dumpers", "EnablePhysPresetDumper", EnablePhysPresetDumper);
+		EnableSndVfCurveDumper = g_config.GetBoolean("Asset Dumpers", "EnableSndVfCurveDumper", EnableSndVfCurveDumper);
+		EnableClipMapDumper = g_config.GetBoolean("Asset Dumpers", "EnableClipMapDumper", EnableClipMapDumper);
+		EnableComWorldDumper = g_config.GetBoolean("Asset Dumpers", "EnableComWorldDumper", EnableComWorldDumper);
+		EnableGameWorldSpDumper = g_config.GetBoolean("Asset Dumpers", "EnableGameWorldSpDumper", EnableGameWorldSpDumper);
+		EnableGameWorldMpDumper = g_config.GetBoolean("Asset Dumpers", "EnableGameWorldMpDumper", EnableGameWorldMpDumper);
+		EnableMapEntsDumper = g_config.GetBoolean("Asset Dumpers", "EnableMapEntsDumper", EnableMapEntsDumper);
+		EnableFxWorldDumper = g_config.GetBoolean("Asset Dumpers", "EnableFxWorldDumper", EnableFxWorldDumper);
+		EnableGfxWorldDumper = g_config.GetBoolean("Asset Dumpers", "EnableGfxWorldDumper", EnableGfxWorldDumper);
+		EnableGfxLightDefDumper = g_config.GetBoolean("Asset Dumpers", "EnableGfxLightDefDumper", EnableGfxLightDefDumper);
+		EnableFontHandleDumper = g_config.GetBoolean("Asset Dumpers", "EnableFontHandleDumper", EnableFontHandleDumper);
+		EnableMenuListDumper = g_config.GetBoolean("Asset Dumpers", "EnableMenuListDumper", EnableMenuListDumper);
+		EnableLocalizeEntryDumper = g_config.GetBoolean("Asset Dumpers", "EnableLocalizeEntryDumper", EnableLocalizeEntryDumper);
+		EnableSndDriverGlobalsDumper = g_config.GetBoolean("Asset Dumpers", "EnableSndDriverGlobalsDumper", EnableSndDriverGlobalsDumper);
+		EnableRawFileDumper = g_config.GetBoolean("Asset Dumpers", "EnableRawFileDumper", EnableRawFileDumper);
+		EnableStringTableDumper = g_config.GetBoolean("Asset Dumpers", "EnableStringTableDumper", EnableStringTableDumper);
+		EnableLeaderboardDefDumper = g_config.GetBoolean("Asset Dumpers", "EnableLeaderboardDefDumper", EnableLeaderboardDefDumper);
+		EnableStructuredDataDefSetDumper = g_config.GetBoolean("Asset Dumpers", "EnableStructuredDataDefSetDumper", EnableStructuredDataDefSetDumper);
+		EnableTracerDefDumper = g_config.GetBoolean("Asset Dumpers", "EnableTracerDefDumper", EnableTracerDefDumper);
+		EnableLaserDefDumper = g_config.GetBoolean("Asset Dumpers", "EnableLaserDefDumper", EnableLaserDefDumper);
+		EnableAddonMapEntsDumper = g_config.GetBoolean("Asset Dumpers", "EnableAddonMapEntsDumper", EnableAddonMapEntsDumper);
+		EnableShellShockParamDumper = g_config.GetBoolean("Asset Dumpers", "EnableShellShockParamDumper", EnableShellShockParamDumper);
+		EnableAudioVolumeSettingDumper = g_config.GetBoolean("Asset Dumpers", "EnableAudioVolumeSettingDumper", EnableAudioVolumeSettingDumper);
+		EnableRadVerbPresetDumper = g_config.GetBoolean("Asset Dumpers", "EnableRadVerbPresetDumper", EnableRadVerbPresetDumper);
+		EnableFogDefDumper = g_config.GetBoolean("Asset Dumpers", "EnableFogDefDumper", EnableFogDefDumper);
 	}
 
 	void UnloadConfig()
 	{
-		g_Config.Unload();
+		g_config.Unload();
 	}
 
 #ifdef IS_MP
@@ -97,7 +99,7 @@ namespace IniConfig
 	{
 		void Load()
 		{
-			LoadAndReadConfig();
+			LoadConfig();
 		}
 
 		void Unload()
@@ -110,7 +112,7 @@ namespace IniConfig
 	{
 		void Load()
 		{
-			LoadAndReadConfig();
+			LoadConfig();
 		}
 
 		void Unload()

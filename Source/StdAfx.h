@@ -10,7 +10,7 @@
 #define MAX_CHARS				std::numeric_limits<int>::max()
 
 #define BASE_FOLDER				"NX1-Mod"
-#define INI_CONFIG				"NX1-Mod.ini"
+#define PLUGIN_CONFIG			"NX1-Mod.ini"
 
 #ifdef IS_MP
 	#define BRANDING_STR		"NX1-Mod MP"
