@@ -106,7 +106,7 @@
 | GfxLightDef  | ✔️     | ❌      |
 | Font_s  | ✔️     | ❌      |
 | MenuList  | ✔️     | ❌      |
-| menuDef_t  | ❌     | ❌      |
+| menuDef_t  | ⁉️     | ❌      |
 | LocalizeEntry  | ✔️     | ❌      |
 | WeaponCompleteDef  | ❌     | ❌      |
 | SndDriverGlobals  | ✔️     | ❌      |

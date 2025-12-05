@@ -23,6 +23,7 @@ namespace IniConfig
 	bool EnableGfxLightDefDumper = false;
 	bool EnableFontHandleDumper = false;
 	bool EnableMenuListDumper = false;
+	bool EnableMenuDefDumper = false;
 	bool EnableLocalizeEntryDumper = false;
 	bool EnableSndDriverGlobalsDumper = false;
 	bool EnableFxEffectDefDumper = false;
@@ -75,6 +76,7 @@ namespace IniConfig
 		EnableGfxLightDefDumper = g_config.GetBoolean("Asset Dumpers", "EnableGfxLightDefDumper", EnableGfxLightDefDumper);
 		EnableFontHandleDumper = g_config.GetBoolean("Asset Dumpers", "EnableFontHandleDumper", EnableFontHandleDumper);
 		EnableMenuListDumper = g_config.GetBoolean("Asset Dumpers", "EnableMenuListDumper", EnableMenuListDumper);
+		EnableMenuDefDumper = g_config.GetBoolean("Asset Dumpers", "EnableMenuDefDumper", EnableMenuDefDumper);
 		EnableLocalizeEntryDumper = g_config.GetBoolean("Asset Dumpers", "EnableLocalizeEntryDumper", EnableLocalizeEntryDumper);
 		EnableSndDriverGlobalsDumper = g_config.GetBoolean("Asset Dumpers", "EnableSndDriverGlobalsDumper", EnableSndDriverGlobalsDumper);
 		EnableFxEffectDefDumper = g_config.GetBoolean("Asset Dumpers", "EnableFxEffectDefDumper", EnableFxEffectDefDumper);

@@ -12,6 +12,7 @@
 #include "Interfaces\IGfxLightDef.h"
 #include "Interfaces\IFont.h"
 #include "Interfaces\IMenuList.h"
+#include "Interfaces\IMenuDef.h"
 #include "Interfaces\ILocalizeEntry.h"
 #include "Interfaces\ISndDriverGlobals.h"
 #include "Interfaces\IFxEffectDef.h"
@@ -47,6 +48,7 @@ namespace AssetHandler
 			IGfxLightDef::MP::Load();
 			IFont::MP::Load();
 			IMenuList::MP::Load();
+			IMenuDef::MP::Load();
 			ILocalizeEntry::MP::Load();
 			ISndDriverGlobals::MP::Load();
 			IFxEffectDef::MP::Load();
@@ -112,6 +114,7 @@ namespace AssetHandler
 			IGfxLightDef::SP::Load();
 			IFont::SP::Load();
 			IMenuList::SP::Load();
+			IMenuDef::SP::Load();
 			ILocalizeEntry::SP::Load();
 			ISndDriverGlobals::SP::Load();
 			IFxEffectDef::SP::Load();

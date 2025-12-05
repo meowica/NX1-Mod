@@ -88,6 +88,7 @@
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IFxWorld.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\ISndDriverGlobals.cpp" />
     <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IFxEffectDef.cpp" />
+    <ClCompile Include="..\..\Source\Components\Assets\Interfaces\IMenuDef.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\Util\Command.h">
