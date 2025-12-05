@@ -15,41 +15,44 @@ namespace IRawFile
 
 			std::string outPath = "game:\\" BASE_FOLDER "\\dump\\" + assetName;
 
-			const int srcLen = (rawFile->compressedLen > 0) ? rawFile->compressedLen : rawFile->len;
-			const bool isCompressed = (rawFile->compressedLen > 0 && rawFile->compressedLen < rawFile->len);
+			if (Util::FileSystem::FileExists(outPath.c_str()))
+				return;
+
+			bool isCompressed = (rawFile->compressedLen > 0 && rawFile->compressedLen < rawFile->len);
 
 			std::vector<char> decompressed;
 
-			const char* finalData = nullptr;
-			size_t finalLen = 0;
+			const char* data = nullptr;
+			std::size_t len = 0;
 
 			if (isCompressed)
 			{
 				decompressed.resize(rawFile->len);
 
 				uLongf destLen = rawFile->len;
-				int zResult = uncompress(reinterpret_cast<Bytef*>(decompressed.data()), &destLen, reinterpret_cast<const Bytef*>(rawFile->buffer), rawFile->compressedLen);
+				int zResult = uncompress(
+					reinterpret_cast<Bytef*>(decompressed.data()), &destLen,
+					reinterpret_cast<const Bytef*>(rawFile->buffer),
+					rawFile->compressedLen);
 
 				if (zResult == Z_OK)
 				{
-					finalData = decompressed.data();
-					finalLen = destLen;
+					data = decompressed.data();
+					len = destLen;
 				}
 				else
 				{
-					// fallback if decompression failed
-
-					finalData = rawFile->buffer;
-					finalLen = rawFile->len;
+					data = rawFile->buffer;
+					len = rawFile->len;
 				}
 			}
 			else
 			{
-				finalData = rawFile->buffer;
-				finalLen = rawFile->len;
+				data = rawFile->buffer;
+				len = rawFile->len;
 			}
 
-			Util::FileSystem::WriteFile(outPath.c_str(), finalData, finalLen);
+			Util::FileSystem::WriteFile(outPath.c_str(), data, len);
 		}
 
 		bool Load_RawFile(RawFile* rawFile)
@@ -156,41 +159,44 @@ namespace IRawFile
 
 			std::string outPath = "game:\\" BASE_FOLDER "\\dump\\" + assetName;
 
-			const int srcLen = (rawFile->compressedLen > 0) ? rawFile->compressedLen : rawFile->len;
-			const bool isCompressed = (rawFile->compressedLen > 0 && rawFile->compressedLen < rawFile->len);
+			if (Util::FileSystem::FileExists(outPath.c_str()))
+				return;
+
+			bool isCompressed = (rawFile->compressedLen > 0 && rawFile->compressedLen < rawFile->len);
 
 			std::vector<char> decompressed;
 
-			const char* finalData = nullptr;
-			size_t finalLen = 0;
+			const char* data = nullptr;
+			std::size_t len = 0;
 
 			if (isCompressed)
 			{
 				decompressed.resize(rawFile->len);
 
 				uLongf destLen = rawFile->len;
-				int zResult = uncompress(reinterpret_cast<Bytef*>(decompressed.data()), &destLen, reinterpret_cast<const Bytef*>(rawFile->buffer), rawFile->compressedLen);
+				int zResult = uncompress(
+					reinterpret_cast<Bytef*>(decompressed.data()), &destLen,
+					reinterpret_cast<const Bytef*>(rawFile->buffer),
+					rawFile->compressedLen);
 
 				if (zResult == Z_OK)
 				{
-					finalData = decompressed.data();
-					finalLen = destLen;
+					data = decompressed.data();
+					len = destLen;
 				}
 				else
 				{
-					// fallback if decompression failed
-
-					finalData = rawFile->buffer;
-					finalLen = rawFile->len;
+					data = rawFile->buffer;
+					len = rawFile->len;
 				}
 			}
 			else
 			{
-				finalData = rawFile->buffer;
-				finalLen = rawFile->len;
+				data = rawFile->buffer;
+				len = rawFile->len;
 			}
 
-			Util::FileSystem::WriteFile(outPath.c_str(), finalData, finalLen);
+			Util::FileSystem::WriteFile(outPath.c_str(), data, len);
 		}
 
 		bool Load_RawFile(RawFile* rawFile)
