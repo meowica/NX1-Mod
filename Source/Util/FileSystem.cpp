@@ -5,31 +5,35 @@ namespace Util
 		bool FileExists(const std::string& filePath)
 		{
 			std::ifstream fs(filePath.c_str());
-			return fs.good();
+			return fs.is_open();
 		}
 
 		std::string ReadFileIntoString(const std::string& filePath)
 		{
-			std::ifstream f(filePath, std::ios::binary);
+			std::ifstream f(filePath.c_str(), std::ios::binary);
 			if (!f)
-				return "";
-			std::string content((std::istreambuf_iterator<char>(f)), std::istreambuf_iterator<char>());
-			f.close();
+				return std::string();
+
+			std::string content;
+
+			f.seekg(0, std::ios::end);
+			content.reserve(static_cast<size_t>(f.tellg()));
+			f.seekg(0, std::ios::beg);
+
+			content.assign(std::istreambuf_iterator<char>(f), std::istreambuf_iterator<char>());
 			return content;
 		}
 
-		void CreateNestedDirectories(const std::string& path)
+		void CreateNestedDirectories(const std::string& filePath)
 		{
-			if (path.empty())
+			if (filePath.empty())
 				return;
 
-			std::string temp(path);
+			std::string temp(filePath);
 
 			std::size_t pos = 0;
-			if (temp.size() >= 3 &&
-				std::isalpha(temp[0]) &&
-				temp[1] == ':' &&
-				(temp[2] == '\\' || temp[2] == '/'))
+
+			if (temp.size() >= 3 && std::isalpha(temp[0]) && temp[1] == ':' && (temp[2] == '\\' || temp[2] == '/'))
 			{
 				pos = 3;
 			}
@@ -43,7 +47,6 @@ namespace Util
 				if (temp[pos] == '\\' || temp[pos] == '/')
 				{
 					std::string sub = temp.substr(0, pos);
-
 					if (!sub.empty())
 						mkdir(sub.c_str());
 				}
@@ -60,7 +63,7 @@ namespace Util
 			if (pos != std::string::npos)
 				CreateNestedDirectories(path.substr(0, pos));
 
-			std::ofstream file(path, std::ios::binary);
+			std::ofstream file(path.c_str(), std::ios::binary | std::ios::trunc);
 			if (!file)
 				return false;
 
