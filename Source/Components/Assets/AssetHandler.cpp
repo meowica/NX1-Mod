@@ -14,6 +14,7 @@
 #include "Interfaces\IMenuList.h"
 #include "Interfaces\ILocalizeEntry.h"
 #include "Interfaces\ISndDriverGlobals.h"
+#include "Interfaces\IFxEffectDef.h"
 #include "Interfaces\IRawFile.h"
 #include "Interfaces\IStringTable.h"
 #include "Interfaces\ILeaderboardDef.h"
@@ -48,6 +49,7 @@ namespace AssetHandler
 			IMenuList::MP::Load();
 			ILocalizeEntry::MP::Load();
 			ISndDriverGlobals::MP::Load();
+			IFxEffectDef::MP::Load();
 			IRawFile::MP::Load();
 			IStringTable::MP::Load();
 			ILeaderboardDef::MP::Load();
@@ -112,6 +114,7 @@ namespace AssetHandler
 			IMenuList::SP::Load();
 			ILocalizeEntry::SP::Load();
 			ISndDriverGlobals::SP::Load();
+			IFxEffectDef::SP::Load();
 			IRawFile::SP::Load();
 			IStringTable::SP::Load();
 			ILeaderboardDef::SP::Load();

@@ -31,6 +31,7 @@ namespace IniConfig
 	extern bool EnableMenuListDumper;
 	extern bool EnableLocalizeEntryDumper;
 	extern bool EnableSndDriverGlobalsDumper;
+	extern bool EnableFxEffectDefDumper;
 	extern bool EnableRawFileDumper;
 	extern bool EnableStringTableDumper;
 	extern bool EnableLeaderboardDefDumper;

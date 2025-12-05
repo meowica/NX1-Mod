@@ -110,7 +110,7 @@
 | LocalizeEntry  | ✔️     | ❌      |
 | WeaponCompleteDef  | ❌     | ❌      |
 | SndDriverGlobals  | ✔️     | ❌      |
-| FxEffectDef  | ❌     | ❌      |
+| FxEffectDef  | ✔️     | ❌      |
 | FxImpactTable  | ❌     | ❌      |
 | SurfaceFxTable  | ❌     | ❌      |
 | RawFile  | ✔️     | ✔️      |
